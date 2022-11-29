@@ -2,9 +2,14 @@
 
 details TODO
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+### License
+
+Content inside this repo is licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+A copy of the license is [available locally](./LICENSE) too.
 
 ### Local Development
+
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
 ```
 $ yarn  # install/upgrade deps if needed
