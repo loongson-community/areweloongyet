@@ -1,7 +1,7 @@
 <div align="center">
-  <img alt="咱龙了吗？AREWELOONGYET?" src="./art/logo-readme.png" height="150" />
-  <p>一站式跟踪 LoongArch 的上游生态建设。</p>
-  <p>Follow all LoongArch upstream efforts in one site.</p>
+  <img alt="咱龙了吗？AREWELOONGYET? by the Loongson Community" src="./art/logo-readme.png" height="150" />
+  <p>一站式了解 LoongArch 的上游生态建设。</p>
+  <p>Your one-stop portal for following LoongArch upstream work.</p>
 </div>
 
 ---
@@ -9,7 +9,7 @@
 ## Construction Progress / 施工进度
 
 * [x] Domain / 域名
-* [ ] Visual design / 视觉设计: Mostly complete but only inside my head / 基本做完了不过只在我脑子里
+* [x] Visual design / 视觉设计
 * [ ] Basic structure / 基本结构
     - [ ] Key software / 关键软件
     - [ ] Distros / 发行版
@@ -17,7 +17,7 @@
     - [ ] Community (external links) / 交流社区外链
     - [ ] Homepage / 首页
     - [ ] I18n / 国际化
-* [ ] GHA workflow / GHA 工作流
+* [x] GHA workflow / GHA 工作流
 * [ ] Contributor guide / 贡献者指南
 
 ### License
