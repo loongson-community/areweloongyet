@@ -12,15 +12,11 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
+        <h1 className="hero__title">还在路上！</h1>
+        <p className="hero__subtitle">
+          新世界已经相当可用，但还缺乏一些重要基础设施（如 LLVM、Rust 的正式版本支持）。<br />
+          龙芯公司始终未能公开 LoongArch 指令集手册的余下部分，也使新世界暂时无法利用硬件全部性能。
+        </p>
       </div>
     </header>
   );
@@ -30,11 +26,13 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={"首页"}
+      description="一站式了解 LoongArch 的上游生态建设">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <p align="center">
+          本站仍在建设中，只有首页有内容，不用点进别的地方了。建议过两周再来。。
+        </p>
       </main>
     </Layout>
   );
