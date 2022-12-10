@@ -1,6 +1,10 @@
-# 我们龙了吗？Are we Loong yet?
+<div align="center">
+  <img alt="咱龙了吗？AREWELOONGYET?" src="./art/logo-readme.png" height="150" />
+  <p>一站式跟踪 LoongArch 的上游生态建设。</p>
+  <p>Follow all LoongArch upstream efforts in one site.</p>
+</div>
 
-details TODO
+---
 
 ## Construction Progress / 施工进度
 
