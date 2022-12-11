@@ -72,15 +72,14 @@ export enum CodeQuality {
 }
 
 export interface IProject {
-  code: string
-  dependsOn: string[]
-
   name: string
   homepageURL: string
+  repoURL: string
+
+  portingEfforts: IPortingEffort[]
 }
 
 export interface IAuthor {
-  code: string
   name: string
   kind: EntityKind
   url: string
@@ -89,11 +88,13 @@ export interface IAuthor {
 }
 
 export interface IPortingEffort {
+  authors: string[]
+
+  desc: string
   link: string
 
-  projectCode: string
-  authorCode: string
-
   supportStatus: SupportStatus
+  releasedSinceVersion: string
+  goodSinceVersion: string
   quality: CodeQuality
 }
