@@ -1,4 +1,4 @@
-import { SupportStatus, EntityKind, CodeQuality, IProject, IAuthor } from '../types'
+import { SupportStatus, EntityKind, CodeQuality, IProjectCategory, IProject, IAuthor } from '../types'
 
 // 编辑时请保持以字母顺序排列以下内容：
 // Please keep the following contents in alphabetical order while editing:
@@ -31,6 +31,21 @@ export const authors: Record<string, IAuthor> = {
     giteeUsername: '',
   },
 }
+
+export const projectCategories: Array<IProjectCategory> = [
+  {
+    name: '工具链',
+    projects: ['binutils', 'gcc', 'glibc', 'musl'],
+  },
+  {
+    name: '内核',
+    projects: ['linux'],
+  },
+  {
+    name: '模拟器',
+    projects: ['qemu'],
+  },
+]
 
 export const projects: Record<string, IProject> = {
   'binutils': {

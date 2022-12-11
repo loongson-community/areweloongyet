@@ -71,6 +71,11 @@ export enum CodeQuality {
   NeedsRework,
 }
 
+export interface IProjectCategory {
+  name: string
+  projects: string[]
+}
+
 export interface IProject {
   name: string
   homepageURL: string
