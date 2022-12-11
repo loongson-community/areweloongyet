@@ -70,3 +70,30 @@ export enum CodeQuality {
   // good, as long as the defining criteria is satisfied.
   NeedsRework,
 }
+
+export interface IProject {
+  code: string
+  dependsOn: string[]
+
+  name: string
+  homepageURL: string
+}
+
+export interface IAuthor {
+  code: string
+  name: string
+  kind: EntityKind
+  url: string
+  githubUsername: string
+  giteeUsername: string
+}
+
+export interface IPortingEffort {
+  link: string
+
+  projectCode: string
+  authorCode: string
+
+  supportStatus: SupportStatus
+  quality: CodeQuality
+}
