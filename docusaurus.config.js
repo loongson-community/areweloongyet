@@ -105,6 +105,10 @@ const config = {
                 href: 'https://t.me/loongson_users',
               },
               {
+                label: '龙芯用户闲聊 Matrix 群',
+                href: 'https://matrix.to/#/%23loongson-users-ot:matrix.org',
+              },
+              {
                 label: '百度贴吧龙芯吧',
                 href: 'https://tieba.baidu.com/f?kw=%E9%BE%99%E8%8A%AF&ie=utf-8',
               },
