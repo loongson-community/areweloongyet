@@ -128,7 +128,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。“龙芯”、“Loongson”、“LoongArch”等是龙芯中科技术股份有限公司申请的商标。`,
+        copyright: `© ${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。<br />“龙芯”、“Loongson”、“LoongArch”等是龙芯中科技术股份有限公司申请的商标。`,
       },
       prism: {
         theme: lightCodeTheme,
