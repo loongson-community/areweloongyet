@@ -6,21 +6,26 @@ import SupportStatusIcon from '../SupportStatusIcon'
 import styles from './styles.module.css'
 
 function Project({val}: {val: IProject}) {
+  const lowestGoodVersion = val.portingEfforts.reduce((prev, x) => {
+    return x.goodSinceVersion != '' ? x.goodSinceVersion : prev
+  }, '')
+
   return (
-    <p>
-      {val.name}
-      {val.portingEfforts.map((pe) => (<SupportStatusIcon val={pe.supportStatus} />))}
-    </p>
+    <li className={clsx('col col--6')}>
+      <span>{val.portingEfforts.map((pe) => (<SupportStatusIcon val={pe.supportStatus} />))}</span>
+      <span>{val.name}</span>
+      {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
+    </li>
   )
 }
 
 function ProjectList({projectCodes}: {projectCodes: string[]}) {
   return (
-    <ul>
+    <ul className={styles.projects}>
       {projectCodes.map((x) => {
         const proj = projects[x]
         return (
-        <li><Project val={proj} /></li>
+        <Project val={proj} />
       )})}
     </ul>
   )
@@ -30,7 +35,7 @@ function ProjectCategory({val}: {val: IProjectCategory}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center padding-horiz--md">
-        <h2>{val.name}</h2>
+        <h2 className={styles.category__title}>{val.name}</h2>
         <ProjectList projectCodes={val.projects} />
       </div>
     </div>

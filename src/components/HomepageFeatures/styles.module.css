@@ -4,3 +4,23 @@
   padding: 2rem 0;
   width: 100%;
 }
+
+.category__title {
+  font-size: 200%;
+  font-style: oblique 6deg;
+  font-weight: 400;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: left;
+  font-family: Oswald, sans-serif;
+  font-weight: 300;
+  padding: 0;
+}
+
+.project__goodSince {
+  color: var(--ifm-color-emphasis-200);
+}
