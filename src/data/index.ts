@@ -16,6 +16,20 @@ export const authors: Record<string, IAuthor> = {
     githubUsername: 'loongson',
     giteeUsername: '',
   },
+  'lrzlin': {
+    name: 'Lin Runze',
+    kind: EntityKind.Community,
+    url: '',
+    githubUsername: 'lrzlin',
+    giteeUsername: '',
+  },
+  'shipujin': {
+    name: 'Shi Pujin',
+    kind: EntityKind.Loongson,
+    url: '',
+    githubUsername: 'shipujin',
+    giteeUsername: '',
+  },
   'xen0n': {
     name: 'WANG Xuerui',
     kind: EntityKind.Community,
@@ -30,24 +44,63 @@ export const authors: Record<string, IAuthor> = {
     githubUsername: 'xry111',
     giteeUsername: '',
   },
+  'yetist': {
+    name: 'WU Xiaotian',
+    kind: EntityKind.Loongson,
+    url: '',
+    githubUsername: 'yetist',
+    giteeUsername: '',
+  },
 }
 
 export const projectCategories: Array<IProjectCategory> = [
   {
     name: '工具链',
-    projects: ['binutils', 'gcc', 'glibc', 'musl'],
+    projects: ['binutils', 'gcc', 'glibc', 'musl', 'llvm'],
+  },
+  {
+    name: '编程语言',
+    projects: ['go', 'ghc', 'rust'],
   },
   {
     name: '内核',
-    projects: ['linux'],
+    projects: ['linux', 'freebsd', 'openbsd', 'rtthread'],
   },
   {
-    name: '模拟器',
-    projects: ['qemu'],
+    name: '固件 & 模拟器',
+    projects: ['edk2', 'qemu'],
+  },
+  {
+    name: '基础库',
+    projects: [],
+  },
+  {
+    name: 'JIT 运行时',
+    projects: ['openjdk', 'dotnet'],
+  },
+  {
+    name: '发行版',
+    projects: ['gentoo', 'arch', 'debian', 'slackware'],
   },
 ]
 
 export const projects: Record<string, IProject> = {
+  'arch': {
+    name: 'Loong Arch Linux',
+    homepageURL: '',
+    repoURL: 'https://github.com/loongarchlinux',
+    portingEfforts: [
+      {
+        authors: ['yetist'],
+        desc: '',
+        link: 'https://bbs.loongarch.org/d/126',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
   'binutils': {
     name: 'binutils',
     homepageURL: 'https://www.gnu.org/software/binutils/',
@@ -64,6 +117,61 @@ export const projects: Record<string, IProject> = {
       },
     ],
   },
+  'debian': {
+    name: 'Debian',
+    homepageURL: 'https://www.debian.org',
+    repoURL: 'https://salsa.debian.org',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: 'https://wiki.debian.org/Ports/loong64',
+        supportStatus: SupportStatus.WIP,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.NeedsCleanup,
+      },
+    ],
+  },
+  'dotnet': {
+    name: '.NET',
+    homepageURL: 'https://dot.net',
+    repoURL: 'https://github.com/dotnet',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '7.0',
+        goodSinceVersion: '',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'edk2': {
+    name: 'EDK II',
+    homepageURL: 'https://github.com/tianocore/tianocore.github.io/wiki/EDK-II',
+    repoURL: 'https://github.com/tianocore/edk2',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '202211',
+        goodSinceVersion: '',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'freebsd': {
+    name: 'FreeBSD',
+    homepageURL: 'https://www.freebsd.org',
+    repoURL: 'https://cgit.freebsd.org',
+    portingEfforts: [
+    ],
+  },
   'gcc': {
     name: 'gcc',
     homepageURL: 'https://gcc.gnu.org',
@@ -76,6 +184,38 @@ export const projects: Record<string, IProject> = {
         supportStatus: SupportStatus.Released,
         releasedSinceVersion: '12.1',
         goodSinceVersion: '13.1',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'gentoo': {
+    name: 'Gentoo',
+    homepageURL: 'https://gentoo.org',
+    repoURL: 'https://github.com/gentoo/gentoo',
+    portingEfforts: [
+      {
+        authors: ['xen0n'],
+        desc: '',
+        link: 'https://wiki.gentoo.org/wiki/Project:LoongArch',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'ghc': {
+    name: 'Haskell (GHC)',
+    homepageURL: 'https://www.haskell.org/',
+    repoURL: 'https://gitlab.haskell.org/ghc/ghc',
+    portingEfforts: [
+      {
+        authors: ['lrzlin'],
+        desc: '',
+        link: 'https://bbs.loongarch.org/d/150',
+        supportStatus: SupportStatus.WaitingRelease,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
         quality: CodeQuality.OnPar,
       },
     ],
@@ -96,6 +236,38 @@ export const projects: Record<string, IProject> = {
       },
     ],
   },
+  'go': {
+    name: 'Go',
+    homepageURL: 'https://go.dev',
+    repoURL: 'https://github.com/golang/go',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '1.19',
+        goodSinceVersion: '1.19',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'openjdk': {
+    name: 'OpenJDK',
+    homepageURL: 'https://openjdk.org/projects/jdk/',
+    repoURL: 'https://github.com/openjdk/jdk',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.WIP,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.NoCode,
+      },
+    ],
+  },
   'linux': {
     name: 'Linux',
     homepageURL: 'https://kernel.org',
@@ -108,6 +280,22 @@ export const projects: Record<string, IProject> = {
         supportStatus: SupportStatus.Released,
         releasedSinceVersion: '5.19',
         goodSinceVersion: '6.2',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'llvm': {
+    name: 'LLVM',
+    homepageURL: 'https://llvm.org',
+    repoURL: 'https://github.com/llvm/llvm-project',
+    portingEfforts: [
+      {
+        authors: ['loongson', 'xen0n'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.WaitingRelease,
+        releasedSinceVersion: '16.0.0',
+        goodSinceVersion: '16.0.0',
         quality: CodeQuality.OnPar,
       },
     ],
@@ -126,6 +314,13 @@ export const projects: Record<string, IProject> = {
         goodSinceVersion: '',
         quality: CodeQuality.OnPar,
       },
+    ],
+  },
+  'openbsd': {
+    name: 'OpenBSD',
+    homepageURL: 'https://www.openbsd.org',
+    repoURL: 'https://github.com/openbsd',
+    portingEfforts: [
     ],
   },
   'qemu': {
@@ -149,6 +344,54 @@ export const projects: Record<string, IProject> = {
         supportStatus: SupportStatus.Released,
         releasedSinceVersion: '7.1.0',
         goodSinceVersion: '7.2.0',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'rtthread': {
+    name: 'RT-Thread',
+    homepageURL: 'https://www.rt-thread.io',
+    repoURL: 'https://github.com/RT-Thread/rt-thread',
+    portingEfforts: [
+      {
+        authors: [],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.CommercialOnly,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.NoCode,
+      },
+    ],
+  },
+  'rust': {
+    name: 'Rust',
+    homepageURL: 'https://www.rust-lang.org',
+    repoURL: 'https://github.com/rust-lang/rust',
+    portingEfforts: [
+      {
+        authors: ['loongson'],
+        desc: '',
+        link: '',
+        supportStatus: SupportStatus.UnderReview,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
+        quality: CodeQuality.OnPar,
+      },
+    ],
+  },
+  'slackware': {
+    name: 'Slackware',
+    homepageURL: '',
+    repoURL: 'https://github.com/shipujin/slackware-loongarch64',
+    portingEfforts: [
+      {
+        authors: ['shipujin'],
+        desc: '',
+        link: 'https://bbs.loongarch.org/d/95',
+        supportStatus: SupportStatus.Released,
+        releasedSinceVersion: '',
+        goodSinceVersion: '',
         quality: CodeQuality.OnPar,
       },
     ],
