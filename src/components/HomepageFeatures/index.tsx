@@ -30,7 +30,7 @@ function ProjectCategory({val}: {val: IProjectCategory}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center padding-horiz--md">
-        <h3>{val.name}</h3>
+        <h2>{val.name}</h2>
         <ProjectList projectCodes={val.projects} />
       </div>
     </div>
