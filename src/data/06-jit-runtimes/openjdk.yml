@@ -1,0 +1,11 @@
+name: 'OpenJDK'
+homepageURL: 'https://openjdk.org/projects/jdk/'
+repoURL: 'https://github.com/openjdk/jdk'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NoCode

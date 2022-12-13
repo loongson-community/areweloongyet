@@ -27,6 +27,15 @@ const config = {
     locales: ['zh-Hans'],
   },
 
+  plugins: [
+    [
+      './src/plugins/awly-data-plugin',
+      {
+        sourcePath: './src/data',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

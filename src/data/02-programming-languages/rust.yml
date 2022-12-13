@@ -1,0 +1,11 @@
+name: 'Rust'
+homepageURL: 'https://www.rust-lang.org'
+repoURL: 'https://github.com/rust-lang/rust'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: UnderReview
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

@@ -1,0 +1,11 @@
+name: 'glibc'
+homepageURL: 'https://www.gnu.org/software/libc/'
+repoURL: 'https://sourceware.org/git/gitweb.cgi?p=glibc.git'
+portingEfforts:
+  - authors: ['loongson', 'xry111']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '2.36'
+    goodSinceVersion: '2.36'
+    quality: OnPar

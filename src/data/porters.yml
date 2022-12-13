@@ -1,0 +1,39 @@
+# 请保持 key 按字母顺序排列。
+# Please keep the keys alphabetically sorted.
+
+loongson:
+  name: Loongson
+  kind: Loongson
+  url: https://loongson.cn
+  githubUsername: loongson
+  giteeUsername: ''
+lrzlin:
+  name: Lin Runze
+  kind: Community
+  url: ''
+  githubUsername: lrzlin
+  giteeUsername: ''
+shipujin:
+  name: Shi Pujin
+  kind: Loongson
+  url: ''
+  githubUsername: shipujin
+  giteeUsername: ''
+xen0n:
+  name: WANG Xuerui
+  kind: Community
+  url: https://blog.xen0n.name
+  githubUsername: xen0n
+  giteeUsername: xen0n
+xry111:
+  name: Xi Ruoyao
+  kind: Community
+  url: https://blog.xry111.site
+  githubUsername: xry111
+  giteeUsername: ''
+yetist:
+  name: WU Xiaotian
+  kind: Loongson
+  url: ''
+  githubUsername: yetist
+  giteeUsername: ''

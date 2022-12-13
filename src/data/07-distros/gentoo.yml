@@ -1,0 +1,11 @@
+name: 'Gentoo'
+homepageURL: 'https://gentoo.org'
+repoURL: 'https://github.com/gentoo/gentoo'
+portingEfforts:
+  - authors: ['xen0n']
+    desc: ''
+    link: 'https://wiki.gentoo.org/wiki/Project:LoongArch'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

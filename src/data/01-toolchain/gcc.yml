@@ -1,0 +1,11 @@
+name: 'gcc'
+homepageURL: 'https://gcc.gnu.org'
+repoURL: 'https://gcc.gnu.org/git/?p=gcc.git'
+portingEfforts:
+  - authors: ['loongson', 'xry111']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '12.1'
+    goodSinceVersion: '13.1'
+    quality: OnPar

@@ -1,0 +1,11 @@
+name: 'RT-Thread'
+homepageURL: 'https://www.rt-thread.io'
+repoURL: 'https://github.com/RT-Thread/rt-thread'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: ''
+    supportStatus: CommercialOnly
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NoCode

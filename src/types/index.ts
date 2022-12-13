@@ -71,9 +71,14 @@ export enum CodeQuality {
   NeedsRework,
 }
 
+export type LoadedContent = {
+  authors: Map<string, IAuthor>
+  categories: IProjectCategory[]
+}
+
 export interface IProjectCategory {
   name: string
-  projects: string[]
+  projects: IProject[]
 }
 
 export interface IProject {

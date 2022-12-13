@@ -1,0 +1,11 @@
+name: 'Go'
+homepageURL: 'https://go.dev'
+repoURL: 'https://github.com/golang/go'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '1.19'
+    goodSinceVersion: '1.19'
+    quality: OnPar

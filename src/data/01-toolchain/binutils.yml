@@ -1,0 +1,11 @@
+name: 'binutils'
+homepageURL: 'https://www.gnu.org/software/binutils/'
+repoURL: 'https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '2.38'
+    goodSinceVersion: '2.40'
+    quality: OnPar
