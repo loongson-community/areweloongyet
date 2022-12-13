@@ -32,6 +32,7 @@
 
 ```
 $ yarn  # 如果需要的话，安装或升级依赖
+$ yarn make-plugins  # 如果变更了 src/plugins/awly-data-plugin 的话
 $ yarn start
 ```
 

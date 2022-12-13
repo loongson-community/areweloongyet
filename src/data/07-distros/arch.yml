@@ -1,0 +1,11 @@
+name: 'Loong Arch Linux'
+homepageURL: ''
+repoURL: 'https://github.com/loongarchlinux'
+portingEfforts:
+  - authors: ['yetist']
+    desc: ''
+    link: 'https://bbs.loongarch.org/d/126'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

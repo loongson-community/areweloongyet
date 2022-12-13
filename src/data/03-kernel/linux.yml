@@ -1,0 +1,11 @@
+name: 'Linux'
+homepageURL: 'https://kernel.org'
+repoURL: 'https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/'
+portingEfforts:
+  - authors: ['loongson', 'xen0n', 'xry111']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '5.19'
+    goodSinceVersion: '6.2'
+    quality: OnPar

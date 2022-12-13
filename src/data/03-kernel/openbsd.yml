@@ -1,0 +1,4 @@
+name: 'OpenBSD'
+homepageURL: 'https://www.openbsd.org'
+repoURL: 'https://github.com/openbsd'
+portingEfforts: []

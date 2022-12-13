@@ -1,0 +1,11 @@
+name: 'Debian'
+homepageURL: 'https://www.debian.org'
+repoURL: 'https://salsa.debian.org'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: 'https://wiki.debian.org/Ports/loong64'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NeedsCleanup

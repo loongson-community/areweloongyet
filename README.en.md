@@ -32,6 +32,7 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 
 ```
 $ yarn  # install/upgrade deps if needed
+$ yarn make-plugins  # if src/plugins/awly-data-plugin is touched
 $ yarn start
 ```
 

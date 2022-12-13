@@ -1,0 +1,11 @@
+name: 'EDK II'
+homepageURL: 'https://github.com/tianocore/tianocore.github.io/wiki/EDK-II'
+repoURL: 'https://github.com/tianocore/edk2'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '202211'
+    goodSinceVersion: ''
+    quality: OnPar

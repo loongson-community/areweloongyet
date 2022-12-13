@@ -1,0 +1,11 @@
+name: 'LLVM'
+homepageURL: 'https://llvm.org'
+repoURL: 'https://github.com/llvm/llvm-project'
+portingEfforts:
+  - authors: ['loongson', 'xen0n']
+    desc: ''
+    link: ''
+    supportStatus: WaitingRelease
+    releasedSinceVersion: '16.0.0'
+    goodSinceVersion: '16.0.0'
+    quality: OnPar

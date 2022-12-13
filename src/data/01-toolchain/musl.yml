@@ -1,0 +1,11 @@
+name: 'musl'
+homepageURL: 'https://musl.libc.org/'
+repoURL: 'https://git.musl-libc.org/cgit/musl'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: 'https://www.openwall.com/lists/musl/2022/11/15/1'
+    supportStatus: UnderReview
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

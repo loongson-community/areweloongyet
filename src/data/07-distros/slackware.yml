@@ -1,0 +1,11 @@
+name: 'Slackware'
+homepageURL: ''
+repoURL: 'https://github.com/shipujin/slackware-loongarch64'
+portingEfforts:
+  - authors: ['shipujin']
+    desc: ''
+    link: 'https://bbs.loongarch.org/d/95'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

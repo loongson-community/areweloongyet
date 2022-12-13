@@ -1,0 +1,11 @@
+name: 'Haskell (GHC)'
+homepageURL: 'https://www.haskell.org/'
+repoURL: 'https://gitlab.haskell.org/ghc/ghc'
+portingEfforts:
+  - authors: ['lrzlin']
+    desc: ''
+    link: 'https://bbs.loongarch.org/d/150'
+    supportStatus: WaitingRelease
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

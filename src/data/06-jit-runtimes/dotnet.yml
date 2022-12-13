@@ -1,0 +1,11 @@
+name: '.NET'
+homepageURL: 'https://dot.net'
+repoURL: 'https://github.com/dotnet'
+portingEfforts:
+  - authors: ['loongson']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '7.0'
+    goodSinceVersion: ''
+    quality: OnPar
