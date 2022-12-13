@@ -20,6 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Build awly-data-plugin
+        run: yarn make-plugins
       - name: Build website
         run: yarn build
 

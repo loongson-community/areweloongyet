@@ -1,3 +1,6 @@
+# plugin build artifacts
+/src/**/*.js
+
 # Dependencies
 /node_modules
 
