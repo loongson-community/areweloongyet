@@ -82,6 +82,7 @@ export interface IProjectCategory {
 }
 
 export interface IProject {
+  code: string
   name: string
   homepageURL: string
   repoURL: string

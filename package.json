@@ -13,7 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "make-plugins": "tsc --target es5 --esModuleInterop true --moduleResolution node ./src/plugins/awly-data-plugin/index.ts"
+    "make-plugins": "tsc --target esnext --module none --esModuleInterop true --moduleResolution node ./src/plugins/awly-data-plugin/index.ts"
   },
   "dependencies": {
     "@docusaurus/core": "2.2.0",

@@ -2,7 +2,7 @@ import { opendir, readFile } from 'fs/promises'
 import path from 'path'
 
 import glob from 'glob-promise'
-import yaml, { stringify } from 'yaml'
+import yaml  from 'yaml'
 import type { LoadContext, Plugin } from '@docusaurus/types'
 
 import { CodeQuality, EntityKind, IAuthor, IPortingEffort, IProject, IProjectCategory, LoadedContent, SupportStatus } from '../../types'
@@ -120,9 +120,10 @@ async function readAuthors(path: string): Promise<Map<string, IAuthor>> {
   return result
 }
 
-async function readProjectDef(path: string): Promise<IProject> {
-  const x: InputProject = await readUTF8YAML(path)
+async function readProjectDef(p: string): Promise<IProject> {
+  const x: InputProject = await readUTF8YAML(p)
   return {
+    code: path.basename(p, '.yml'),
     name: x.name,
     homepageURL: x.homepageURL,
     repoURL: x.repoURL,
@@ -180,10 +181,38 @@ export default async function awlyDataPlugin(
       }
     },
     async contentLoaded({content, actions}) {
-      // for homepage
-      actions.setGlobalData(content)
+      const {addRoute, createData, setGlobalData} = actions
 
-      // TODO: generate individual project pages
+      // for homepage
+      setGlobalData(content.categories)
+
+      // generate pages for authors
+      for (const [code, a] of content.authors.entries()) {
+        const dataPath = await createData(`porter.${code}.json`, JSON.stringify(a))
+        addRoute({
+          path: `/porter/${code}`,
+          component: '@site/src/components/AuthorPage',
+          modules: {
+            data: dataPath,
+          },
+          exact: true,
+        })
+      }
+
+      // generate pages for individual projects
+      for (const cat of content.categories) {
+        for (const proj of cat.projects) {
+          const dataPath = await createData(`project.${proj.code}.json`, JSON.stringify(proj))
+          addRoute({
+            path: `/project/${proj.code}`,
+            component: '@site/src/components/ProjectPage',
+            modules: {
+              data: dataPath,
+            },
+            exact: true,
+          })
+        }
+      }
     },
     getPathsToWatch() {
       return [

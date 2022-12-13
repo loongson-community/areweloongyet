@@ -1,9 +1,10 @@
 import React from 'react'
 import clsx from 'clsx'
 
+import Link from '@docusaurus/Link'
 import { usePluginData } from '@docusaurus/useGlobalData'
 
-import { IProject, IProjectCategory, LoadedContent } from '../../types'
+import { IProject, IProjectCategory } from '@site/src/types'
 import SupportStatusIcon from '../SupportStatusIcon'
 import styles from './styles.module.css'
 
@@ -15,7 +16,7 @@ function Project({val}: {val: IProject}) {
   return (
     <li className={clsx('col col--6')}>
       <span>{val.portingEfforts.map((pe) => (<SupportStatusIcon val={pe.supportStatus} />))}</span>
-      <span>{val.name}</span>
+      <Link to={`/project/${val.code}`}>{val.name}</Link>
       {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
     </li>
   )
@@ -41,7 +42,8 @@ function ProjectCategory({val}: {val: IProjectCategory}) {
 }
 
 export default function HomepageFeatures(): JSX.Element {
-  const { categories } = usePluginData('awly-data-plugin') as LoadedContent
+  const categories = usePluginData('awly-data-plugin') as IProjectCategory[]
+  console.log(categories)
   return (
     <section className={styles.features}>
       <div className="container">
