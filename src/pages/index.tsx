@@ -30,9 +30,7 @@ export default function Home(): JSX.Element {
       description="一站式了解 LoongArch 的上游生态建设">
       <HomepageHeader />
       <main>
-        <p align="center">
-          本站仍在建设中，只有首页有内容，不用点进别的地方了。建议过两周再来。。
-        </p>
+        <HomepageFeatures />
       </main>
     </Layout>
   );

@@ -1,37 +1,39 @@
 <div align="center">
   <img alt="咱龙了吗？AREWELOONGYET? by the Loongson Community" src="./art/logo-readme.png" height="150" />
   <p>一站式了解 LoongArch 的上游生态建设。</p>
-  <p>Your one-stop portal for following LoongArch upstream work.</p>
 </div>
+
+[English](./README.en.md)
 
 ---
 
-## Construction Progress / 施工进度
+### 施工进度
 
-* [x] Domain / 域名
-* [x] Visual design / 视觉设计
-* [ ] Basic structure / 基本结构
-    - [ ] Key software / 关键软件
-    - [ ] Distros / 发行版
-    - [ ] Learning materials (external links) / 学习材料外链
-    - [ ] Community (external links) / 交流社区外链
-    - [ ] Homepage / 首页
-    - [ ] I18n / 国际化
-* [x] GHA workflow / GHA 工作流
-* [ ] Contributor guide / 贡献者指南
+* [x] 域名
+* [x] 视觉设计
+* [ ] 基本结构
+    - [ ] 关键软件
+    - [ ] 发行版
+    - [ ] 学习材料外链
+    - [ ] 交流社区外链
+    - [ ] 首页
+    - [ ] 国际化
+* [x] GHA 工作流
+* [ ] 贡献者指南
 
-### License
+### 许可证
 
-Content inside this repo is licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-A copy of the license is [available locally](./LICENSE) too.
+本储存库中的内容以 [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可证授权。
+您也可浏览[该许可证的本地副本](./LICENSE)。
 
-### Local Development
+### 本地开发
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+本站以 [Docusaurus 2](https://docusaurus.io/)，一款现代化的静态网站生成器构建。
 
 ```
-$ yarn  # install/upgrade deps if needed
+$ yarn  # 如果需要的话，安装或升级依赖
 $ yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+此命令会启动本地开发服务器，并打开一个浏览器窗口。
+大部分变更都会自动触发窗口更新，不用手工重启服务器。

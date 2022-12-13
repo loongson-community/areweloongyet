@@ -5,7 +5,22 @@
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.category__title {
+  font-size: 200%;
+  font-style: oblique 6deg;
+  font-weight: 400;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: left;
+  font-family: Oswald, sans-serif;
+  font-weight: 300;
+  padding: 0;
+}
+
+.project__goodSince {
+  color: var(--ifm-color-emphasis-200);
 }

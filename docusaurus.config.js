@@ -105,6 +105,10 @@ const config = {
                 href: 'https://t.me/loongson_users',
               },
               {
+                label: '龙芯用户闲聊 Matrix 群',
+                href: 'https://matrix.to/#/%23loongson-users-ot:matrix.org',
+              },
+              {
                 label: '百度贴吧龙芯吧',
                 href: 'https://tieba.baidu.com/f?kw=%E9%BE%99%E8%8A%AF&ie=utf-8',
               },
@@ -124,7 +128,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。“龙芯”、“Loongson”、“LoongArch”等是龙芯中科技术股份有限公司申请的商标。`,
+        copyright: `© ${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。<br />“龙芯”、“Loongson”、“LoongArch”等是龙芯中科技术股份有限公司申请的商标。`,
       },
       prism: {
         theme: lightCodeTheme,
