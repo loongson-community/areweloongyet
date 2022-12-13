@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[3201],{1404:e=>{e.exports=JSON.parse('{"name":"WU Xiaotian","kind":2,"url":"","githubUsername":"yetist","giteeUsername":""}')}}]);

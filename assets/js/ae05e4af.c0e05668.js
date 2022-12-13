@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[1212],{2923:e=>{e.exports=JSON.parse('{"code":"dotnet","name":".NET","homepageURL":"https://dot.net","repoURL":"https://github.com/dotnet","portingEfforts":[{"authors":["loongson"],"desc":"","link":"","supportStatus":8,"releasedSinceVersion":"7.0","goodSinceVersion":"","quality":1}]}')}}]);

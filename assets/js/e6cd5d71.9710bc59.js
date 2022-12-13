@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[9287],{6638:e=>{e.exports=JSON.parse('{"code":"go","name":"Go","homepageURL":"https://go.dev","repoURL":"https://github.com/golang/go","portingEfforts":[{"authors":["loongson"],"desc":"","link":"","supportStatus":8,"releasedSinceVersion":"1.19","goodSinceVersion":"1.19","quality":1}]}')}}]);

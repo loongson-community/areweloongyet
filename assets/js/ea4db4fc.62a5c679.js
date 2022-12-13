@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[7976],{2433:e=>{e.exports=JSON.parse('{"code":"openbsd","name":"OpenBSD","homepageURL":"https://www.openbsd.org","repoURL":"https://github.com/openbsd","portingEfforts":[]}')}}]);

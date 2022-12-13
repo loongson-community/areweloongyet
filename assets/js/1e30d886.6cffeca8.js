@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[9562],{955:e=>{e.exports=JSON.parse('{"code":"freebsd","name":"FreeBSD","homepageURL":"https://www.freebsd.org","repoURL":"https://cgit.freebsd.org","portingEfforts":[]}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[8072],{4376:e=>{e.exports=JSON.parse('{"name":"Xi Ruoyao","kind":0,"url":"https://blog.xry111.site","githubUsername":"xry111","giteeUsername":""}')}}]);

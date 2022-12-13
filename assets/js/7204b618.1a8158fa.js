@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[7649],{6899:e=>{e.exports=JSON.parse('{"name":"awly-data-plugin","id":"default"}')}}]);

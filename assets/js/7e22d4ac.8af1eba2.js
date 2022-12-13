@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkareweloongyet=self.webpackChunkareweloongyet||[]).push([[7113],{6838:(e,t,n)=>{n.r(t),n.d(t,{default:()=>r});var a=n(7294),l=n(3285);function r(e){let{data:t}=e;return a.createElement(l.Z,{title:`${t.name} | \u9879\u76ee\u8be6\u60c5`},a.createElement("main",null,a.createElement("h2",null,t.name),"TODO"))}}}]);
