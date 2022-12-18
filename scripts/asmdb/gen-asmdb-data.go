@@ -76,14 +76,16 @@ type insnFormat struct {
 
 type insnArgs struct {
 	Kind     common.ArgKind `json:"kind"`
+	Repr     string         `json:"repr"`
 	Slots    []argSlot      `json:"slots"`
 	ShiftAmt int            `json:"shift_amt,omitempty"`
 	AddAmt   int            `json:"add_amt,omitempty"`
 }
 
 type argSlot struct {
-	Offset uint `json:"offset"`
-	Width  uint `json:"width"`
+	Repr   string `json:"repr"`
+	Offset uint   `json:"offset"`
+	Width  uint   `json:"width"`
 }
 
 func convertInsnFormat(x *common.InsnFormat) insnFormat {
@@ -104,9 +106,11 @@ func convertInsnFormat(x *common.InsnFormat) insnFormat {
 			}
 
 			return insnArgs{
+				Repr: a.CanonicalRepr(),
 				Kind: a.Kind,
 				Slots: lo.Map(a.Slots, func(s *common.Slot, _ int) argSlot {
 					return argSlot{
+						Repr:   s.CanonicalRepr(),
 						Offset: s.Offset,
 						Width:  s.Width,
 					}
