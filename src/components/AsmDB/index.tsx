@@ -19,30 +19,40 @@ function getManualInsnFormatNameFromRepr(fmtRepr: string): string {
   switch (fmtRepr) {
   case 'CdFj':
   case 'CdJ':
+  case 'CdVj':
   case 'DCj':
   case 'DJ':
   case 'DFj':
+  case 'DVj':
   case 'FdCj':
   case 'FdFj':
   case 'FdJ':
+  case 'VdVj':
+  case 'VdJ':
     return '2R'
 
   case 'CdFjFk':
   case 'DJK':
   case 'FdFjFk':
   case 'FdJK':
+  case 'VdVjVk':
     return '3R'
 
   case 'FdFjFkCa':
   case 'FdFjFkFa':
+  case 'VdVjVkCa':
+  case 'VdVjVkVa':
     return '4R'
 
   case 'DJUk8':
+  case 'VdVjUk8':
     return '2RI8'
 
   case 'DJSk12':
   case 'DJUk12':
   case 'FdJSk12':
+  case 'VdJSk12':
+  case 'XdJSk12':
     return '2RI12'
 
   case 'DJSk14':
@@ -87,9 +97,11 @@ function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
   return (
     <p>
       见于：
-      <BoolFlag val={true} />LA64，
+      <BoolFlag val={ss.primary} />LA32 Primary，
       <BoolFlag val={ss.la32} />LA32，
-      <BoolFlag val={ss.primary} />LA32 Primary
+      <BoolFlag val={ss.la64} />LA64，
+      <BoolFlag val={ss.lsx} />LSX，
+      <BoolFlag val={ss.lasx} />LASX
     </p>
   )
 }

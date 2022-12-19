@@ -15,6 +15,9 @@ type Insn = {
 type SubsetFlags = {
   la32?: boolean
   primary?: boolean
+  la64?: boolean
+  lsx?: boolean
+  lasx?: boolean
 }
 
 type InsnFormat = {

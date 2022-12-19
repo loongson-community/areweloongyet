@@ -25,6 +25,13 @@ func main() {
 		_, isLA32 := x.Attribs["la32"]
 		_, isPrimary := x.Attribs["primary"]
 
+		isLSX := involvesRegKind(x.Format.Args, common.ArgKindVReg)
+		isLASX := involvesRegKind(x.Format.Args, common.ArgKindXReg)
+		isExt := isLSX || isLASX
+
+		// LA64 is fallback for now
+		isLA64 := !isExt
+
 		return asmdbInsn{
 			Word:           x.Word,
 			Mask:           x.Format.MatchBitmask(),
@@ -35,6 +42,9 @@ func main() {
 			Subsets: subsetFlags{
 				LA32:    isLA32,
 				Primary: isPrimary,
+				LA64:    isLA64,
+				LSX:     isLSX,
+				LASX:    isLASX,
 			},
 		}
 	})
@@ -67,6 +77,9 @@ type asmdbInsn struct {
 type subsetFlags struct {
 	LA32    bool `json:"la32,omitempty"`
 	Primary bool `json:"primary,omitempty"`
+	LA64    bool `json:"la64,omitempty"`
+	LSX     bool `json:"lsx,omitempty"`
+	LASX    bool `json:"lasx,omitempty"`
 }
 
 type insnFormat struct {
@@ -120,4 +133,13 @@ func convertInsnFormat(x *common.InsnFormat) insnFormat {
 			}
 		}),
 	}
+}
+
+func involvesRegKind(args []*common.Arg, k common.ArgKind) bool {
+	for _, a := range args {
+		if a.Kind == k {
+			return true
+		}
+	}
+	return false
 }
