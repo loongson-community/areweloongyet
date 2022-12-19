@@ -1,0 +1,27 @@
+.widget {
+  display: flex;
+  align-items: baseline;
+}
+
+.bitsContainer {
+  margin: 0;
+}
+
+.bit {
+  border: 1px solid;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  font-size: 0.5rem;
+  text-align: center;
+  cursor: default;
+}
+
+.opcodeBit {
+  background: var(--ifm-color-emphasis-400);
+}
+
+.hex {
+  font-family: var(--ifm-font-family-monospace);
+  margin-right: 0.5rem;
+}
