@@ -78,7 +78,7 @@ export default function AsmDB({data, useManualSyntax}: {data: any, useManualSynt
   const typedData = data as AsmDBData
   return (
     <ul>
-      {typedData.insns.map((x) => <li><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
+      {typedData.insns.map((x, i) => <li key={i}><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
     </ul>
   );
 }

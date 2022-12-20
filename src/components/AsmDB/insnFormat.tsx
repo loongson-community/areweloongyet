@@ -8,7 +8,7 @@ export default function InsnFormatName({fmt, className}: {fmt: InsnFormat, class
   return (
     <span className={clsx(styles.insnFormatTag, className)}>
       {fmt.args.map((x, argIdx) => (
-        <span style={styleFromBitPalette(argIdx + 1)}>{x.repr}</span>
+        <span key={argIdx} style={styleFromBitPalette(argIdx + 1)}>{x.repr}</span>
       ))}
     </span>
   )

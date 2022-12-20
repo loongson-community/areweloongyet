@@ -80,7 +80,7 @@ export default function AsmDBBits(props: BitsOptions): JSX.Element {
   return (
     <div className={styles.widget}>
       <div className={styles.bitsContainer}>
-        {cookedBits.map((b) => (<Bit {...b} />))}
+        {cookedBits.map((b, i) => (<Bit key={i} {...b} />))}
       </div>
       <InsnFormatName fmt={props.fmt} className={styles.showFormatPrefix} />
       <div className={styles.hex}>
