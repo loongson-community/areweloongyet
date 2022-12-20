@@ -7,7 +7,7 @@ import Layout from '@theme/Layout'
 import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
 import AsmDB from '@site/src/components/AsmDB'
 
-export default function AsmDBPage(): JSX.Element {
+export default function AsmDBPage({data}: {data: AsmDBData}): JSX.Element {
   let useManualSyntax = false // TODO: mobx
 
   return (
@@ -17,7 +17,7 @@ export default function AsmDBPage(): JSX.Element {
       </ThemeAwareAntdContainer>
 
       <AsmDB
-        data={usePluginData('awly-asmdb-plugin')}
+        data={data}
         useManualSyntax={useManualSyntax}
       />
     </Layout>
