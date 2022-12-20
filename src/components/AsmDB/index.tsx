@@ -35,6 +35,7 @@ function getManualInsnFormatNameFromRepr(fmtRepr: string): string {
   case 'DJK':
   case 'FdFjFk':
   case 'FdJK':
+  case 'VdJK':
   case 'VdVjVk':
     return '3R'
 
