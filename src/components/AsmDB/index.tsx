@@ -79,9 +79,7 @@ export default function AsmDB({data}: {data: any}): JSX.Element {
   const useManualSyntax = true  // TODO
   return (
     <ul>
-      {data.insns.map((x: Insn) => (
-        <li><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>
-      ))}
+      {typedData.insns.map((x) => <li><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
     </ul>
   );
 }
