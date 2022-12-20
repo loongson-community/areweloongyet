@@ -5338,6 +5338,16 @@ minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.7.tgz#daa1c4d91f507390437c6a8bc01078e7000c4d18"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
 
+mobx-react-lite@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.4.0.tgz#d59156a96889cdadad751e5e4dab95f28926dfff"
+  integrity sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==
+
+mobx@^6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.7.0.tgz#2d805610fee1801fd015c54fd5400d2601aa3768"
+  integrity sha512-1kBLBdSNG2bA522HQdbsTvwAwYf9hq9FWxmlhX7wTsJUAI54907J+ozfGW+LoYUo06vjit748g6QH1AAGLNebw==
+
 mrmime@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mrmime/-/mrmime-1.0.1.tgz#5f90c825fad4bdd41dc914eff5d1a8cfdaf24f27"
