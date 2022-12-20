@@ -7,13 +7,11 @@ import { getInsnMnemonic } from './insn'
 import { getManualInsnFormatName } from './manualFormatNames'
 
 function InsnFormatDesc({insn, showCanonicalFmt}: {insn: Insn, showCanonicalFmt: boolean}): JSX.Element {
-  const manualIFN = getManualInsnFormatName(insn)
   if (showCanonicalFmt)
     return (
       <section>
         <h5>指令格式</h5>
         <ul>
-          <li>手册格式名：{manualIFN != '' ? manualIFN : '无（非 9 种典型格式）'}</li>
           <li>规范格式名：<InsnFormatName fmt={insn.format} /></li>
           <li>手册汇编语法格式名：{
             insn.manual_format.repr != ''
@@ -24,6 +22,7 @@ function InsnFormatDesc({insn, showCanonicalFmt}: {insn: Insn, showCanonicalFmt:
       </section>
     )
 
+  const manualIFN = getManualInsnFormatName(insn)
   return (
     <section>
       <h5>指令格式</h5>
