@@ -1,0 +1,3 @@
+[submodule "3rdparty/loongarch-opcodes"]
+	path = 3rdparty/loongarch-opcodes
+	url = https://github.com/loongson-community/loongarch-opcodes.git
