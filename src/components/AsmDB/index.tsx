@@ -74,10 +74,35 @@ function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolea
   )
 }
 
-export default function AsmDB({data, useManualSyntax}: {data: AsmDBData, useManualSyntax: boolean}): JSX.Element {
+type AsmDBOptions = {
+  data: AsmDBData
+  useManualSyntax: boolean
+  showSubset: SubsetFlags
+}
+
+function subsetFlagsToBitmask(x: SubsetFlags): number {
+  let y = 0
+  if (x.primary)
+    y |= 0b1
+  if (x.la32)
+    y |= 0b10
+  if (x.la64)
+    y |= 0b100
+  if (x.lsx)
+    y |= 0b1000
+  if (x.lasx)
+    y |= 0b10000
+  return y
+}
+
+export default function AsmDB({data, useManualSyntax, showSubset}: AsmDBOptions): JSX.Element {
+  const insnAndKeys = data.insns.map((x, i) => { return {insn: x, key: i} })
+  const showSubsetMask = subsetFlagsToBitmask(showSubset)
+  const shownInsns = insnAndKeys.filter((x) => (subsetFlagsToBitmask(x.insn.subsets) & showSubsetMask) != 0)
+
   return (
     <ul>
-      {data.insns.map((x, i) => <li key={i}><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
+      {shownInsns.map((x) => <li key={x.key}><AsmDBInsn insn={x.insn} useManualSyntax={useManualSyntax}/></li>)}
     </ul>
   )
 }
