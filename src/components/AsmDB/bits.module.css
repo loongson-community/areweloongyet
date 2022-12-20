@@ -19,7 +19,7 @@
   --bit-fg-p6: var(--bit-palette-p6);
 }
 
-.insnFormatTag::before {
+.showFormatPrefix::before {
   content: '格式 ';
   font-family: 'Smiley Sans';
   color: var(--bit-palette-opcode);
