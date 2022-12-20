@@ -25,6 +25,11 @@ func main() {
 		_, isLA32 := x.Attribs["la32"]
 		_, isPrimary := x.Attribs["primary"]
 
+		// LA32 Primary insns are automatically LA32 insns
+		if isPrimary {
+			isLA32 = true
+		}
+
 		isLSX := involvesRegKind(x.Format.Args, common.ArgKindVReg)
 		isLASX := involvesRegKind(x.Format.Args, common.ArgKindXReg)
 		isExt := isLSX || isLASX
