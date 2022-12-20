@@ -74,11 +74,10 @@ function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolea
   )
 }
 
-export default function AsmDB({data, useManualSyntax}: {data: any, useManualSyntax: boolean}): JSX.Element {
-  const typedData = data as AsmDBData
+export default function AsmDB({data, useManualSyntax}: {data: AsmDBData, useManualSyntax: boolean}): JSX.Element {
   return (
     <ul>
-      {typedData.insns.map((x, i) => <li key={i}><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
+      {data.insns.map((x, i) => <li key={i}><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
     </ul>
-  );
+  )
 }
