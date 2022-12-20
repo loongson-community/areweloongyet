@@ -74,9 +74,8 @@ function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolea
   )
 }
 
-export default function AsmDB({data}: {data: any}): JSX.Element {
+export default function AsmDB({data, useManualSyntax}: {data: any, useManualSyntax: boolean}): JSX.Element {
   const typedData = data as AsmDBData
-  const useManualSyntax = true  // TODO
   return (
     <ul>
       {typedData.insns.map((x) => <li><AsmDBInsn insn={x} useManualSyntax={useManualSyntax}/></li>)}
