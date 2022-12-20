@@ -1,9 +1,8 @@
 import React from 'react'
 import { Switch } from 'antd'
 import { action, makeObservable, observable } from 'mobx'
-import { Observer, observer } from 'mobx-react-lite'
+import { Observer } from 'mobx-react-lite'
 
-import { usePluginData } from '@docusaurus/useGlobalData'
 import Layout from '@theme/Layout'
 import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
 import AsmDB from '@site/src/components/AsmDB'
