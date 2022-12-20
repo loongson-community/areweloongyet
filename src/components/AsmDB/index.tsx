@@ -75,19 +75,34 @@ function getManualInsnFormatNameFromRepr(fmtRepr: string): string {
   }
 }
 
-function InsnFormatDesc({insn}: {insn: Insn}): JSX.Element {
+function InsnFormatDesc({insn, showCanonicalFmt}: {insn: Insn, showCanonicalFmt: boolean}): JSX.Element {
   const manualIFN = getManualInsnFormatName(insn)
+  if (showCanonicalFmt)
+    return (
+      <section>
+        <h5>指令格式</h5>
+        <ul>
+          <li>手册格式名：{manualIFN != '' ? manualIFN : '无（非 9 种典型格式）'}</li>
+          <li>规范格式名：<InsnFormatName fmt={insn.format} /></li>
+          <li>手册汇编语法格式名：{
+            insn.manual_format.repr != ''
+            ? <InsnFormatName fmt={insn.manual_format} />
+            : '同上'
+          }</li>
+        </ul>
+      </section>
+    )
+
   return (
     <section>
       <h5>指令格式</h5>
       <ul>
         <li>手册格式名：{manualIFN != '' ? manualIFN : '无（非 9 种典型格式）'}</li>
-        <li>规范格式名：<InsnFormatName fmt={insn.format} /></li>
-        <li>手册汇编语法格式名：{
-          insn.manual_format.repr != ''
-          ? <InsnFormatName fmt={insn.manual_format} />
-          : '同上'
-        }</li>
+        {
+          manualIFN == ''
+          ? <li>手册汇编语法格式名：<InsnFormatName fmt={insn.manual_format.repr != '' ? insn.manual_format : insn.format} /></li>
+          : ''
+        }
       </ul>
     </section>
   )
@@ -106,13 +121,24 @@ function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
   )
 }
 
+function getInsnFormatForDisplay(insn: Insn, useManualSyntax: boolean): InsnFormat {
+  if (!useManualSyntax) {
+    return insn.format
+  }
+  return insn.manual_format.repr != '' ? insn.manual_format : insn.format
+}
+
 function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolean}): JSX.Element {
   return (
     <section>
       <h3>{getInsnMnemonic(insn, useManualSyntax)}</h3>
-      <AsmDBBits value={insn.word} opcodeMask={insn.mask} />
+      <AsmDBBits
+        value={insn.word}
+        opcodeMask={insn.mask}
+        fmt={getInsnFormatForDisplay(insn, useManualSyntax)}
+      />
       <Subsets ss={insn.subsets} />
-      <InsnFormatDesc insn={insn} />
+      <InsnFormatDesc insn={insn} showCanonicalFmt={!useManualSyntax} />
     </section>
   )
 }
