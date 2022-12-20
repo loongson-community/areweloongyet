@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './bits.module.css'
 import InsnFormatName from './insnFormat'
 import { getManualInsnFormatName } from './manualFormatNames'
-import { styleFromBitPalette } from './palette'
+import { BitPalette, styleFromBitPalette } from './palette'
 
 type BitsOptions = {
   insn: Insn
@@ -14,20 +14,6 @@ type BitOptions = {
   placeholder: boolean
   value: 0|1
   palette: BitPalette
-}
-
-enum BitPalette {
-  Opcode,
-  P1,
-  P2,
-  P3,
-  P4,
-  P5,
-  P6,
-}
-
-function colorVarFromBitPalette(kind: 'bg' | 'fg', x: BitPalette): string {
-  return `var(--bit-${kind}-p${x})`
 }
 
 function littleEndianBitsFromU32(x: number): (0|1)[] {
@@ -77,7 +63,7 @@ function cookBits(x: Insn): BitOptions[] {
 export default function AsmDBBits(props: BitsOptions): JSX.Element {
   const cookedBits = cookBits(props.insn)
 
-  let insnFormatDesc
+  let insnFormatDesc: JSX.Element
   if (props.useManualSyntax) {
     const mfn = getManualInsnFormatName(props.insn)
     if (mfn == '') {

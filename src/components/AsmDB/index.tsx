@@ -17,13 +17,6 @@ function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
   )
 }
 
-function getInsnFormatForDisplay(insn: Insn, useManualSyntax: boolean): InsnFormat {
-  if (!useManualSyntax) {
-    return insn.format
-  }
-  return insn.manual_format.repr != '' ? insn.manual_format : insn.format
-}
-
 function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolean}): JSX.Element {
   return (
     <section>

@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 
-enum BitPalette {
+export enum BitPalette {
   Opcode,
   P1,
   P2,
