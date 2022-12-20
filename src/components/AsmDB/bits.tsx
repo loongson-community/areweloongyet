@@ -2,12 +2,12 @@ import React from 'react'
 
 import styles from './bits.module.css'
 import InsnFormatName from './insnFormat'
+import { getManualInsnFormatName } from './manualFormatNames'
 import { styleFromBitPalette } from './palette'
 
 type BitsOptions = {
-  value: number
-  opcodeMask: number
-  fmt: InsnFormat
+  insn: Insn
+  useManualSyntax?: boolean
 }
 
 type BitOptions = {
@@ -44,9 +44,9 @@ function Bit(props: BitOptions): JSX.Element {
   )
 }
 
-function cookBits(props: BitsOptions): BitOptions[] {
-  const bits = littleEndianBitsFromU32(props.value)
-  const maskBits = littleEndianBitsFromU32(props.opcodeMask)
+function cookBits(x: Insn): BitOptions[] {
+  const bits = littleEndianBitsFromU32(x.word)
+  const maskBits = littleEndianBitsFromU32(x.mask)
   const result = bits.map((b, i) => {
     return {
       placeholder: maskBits[i] == 0,
@@ -56,13 +56,13 @@ function cookBits(props: BitsOptions): BitOptions[] {
     }
   })
 
-  if (props.fmt.repr == '') {
+  if (x.format.repr == '') {
     // fmt isn't given, cannot proceed any further
     return result.reverse()
   }
 
   // assign color to bits according to insn format
-  props.fmt.args.forEach((arg, argIdx) => {
+  x.format.args.forEach((arg, argIdx) => {
     for (const slot of arg.slots) {
       for (let i = 0; i < slot.width; i++) {
         const bitIdx = slot.offset + i
@@ -75,16 +75,31 @@ function cookBits(props: BitsOptions): BitOptions[] {
 }
 
 export default function AsmDBBits(props: BitsOptions): JSX.Element {
-  const cookedBits = cookBits(props)
+  const cookedBits = cookBits(props.insn)
+
+  let insnFormatDesc
+  if (props.useManualSyntax) {
+    const mfn = getManualInsnFormatName(props.insn)
+    if (mfn == '') {
+      insnFormatDesc = <InsnFormatName className={styles.showFormatPrefix} overrideStr='非典型' />
+    } else {
+      insnFormatDesc = <InsnFormatName className={styles.showFormatPrefix} overrideStr={mfn} />
+    }
+  } else {
+    insnFormatDesc = <>
+      <InsnFormatName fmt={props.insn.format} className={styles.showFormatPrefix} />
+      {props.insn.manual_format.repr != '' ? <InsnFormatName fmt={props.insn.manual_format} className={styles.showManualFormatPrefix} />: ''}
+    </>
+  }
 
   return (
     <div className={styles.widget}>
       <div className={styles.bitsContainer}>
         {cookedBits.map((b, i) => (<Bit key={i} {...b} />))}
       </div>
-      <InsnFormatName fmt={props.fmt} className={styles.showFormatPrefix} />
+      {insnFormatDesc}
       <div className={styles.hex}>
-        = 0x{props.value.toString(16).padStart(8, '0')}
+        = 0x{props.insn.word.toString(16).padStart(8, '0')}
       </div>
     </div>
   );

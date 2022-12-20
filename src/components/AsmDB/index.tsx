@@ -2,41 +2,7 @@ import React from 'react'
 
 import BoolFlag from '@site/src/components/BoolFlag'
 import AsmDBBits from './bits'
-import InsnFormatName from './insnFormat'
 import { getInsnMnemonic } from './insn'
-import { getManualInsnFormatName } from './manualFormatNames'
-
-function InsnFormatDesc({insn, showCanonicalFmt}: {insn: Insn, showCanonicalFmt: boolean}): JSX.Element {
-  if (showCanonicalFmt)
-    return (
-      <section>
-        <h5>指令格式</h5>
-        <ul>
-          <li>规范格式名：<InsnFormatName fmt={insn.format} /></li>
-          <li>手册汇编语法格式名：{
-            insn.manual_format.repr != ''
-            ? <InsnFormatName fmt={insn.manual_format} />
-            : '同上'
-          }</li>
-        </ul>
-      </section>
-    )
-
-  const manualIFN = getManualInsnFormatName(insn)
-  return (
-    <section>
-      <h5>指令格式</h5>
-      <ul>
-        <li>手册格式名：{manualIFN != '' ? manualIFN : '无（非 9 种典型格式）'}</li>
-        {
-          manualIFN == ''
-          ? <li>手册汇编语法格式名：<InsnFormatName fmt={insn.manual_format.repr != '' ? insn.manual_format : insn.format} /></li>
-          : ''
-        }
-      </ul>
-    </section>
-  )
-}
 
 function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
   return (
@@ -62,13 +28,8 @@ function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolea
   return (
     <section>
       <h3>{getInsnMnemonic(insn, useManualSyntax)}</h3>
-      <AsmDBBits
-        value={insn.word}
-        opcodeMask={insn.mask}
-        fmt={getInsnFormatForDisplay(insn, useManualSyntax)}
-      />
+      <AsmDBBits insn={insn} useManualSyntax={useManualSyntax} />
       <Subsets ss={insn.subsets} />
-      <InsnFormatDesc insn={insn} showCanonicalFmt={!useManualSyntax} />
     </section>
   )
 }

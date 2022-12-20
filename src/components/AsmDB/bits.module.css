@@ -9,7 +9,7 @@
 }
 
 .insnFormatTag {
-  font-family: Oswald;
+  font-family: Oswald, 'Smiley Sans';
 
   --bit-fg-p1: var(--bit-palette-p1);
   --bit-fg-p2: var(--bit-palette-p2);
@@ -21,6 +21,12 @@
 
 .showFormatPrefix::before {
   content: '格式 ';
+  font-family: 'Smiley Sans';
+  color: var(--bit-palette-opcode);
+}
+
+.showManualFormatPrefix::before {
+  content: '手册汇编语法格式 ';
   font-family: 'Smiley Sans';
   color: var(--bit-palette-opcode);
 }
