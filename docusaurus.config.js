@@ -29,6 +29,13 @@ const config = {
 
   plugins: [
     [
+      './src/plugins/awly-asmdb-plugin',
+      {
+        genAsmdbDataPath: './scripts/asmdb/gen-asmdb-data',
+        loongarchOpcodesPath: './3rdparty/loongarch-opcodes',
+      },
+    ],
+    [
       './src/plugins/awly-data-plugin',
       {
         sourcePath: './src/data',

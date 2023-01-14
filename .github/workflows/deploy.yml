@@ -13,14 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: yarn
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.19.0'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Build awly-data-plugin
+      - name: Build AWLY helpers
+        run: yarn build-helpers
+      - name: Build AWLY plugins
         run: yarn make-plugins
       - name: Build website
         run: yarn build

@@ -1,0 +1,70 @@
+.widget {
+  --bit-palette-opcode: var(--ifm-color-emphasis-200);
+  --bit-palette-p1: #feb30b;
+  --bit-palette-p2: #66ccff;
+  --bit-palette-p3: #90d408;
+  --bit-palette-p4: #e1adfe;
+  --bit-palette-p5: #11d8bc;
+  --bit-palette-p6: #fea8c4;
+}
+
+.insnFormatTag {
+  font-family: Oswald, 'Smiley Sans';
+
+  --bit-fg-p1: var(--bit-palette-p1);
+  --bit-fg-p2: var(--bit-palette-p2);
+  --bit-fg-p3: var(--bit-palette-p3);
+  --bit-fg-p4: var(--bit-palette-p4);
+  --bit-fg-p5: var(--bit-palette-p5);
+  --bit-fg-p6: var(--bit-palette-p6);
+}
+
+.showFormatPrefix::before {
+  content: '格式 ';
+  font-family: 'Smiley Sans';
+  color: var(--bit-palette-opcode);
+}
+
+.showManualFormatPrefix::before {
+  content: '手册汇编语法格式 ';
+  font-family: 'Smiley Sans';
+  color: var(--bit-palette-opcode);
+}
+
+.bitsContainer {
+  display: flex;
+  margin: 0;
+  font-family: var(--ifm-font-family-monospace);
+
+  --bit-bg-p0: var(--bit-palette-opcode);
+  --bit-bg-p1: var(--bit-palette-p1);
+  --bit-bg-p2: var(--bit-palette-p2);
+  --bit-bg-p3: var(--bit-palette-p3);
+  --bit-bg-p4: var(--bit-palette-p4);
+  --bit-bg-p5: var(--bit-palette-p5);
+  --bit-bg-p6: var(--bit-palette-p6);
+
+  --bit-fg-p0: var(--ifm-color-content);
+}
+
+.bit {
+  vertical-align: center;
+  margin-left: 0.25rem;
+  border: none;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  font-size: 0.75rem;
+  text-align: center;
+  cursor: default;
+}
+
+.bit:first-child {
+  margin-left: 0;
+}
+
+.hex {
+  float: right;
+  margin-bottom: 0;
+  font-family: var(--ifm-font-family-monospace);
+}
