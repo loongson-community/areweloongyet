@@ -83,8 +83,9 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: '阅读材料',
           },
+          // {to: '/asmdb', label: '汇编指令速查', position: 'left'},
           {to: '/blog', label: '本站动态', position: 'left'},
           {
             href: 'https://github.com/loongson-community/areweloongyet',
