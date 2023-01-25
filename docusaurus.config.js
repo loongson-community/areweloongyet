@@ -98,7 +98,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '站内导航',
             items: [
               {
                 label: '本站动态',
@@ -132,7 +132,7 @@ const config = {
             ],
           },
           {
-            title: '公司资源',
+            title: '企业资源',
             items: [
               {
                 label: '龙芯公司官网',
@@ -145,7 +145,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。<br />“龙芯”、“Loongson”、“LoongArch”等是龙芯中科技术股份有限公司申请的商标。`,
+        copyright: `© 2022-${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。<br />龙芯®、龙芯中科®、龙芯架构®、龙架构®、Loongson®、LoongArch®等是龙芯中科技术股份有限公司（688047.SH）的注册商标。`,
       },
       prism: {
         theme: lightCodeTheme,
