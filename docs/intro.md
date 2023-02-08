@@ -8,3 +8,4 @@ sidebar_position: 1
 本网站完全由社区爱心人士、龙芯路线的同情者维护，源代码托管在 GitHub 上，随时欢迎您来串门。
 
 * [如何称呼龙架构？](loong-or-loongarch.md)
+* [旧世界与新世界](old-and-new-worlds.md)
