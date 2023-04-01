@@ -16,7 +16,7 @@ function Project({val}: {val: IProject}) {
   return (
     <li className={clsx('col col--6')}>
       <span>{val.portingEfforts.map((pe) => (<SupportStatusIcon val={pe.supportStatus} />))}</span>
-      <Link to={`/project/${val.code}`}>{val.name}</Link>
+      <Link to={`/project/${val.code}`} className={styles.project__name}>{val.name}</Link>
       {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
     </li>
   )
