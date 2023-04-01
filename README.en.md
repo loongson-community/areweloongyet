@@ -11,12 +11,12 @@
 
 * [x] Domain
 * [x] Visual design
-* [ ] Basic structure
-    - [ ] Key software
-    - [ ] Distros
+* [x] Basic structure
+    - [x] Key software
+    - [x] Distros
     - [ ] Learning materials (external links)
-    - [ ] Community (external links)
-    - [ ] Homepage
+    - [x] Community (external links)
+    - [x] Homepage
     - [ ] I18n
 * [x] GHA workflow
 * [ ] Contributor guide
