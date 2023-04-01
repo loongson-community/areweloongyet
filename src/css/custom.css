@@ -94,3 +94,7 @@
 .navbar__link {
   font-weight: var(--ifm-font-weight-normal);
 }
+
+small {
+  font-size: 75%;
+}
