@@ -1,0 +1,11 @@
+name: 'CLFS'
+homepageURL: 'https://trac.clfs.org'
+repoURL: 'https://github.com/cross-lfs'
+portingEfforts:
+  - authors: ['sunhaiyong1978']
+    desc: ''
+    link: 'https://github.com/sunhaiyong1978/CLFS-for-LoongArch'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NoCode

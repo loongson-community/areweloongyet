@@ -1,0 +1,11 @@
+name: 'Fedora'
+homepageURL: 'https://getfedora.org'
+repoURL: ''
+portingEfforts:
+  - authors: ['sunhaiyong1978']
+    desc: ''
+    link: 'https://github.com/fedora-remix-loongarch/releases-info'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NoCode
