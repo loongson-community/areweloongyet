@@ -1,0 +1,26 @@
+.infoTable {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.infoTable > dt {
+  grid-column-start: 1;
+}
+
+.infoTable > dd {
+  grid-column-start: 2;
+}
+
+.authors {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.authors > li {
+  display: inline;
+}
+
+.authors > li:not(:first-child)::before {
+  content: '、';
+}

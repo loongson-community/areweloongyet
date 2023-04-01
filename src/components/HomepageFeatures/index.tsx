@@ -1,22 +1,25 @@
 import React from 'react'
 import clsx from 'clsx'
+import * as _ from 'lodash'
 
 import Link from '@docusaurus/Link'
 import { usePluginData } from '@docusaurus/useGlobalData'
 
-import { IProject, IProjectCategory } from '@site/src/types'
+import { IProject, IProjectCategory, SupportStatus } from '@site/src/types'
 import SupportStatusIcon from '../SupportStatusIcon'
 import styles from './styles.module.css'
 
 function Project({val}: {val: IProject}) {
+  const distinctSupportStatuses = _.uniq(val.portingEfforts.map((x) => x.supportStatus))
+  const statusesToShow = distinctSupportStatuses.length > 0 ? distinctSupportStatuses : [SupportStatus.UpForGrabs]
   const lowestGoodVersion = val.portingEfforts.reduce((prev, x) => {
     return x.goodSinceVersion != '' ? x.goodSinceVersion : prev
   }, '')
 
   return (
     <li className={clsx('col col--6')}>
-      <span>{val.portingEfforts.map((pe) => (<SupportStatusIcon val={pe.supportStatus} />))}</span>
-      <Link to={`/project/${val.code}`}>{val.name}</Link>
+      <span>{statusesToShow.map((x) => (<SupportStatusIcon val={x} />))}</span>
+      <Link to={`/project/${val.code}`} className={styles.project__name}>{val.name}</Link>
       {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
     </li>
   )

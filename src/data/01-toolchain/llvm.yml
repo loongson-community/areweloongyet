@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['loongson', 'xen0n']
     desc: ''
     link: ''
-    supportStatus: WaitingRelease
+    supportStatus: Released
     releasedSinceVersion: '16.0.0'
     goodSinceVersion: '16.0.0'
     quality: OnPar
