@@ -85,6 +85,11 @@
   font-size: 5rem;
 }
 
+.hero--primary a {
+  color: var(--ifm-hero-text-color);
+  text-decoration: underline;
+}
+
 .navbar {
   font-family: Oswald, 'Smiley Sans', sans-serif;
   font-style: oblique 6deg;

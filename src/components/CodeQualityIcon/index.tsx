@@ -29,7 +29,7 @@ export default function CodeQualityIcon({val, showDesc}: Options): JSX.Element {
   return (
     <>
       <span>{emojiForCodeQuality(val)}</span>
-      {showDesc ? <span>{descForCodeQuality(val)}</span> : ''}
+      {showDesc ? <span> {descForCodeQuality(val)}</span> : ''}
     </>
   );
 }

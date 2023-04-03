@@ -39,7 +39,7 @@ export default function SupportStatusIcon({val, showDesc}: Options): JSX.Element
   return (
     <>
       <span>{emojiForSupportStatus(val)}</span>
-      {showDesc ? <span>{descForSupportStatus(val)}</span> : ''}
+      {showDesc ? <span> {descForSupportStatus(val)}</span> : ''}
     </>
   );
 }

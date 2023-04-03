@@ -3,11 +3,19 @@
   grid-template-columns: max-content auto;
 }
 
+.infoTable > dt,
+.infoTable > dd {
+  margin-top: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  background-color: var(--ifm-code-background);
+}
+
 .infoTable > dt {
   grid-column-start: 1;
 }
 
 .infoTable > dd {
+  margin-left: 0.2rem;
   grid-column-start: 2;
 }
 

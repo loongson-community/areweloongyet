@@ -1,9 +1,9 @@
-name: 'CLFS'
-homepageURL: 'https://trac.clfs.org'
-repoURL: 'https://github.com/cross-lfs'
+name: 'CLFS for LoongArch'
+homepageURL: 'https://github.com/sunhaiyong1978/CLFS-for-LoongArch'
+repoURL: 'https://github.com/sunhaiyong1978/CLFS-for-LoongArch'
 portingEfforts:
   - authors: ['sunhaiyong1978']
-    desc: ''
+    desc: '仅仅借用了 CLFS 的说法，与 clfs.org 维护的 CLFS 手册没有关系。'
     link: 'https://github.com/sunhaiyong1978/CLFS-for-LoongArch'
     supportStatus: Released
     releasedSinceVersion: ''
