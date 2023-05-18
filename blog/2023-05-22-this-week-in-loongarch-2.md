@@ -6,9 +6,41 @@ tags: [每周一龙]
 draft: true
 ---
 
-每周一都为大家带来社区贡献者们从最前线传来的第一手新鲜资讯！
+每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
 
 <!-- truncate -->
+
+## 要闻速递
+
+本栏目并非每期都有。如果你看到了，一定是上周发生了重大事件！
+
+北京时间 5 月 17 日晚间，GNU GRUB2 的 LoongArch 移植[进入上游][grub-msg]，
+将于近期的 2.12 版本正式发布。
+从[国内 LoongArch 社区最早的代码提交与内部审查][la64-grub-first-pr]以来，
+已将近两年时间；从[向上游正式提交的第一版][grub-first-submission]开始，
+也快一年半了。
+
+[grub-msg]: https://lists.gnu.org/archive/html/grub-devel/2023-05/msg00089.html
+[la64-grub-first-pr]: https://github.com/loongarch64/grub/pull/1
+[grub-first-submission]: https://lists.gnu.org/archive/html/grub-devel/2022-01/msg00036.html
+
+这期间，以下同学以各种形式参与了代码的开发、审查、测试等工作：（以 ID 为序）
+
+* [@cnmushiba](https://github.com/cnmushiba)
+* [@hudsonzuo](https://github.com/hudsonzuo)
+* [@kilaterlee](https://github.com/kilaterlee)
+* [@sdlaqz](https://github.com/sdlaqz)
+* [@sunhaiyong1978](https://github.com/sunhaiyong1978)
+* [@xen0n](https://github.com/xen0n)
+* [@xry111](https://github.com/xry111)
+* `yangqiming <yangqiming@loongson.cn>`
+* [@yetist](https://github.com/yetist)
+* [@zhangwenlong8911](https://github.com/zhangwenlong8911)
+* [@zhuyaliang](https://github.com/zhuyaliang)
+* [@zwaizwai](https://github.com/zwaizwai)
+
+当然，除了这些名字之外，还有其他没有出现在讨论串、提交历史的无名英雄。
+让我们感谢 tā 们的付出！
 
 ## 先「马」再看
 
