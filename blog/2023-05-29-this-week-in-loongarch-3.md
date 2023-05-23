@@ -14,6 +14,15 @@ draft: true
 
 ## 要闻速递
 
+5 月 23 日，[`loongarch64-unknown-linux-gnu` 目标的 CI 支持][rust-loong-ci]进入了
+Rust 上游。这意味着：今后自动化机制将确保每个合入上游的 Rust 变更都不会破坏
+LoongArch 平台上的 Rust 构建。
+这也是该目标上升为 [Tier 2 with Host Tools]（带宿主工具支持的二等目标）
+前的最后一步。
+
+[rust-loong-ci]: https://github.com/rust-lang/rust/pull/110519
+[Tier 2 with Host Tools]: https://doc.rust-lang.org/rustc/target-tier-policy.html#tier-2-with-host-tools
+
 TODO
 
 ## 先「马」再看
@@ -22,7 +31,8 @@ TODO
 
 ### 发行版们
 
-TODO
+* Debian：（上期没有注意到）5 月 20 日，上游新建了 `pool-loong64` 文件夹。
+* TODO
 
 ### ClangBuiltLinux
 
