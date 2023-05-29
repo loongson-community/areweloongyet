@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.category {
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .category__title {
   font-size: 200%;
   font-style: oblique 6deg;
@@ -12,8 +18,6 @@
 }
 
 .projects {
-  display: flex;
-  flex-wrap: wrap;
   list-style: none;
   text-align: left;
   font-family: Oswald, sans-serif;

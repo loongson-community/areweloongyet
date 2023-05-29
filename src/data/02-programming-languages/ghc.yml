@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['lrzlin']
     desc: ''
     link: 'https://bbs.loongarch.org/d/150'
-    supportStatus: WaitingRelease
-    releasedSinceVersion: ''
-    goodSinceVersion: ''
+    supportStatus: Released
+    releasedSinceVersion: '9.6.1'
+    goodSinceVersion: '9.6.1'
     quality: OnPar
