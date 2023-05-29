@@ -17,7 +17,7 @@ function Project({val}: {val: IProject}) {
   }, '')
 
   return (
-    <li className={clsx('col col--6')}>
+    <li>
       <span>{statusesToShow.map((x) => (<SupportStatusIcon val={x} />))}</span>
       <Link to={`/project/${val.code}`} className={styles.project__name}>{val.name}</Link>
       {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
@@ -36,7 +36,7 @@ function ProjectList({projects}: {projects: IProject[]}) {
 function ProjectCategory({val}: {val: IProjectCategory}) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center padding-horiz--md">
+      <div className={styles.category + " padding-horiz--md"}>
         <h2 className={styles.category__title}>{val.name}</h2>
         <ProjectList projects={val.projects} />
       </div>
