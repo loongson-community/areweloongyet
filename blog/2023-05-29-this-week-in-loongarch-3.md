@@ -14,7 +14,7 @@ tags: [每周一龙]
 ## 要闻速递
 
 5 月 24 日下午，Rust 语言的 `loongarch64-unknown-linux-gnu` 目标[成功晋升][rust-loong-tier2]到
-[Tier 2 with Host Tools]（带宿主工具支持的二等目标[^注二]）。
+[Tier 2 with Host Tools]（带宿主工具支持的二等目标[^注一]）。
 该支持已从 5 月 25 日开始出现于 Rust 1.71.0 Nightly 版本，并将在 7 月 13 日稳定。
 
 5 月 26 日，mengqinggang 在 binutils 邮件列表贴出了 [LoongArch linker relaxation 优化][binutils-loong-relax]的补丁。
@@ -29,9 +29,9 @@ Linker relaxation 暂无广泛采用的中文翻译，拙译「链接器弛豫�
 
 更多信息可参考 MaskRay 的专题文章：[*The dark side of RISC-V linker relaxation*](http://maskray.me/blog/2021-03-14-the-dark-side-of-riscv-linker-relaxation)
 与 [*RISC-V linker relaxation in lld*](http://maskray.me/blog/2022-07-10-riscv-linker-relaxation-in-lld)。
-（从第一篇文章的标题可见，这个优化对基础组件开发者来说，不见得完全是好事:smiling_imp:。）
+（从第一篇文章的标题可见，这个优化对基础组件开发者来说，不见得完全是好事:smirk_cat:。）
 
-该优化能带来性能好处，但也将较为深刻地影响 LoongArch 目标代码的重定位记录用法、编译器代码生成，乃至编译器命令行使用方式[^注一]等多个方面；
+该优化能带来性能好处，但也将较为深刻地影响 LoongArch 目标代码的重定位记录用法、编译器代码生成，乃至编译器命令行使用方式[^注二]等多个方面；
 因此建议开发者同学们密切关注。
 
 :::
@@ -40,8 +40,8 @@ Linker relaxation 暂无广泛采用的中文翻译，拙译「链接器弛豫�
 [rust-loong-tier2]: https://github.com/rust-lang/rust/pull/110936
 [Tier 2 with Host Tools]: https://doc.rust-lang.org/rustc/target-tier-policy.html#tier-2-with-host-tools
 
-[^注一]: 由于 linker relaxation 可以删除指令，因此只要有了 linker relaxation 那么编译程序时就将不再需要有时手工指定 code model 以容许更大的跳转范围等情况发生了。因此这种情况下，绝大部分场景就不再需要关心或指定 `-mcmodel` 这个选项了。
-[^注二]: 只有 x86、AMD64 和 AArch64 这种广泛流行架构才能跻身 Tier 1。作为参考，`riscv64gc-unknown-linux-gnu` 也和 LA64 Linux 一样位于 Tier 2 with host tools 级别。该脚注位于第二的位置没有双关（如果你觉得有，那就有吧 :smirk_cat:）。
+[^注一]: 只有 x86、AMD64 和 AArch64 这种广泛流行架构才能跻身 Tier 1。作为参考，`riscv64gc-unknown-linux-gnu` 也和 LA64 Linux 一样位于 Tier 2 with host tools 级别。
+[^注二]: 由于 linker relaxation 可以删除指令，因此只要有了 linker relaxation 那么编译程序时就将不再需要有时手工指定 code model 以容许更大的跳转范围等情况发生了。因此这种情况下，绝大部分场景就不再需要关心或指定 `-mcmodel` 这个选项了。
 
 ## 先「马」再看
 
