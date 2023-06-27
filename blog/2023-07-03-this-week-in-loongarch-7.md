@@ -1,6 +1,6 @@
 ---
-slug: this-week-in-loongarch-6
-title: 每周一龙：第 6 期
+slug: this-week-in-loongarch-7
+title: 每周一龙：第 7 期
 authors: [xen0n]
 tags: [每周一龙]
 draft: true
@@ -20,18 +20,13 @@ draft: true
 
 * TODO
 
-### ClangBuiltLinux
-
-[上游的跟踪 issue](https://github.com/ClangBuiltLinux/linux/issues/1787)
-也会及时反映最新动态。
-
-TODO
-
 ### Linux
 
 TODO
 
-### LLVM
+### 工具链
+
+#### LLVM
 
 一周间合并了以下的功能改进等：
 
@@ -54,5 +49,4 @@ TODO
 
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
-[lauosc-debian]: https://bbs.loongarch.org/d/167-lauosc-debian-12-ports
 [call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16
