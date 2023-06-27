@@ -17,10 +17,6 @@ tags: [每周一龙]
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
 
-### 发行版们
-
-* Debian 上游出现了最初的一批 `loong64` 软件包。
-
 ### ClangBuiltLinux
 
 [上游的跟踪 issue](https://github.com/ClangBuiltLinux/linux/issues/1787)
