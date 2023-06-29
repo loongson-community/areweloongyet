@@ -10,7 +10,9 @@ function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
       <BoolFlag val={ss.la32} />LA32，
       <BoolFlag val={ss.la64} />LA64，
       <BoolFlag val={ss.lsx} />LSX，
-      <BoolFlag val={ss.lasx} />LASX
+      <BoolFlag val={ss.lasx} />LASX，
+      <BoolFlag val={ss.lbt} />LBT，
+      <BoolFlag val={ss.lvz} />LVZ
     </p>
   )
 }
@@ -43,6 +45,10 @@ function subsetFlagsToBitmask(x: SubsetFlags): number {
     y |= 0b1000
   if (x.lasx)
     y |= 0b10000
+  if (x.lbt)
+    y |= 0b100000
+  if (x.lvz)
+    y |= 0b1000000
   return y
 }
 

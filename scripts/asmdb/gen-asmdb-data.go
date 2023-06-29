@@ -24,6 +24,8 @@ func main() {
 	insns := lo.Map(descs, func(x *common.InsnDescription, _ int) asmdbInsn {
 		_, isLA32 := x.Attribs["la32"]
 		_, isPrimary := x.Attribs["primary"]
+		_, isLBT := x.Attribs["lbt"]
+		_, isLVZ := x.Attribs["lvz"]
 
 		// LA32 Primary insns are automatically LA32 insns
 		if isPrimary {
@@ -32,7 +34,7 @@ func main() {
 
 		isLSX := involvesRegKind(x.Format.Args, common.ArgKindVReg)
 		isLASX := involvesRegKind(x.Format.Args, common.ArgKindXReg)
-		isExt := isLSX || isLASX
+		isExt := isLSX || isLASX || isLBT || isLVZ
 
 		// LA64 is fallback for now
 		isLA64 := !isExt
@@ -50,6 +52,8 @@ func main() {
 				LA64:    isLA64,
 				LSX:     isLSX,
 				LASX:    isLASX,
+				LBT:     isLBT,
+				LVZ:     isLVZ,
 			},
 		}
 	})
@@ -85,6 +89,8 @@ type subsetFlags struct {
 	LA64    bool `json:"la64,omitempty"`
 	LSX     bool `json:"lsx,omitempty"`
 	LASX    bool `json:"lasx,omitempty"`
+	LBT     bool `json:"lbt,omitempty"`
+	LVZ     bool `json:"lvz,omitempty"`
 }
 
 type insnFormat struct {
