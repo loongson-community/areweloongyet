@@ -60,6 +60,7 @@ xen0n 7 月 5 日在社区[征询了](https://discourse.llvm.org/t/how-to-best-i
 
 * xry111 爆料说 OpenJPEG 上游[出现了 LASX 优化补丁](https://github.com/uclouvain/openjpeg/pull/1458)。
   （该优化 2 月 24 日即被提交，显然太早了：社区群众直到两周前才有可能明白指令含义从而有效审查代码。作者 jinbo 是龙芯员工。）
+* xry111 宣布了他维护的[龙架构版 LFS 手册分支](https://www.linuxfromscratch.org/~xry111/lfs/)。
 
 ## 张贴栏
 
