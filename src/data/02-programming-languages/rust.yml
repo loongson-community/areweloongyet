@@ -2,10 +2,10 @@ name: 'Rust'
 homepageURL: 'https://www.rust-lang.org'
 repoURL: 'https://github.com/rust-lang/rust'
 portingEfforts:
-  - authors: ['loongson']
+  - authors: ['loongson', 'xen0n']
     desc: ''
-    link: ''
-    supportStatus: WaitingRelease
+    link: 'https://github.com/loongarch-rs'
+    supportStatus: Released
     releasedSinceVersion: '1.71.0'
     goodSinceVersion: '1.71.0'
     quality: OnPar
