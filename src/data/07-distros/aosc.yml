@@ -1,0 +1,11 @@
+name: 'AOSC OS'
+homepageURL: 'https://aosc.io'
+repoURL: 'https://github.com/AOSC-Dev'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: ''
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
