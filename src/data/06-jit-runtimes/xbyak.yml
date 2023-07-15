@@ -1,0 +1,11 @@
+name: 'Xbyak LoongArch64'
+homepageURL: 'https://github.com/gititgo/xbyak_loongarch64'
+repoURL: 'https://github.com/gititgo/xbyak_loongarch64'
+portingEfforts:
+  - authors: ['loongson']
+    desc: '严格意义上 Xbyak 上游仅支持 x86，其他架构移植都为独立项目：此移植本身即为上游。'
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar

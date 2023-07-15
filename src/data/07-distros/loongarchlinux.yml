@@ -1,5 +1,5 @@
 name: 'Loong Arch Linux'
-homepageURL: ''
+homepageURL: 'https://loongarchlinux.org'
 repoURL: 'https://github.com/loongarchlinux'
 portingEfforts:
   - authors: ['yetist']

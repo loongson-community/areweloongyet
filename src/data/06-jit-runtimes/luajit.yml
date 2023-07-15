@@ -1,0 +1,11 @@
+name: 'LuaJIT'
+homepageURL: 'https://luajit.org'
+repoURL: 'https://github.com/LuaJIT/LuaJIT'
+portingEfforts:
+  - authors: ['loongson']
+    desc: '在满足该项目的代码质量与架构成熟度要求前，预期 port 不会被接受'
+    link: 'https://github.com/LuaJIT/LuaJIT/pull/875'
+    supportStatus: Rejected
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NeedsCleanup
