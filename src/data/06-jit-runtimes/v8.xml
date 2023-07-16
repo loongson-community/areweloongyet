@@ -1,0 +1,11 @@
+name: 'V8'
+homepageURL: 'https://v8.dev/'
+repoURL: 'https://chromium.googlesource.com/v8/v8.git'
+portingEfforts:
+  - authors: ['loongson']
+    desc: 'Google 的高性能 Javascript 和 WASM 引擎，用于 Chrome 和 Node.js'
+    link: 'https://bugs.chromium.org/p/v8/issues/detail?id=12008'
+    supportStatus: Released
+    releasedSinceVersion: '9.5.3'
+    goodSinceVersion: '9.5.3'
+    quality: OnPar
