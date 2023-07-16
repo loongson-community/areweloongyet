@@ -1,0 +1,11 @@
+name: 'JavaScriptCore'
+homepageURL: 'https://webkit.org/'
+repoURL: 'https://github.com/WebKit/WebKit'
+portingEfforts:
+  - authors: ['loongson']
+    desc: 'WebKit 的 Javascript 引擎，目前在 LoongArch 上能用，但没有 JIT 支持'
+    link: 'https://github.com/WebKit/WebKit/pull/3908'
+    supportStatus: WIP
+    releasedSinceVersion: 'WebKit-7615.1.6, webkitgtk-2.39.1'
+    goodSinceVersion: '?'
+    quality: OnPar
