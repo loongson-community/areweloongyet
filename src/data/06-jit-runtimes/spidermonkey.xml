@@ -1,0 +1,11 @@
+name: 'SpiderMonkey'
+homepageURL: 'https://spidermonkey.dev/'
+repoURL: 'https://hg.mozilla.org/mozilla-central/'
+portingEfforts:
+  - authors: ['loongson']
+    desc: 'Mozilla 的 Javascript 和 WASM 引擎'
+    link: 'https://bugzilla.mozilla.org/show_bug.cgi?id=1757272'
+    supportStatus: Released
+    releasedSinceVersion: '99'
+    goodSinceVersion: '107'
+    quality: OnPar
