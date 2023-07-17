@@ -103,3 +103,20 @@
 small {
   font-size: 75%;
 }
+
+.language-sh-session .shell-symbol,
+.language-shell-session .shell-symbol {
+  font-weight: 700;
+}
+
+[data-theme='light'] .language-sh-session .shell-symbol,
+[data-theme='light'] .language-shell-session .shell-symbol {
+  /* this is more-or-less arbitrary */
+  color: var(--ifm-color-success);
+}
+
+[data-theme='dark'] .language-sh-session .shell-symbol,
+[data-theme='dark'] .language-shell-session .shell-symbol {
+  /* same as the "function" highlighting class in our dark code theme */
+  color: rgb(80, 250, 123);
+}

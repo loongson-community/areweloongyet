@@ -14,7 +14,7 @@ tags: [每周一龙]
 ## 要闻速递
 
 5 月 24 日下午，Rust 语言的 `loongarch64-unknown-linux-gnu` 目标[成功晋升][rust-loong-tier2]到
-[Tier 2 with Host Tools]（带宿主工具支持的二等目标[^注一]）。
+[Tier 2 with Host Tools]（带宿主工具的二级架构[^注一]）。
 该支持已从 5 月 25 日开始出现于 Rust 1.71.0 Nightly 版本，并将在 7 月 13 日稳定。
 
 5 月 26 日，mengqinggang 在 binutils 邮件列表贴出了 [LoongArch linker relaxation 优化][binutils-loong-relax]的补丁。
