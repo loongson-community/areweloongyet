@@ -180,7 +180,7 @@ Macintosh 电脑的不同型号就使用 Old World、New World 来区分。
 
 如果您执行一个程序却被告知这个程序不存在，类似这样：
 
-```
+```sh-session
 $ ./foo
 zsh: no such file or directory: ./foo
 
