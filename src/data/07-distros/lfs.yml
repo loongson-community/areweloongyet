@@ -1,0 +1,11 @@
+name: 'LFS LoongArch Edition'
+homepageURL: 'https://www.linuxfromscratch.org/~xry111/lfs/'
+repoURL: 'https://git.linuxfromscratch.org/lfs.git'
+portingEfforts:
+  - authors: ['xry111']
+    desc: 'Linux From Scratch 主分支近期无支持非 x86 架构的计划，其他架构支持均为独立项目：xry111/loongarch 分支本身即为上游'
+    link: 'https://wiki.linuxfromscratch.org/lfs/log/?rev=xry111/loongarch'
+    supportStatus: WIP
+    releasedSinceVersion: '12.0'
+    goodSinceVersion: '12.0'
+    quality: NoCode
