@@ -92,6 +92,14 @@ const config = {
         path: './newsletter',
       },
     ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'blog-micronews',
+        routeBasePath: 'micronews',
+        path: './micronews',
+      },
+    ],
   ],
 
   presets: [
@@ -138,6 +146,7 @@ const config = {
           },
           // {to: '/asmdb', label: '汇编指令速查', position: 'left'},
           {to: '/newsletter', label: '每周一龙', position: 'left'},
+          {to: '/micronews', label: '狗剩微闻', position: 'left'},
           {to: '/blog', label: '本站动态', position: 'left'},
           {
             href: 'https://github.com/loongson-community/areweloongyet',
@@ -155,6 +164,10 @@ const config = {
               {
                 label: '每周一龙',
                 to: '/newsletter',
+              },
+              {
+                label: '狗剩微闻',
+                to: '/micronews',
               },
               {
                 label: '本站动态',
