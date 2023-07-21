@@ -41,6 +41,57 @@ const config = {
         sourcePath: './src/data',
       },
     ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/newsletter/this-week-in-loongarch-1',
+            from: '/blog/this-week-in-loongarch-1',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-2',
+            from: '/blog/this-week-in-loongarch-2',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-3',
+            from: '/blog/this-week-in-loongarch-3',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-4',
+            from: '/blog/this-week-in-loongarch-4',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-5',
+            from: '/blog/this-week-in-loongarch-5',
+          },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-6',
+            from: '/blog/these-weeks-in-loongarch-6',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-7',
+            from: '/blog/this-week-in-loongarch-7',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-8',
+            from: '/blog/this-week-in-loongarch-8',
+          },
+          {
+            to: '/newsletter/this-week-in-loongarch-9',
+            from: '/blog/this-week-in-loongarch-9',
+          },
+        ],
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'blog-newsletter',
+        routeBasePath: 'newsletter',
+        path: './newsletter',
+      },
+    ],
   ],
 
   presets: [
@@ -86,6 +137,7 @@ const config = {
             label: '阅读材料',
           },
           // {to: '/asmdb', label: '汇编指令速查', position: 'left'},
+          {to: '/newsletter', label: '每周一龙', position: 'left'},
           {to: '/blog', label: '本站动态', position: 'left'},
           {
             href: 'https://github.com/loongson-community/areweloongyet',
@@ -100,6 +152,10 @@ const config = {
           {
             title: '站内导航',
             items: [
+              {
+                label: '每周一龙',
+                to: '/newsletter',
+              },
               {
                 label: '本站动态',
                 to: '/blog',
