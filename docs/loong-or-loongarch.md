@@ -112,7 +112,7 @@ Linux 发行版一般都使用一个较短的架构标识符，因此基本都�
 |项目|称呼|
 |----|----|
 |Go|`GOARCH=loong64`|
-|Rust|`loongarch64-unknown-linux-gnuf64`|
+|Rust|`loongarch64-unknown-linux-gnu`|
 
 该表格没有也不能穷尽所有软件项目。
 如果您有补充，您可在页面底部找到“编辑此页”的链接（指向上游仓库中本页的源文件）。
