@@ -1,0 +1,137 @@
+---
+slug: this-week-in-loongarch-13
+title: 每周一龙：第 13 期
+authors: [xen0n]
+tags: [每周一龙]
+---
+
+每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+
+<!-- truncate -->
+
+如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
+
+## 先「马」再看
+
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+
+### Linux
+
+美西时间周日下午 3 点一刻（中国时间周一早晨 6 点），Linus 发布了 Linux 6.5 正式版。
+相比于 Linux 6.4，对龙架构而言，该版本主要包含了以下一些功能变更：
+
+* 龙芯中断控制器的 bug 修复（Jianmin Lv、Liu Peibao、Yinbo Zhu）与 <ruby>DT<rt>设备树</rt></ruby> 引导支持（Binbin Zhou）。
+* LS7A 集成声卡支持（Yanteng Si）。
+* AMD RDNA2 显卡支持（WANG Xuerui、Huacai Chen）。
+* 支持以 LLVM/Clang 构建龙架构内核的一种基本配置（WANG Xuerui、WANG Rui）。
+* 3A6000 适配工作（硬件页表遍历、SMT、向量扩展指令的上下文切换支持等）（Huacai Chen）。
+* 发现并修复了编译器安全强化手段（`CONFIG_FORTIFY_SOURCE`）未能完全生效的问题（Nathan Chancellor、Nick Desaulniers、WANG Xuerui）。
+
+Linux 上游社区不仅维护内核，也包括许多 Linux 的周边软件、支持库等。
+
+* nolibc 的 stack protector 支持（Thomas Weißschuh）。
+* `perf` 命令的龙架构汇编处理修复（WANG Rui）以及一些日常性质的代码整理工作（Tiezhu Yang）。
+
+虽然龙芯团队对其 MIPS 时代产品的主线维护工作强度已大不如前
+（在龙芯 MIPS 产品线被砍之前，这些产品未能等到完善的主线支持。
+因此后续即便龙芯要为其 MIPS 产品提供技术支持，也不必非得将这些成果合并回主线了），
+这些产品仍然在得到社区、龙芯开发者的部分支持。
+
+* 龙芯 1 号的 PWM 定时器/时钟源、看门狗支持（Keguang Zhang）。
+* 为龙芯 2K1000 SoC、LS7A 桥片的 MIPS 系统启用板载 RTC 支持（Binbin Zhou）。
+* MIPS KVM 空指针引用修复、MIPS 龙芯内核的编译错误修复等（Huacai Chen）。
+
+除以上变更之外，还有许多同等重要的缺陷修复、代码重构等工作值得褒扬。
+这个版本动过龙芯相关代码的所有开发者们（按字母顺序排序，以 Git 提交记录中的作者字段为准）：
+
+<div style={{columns: "3 auto"}}>
+
+* Andy Shevchenko
+* Arnaldo Carvalho de Melo
+* Arnd Bergmann
+* Binbin Zhou
+* Chao Yu
+* Chenguang Zhao
+* Dan Carpenter
+* Dave Airlie
+* Donglin Peng
+* Eric Lin
+* Haoran Jiang
+* Huacai Chen
+* Ian Rogers
+* Javier Martinez Canillas
+* Jianmin Lv
+* Jonathan Corbet
+* Keguang Zhang
+* Kuninori Morimoto
+* Linus Torvalds
+* Liu Peibao
+* Marc Zyngier
+* Masahiro Yamada
+* Maxime Ripard
+* Peter Zijlstra
+* Sui Jingfeng
+* Thomas Gleixner
+* Thomas Weißschuh
+* Thomas Zimmermann
+* Tiezhu Yang
+* WANG Rui
+* WANG Xuerui
+* Xi Ruoyao
+* Yanteng Si
+* Yinbo Zhu
+* Yingkun Meng
+* YingKun Meng
+* Youling Tang
+* Zhihong Dong
+
+</div>
+
+当你使用龙架构 Linux 6.5 时，别忘了向 tā 们表达一声感谢！
+
+:::info
+本节报道的信息可以通过简单的 `git` 操作从 Linux 仓库中获取：
+
+```sh
+git log --grep='[Ll]oong' v6.4..v6.5
+```
+
+:::
+
+### 工具链
+
+#### gcc
+
+8 月 28 日，Lulu Cheng 为龙架构 `-O2` 及更高的优化级别[默认开启了](https://gcc.gnu.org/pipermail/gcc-patches/2023-August/628538.html)移除非必要符号扩展、零扩展操作的优化，
+也[合并了](https://gcc.gnu.org/pipermail/gcc-patches/2023-August/628534.html)
+25 日 tā 自己写的避免 `SLT` 指令引起多余符号扩展动作的补丁。
+
+#### LLVM
+
+8 月 25 日，SixWeining [优化了](https://reviews.llvm.org/D158832)龙架构的位域清零操作，基本上每处可以省 1 条指令。
+
+8 月 23 日，Ami-zhang 为 MSan [增加了](https://reviews.llvm.org/D158587)龙架构可变参数列表函数的支持。
+
+## 杂闻播报
+
+8 月 24 日，Song Gao [发出了](https://patchew.org/QEMU/20230824092409.1492470-1-gaosong@loongson.cn/)
+QEMU 8.2 的龙架构 target 相关改动的 PR。
+其中包含了：
+
+* LA32 支持（Jiajie Chen），
+* 在翻译扩展指令前进行更完善的前置条件检查（Song Gao），
+* 边沿触发中断的修复（Bibo Mao），以及
+* 为 CSR 写操作添加日志，以及代码重构（Philippe Mathieu-Daudé）。
+
+（感谢 Jiajie Chen 的线索投递。）
+
+同一天，KatyushaScarlet 7 月 22 日为 google/cpufeatures 库做的龙架构适配[也进入了主线](https://github.com/google/cpu_features/pull/314)，
+预计将在此库的 v0.9.0 版本发布。（感谢 KatyushaScarlet 的线索投递。）
+
+## 张贴栏
+
+本栏目可供张贴公益性质的各种信息。
+
+* 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
+
+[call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16

@@ -1,6 +1,6 @@
 ---
-slug: this-week-in-loongarch-13
-title: 每周一龙：第 13 期
+slug: this-week-in-loongarch-14
+title: 每周一龙：第 14 期
 authors: [xen0n]
 tags: [每周一龙]
 draft: true
