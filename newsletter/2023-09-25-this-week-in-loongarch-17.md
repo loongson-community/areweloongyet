@@ -17,7 +17,7 @@ tags: [每周一龙]
 
 ### Linux
 
-9 月 23 日，Huacai Chen 向[早先已经 tagged 的](https://lore.kernel.org/lkml/CAHk-=wjrZgxjHZuXwrGeFnng_whUmtToCWE5GQ+HORhGSeiX8g@mail.gmail.com/)
+9 月 23 日，Huacai Chen 向[中国时间 9 月 25 日凌晨 tagged 的](https://lore.kernel.org/lkml/CAHk-=wjrZgxjHZuXwrGeFnng_whUmtToCWE5GQ+HORhGSeiX8g@mail.gmail.com/)
 Linux v6.6-rc3 [推送了](https://lore.kernel.org/loongarch/20230923091031.1075337-1-chenhuacai@loongson.cn/)一组问题修复与代码清理。
 由于此 rc 包含重要的修复工作（见下），建议所有紧跟主线的同学们尽快升级或跟进最新的
 linux-next（&ge; `next-20230925`）。
