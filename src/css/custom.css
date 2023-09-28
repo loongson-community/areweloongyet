@@ -4,12 +4,7 @@
  * work well for content-centric websites.
  */
 
-@font-face {
-  font-family: 'Smiley Sans';
-  font-style: oblique 6deg;
-  font-weight: 500;
-  src: url('/fonts/SmileySans-Oblique.ttf.woff2') format('woff2');
-}
+@import url('/fonts/smiley-sans/font.css');
 
 @font-face {
   font-family: 'Oswald';
