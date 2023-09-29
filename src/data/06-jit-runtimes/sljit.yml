@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['Xiao-Tao', 'carenas']
     desc: '提供平台无关接口的低级 JIT 编译器，用于加速 PCRE2'
     link: 'https://github.com/zherczeg/sljit/pull/170'
-    supportStatus: WIP
-    releasedSinceVersion: ''
-    goodSinceVersion: ''
+    supportStatus: Released
+    releasedSinceVersion: '?'
+    goodSinceVersion: '?'
     quality: OnPar
