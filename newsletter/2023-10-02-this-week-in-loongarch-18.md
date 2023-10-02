@@ -49,8 +49,7 @@ explicit relocs。
 LLVM 的协作流程已全面转向 GitHub PR，Phabricator 不日将转为只读模式，请开发者们注意。
 详情请见[迁移时间表](https://discourse.llvm.org/t/update-on-github-pull-requests/71540)。
 
-Ami-zhang 给 LLVM 中端的 `Transforms/IPO/LowerTypeTests`
-<ruby>工序<rt>pass</rt></ruby>[适配了](https://github.com/llvm/llvm-project/pull/67312)龙架构。
+Ami-zhang 给 LLVM 中端的 `Transforms/IPO/LowerTypeTests` <ruby>工序<rt>pass</rt></ruby>[适配了](https://github.com/llvm/llvm-project/pull/67312)龙架构。
 
 周报第 14 期报道过的 hev 的[原子操作优化](https://reviews.llvm.org/D159252)上周也进入了主线。
 
