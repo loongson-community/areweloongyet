@@ -13,7 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "build-helpers": "cd scripts/asmdb && go build ./gen-asmdb-data.go"
+    "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
     "@docusaurus/core": "^3.1.0",
