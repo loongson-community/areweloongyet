@@ -3,9 +3,9 @@ homepageURL: 'https://dot.net'
 repoURL: 'https://github.com/dotnet'
 portingEfforts:
   - authors: ['loongson']
-    desc: ''
-    link: ''
-    supportStatus: Released
+    desc: '先前一直以为 .NET 7.0 里增加的那个支持能用，然而实际测试发现是旧世界 ABI，新世界上无法编译。主线代码直到 2023-09-20 才在新世界达到可用，这意味着 .NET 8.0 也已经被错过。如果要用，则需 backport 或等 .NET 9.0。'
+    link: https://github.com/dotnet/runtime/issues/69705
+    supportStatus: WaitingRelease
     releasedSinceVersion: '7.0'
-    goodSinceVersion: ''
+    goodSinceVersion: '9.0'
     quality: OnPar
