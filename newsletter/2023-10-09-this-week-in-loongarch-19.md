@@ -20,9 +20,9 @@ tags: [每周一龙]
 10 月 8 日，AOSC 开发者 Icenowy Zheng 在排查 AMD 显卡稳定性问题过程中，
 发现以前为点亮 RDNA2 而对 3A+7A 系统的写合并问题规避不完全，
 故亲自[完善了](https://lore.kernel.org/loongarch/20231009042841.635366-1-uwu@icenowy.me/)这部分逻辑。
-实测打上此补丁后，相关的纹理损坏问题（部分花屏，戏称「字节跳动」）以及 AMD Oland 微架构 GPU 的
-ring timeout 问题都解决了，稳定性也有部分改善。
-让我们欢迎 tā 的首个内核代码贡献！
+实测打上此补丁后，相关的纹理损坏问题（部分花屏，戏称「字节跳动」）以及 AMD Oland 微架构 GPU
+在 `amdgpu` 内核模块驱动下的 ring timeout 问题都解决了，稳定性也有部分改善。
+让我们欢迎 tā 的首个 LoongArch 内核补丁！
 
 同一天，Bibo Mao 把他的 vDSO & 栈内存布局优化补丁[迭代到了](https://lore.kernel.org/loongarch/20231008012036.1415883-1-maobibo@loongson.cn/)第 3 版。
 他学 x86 让 vDSO 和栈共享同一条 PMD，而得以从每个线程省出一页；还做了其他小优化。
