@@ -97,10 +97,10 @@ Debian 上游工作也有所进展：`binutils` 包的改动[获合并](https://
 
 ## 杂闻播报
 
-10 月 10 日，社区同学 Robin Lu 做的 FreeDesktop SDK 龙架构初步适配[获合并](https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/merge_requests/12203)。
+10 月 10 日，社区同学 Robin Lee 做的 FreeDesktop SDK 龙架构初步适配[获合并](https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/merge_requests/12203)。
 FreeDesktop SDK 是 Flatpak 打包方案的基础运行时。
 
-AOSC 社区的 LoongArch 同好 cth451 近日给 Mellanox 网卡[^注一]的固件工具 `mstflint`
+AOSC 社区的 LoongArch 同好 Tianhao Chai 近日给 Mellanox 网卡[^注一]的固件工具 `mstflint`
 [提交了](https://github.com/Mellanox/mstflint/pull/836) LoongArch 适配。
 这些硬件目前看来在 LoongArch 系统上都能良好工作。
 
