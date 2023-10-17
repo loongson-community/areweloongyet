@@ -22,7 +22,11 @@ TODO
 
 ### 工具链
 
-#### TODO
+#### LLVM
+
+10 月 17 日，wangleiat [教会了](https://github.com/llvm/llvm-project/pull/69300)
+LLVM 在 LoongArch 浮点条件码寄存器间搬运数据。
+在此之后，寄存器分配工序就可以放开手脚随意使用这部分寄存器了。
 
 TODO
 
