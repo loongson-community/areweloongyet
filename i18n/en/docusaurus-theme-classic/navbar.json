@@ -1,0 +1,26 @@
+{
+  "logo.alt": {
+    "message": "My Site Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.阅读材料": {
+    "message": "阅读材料",
+    "description": "Navbar item with label 阅读材料"
+  },
+  "item.label.每周一龙": {
+    "message": "每周一龙",
+    "description": "Navbar item with label 每周一龙"
+  },
+  "item.label.本站动态": {
+    "message": "本站动态",
+    "description": "Navbar item with label 本站动态"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.汇编速查": {
+    "message": "汇编速查",
+    "description": "Navbar item with label 汇编速查"
+  }
+}
