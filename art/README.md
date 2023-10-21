@@ -28,5 +28,7 @@
 * `logo-readme.svg` 是 `logo.svg` 的 `for-repo-readme` 图层粘贴过来再去掉那个底部矩形的结果。
 * `logo-readme.png` 是 `logo-readme.svg` 用 Inkscape 导出后 `pngcrush` 的结果。
 * `logo-site.svg` 是将 `logo.svg` 的 `chinese` 图层的内容挪到 32x144 画布另存为的结果。
+* `logo-site-en.svg` 是将 `logo.svg` 的 `english title` 图层的内容挪到 32x252 画布另存为的结果。
 * `static/img/logo.svg` 是在 Inkscape 中另存 `logo-site.svg` 为优化的 SVG 的结果。
+* `static/img/logo.svg` 是在 Inkscape 中另存 `logo-site-en.svg` 为优化的 SVG 的结果。
 * `static/img/favicon.ico` 是在 Gimp 将 `favicon.xcf` 先合并为单个图层再保存为 Windows ICO 格式的结果。
