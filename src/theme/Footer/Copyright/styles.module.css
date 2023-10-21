@@ -1,0 +1,10 @@
+/* 备案信息 */
+.footer__beian li {
+  list-style: none;
+  display: inline;
+}
+
+.mpsLogo {
+  margin: 0 0.5rem;
+  vertical-align: text-bottom;
+}
