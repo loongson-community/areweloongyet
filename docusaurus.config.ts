@@ -56,7 +56,7 @@ const config: Config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    locales: ['zh-Hans', 'en'],
   },
 
   future: {
@@ -238,6 +238,7 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        { type: 'localeDropdown', position: 'right' },
       ],
     },
     footer: {
