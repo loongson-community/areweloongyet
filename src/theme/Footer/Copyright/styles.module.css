@@ -1,4 +1,9 @@
 /* 备案信息 */
+.footer__beian {
+  margin: 0;
+  padding: 0;
+}
+
 .footer__beian li {
   list-style: none;
   display: inline;
