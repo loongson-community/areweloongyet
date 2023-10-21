@@ -4,15 +4,15 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.阅读材料": {
-    "message": "阅读材料",
+    "message": "Reads",
     "description": "Navbar item with label 阅读材料"
   },
   "item.label.每周一龙": {
-    "message": "每周一龙",
+    "message": "TWiL",
     "description": "Navbar item with label 每周一龙"
   },
   "item.label.本站动态": {
-    "message": "本站动态",
+    "message": "Site news",
     "description": "Navbar item with label 本站动态"
   },
   "item.label.GitHub": {
