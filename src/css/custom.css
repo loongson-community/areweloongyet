@@ -80,6 +80,12 @@
   font-size: 5rem;
 }
 
+.hero__subtitle {
+  width: 66%;
+  margin: 0 auto var(--ifm-paragraph-margin-bottom);
+  font-size: 1rem;
+}
+
 .hero--primary a {
   color: var(--ifm-hero-text-color);
   text-decoration: underline;
