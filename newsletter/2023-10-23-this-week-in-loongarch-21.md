@@ -18,7 +18,20 @@ draft: true
 
 ### Linux
 
-TODO
+10 月 19 日，Huacai Chen [发出了](https://lore.kernel.org/loongarch/169774057661.20290.11492595041951746156.pr-tracker-bot@kernel.org/T/#m9facb0821a19108af3693a87dc0f603d6d9fa26f)
+v6.6 开发周期的第三组 LoongArch 架构相关修复，
+Linus 很快将其拉入了主线。
+这些内容已在美西时间周日下午的 v6.6-rc7 tag 发布了。
+内容有：
+
+* 周报第 19 期报道的 Icenowy Zheng 的 LoongArch 写合并问题规避方式[修复](https://git.kernel.org/torvalds/c/278be83601dd1725d4732241f066d528e160a39d)，
+  实测解决了 AMD GPU 系统的许多纹理损坏问题。
+* 同样在第 19 期报道的上游开发者 Deepak 发现的实时内核相关重构需求，
+  由 Huacai Chen [实现](https://git.kernel.org/torvalds/c/477a0ebec101359f49d92796e3b609857d564b52)。
+* Tiezhu Yang [重构的](https://git.kernel.org/torvalds/c/00c2ca84c680f64b79b5e10a482ca435fd7d98ce)一些汇编代码中对符号性质的标注。
+* Huacai Chen [实现的](https://git.kernel.org/torvalds/c/449c2756c2323c9e32b2a2fa9c8b59ce91b5819d)第
+  18 期周报中发现的构建错误修复。
+
 
 ### 工具链
 
