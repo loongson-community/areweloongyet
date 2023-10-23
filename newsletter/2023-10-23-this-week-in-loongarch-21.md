@@ -74,4 +74,5 @@ Debian LoongArch port 邮件列表的创建操作。
   欢迎同学们试用、反馈，也欢迎有志之士一同加入（沟通渠道详见 AOSC 网站相关栏目）。
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
+[aosc]: https://aosc.io
 [call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16
