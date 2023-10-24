@@ -142,7 +142,7 @@ Macintosh 电脑的不同型号就使用 Old World、New World 来区分。
 * [Gentoo](https://wiki.gentoo.org/wiki/Project:LoongArch)
 * [Loong Arch Linux](https://github.com/loongarchlinux)
 * [Slackware](https://github.com/shipujin/slackware-loongarch64)
-* [Yongbao]https://github.com/sunhaiyong1978/Yongbao)
+* [Yongbao](https://github.com/sunhaiyong1978/Yongbao)
 
 :::caution
 
