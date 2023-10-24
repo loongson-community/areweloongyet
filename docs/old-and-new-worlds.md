@@ -135,7 +135,7 @@ Macintosh 电脑的不同型号就使用 Old World、New World 来区分。
 目前已知的新世界发行版（移植）有：（按英文名字母顺序排序）
 
 * [ALT Linux](https://www.altlinux.org/Ports/loongarch64)
-* [AOSC OS](https://aosc.io)
+* [AOSC OS](https://aosc.io/zh-cn)
 * [CLFS 手册与成品](https://github.com/sunhaiyong1978/CLFS-for-LoongArch)
 * [Debian](https://wiki.debian.org/Ports/loong64)
 * [Fedora LoongArch Remix](https://github.com/fedora-remix-loongarch/releases-info)
