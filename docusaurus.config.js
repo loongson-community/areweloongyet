@@ -4,6 +4,23 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const inspectUrls = require('@jsdevtools/rehype-url-inspector').default;
+
+const annotateOverseasLinks = require('./src/plugins/awly-rehype-annotate-overseas-links').default;
+
+const commonRehypePlugins = [
+  [
+    inspectUrls,
+    /** @type {import('@jsdevtools/rehype-url-inspector').Options} */
+    ({
+      inspectEach(m) {
+        annotateOverseasLinks(m)
+      },
+      selectors: ['a[href]'],
+    }),
+  ],
+];
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '咱龙了吗？',
@@ -86,11 +103,13 @@ const config = {
     ],
     [
       '@docusaurus/plugin-content-blog',
-      {
+      /** @type {import('@docusaurus/plugin-content-blog').PluginOptions} */
+      ({
         id: 'blog-newsletter',
         routeBasePath: 'newsletter',
         path: './newsletter',
-      },
+        rehypePlugins: commonRehypePlugins,
+      }),
     ],
   ],
 
@@ -105,6 +124,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/loongson-community/areweloongyet',
+          rehypePlugins: commonRehypePlugins,
         },
         blog: {
           showReadingTime: true,
@@ -112,6 +132,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/loongson-community/areweloongyet',
+          rehypePlugins: commonRehypePlugins,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
