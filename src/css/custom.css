@@ -121,3 +121,10 @@ small {
   /* same as the "function" highlighting class in our dark code theme */
   color: rgb(80, 250, 123);
 }
+
+.link--overseas::after {
+  content: '🌍';
+  vertical-align: super;
+  font-size: 75%;
+  word-break: keep-all;
+}

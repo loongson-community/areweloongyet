@@ -1,5 +1,6 @@
 import React from 'react'
 import Copyright from '@theme-original/Footer/Copyright'
+import IconExternalLink from '@theme-original/Icon/ExternalLink'
 
 import styles from './styles.module.css'
 
@@ -40,6 +41,9 @@ function MPSBeianLink(
 export default function CopyrightWrapper(props: any): JSX.Element {
   return (
     <>
+      <p>
+        <a className="link--overseas">形如此</a>的链接，或部分<a>形如此<IconExternalLink /></a>的链接，其目标主机可能位于中国大陆境外。如需跟进阅读却无法访问，请自行寻找解决方案。
+      </p>
       <Copyright {...props} />
       <ul className={styles.footer__beian}>
         <li><ICPBeianLink province="苏" recordNumber={17027553} subRecordNumber={2} /></li>
