@@ -35,6 +35,11 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  /* shear the Oswald glyphs for visual compatibility with Smiley Sans */
+  font-style: oblique 6deg;
+}
+
 .hero__title {
   font-size: 5rem;
 }
