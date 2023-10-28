@@ -5,7 +5,7 @@ import glob from 'glob-promise'
 
 import type { LoadContext, Plugin } from '@docusaurus/types'
 
-export interface PluginOptions {
+export type PluginOptions = {
   genAsmdbDataPath: string
   loongarchOpcodesPath: string
 }

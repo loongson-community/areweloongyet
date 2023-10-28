@@ -48,20 +48,23 @@ const config = {
   plugins: [
     [
       './src/plugins/awly-asmdb-plugin',
-      {
+      /** @type {import('./src/plugins/awly-asmdb-plugin').PluginOptions} */
+      ({
         genAsmdbDataPath: './scripts/asmdb/gen-asmdb-data',
         loongarchOpcodesPath: './3rdparty/loongarch-opcodes',
-      },
+      }),
     ],
     [
       './src/plugins/awly-data-plugin',
-      {
+      /** @type {import('./src/plugins/awly-data-plugin').PluginOptions} */
+      ({
         sourcePath: './src/data',
-      },
+      }),
     ],
     [
       '@docusaurus/plugin-client-redirects',
-      {
+      /** @type {import('@docusaurus/plugin-client-redirects').Options} */
+      ({
         redirects: [
           {
             to: '/newsletter/this-week-in-loongarch-1',
@@ -100,11 +103,11 @@ const config = {
             from: '/blog/this-week-in-loongarch-9',
           },
         ],
-      },
+      }),
     ],
     [
       '@docusaurus/plugin-content-blog',
-      /** @type {import('@docusaurus/plugin-content-blog').PluginOptions} */
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
       ({
         id: 'blog-newsletter',
         routeBasePath: 'newsletter',

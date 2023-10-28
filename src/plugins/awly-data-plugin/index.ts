@@ -7,7 +7,7 @@ import type { LoadContext, Plugin } from '@docusaurus/types'
 
 import { CodeQuality, EntityKind, IAuthor, IPortingEffort, IProject, IProjectCategory, LoadedContent, SupportStatus } from '../../types'
 
-export interface PluginOptions {
+export type PluginOptions = {
   sourcePath: string
 }
 
