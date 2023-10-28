@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-20
 title: 每周一龙：第 20 期
 authors: [xen0n]
+date: 2023-10-16T18:27:58+08:00
 tags: [每周一龙]
 ---
 
