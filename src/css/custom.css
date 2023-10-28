@@ -50,6 +50,32 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem;
 }
 
+@media (max-width: 500px) {
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .hero__subtitle {
+    width: 100%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 900px) {
+  .hero__title {
+    font-size: 4rem;
+  }
+
+  .hero__subtitle {
+    width: 90%;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1440px) {
+  .hero__subtitle {
+    width: 80%;
+  }
+}
+
 .hero--primary a {
   color: var(--ifm-hero-text-color);
   text-decoration: underline;
