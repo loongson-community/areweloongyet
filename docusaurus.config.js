@@ -134,6 +134,8 @@ const config = {
           rehypePlugins: commonRehypePlugins,
         },
         blog: {
+          blogTitle: '本站动态',
+          blogDescription: '《咱龙了吗？》网站本身的开发、运营动态。',
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
