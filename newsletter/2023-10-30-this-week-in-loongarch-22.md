@@ -161,6 +161,15 @@ xen0n 在给 Debian loong64 port 监工的过程中，发现
 于是顺手帮忙[加上了](https://salsa.debian.org/wb-team/wanna-build/-/commit/1f64a552b488f2565cbc1e8336416abac0376243)。
 虽然历史数据没法<small>儿</small>补，但也无伤大雅——这 port 出生都没几天哪！
 
+:::tip 花絮
+xen0n 选取了 R 语言的番茄色 `tomato` 为龙架构配色，原因写在了提交说明里：
+
+* 跟龙芯的 logo 配色差不多，都红不溜秋<small>儿</small>的，以及
+* 番茄 :tomato: 基本上也好吃！
+
+（其实当然首要考虑是区分度；这点倒是忘记在提交说明里写上了。:joy:）
+:::
+
 ## 张贴栏
 
 本栏目可供张贴公益性质的各种信息。
