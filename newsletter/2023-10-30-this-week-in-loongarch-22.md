@@ -19,7 +19,7 @@ tags: [每周一龙]
 10 月 23 日，龙芯中科将《龙芯架构参考手册》更新到了 LoongArch&reg; v1.10[^注一] 版本。
 这一修订版主要是将 LA664 微架构（对应 3A6000 型号）的新增、变更特性落成文档了。
 
-[^注一]: 目前这一版手册对 LoongArch&reg; 版本号的称呼较为混乱：手册文件名、PDF 封面均采用 `r1p10`、`v1.10` 的写法，但正文中却常作 `v1.1`。考虑到这手册曾经出过 `v1.0x` 的修订版，且龙芯中科在文档版本号上从未采用过[<ruby>语义化版本<rt>Semantic Versioning</rt></ruby>](https://semver.org/lang/zh-CN/)、[<ruby>日历化版本<rt>Calender Versioning</rt></ruby>](https://calver.org/overview_zhcn.html)等等精确定义的方案，我们还是将其称作 `v1.10`：这样至少次版本号（minor version）字段的宽度都一致，因而能够明确是以 ASCII 排序来确定版本先后次序了。至于未来，可能还是转向精确的版本号方案会节省些理解沟通成本！
+[^注一]: 目前这一版手册对 LoongArch&reg; 版本号的称呼较为混乱：手册文件名、PDF 封面均采用 `r1p10`、`v1.10` 的写法，但正文中却常作 `v1.1`。考虑到这手册曾经出过 `v1.0x` 的修订版，且龙芯中科在文档版本号上从未采用过[<ruby>语义化版本<rt>Semantic Versioning</rt></ruby>](https://semver.org/lang/zh-CN/)、[<ruby>日历化版本<rt>Calendar Versioning</rt></ruby>](https://calver.org/overview_zhcn.html)等等精确定义的方案，我们还是将其称作 `v1.10`：这样至少次版本号（minor version）字段的宽度都一致，因而能够明确是以 ASCII 排序来确定版本先后次序了。至于未来，可能还是转向精确的版本号方案会节省些理解沟通成本！
 
 ### 变更内容
 
@@ -42,8 +42,8 @@ tags: [每周一龙]
 
 :::info 版权内容合理使用声明
 《手册》明确保留所有权利且禁止非经书面许可的转载。
-但根据[《中华人民共和国著作权法》](https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm)第二十四条第（一）、（二）款，
-我们确信以上对这部分《手册》内容的摘抄属于合理使用范畴，不受《手册》版权声明约束。
+但根据[《中华人民共和国著作权法》](https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm)第二十四条第一款第一项、第二项，
+我们确信以上对《手册》内容的摘抄属于合理使用范畴，不受《手册》版权声明约束。
 :::
 
 ### 主编点评
@@ -72,10 +72,12 @@ LoongArch&reg; 推出之仓促，
 多少捏出几个 bugs 其实也无可厚非，没什么喷点：没 bug 才不对劲呢！
 这 `div.w` 系列指令（卷一第 2.2.1.13 节），作为一套 32 位操作，却与整个 LoongArch&reg;
 其余 32 位操作行为都不同：
-居然仍然会看入参的高 32 位，不是符号扩展的话真就输出垃圾结果——这不就跟 64 位操作没区别了嘛！
+居然仍然会看入参的高 32 位，不是符号扩展就输出垃圾结果——虽然不做 64 位运算，但还得照 64 位准备！
+这估计是源自最早期 MIPS 乘除法器与流水线分离的历史包袱：MIPS 的 32 位乘除法指令都有相同限制。
+龙架构的 32 位乘法未受影响，但除法、取余的具体实现不幸与 MIPS 行为一致了。
 显然设计师们并不认为这很合理——要不然也不会在 LA664 就改掉了；
 但旧的型号才发售没多久，还得继续支持，于是新版手册并没有修改第 2.2.1.13 节的内容，
-而是在第 2.2.10.5 节 `CPUCFG` 数据的介绍中提了一嘴：
+而是在第 2.2.10.5 节 CPUCFG 数据的介绍中提了一嘴：
 可以看 `CPUCFG.0x2.DIV32[bit26]` 来确定当前处理器是否受此坑影响。
 
 笔者预计相当长的一段时间里，估计都只有 JIT 运行时能从中受益：
@@ -99,7 +101,7 @@ CPU 特性，后续据此生成、运行对当前系统最优化的机器语言�
 
 最后是第 1 条这一套浮点运算优化：
 笔者实测了 `frsqrte.s` 指令比[著名的 <ruby>*Quake III Arena*<rt>《雷神之锤 3 竞技场》</rt></ruby> 快速平方倒数算法](https://en.wikipedia.org/wiki/Fast_inverse_square_root)精确，
-且不是单纯将这个经典算法多 Newton 迭代一两轮那么简单。
+且不是单纯将这个经典算法最后一步的 Newton 迭代多跑一两轮那么简单。
 具体用的啥算法目前不知道，毕竟笔者没精力对处理器设计领域的前沿论文保持关注；
 快就完事<small>儿</small>了！
 这些操作虽然不如 IEEE 754 规范上要求的那么精确，但胜在执行快：这对 3D 渲染、
@@ -107,6 +109,8 @@ CPU 特性，后续据此生成、运行对当前系统最优化的机器语言�
 不过龙架构这个发明比较有开创性，以至于从目前的编程语言都不太容易调用它们，
 非得手写点<small>儿</small>汇编不可；
 有兴趣的同学可以看看能不能给你爱用的数学、图形学软件提 PR 加支持了！
+
+总之，这次更新对性能提升行之有效，对群众折腾十分友好，相信它能成为众发烧友多年后的美好回忆（也可能不 :smiling_imp:）。
 
 ## 先「马」再看
 
@@ -116,7 +120,7 @@ CPU 特性，后续据此生成、运行对当前系统最优化的机器语言�
 
 Linux 6.6 正式版[已经发布](https://lore.kernel.org/lkml/CAHk-=wiZuU984NWVgP4snp8sEt4Ux5Mp_pxAN5MNV9VpcGUo+A@mail.gmail.com/)。
 本周和下周是 Linux 6.7 的合并窗口；
-目前龙架构分支仍然保持在只有 KVM 补丁的状态，等待 KVM 维护者的拉取。
+目前龙架构分支仍然保持在只有 <abbr title="kernel virtual machine; 内核虚拟机">KVM</abbr> 补丁的状态，等待 KVM 维护者的拉取。
 不用急：有两周时间，并且本身龙芯也习惯在第二周的周五发出 PR，争取多点<small>儿</small>完善代码的时间。
 
 ### 工具链
@@ -126,7 +130,7 @@ Linux 6.6 正式版[已经发布](https://lore.kernel.org/lkml/CAHk-=wiZuU984NWV
 Jiajie Chen [研究完](https://github.com/jiegec/la-inst) 3A6000 彼时尚未公开的指令之后，
 一看到 LoongArch v1.10 正式公布，
 两天后的 10 月 25 号就[掏出了](https://sourceware.org/pipermail/binutils/2023-October/130139.html)给
-binutils 新增这些指令汇编、反汇编支持的补丁（当然只做了正式见诸文档的那部分）。
+binutils 新增这些指令汇编、反汇编支持的补丁<small>儿</small>（当然只做了正式见诸文档的那部分）。
 杰哥威武！
 感谢 xry111 提供新闻线索。
 
@@ -138,7 +142,7 @@ binutils 新增这些指令汇编、反汇编支持的补丁（当然只做了�
 
 #### LLVM
 
-[上期报道过的](./2023-10-23-this-week-in-loongarch-21.md#llvm) FCC 搬运支持补丁，
+[上期报道过的](./2023-10-23-this-week-in-loongarch-21.md#llvm) FCC 搬运支持补丁<small>儿</small>，
 10 月 27 日[被移植回了](https://github.com/llvm/llvm-project-release-prs/pull/746) LLVM 17 分支。
 
 :::tip 花絮
@@ -154,20 +158,20 @@ binutils 新增这些指令汇编、反汇编支持的补丁（当然只做了�
 
 来自[安同开源社区（AOSC）][aosc]的朋友 [Jiangjin Wang](https://github.com/RedL0tus) 为 Google 的 OpenSSL
 fork BoringSSL [提交了](https://boringssl-review.googlesource.com/c/boringssl/+/63565)适配任意非官方支持的小端
-（little-endian）32 位或 64 位平台的补丁。
+（little-endian）32 位或 64 位平台的补丁<small>儿</small>。
 
 xen0n 在给 Debian loong64 port 监工的过程中，发现
 [buildd.debian.org 的统计图表页面](https://buildd.debian.org/stats/)一直缺龙架构，
-于是顺手帮忙[加上了](https://salsa.debian.org/wb-team/wanna-build/-/commit/1f64a552b488f2565cbc1e8336416abac0376243)。
-虽然历史数据没法<small>儿</small>补，但也无伤大雅——这 port 出生都没几天哪！
+于是顺手<small>儿</small>帮忙<small>儿</small>[加上了](https://salsa.debian.org/wb-team/wanna-build/-/commit/1f64a552b488f2565cbc1e8336416abac0376243)。
+虽然历史数据没法<small>儿</small>补，但也无伤大雅——这 port 出生都没几天<small>儿</small>哪！
 
 :::tip 花絮
-xen0n 选取了 R 语言的番茄色 `tomato` 为龙架构配色，原因写在了提交说明里：
+xen0n 选取了 R 语言的番茄色 `tomato` 为龙架构配色，原因写在了提交说明：
 
 * 跟龙芯的 logo 配色差不多，都红不溜秋<small>儿</small>的，以及
 * 番茄 :tomato: 基本上也好吃！
 
-（其实当然首要考虑是区分度；这点倒是忘记在提交说明里写上了。:joy:）
+（其实当然首要考虑是区分度；这点倒是忘记在提交说明写上了。:joy:）
 :::
 
 ## 张贴栏
@@ -178,8 +182,8 @@ xen0n 选取了 R 语言的番茄色 `tomato` 为龙架构配色，原因写在�
   此工作完成后龙架构将升格为 AOSC OS 的 Tier 1 架构。
   欢迎同学们试用、反馈，也欢迎有志之士一同加入（沟通渠道详见 AOSC 网站相关栏目）。
 * 站务公告：应广大沉默读者群体的需求（你们的沉默震耳欲聋；lóng 没有双关），
-  我们已为本站取得了中国大陆 ICP 备案，
-  以便为中国大陆地区读者提供其境内的 CDN 加速：
+  我们已为本站取得了中国大陆 <abbr title="Internet content provider; 网络内容提供者">ICP</abbr> 备案，
+  以便为中国大陆地区读者提供其境内的 <abbr title="content delivery network; 内容分发网络">CDN</abbr> 加速：
   您打开本站应该不卡了。
   详见[本站动态](/blog/we-are-now-served-from-cn-mainland/)。
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
