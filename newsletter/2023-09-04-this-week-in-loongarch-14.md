@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-14
 title: 每周一龙：第 14 期
 authors: [xen0n]
+date: 2023-09-05T01:39:31+08:00  # 当晚没写完
 tags: [每周一龙]
 ---
 

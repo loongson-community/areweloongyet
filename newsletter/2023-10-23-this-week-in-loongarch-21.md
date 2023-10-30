@@ -2,6 +2,8 @@
 slug: this-week-in-loongarch-21
 title: 每周一龙：第 21 期
 authors: [xen0n]
+#date: 2023-10-22T22:16:13+08:00
+date: 2023-10-23T08:00:00+08:00  # 前一天晚上提前写好的，因此 commit time 偏早
 tags: [每周一龙]
 ---
 

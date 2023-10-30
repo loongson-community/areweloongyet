@@ -30,6 +30,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  trailingSlash: true, // to reduce number of 301's with GitHub Pages
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -47,20 +48,23 @@ const config = {
   plugins: [
     [
       './src/plugins/awly-asmdb-plugin',
-      {
+      /** @type {import('./src/plugins/awly-asmdb-plugin').PluginOptions} */
+      ({
         genAsmdbDataPath: './scripts/asmdb/gen-asmdb-data',
         loongarchOpcodesPath: './3rdparty/loongarch-opcodes',
-      },
+      }),
     ],
     [
       './src/plugins/awly-data-plugin',
-      {
+      /** @type {import('./src/plugins/awly-data-plugin').PluginOptions} */
+      ({
         sourcePath: './src/data',
-      },
+      }),
     ],
     [
       '@docusaurus/plugin-client-redirects',
-      {
+      /** @type {import('@docusaurus/plugin-client-redirects').Options} */
+      ({
         redirects: [
           {
             to: '/newsletter/this-week-in-loongarch-1',
@@ -99,15 +103,18 @@ const config = {
             from: '/blog/this-week-in-loongarch-9',
           },
         ],
-      },
+      }),
     ],
     [
       '@docusaurus/plugin-content-blog',
-      /** @type {import('@docusaurus/plugin-content-blog').PluginOptions} */
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
       ({
         id: 'blog-newsletter',
         routeBasePath: 'newsletter',
         path: './newsletter',
+        blogTitle: '每周一龙',
+        blogDescription: '龙架构®新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch® 社区最前线的第一手新鲜资讯！',
+        editUrl: 'https://github.com/loongson-community/areweloongyet',
         rehypePlugins: commonRehypePlugins,
       }),
     ],
@@ -127,6 +134,8 @@ const config = {
           rehypePlugins: commonRehypePlugins,
         },
         blog: {
+          blogTitle: '本站动态',
+          blogDescription: '《咱龙了吗？》网站本身的开发、运营动态。',
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.

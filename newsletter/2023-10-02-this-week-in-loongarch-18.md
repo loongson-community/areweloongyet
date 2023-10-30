@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-18
 title: 每周一龙：第 18 期
 authors: [xen0n]
+date: 2023-10-02T18:40:39+08:00
 tags: [每周一龙]
 ---
 

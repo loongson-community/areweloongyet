@@ -2,6 +2,7 @@
 slug: these-weeks-in-loongarch-12
 title: 每周三龙：第 12 期
 authors: [xen0n]
+date: 2023-08-22T01:07:50+08:00
 tags: [每周一龙]
 ---
 

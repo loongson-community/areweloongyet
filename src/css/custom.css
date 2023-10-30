@@ -5,48 +5,7 @@
  */
 
 @import url('/fonts/smiley-sans/font.css');
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 200;
-  src: url('/fonts/Oswald-ExtraLight.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 300;
-  src: url('/fonts/Oswald-Light.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/Oswald-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/Oswald-Medium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 600;
-  src: url('/fonts/Oswald-SemiBold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/Oswald-Bold.woff2') format('woff2');
-}
+@import url('./oswald.css');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -60,7 +19,7 @@
   --ifm-code-font-size: 95%;
   --ifm-font-size-base: 125%;
   --ifm-heading-font-family: Oswald, 'Smiley Sans', sans-serif;
-  --ifm-heading-font-weight: 500;
+  --ifm-heading-font-weight: 400;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -76,6 +35,11 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  /* shear the Oswald glyphs for visual compatibility with Smiley Sans */
+  font-style: oblique 6deg;
+}
+
 .hero__title {
   font-size: 5rem;
 }
@@ -84,6 +48,32 @@
   width: 66%;
   margin: 0 auto var(--ifm-paragraph-margin-bottom);
   font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .hero__subtitle {
+    width: 100%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 900px) {
+  .hero__title {
+    font-size: 4rem;
+  }
+
+  .hero__subtitle {
+    width: 90%;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1440px) {
+  .hero__subtitle {
+    width: 80%;
+  }
 }
 
 .hero--primary a {

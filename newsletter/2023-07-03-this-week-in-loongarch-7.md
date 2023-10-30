@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-7
 title: 每周一龙：第 7 期
 authors: [xen0n]
+date: 2023-07-03T14:07:27+08:00
 tags: [每周一龙]
 ---
 

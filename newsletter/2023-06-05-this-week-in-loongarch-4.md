@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-4
 title: 每周一龙：第 4 期
 authors: [xen0n]
+date: 2023-06-05T14:10:50+08:00
 tags: [每周一龙]
 ---
 

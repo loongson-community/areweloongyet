@@ -2,6 +2,7 @@
 slug: this-week-in-loongarch-16
 title: 每周一龙：第 16 期
 authors: [xen0n]
+date: 2023-09-18T13:37:25+08:00
 tags: [每周一龙]
 ---
 
