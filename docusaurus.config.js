@@ -42,7 +42,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    locales: ['zh-Hans', 'en'],
   },
 
   plugins: [
@@ -174,6 +174,7 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {type: 'localeDropdown', position: 'right'},
         ],
       },
       footer: {
