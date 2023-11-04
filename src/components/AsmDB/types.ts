@@ -18,6 +18,8 @@ type SubsetFlags = {
   la64?: boolean
   lsx?: boolean
   lasx?: boolean
+  lbt?: boolean
+  lvz?: boolean
 }
 
 type InsnFormat = {
