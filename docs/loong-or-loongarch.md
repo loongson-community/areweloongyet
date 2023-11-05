@@ -103,6 +103,7 @@ Linux 发行版一般都使用一个较短的架构标识符，因此基本都�
 |Slackware|`loong64`|
 
 [^3]: 在 [Fedora LoongArch Remix][fedora] 中，似乎使用了 `loongarch64` 的写法，但暂时没有推入上游。
+
 [fedora]: https://github.com/fedora-remix-loongarch/releases-info
 
 以上信息也适用各发行版的相关衍生项目，如果相应项目也跟进了龙架构适配的话。

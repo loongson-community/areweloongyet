@@ -1,4 +1,3 @@
-import React from 'react'
 import { CodeQuality } from '../../types'
 
 function emojiForCodeQuality(x: CodeQuality): string {

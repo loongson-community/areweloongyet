@@ -1,4 +1,3 @@
-import React from 'react'
 import Copyright from '@theme-original/Footer/Copyright'
 import IconExternalLink from '@theme-original/Icon/ExternalLink'
 

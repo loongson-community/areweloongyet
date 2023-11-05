@@ -1,5 +1,3 @@
-import React from 'react'
-
 import styles from './bits.module.css'
 import InsnFormatName from './insnFormat'
 import { getManualInsnFormatName } from './manualFormatNames'

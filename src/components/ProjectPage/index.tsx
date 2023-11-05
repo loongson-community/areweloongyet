@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Layout from '@theme/Layout'
 
 import { IPortingEffort, IProject } from '@site/src/types'
