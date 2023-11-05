@@ -28,7 +28,7 @@
 
 ### 本地开发
 
-本站以 [Docusaurus 2](https://docusaurus.io/)，一款现代化的静态网站生成器构建。
+本站以 [Docusaurus 3](https://docusaurus.io/)，一款现代化的静态网站生成器构建。
 
 ```
 $ yarn  # 如果需要的话，安装或升级依赖
