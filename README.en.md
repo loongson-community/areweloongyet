@@ -19,7 +19,7 @@
     - [x] Homepage
     - [ ] I18n
 * [x] GHA workflow
-* [ ] Contributor guide
+* [x] Contributor guide
 
 ### License
 
