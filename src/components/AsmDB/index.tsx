@@ -3,6 +3,11 @@ import AsmDBBits from './bits'
 import { getInsnMnemonic } from './insn'
 
 function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
+  if (ss.provisional)
+    return (
+      <p>非正式指令</p>
+    )
+
   return (
     <p>
       见于：
@@ -49,6 +54,8 @@ function subsetFlagsToBitmask(x: SubsetFlags): number {
     y |= 0b100000
   if (x.lvz)
     y |= 0b1000000
+  if (x.provisional)
+    y |= 0b10000000
   return y
 }
 

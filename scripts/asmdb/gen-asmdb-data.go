@@ -26,6 +26,8 @@ func main() {
 		_, isPrimary := x.Attribs["primary"]
 		_, isLBT := x.Attribs["lbt"]
 		_, isLVZ := x.Attribs["lvz"]
+		_, isProvisional := x.Attribs["provisional"]
+		sinceRev := x.Attribs["rev"]
 
 		// LA32 Primary insns are automatically LA32 insns
 		if isPrimary {
@@ -37,7 +39,7 @@ func main() {
 		isExt := isLSX || isLASX || isLBT || isLVZ
 
 		// LA64 is fallback for now
-		isLA64 := !isExt
+		isLA64 := !isExt && !isProvisional
 
 		return asmdbInsn{
 			Word:           x.Word,
@@ -46,14 +48,16 @@ func main() {
 			ManualMnemonic: x.Attribs["orig_name"],
 			Format:         convertInsnFormat(x.Format),
 			ManualFormat:   convertInsnFormat(x.OrigFormat),
+			SinceRev:       sinceRev,
 			Subsets: subsetFlags{
-				LA32:    isLA32,
-				Primary: isPrimary,
-				LA64:    isLA64,
-				LSX:     isLSX,
-				LASX:    isLASX,
-				LBT:     isLBT,
-				LVZ:     isLVZ,
+				LA32:        isLA32,
+				Primary:     isPrimary,
+				LA64:        isLA64,
+				LSX:         isLSX,
+				LASX:        isLASX,
+				LBT:         isLBT,
+				LVZ:         isLVZ,
+				Provisional: isProvisional,
 			},
 		}
 	})
@@ -80,6 +84,7 @@ type asmdbInsn struct {
 	ManualMnemonic string      `json:"manual_mnemonic,omitempty"`
 	Format         insnFormat  `json:"format"`
 	ManualFormat   insnFormat  `json:"manual_format,omitempty"`
+	SinceRev       string      `json:"since_rev,omitempty"`
 	Subsets        subsetFlags `json:"subsets"`
 }
 
@@ -91,6 +96,8 @@ type subsetFlags struct {
 	LASX    bool `json:"lasx,omitempty"`
 	LBT     bool `json:"lbt,omitempty"`
 	LVZ     bool `json:"lvz,omitempty"`
+
+	Provisional bool `json:"provisional,omitempty"`
 }
 
 type insnFormat struct {
