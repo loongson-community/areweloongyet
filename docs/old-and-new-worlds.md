@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 旧世界与新世界
 
-:::caution 施工现场！
+:::warning 施工现场！
 本页面还在施工中，内容可能在未来一段时间仍会有扩充、修改。不妨多来看看！
 :::
 
@@ -144,7 +144,7 @@ Macintosh 电脑的不同型号就使用 Old World、New World 来区分。
 * [Slackware](https://github.com/shipujin/slackware-loongarch64)
 * [Yongbao](https://github.com/sunhaiyong1978/Yongbao)
 
-:::caution
+:::warning
 
 有些新世界发行版是由龙芯员工制作，因此相比其他纯社区工作，
 可能会额外集成一些：
