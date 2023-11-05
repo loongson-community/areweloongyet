@@ -1,4 +1,3 @@
-import React from 'react'
 import { SupportStatus } from '../../types'
 
 function emojiForSupportStatus(ss: SupportStatus): string {

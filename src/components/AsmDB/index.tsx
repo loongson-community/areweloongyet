@@ -1,5 +1,3 @@
-import React from 'react'
-
 import BoolFlag from '@site/src/components/BoolFlag'
 import AsmDBBits from './bits'
 import { getInsnMnemonic } from './insn'

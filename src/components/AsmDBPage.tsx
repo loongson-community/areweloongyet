@@ -1,4 +1,3 @@
-import React from 'react'
 import { Checkbox, Switch } from 'antd'
 import { action, computed, makeObservable, observable } from 'mobx'
 import { Observer } from 'mobx-react-lite'

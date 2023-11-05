@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Options = {
   val: boolean
   trueContent?: string
