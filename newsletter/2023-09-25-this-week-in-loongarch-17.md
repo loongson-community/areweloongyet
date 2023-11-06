@@ -98,7 +98,7 @@ mold 是他基于多年的链接器开发经验重新设计的现代化、高性
 9 月 20 日，笔者从一封抄送到自己邮箱的通知邮件关注到：openEuler 社区[已在着手](https://gitee.com/openeuler/kernel/issues/I82GAS)为其
 23.09 系统的内核添加更多龙架构支持。
 看邮箱地址，推进此工作的 Hongchen Zhang 是龙芯员工。[openEuler 23.09 的内核](https://gitee.com/openeuler/kernel/tree/openEuler-23.09/)版本是 6.4，
-这意味着上述工单中提到的工作会涉及许多向后移植（backport），在此祝 tā 们少被冲突坑到 :smiling_imp:
+这意味着上述工单中提到的工作会涉及许多向后移植（backport），在此祝 :ta: 们少被冲突坑到 :smiling_imp:
 
 ## 张贴栏
 

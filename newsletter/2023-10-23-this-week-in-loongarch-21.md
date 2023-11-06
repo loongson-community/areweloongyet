@@ -45,7 +45,7 @@ Linus 很快将其拉入了主线。
 #### LLVM
 
 10 月 17 日，yjijd [提交了](https://github.com/llvm/llvm-project/pull/69313)
-tā 和 leecheechen 合作开发的，为 Clang 添加 LSX/LASX builtins 支持的补丁。
+:ta: 和 leecheechen 合作开发的，为 Clang 添加 LSX/LASX builtins 支持的补丁。
 有这部分支持之后 Clang 就可以编译向量优化的 C 代码，而不用依赖手写汇编了。
 
 同一天，wangleiat [教会了](https://github.com/llvm/llvm-project/pull/69300)

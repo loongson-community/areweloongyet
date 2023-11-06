@@ -115,10 +115,10 @@ heiher 旋即[推进了](https://github.com/rust-lang/rust/pull/112310)实现。
 * `loongarch64-unknown-none`，LA64 LP64D（双精度硬浮点）裸机
 * `loongarch64-unknown-none-softfloat`，LA64 LP64S（软浮点）裸机
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 YANG Xudong [优化了](https://www.postgresql.org/message-id/flat/b522a0c5-e3b2-99cc-6387-58134fb88cbe%40ymatrix.cn)
 PostgreSQL 在 LoongArch 上的 CRC 计算，

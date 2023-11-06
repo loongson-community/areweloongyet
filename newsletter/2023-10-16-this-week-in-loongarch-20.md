@@ -15,8 +15,8 @@ tags: [每周一龙]
 ## 要闻速递
 
 社区伙伴 jiegec 完成了龙芯二进制翻译（<abbr title="Loongson Binary Translation">LBT</abbr>）
-扩展的解析工作，[整理了一份<small>儿</small>参考文档](https://github.com/jiegec/la-inst/blob/master/LBT.md)！
-用到的实验代码就附在文档旁边<small>儿</small>。
+扩展的解析工作，[整理了一份:儿:参考文档](https://github.com/jiegec/la-inst/blob/master/LBT.md)！
+用到的实验代码就附在文档旁边:儿:。
 这意味着 QEMU 等相关项目不久就能用上 LBT 特色指令，
 不用苦哈哈等《龙芯架构参考手册》卷三公布了。
 
@@ -24,7 +24,7 @@ tags: [每周一龙]
 的朋友们陆续拿到了 LoongArch 硬件，做了许多测试验证工作，
 十分辛苦。
 本期的 AOSC 社刊[《安记冰室・十月上》](https://github.com/AOSC-Dev/newsroom/blob/76c6dc1571cba2af74673b51df70f5f3d43ed1a0/coffee-break/20231014/zh_CN.md)记录了
-tā 们的工作成果，推荐阅读。(An English version [is also available](https://github.com/AOSC-Dev/newsroom/blob/76c6dc1571cba2af74673b51df70f5f3d43ed1a0/coffee-break/20231014/en.md).)
+:ta: 们的工作成果，推荐阅读。(An English version [is also available](https://github.com/AOSC-Dev/newsroom/blob/76c6dc1571cba2af74673b51df70f5f3d43ed1a0/coffee-break/20231014/en.md).)
 
 此外，《咱龙了吗？》后续也将与 AOSC 等社区朋友们一道，
 扩充阅读材料、优化信息架构，以期更好服务读者群体。
@@ -78,7 +78,7 @@ gcc 对齐汇编指令的方式。
 的变体 BF16，因此如果第一时间宣称支持，将限制后续的迭代空间；
 如果加入了支持却几年都捞不着用，更是得不偿失。
 相反，目前是将两种格式编码暂时保留：如果有朝一日需要重新加入它们（或者别的格式），指令编码便能维持「好看」。
-「好看」不光是看起来舒服，译码器的实现也能简单点<small>儿</small>；
+「好看」不光是看起来舒服，译码器的实现也能简单点:儿:；
 这方面做个「颜控」大概没毛病！
 :::
 

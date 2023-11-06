@@ -56,7 +56,7 @@ tags: [每周一龙]
 
 8 月 17 日，lihui
 [贴出了](https://lore.kernel.org/loongarch/20230817032825.22974-1-lihui@loongson.cn/)第 3 版的龙架构 <ruby>KGDB<rt>内核 GDB</rt></ruby> 支持补丁，
-但 tā 把补丁原作者、前龙芯员工 Qing Zhang 的作者信息替换成了 tā 自己。
+但 :ta: 把补丁原作者、前龙芯员工 Qing Zhang 的作者信息替换成了 :ta: 自己。
 （在补丁内容本身并未发生本质改变的前提下，作者信息不应被替换）。
 补丁的原作者 Qing Zhang 在 29 号使用腾讯的邮箱地址[吐槽了](https://lore.kernel.org/loongarch/ea1126e8-690c-424e-ab52-ef5ebbc9707a@tencent.com/)这件事，
 截至发稿时尚未有后续进展。
@@ -68,10 +68,10 @@ tags: [每周一龙]
 且不论这种行为哪怕在任何公司内部，恐怕也不可接受，遑论社区范畴；
 作为补丁原作者，看到接手的同学这样对待自己的劳动成果，吐槽两句也合情合理吧。
 
-Qing Zhang 还提到：补丁的本体是 tā 编写的，后续修补工作主要是 Binbin Zhou 做的，
-并且「不改变作者信息」这件事似乎是 tā 从龙芯离职前与 lihui 内部协调过的事项。
+Qing Zhang 还提到：补丁的本体是 :ta: 编写的，后续修补工作主要是 Binbin Zhou 做的，
+并且「不改变作者信息」这件事似乎是 :ta: 从龙芯离职前与 lihui 内部协调过的事项。
 我们在没有获得更多消息之前，相信沟通双方本质上都基于善意：也许 lihui
-或其部门有什么其他原因导致 tā 不能维持原作者信息了。
+或其部门有什么其他原因导致 :ta: 不能维持原作者信息了。
 希望这场小风波能最终平稳解决！
 :::
 
@@ -84,7 +84,7 @@ Qing Zhang 还提到：补丁的本体是 tā 编写的，后续修补工作主�
 
 同一天，guojie [优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/629157.html)向形如 `MEM[base + index]` 的位置存入浮点 `0.0` 这种行为的代码生成。
 
-9 月 1 日，Lulu Cheng 合并了 tā 和 guojie 6 月 29 日做的一处代码生成错误修复（GCC bug [PR110484](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=110484)，
+9 月 1 日，Lulu Cheng 合并了 :ta: 和 guojie 6 月 29 日做的一处代码生成错误修复（GCC bug [PR110484](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=110484)，
 在开启 <ruby>LTO<rt>链接时优化</rt></ruby> 编译 SPEC2017 541.leela\_r 用例时发现）。
 
 :::info LTO 是跑分专享优化吗？有用吗？会反而造成性能劣化吗？
@@ -105,7 +105,7 @@ Qing Zhang 还提到：补丁的本体是 tā 编写的，后续修补工作主�
 glibc 要求的最低 binutils 版本抬升至 2.41 之后不再需要的兼容代码。
 
 8 月 24 日，dengjianbo [贴出了](https://sourceware.org/pipermail/libc-alpha/2023-August/151091.html)第二批 LSX、LASX 实现的字符串函数。
-随后 28 日 tā 又[贴出了](https://sourceware.org/pipermail/libc-alpha/2023-August/151156.html)第三批。
+随后 28 日 :ta: 又[贴出了](https://sourceware.org/pipermail/libc-alpha/2023-August/151156.html)第三批。
 
 截至发稿时，上述改进都已进入主线了。（感谢 Xi Ruoyao 的线索投递。）
 
@@ -133,14 +133,14 @@ elfutils 项目在龙架构 binutils 2.41 上的测试失败（遗漏了新添�
 可以将被模拟架构的一些 SIMD 操作映射到龙架构的对应 SIMD 操作了。
 截至 9 月 2 日，该补丁系列已[迭代至第 3 版](https://patchwork.ozlabs.org/project/qemu-devel/list/?series=371423)。
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 已知有同学在进行 AMD&reg; ROCm&reg; 套件的龙架构移植工作了，
 也有同学在龙架构上初步跑起了 NixOS。
-期待 tā 们带着整理好的代码正式出道！:smirk_cat:
+期待 :ta: 们带着整理好的代码正式出道！:smirk_cat:
 
 笔者仍在不（bǎi）慌（máng）不（zhī）忙（zhōng）继续 3A6000/LA664 的测试工作。
 截至目前：

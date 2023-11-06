@@ -89,7 +89,7 @@ import ColumnedList from '@site/src/components/ColumnedList'
 </ColumnedList>
 
 这些维护工作涵盖了 MIPS 和龙架构两个时代的龙芯 CPU，以及架构无关的大量龙芯平台外设驱动。
-当你在龙芯硬件<small>儿</small>上使用 Linux 6.6 时，别忘了向 tā 们说声<small>儿</small>谢谢！
+当你在龙芯硬件:儿:上使用 Linux 6.6 时，别忘了向 :ta: 们说声:儿:谢谢！
 
 :::info
 本节报道的信息可以通过简单的 `git` 操作从 Linux 仓库中获取：
@@ -104,7 +104,7 @@ git log --no-merges -P --grep='(?<!: |@)[Ll]oong' v6.5..v6.6
 截至发稿时，LoongArch 的 KVM 支持已经进入主线了。
 按照 Git 提交信息，此工作主要是由 Tianrui Zhao、Bibo Mao、Huacai Chen 几位同学协同完成的；
 当然，可能也有些没署名的无名英雄。
-恭喜 tā 们！
+恭喜 :ta: 们！
 
 目前 `loongarch-next` 分支只有一个新提交：10 月 30 日 Huacai Chen
 给龙架构[加上了](https://lore.kernel.org/loongarch/20231030150836.3804372-1-chenhuacai@loongson.cn/)支持动态抢占的标记。
@@ -125,7 +125,7 @@ LoongArch percpu 辅助函数的内联标记：由于近日 LLVM 优化方面的
 11 月 4 日，龙芯工具链团队将 LoongArch&reg; ABI 规范文档[更新到了](https://github.com/loongson/la-abi-specs/pull/4)整体版本
 v2.20。
 
-其中，ELF psABI 子文档的版本号<small>儿</small>更新到了 20231102，相比 20230519 版本：
+其中，ELF psABI 子文档的版本号:儿:更新到了 20231102，相比 20230519 版本：
 
 * 新增了表示过程调用，跳转范围 &plusmn;38 位的重定位类型 `R_LARCH_CALL36`。
 
@@ -138,11 +138,11 @@ v2.20。
   此设计解决了 2022 年 9 月 xry111 [发现的坑点](https://github.com/loongson/LoongArch-Documentation/pull/69)（后由
   笔者[转发到](https://github.com/loongson/la-abi-specs/pull/3)当前所用的文档仓库）。
 
-* 移除了压根<small>儿</small>不可能用起来的 `R_LARCH_DELETE` 和 `R_LARCH_CFA`
+* 移除了压根:儿:不可能用起来的 `R_LARCH_DELETE` 和 `R_LARCH_CFA`
   两种重定位类型；其编号暂时保留，不挪作他用。
-  这是采纳了[笔者 6 月份<small>儿</small>的建议](https://github.com/loongson/la-abi-specs/issues/2)。
+  这是采纳了[笔者 6 月份:儿:的建议](https://github.com/loongson/la-abi-specs/issues/2)。
 
-* 修正了表格<small>儿</small>中的复制粘贴笔误：`R_LARCH_SUB_ULEB128` 名字错了。
+* 修正了表格:儿:中的复制粘贴笔误：`R_LARCH_SUB_ULEB128` 名字错了。
 
 :::info 主编评论
 关于 `R_LARCH_CALL36`：
@@ -150,7 +150,7 @@ v2.20。
 
 虽然重定位处理的纯洁性已经无法恢复：
 
-* 以前没有这玩意<small>儿</small>时候，已经实装了「给立即数宽 16 位还自带左移 2 位的 `jirl` 上
+* 以前没有这玩意:儿:时候，已经实装了「给立即数宽 16 位还自带左移 2 位的 `jirl` 上
 `R_LARCH_PCALA_LO12` 这个正常只往不同位域写低 12 位还不做右移处理的记录」这个 workaround，
 导致需要实现 workaround 语义才能正常链接的目标代码早就遍地都是，没法消除了。
 * 此外，LoongArch&reg; v1.10 也没有添加当时呼吁的 `pcalau18i`
@@ -160,20 +160,20 @@ v2.20。
 [pcrel-llvm-example]: https://github.com/llvm/llvm-project/blob/58679ea576f9e48e20e43dcd99fd75c98fb7e6ba/lld/ELF/Arch/LoongArch.cpp#L376
 [pcala-llvm-impl]: https://github.com/llvm/llvm-project/blob/58679ea576f9e48e20e43dcd99fd75c98fb7e6ba/lld/ELF/Arch/LoongArch.cpp#L84-L170
 
-但至少此设计满足传达语义的需要，其对相关指令必须相邻的要求也对硬件<small>儿</small>实现非常友好，因而笔者认为仍然是良好的设计。
+但至少此设计满足传达语义的需要，其对相关指令必须相邻的要求也对硬件:儿:实现非常友好，因而笔者认为仍然是良好的设计。
 
 关于 `R_LARCH_DELETE`：这大概是先前做 linker relaxation 时候，没有仔细区分 BFD 实现细节导致的。
 观察 RISC-V 相似名字的 `R_RISCV_DELETE` 定义：
-被明确定义为 BFD 实现细节，不放置于公开的头<small>儿</small>文件，且在文档上显著说明了。
+被明确定义为 BFD 实现细节，不放置于公开的头:儿:文件，且在文档上显著说明了。
 对龙架构工作者而言，也算是积累经验了吧！
 :::
 
-此外，《LoongArch&reg; 过程调用约定》子文档的版本号<small>儿</small>更新到了 20231103，
+此外，《LoongArch&reg; 过程调用约定》子文档的版本号:儿:更新到了 20231103，
 相比 20230519 版本主要是明确了围绕宽度为零的量的处理细节；此外也微调了一些措辞。
 
 :::info 主编评论
 这都是几个月来同学们在各大上游社区仔细讨论的成果。
-差点<small>儿</small>就要为这些纯粹起标记作用，不该占地<small>儿</small>的字段浪费寄存器了！
+差点:儿:就要为这些纯粹起标记作用，不该占地:儿:的字段浪费寄存器了！
 感谢上游多位 C++ 大师出手相助，给我们讲清楚 C/C++ 规范里那些文字资料鲜少涉及，课上更不可能讲的边界情况。
 :::
 
@@ -184,7 +184,7 @@ v2.20。
 之前没测出来！
 
 11 月 2 日，GCC 贡献者 Vladimir Makarov [反馈说](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=109035#c7)近两周间
-tā 改进了 GCC 的寄存器分配算法，修复了在 LoongArch 等若干架构出现毫无意义的寄存器保存指令的问题。
+:ta: 改进了 GCC 的寄存器分配算法，修复了在 LoongArch 等若干架构出现毫无意义的寄存器保存指令的问题。
 感谢 xry111 提供新闻线索和新闻稿！
 
 两三周前，笔者的 GCC 14 就无法自举了，踩上了 binutils linker relaxation 的坑；

@@ -44,10 +44,10 @@ GNOME3 已在 Gentoo/LoongArch 上证实可用并 keyworded。
 相应地，GNOME 与 Plasma 的 desktop profiles 也在本周添加了。
 有需要的同学可以利用它们来给自己 `make.conf` 等等配置瘦身了。
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 7 月 31 日，xen0n 完成了 Linux RAID 5/6 计算的 LSX、LASX 移植（性能不错），预计在本周内提交上游、见诸下期周报。
 

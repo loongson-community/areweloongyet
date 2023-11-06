@@ -68,15 +68,15 @@ Sui Jingfeng 为龙芯 2K1000 和 LS7A1000 内置的 Vivante GC1000 GPU IP
 [D151655]: https://reviews.llvm.org/D151655
 [D151794]: https://reviews.llvm.org/D151794
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 [KatyushaScarlet](https://github.com/KatyushaScarlet)
-[向大家介绍](https://katyusha.net/536.html) tā 基于 DOSBox-X 整合的游戏模拟器。
+[向大家介绍](https://katyusha.net/536.html) :ta: 基于 DOSBox-X 整合的游戏模拟器。
 不过似乎在 QEMU 模拟条件下可能无法启动。
-感兴趣的同学可以加入 tā 的行列一起折腾！
+感兴趣的同学可以加入 :ta: 的行列一起折腾！
 
 ## 张贴栏
 
