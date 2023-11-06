@@ -1,8 +1,8 @@
 ---
-slug: this-week-in-loongarch-23
-title: 每周一龙：第 23 期
+slug: this-week-in-loongarch-24
+title: 每周一龙：第 24 期
 authors: [xen0n]
-date: 2023-11-06T00:00:00+08:00
+date: 2023-11-13T00:00:00+08:00
 tags: [每周一龙]
 draft: true
 ---

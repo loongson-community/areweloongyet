@@ -19,7 +19,7 @@
     - [x] 首页
     - [ ] 国际化
 * [x] GHA 工作流
-* [ ] 贡献者指南
+* [x] 贡献者指南
 
 ### 许可证
 
@@ -28,11 +28,11 @@
 
 ### 本地开发
 
-本站以 [Docusaurus 2](https://docusaurus.io/)，一款现代化的静态网站生成器构建。
+本站以 [Docusaurus 3](https://docusaurus.io/)，一款现代化的静态网站生成器构建。
 
 ```
 $ yarn  # 如果需要的话，安装或升级依赖
-$ yarn make-plugins  # 如果变更了 src/plugins/awly-data-plugin 的话
+$ yarn build-helpers  # 如果变更了 scripts/asmdb 的话
 $ yarn start
 ```
 

@@ -8,7 +8,7 @@ tags: [每周一龙]
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
 
-<!-- truncate -->
+{/* truncate */}
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
@@ -45,8 +45,9 @@ Linux 上游社区不仅维护内核，也包括许多 Linux 的周边软件、�
 除以上变更之外，还有许多同等重要的缺陷修复、代码重构等工作值得褒扬。
 这个版本动过龙芯相关代码的所有开发者们（按字母顺序排序，以 Git 提交记录中的作者字段为准）：
 
-<div style={{columns: "3 auto"}}>
+import ColumnedList from '@site/src/components/ColumnedList'
 
+<ColumnedList columns={3}>
 * Andy Shevchenko
 * Arnaldo Carvalho de Melo
 * Arnd Bergmann
@@ -85,8 +86,7 @@ Linux 上游社区不仅维护内核，也包括许多 Linux 的周边软件、�
 * YingKun Meng
 * Youling Tang
 * Zhihong Dong
-
-</div>
+</ColumnedList>
 
 当你使用龙架构 Linux 6.5 时，别忘了向 tā 们表达一声感谢！
 

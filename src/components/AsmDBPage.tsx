@@ -18,6 +18,9 @@ class AsmDBPageUIState {
       la64: true,
       lsx: false,
       lasx: false,
+      lbt: false,
+      lvz: false,
+      provisional: false,
     }
 
     // XXX We have to init members here, because Docusaurus doesn't use our
@@ -33,11 +36,17 @@ class AsmDBPageUIState {
       subsetLA64: computed,
       subsetLSX: computed,
       subsetLASX: computed,
+      subsetLBT: computed,
+      subsetLVZ: computed,
+      subsetProvisional: computed,
       setSubsetLA32: action,
       setSubsetLA32Primary: action,
       setSubsetLA64: action,
       setSubsetLSX: action,
       setSubsetLASX: action,
+      setSubsetLBT: action,
+      setSubsetLVZ: action,
+      setSubsetProvisional: action,
     })
   }
 
@@ -50,12 +59,18 @@ class AsmDBPageUIState {
   get subsetLA64() { return this.selectedSubset.la64 }
   get subsetLSX() { return this.selectedSubset.lsx }
   get subsetLASX() { return this.selectedSubset.lasx }
+  get subsetLBT() { return this.selectedSubset.lbt }
+  get subsetLVZ() { return this.selectedSubset.lvz }
+  get subsetProvisional() { return this.selectedSubset.provisional }
 
   setSubsetLA32(x: boolean) { this.selectedSubset.la32 = x }
   setSubsetLA32Primary(x: boolean) { this.selectedSubset.primary = x }
   setSubsetLA64(x: boolean) { this.selectedSubset.la64 = x }
   setSubsetLSX(x: boolean) { this.selectedSubset.lsx = x }
   setSubsetLASX(x: boolean) { this.selectedSubset.lasx = x }
+  setSubsetLBT(x: boolean) { this.selectedSubset.lbt = x }
+  setSubsetLVZ(x: boolean) { this.selectedSubset.lvz = x }
+  setSubsetProvisional(x: boolean) { this.selectedSubset.provisional = x }
 }
 
 export default function AsmDBPage({data}: {data: AsmDBData}): JSX.Element {
@@ -67,6 +82,9 @@ export default function AsmDBPage({data}: {data: AsmDBData}): JSX.Element {
     {name: 'LA64', get: () => state.subsetLA64, action: (x: boolean) => state.setSubsetLA64(x)},
     {name: 'LSX', get: () => state.subsetLSX, action: (x: boolean) => state.setSubsetLSX(x)},
     {name: 'LASX', get: () => state.subsetLASX, action: (x: boolean) => state.setSubsetLASX(x)},
+    {name: 'LBT', get: () => state.subsetLBT, action: (x: boolean) => state.setSubsetLBT(x)},
+    {name: 'LVZ', get: () => state.subsetLVZ, action: (x: boolean) => state.setSubsetLVZ(x)},
+    {name: '非正式指令', get: () => state.subsetProvisional, action: (x: boolean) => state.setSubsetProvisional(x)},
   ]
 
   return (

@@ -1,0 +1,234 @@
+---
+slug: this-week-in-loongarch-23
+title: 每周一龙：第 23 期
+authors: [xen0n]
+date: 2023-11-06T18:40:00+08:00
+tags: [每周一龙]
+---
+
+每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+上周的进展主要有。
+详情点进来看！
+
+{/* truncate */}
+
+如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
+
+## 先「马」再看
+
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+
+### Linux
+
+上期我们用较大的篇幅[报道了](./2023-10-30-this-week-in-loongarch-22.md#loongarch-r1p10)
+LoongArch&reg; v1.10 的新增特性。
+因此虽然 Linux 6.6 也在上周正式发布了，但我们并未马上详细报道。
+截至目前，Linux 6.7 的合并窗口仍在火热开放中，而龙架构的变更相对不多；
+我们可以先把上周的 Linux 6.6 内容补上，再简单过一遍本周期的新功能。
+
+#### Linux 6.6
+
+我们在周报第 14 期[整理过了](./2023-09-04-this-week-in-loongarch-14.md#linux-6.6-loongarch-changes)
+Linux 6.6 的龙架构相关变更，可方便跳转阅读。
+
+除此之外值得一提的是：从该版本开始，Linux 的默认调度算法从 CFS（completely fair scheduler；完全公平调度器）
+变为了[上世纪九十年代一篇论文][eevdf-paper]提出的
+EEVDF（earliest eligible virtual deadline first；最早到期的虚拟截止时刻优先），LWN 对此[做了讲解][eevdf-lwn]。
+显然，CFS 并不「完全公平」，尽管它确实也比它的前任 O(1) 调度器更公平些。
+该重构由著名 Linux 调度器维护者 Peter Zijlstra 操刀。
+
+经社区测试，EEVDF 调度算法能以更少的配置项，在大多数场景下实现更高的公平性与吞吐；
+但也不排除个别场景由于受益于先前 CFS 算法的不公平，而在新内核反而性能劣化，像是受了 EEVDF 惩罚一样。
+请那些需要或者已经迫近系统性能极限的开发者和用户们注意：升级内核前重新跑跑压测。
+
+[eevdf-paper]: https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=805acf7726282721504c8f00575d91ebfd750564
+[eevdf-lwn]: https://lwn.net/Articles/925371/
+
+除以上变更之外，还有许多同等重要的缺陷修复、代码重构等工作值得褒扬。
+这个版本动过龙芯相关代码的所有开发者们（按字母顺序排序，以 Git 提交记录中的作者字段为准）：
+
+import ColumnedList from '@site/src/components/ColumnedList'
+
+<ColumnedList columns={2}>
+* Andy Shevchenko
+* Aneesh Kumar K.V
+* Baoquan He
+* Bibo Mao
+* Binbin Zhou
+* Costa Shulyupin
+* Dan Carpenter
+* Enze Li
+* Eric DeVolder
+* Feiyang Chen
+* Helge Deller
+* Hongchen Zhang
+* Huacai Chen
+* Icenowy Zheng
+* Jiri Slaby
+* Keguang Zhang
+* Maciej W. Rozycki
+* Matthew Wilcox (Oracle)
+* Mingtong Bao
+* Nathan Chancellor
+* Nick Desaulniers
+* Paul E. McKenney
+* Qi Hu
+* Qing Zhang
+* Russell King (Oracle)
+* Sui Jingfeng
+* Thomas Zimmermann
+* Tiezhu Yang
+* Tom Rix
+* Vishal Moola (Oracle)
+* WANG Xuerui
+* Weihao Li
+* Yanteng Si
+* Yinbo Zhu
+* YingKun Meng
+* Zhangjin Wu
+</ColumnedList>
+
+这些维护工作涵盖了 MIPS 和龙架构两个时代的龙芯 CPU，以及架构无关的大量龙芯平台外设驱动。
+当你在龙芯硬件<small>儿</small>上使用 Linux 6.6 时，别忘了向 tā 们说声<small>儿</small>谢谢！
+
+:::info
+本节报道的信息可以通过简单的 `git` 操作从 Linux 仓库中获取：
+
+```sh
+git log --no-merges -P --grep='(?<!: |@)[Ll]oong' v6.5..v6.6
+```
+:::
+
+#### Linux 6.7
+
+截至发稿时，LoongArch 的 KVM 支持已经进入主线了。
+按照 Git 提交信息，此工作主要是由 Tianrui Zhao、Bibo Mao、Huacai Chen 几位同学协同完成的；
+当然，可能也有些没署名的无名英雄。
+恭喜 tā 们！
+
+目前 `loongarch-next` 分支只有一个新提交：10 月 30 日 Huacai Chen
+给龙架构[加上了](https://lore.kernel.org/loongarch/20231030150836.3804372-1-chenhuacai@loongson.cn/)支持动态抢占的标记。
+
+11 月 2 日，Nathan Chancellor 在 ClangBuiltLinux 项目日常维护中，
+帮忙[完善了](https://lore.kernel.org/loongarch/20231102-loongarch-always-inline-percpu-ops-v2-1-31c51959a5c0@kernel.org/)
+LoongArch percpu 辅助函数的内联标记：由于近日 LLVM 优化方面的变动，有的这方面函数调用不再被内联了。
+这是非预期的：这些函数必须被内联才能正常工作。
+因此正确做法就是将它们标记为总是内联（在 Linux 里 `__always_inline` 这么写）。
+
+以上的内容估计都会在本周晚些时候进入主线，赶上 Linux v6.7-rc1 的火车。
+
+
+### 工具链
+
+#### ABI
+
+11 月 4 日，龙芯工具链团队将 LoongArch&reg; ABI 规范文档[更新到了](https://github.com/loongson/la-abi-specs/pull/4)整体版本
+v2.20。
+
+其中，ELF psABI 子文档的版本号<small>儿</small>更新到了 20231102，相比 20230519 版本：
+
+* 新增了表示过程调用，跳转范围 &plusmn;38 位的重定位类型 `R_LARCH_CALL36`。
+
+  由于跳转目标必须对齐到 4 字节，`jirl` 指令会自己给它的立即数左移两位，
+  因此实际有效数字只有 36 位，故名。
+
+  这也是龙架构首个同时作用于两条指令的 ELF 重定位类型：
+  该类型的重定位记录必须被附着于连续的两条 `pcaddu18i & jirl` 的第一条，才能正常工作。
+
+  此设计解决了 2022 年 9 月 xry111 [发现的坑点](https://github.com/loongson/LoongArch-Documentation/pull/69)（后由
+  笔者[转发到](https://github.com/loongson/la-abi-specs/pull/3)当前所用的文档仓库）。
+
+* 移除了压根<small>儿</small>不可能用起来的 `R_LARCH_DELETE` 和 `R_LARCH_CFA`
+  两种重定位类型；其编号暂时保留，不挪作他用。
+  这是采纳了[笔者 6 月份<small>儿</small>的建议](https://github.com/loongson/la-abi-specs/issues/2)。
+
+* 修正了表格<small>儿</small>中的复制粘贴笔误：`R_LARCH_SUB_ULEB128` 名字错了。
+
+:::info 主编评论
+关于 `R_LARCH_CALL36`：
+没有采用会暴露 `pcaddu18i` 与 `pcalau12i` 本质不同的设计提议。
+
+虽然重定位处理的纯洁性已经无法恢复：
+
+* 以前没有这玩意<small>儿</small>时候，已经实装了「给立即数宽 16 位还自带左移 2 位的 `jirl` 上
+`R_LARCH_PCALA_LO12` 这个正常只往不同位域写低 12 位还不做右移处理的记录」这个 workaround，
+导致需要实现 workaround 语义才能正常链接的目标代码早就遍地都是，没法消除了。
+* 此外，LoongArch&reg; v1.10 也没有添加当时呼吁的 `pcalau18i`
+以便链接器不用带「[PC-relative][pcrel-llvm-example]」
+跟「[PC-aligned][pcala-llvm-impl]」两套迥异的计算逻辑——优雅不能当饭吃。
+
+[pcrel-llvm-example]: https://github.com/llvm/llvm-project/blob/58679ea576f9e48e20e43dcd99fd75c98fb7e6ba/lld/ELF/Arch/LoongArch.cpp#L376
+[pcala-llvm-impl]: https://github.com/llvm/llvm-project/blob/58679ea576f9e48e20e43dcd99fd75c98fb7e6ba/lld/ELF/Arch/LoongArch.cpp#L84-L170
+
+但至少此设计满足传达语义的需要，其对相关指令必须相邻的要求也对硬件<small>儿</small>实现非常友好，因而笔者认为仍然是良好的设计。
+
+关于 `R_LARCH_DELETE`：这大概是先前做 linker relaxation 时候，没有仔细区分 BFD 实现细节导致的。
+观察 RISC-V 相似名字的 `R_RISCV_DELETE` 定义：
+被明确定义为 BFD 实现细节，不放置于公开的头<small>儿</small>文件，且在文档上显著说明了。
+对龙架构工作者而言，也算是积累经验了吧！
+:::
+
+此外，《LoongArch&reg; 过程调用约定》子文档的版本号<small>儿</small>更新到了 20231103，
+相比 20230519 版本主要是明确了围绕宽度为零的量的处理细节；此外也微调了一些措辞。
+
+:::info 主编评论
+这都是几个月来同学们在各大上游社区仔细讨论的成果。
+差点<small>儿</small>就要为这些纯粹起标记作用，不该占地<small>儿</small>的字段浪费寄存器了！
+感谢上游多位 C++ 大师出手相助，给我们讲清楚 C/C++ 规范里那些文字资料鲜少涉及，课上更不可能讲的边界情况。
+:::
+
+#### gcc
+
+11 月 3 日，Chenghui Pan [修了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/635105.html)一处笔误：
+有个 `vldi` 之前给写成 `ldi` 了。
+之前没测出来！
+
+11 月 2 日，GCC 贡献者 Vladimir Makarov [反馈说](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=109035#c7)近两周间
+tā 改进了 GCC 的寄存器分配算法，修复了在 LoongArch 等若干架构出现毫无意义的寄存器保存指令的问题。
+感谢 xry111 提供新闻线索和新闻稿！
+
+两三周前，笔者的 GCC 14 就无法自举了，踩上了 binutils linker relaxation 的坑；
+不过在笔者找到时间写 bug 报告并上报之前，
+五天前，专攻 GNU 工具链的 xry111 也被坑到了，并且在上游[建立了](https://gcc.gnu.org/PR112330)这个 bug。
+目前的发现是只要搭配最新 binutils 就会自举失败，体现为汇编器或者链接器崩溃（视你拣取的后续修复提交多少而不定）；
+但在 gcc [r14-5075](https://gcc.gnu.org/cgi-bin/gcc-gitref.cgi?r=r14-5075)
+这个提交之后，问题又神奇般地暂时消失了。
+问题的根因尚未找到，同学们仍在努力。
+感谢 xry111 提供新闻线索！
+
+#### LLVM
+
+与前面报道的 LoongArch&reg; ABI 文档修订有些相关，上周有两处 Clang 与 GCC 对 ABI 的理解差异得到了修复。
+
+* [issue #70319][llvm70319]: 由 Ami-zhang 两周前报告，由 SixWeining 在 [#70320][llvm70320] 修复；事关空 `struct`。
+* [issue #70890][llvm70890]: 由 SixWeining 五天前报告，随后在 [#71025][llvm71025] 自己修复；事关空 `union`。
+
+[llvm70319]: https://github.com/llvm/llvm-project/issues/70319
+[llvm70320]: https://github.com/llvm/llvm-project/pull/70320
+[llvm70890]: https://github.com/llvm/llvm-project/issues/70890
+[llvm71025]: https://github.com/llvm/llvm-project/pull/71025
+
+此外，11 月 4 日 zhaoqi5 给龙架构的 MC（机器代码）组件[添加了](https://github.com/llvm/llvm-project/pull/71276)围绕
+`jirl` 指令的额外逻辑，让它更聪明了。
+根据提交说明中透露的消息，龙芯已经在着手移植 LLVM BOLT 到龙架构了。
+这位同学似乎也是首次在上游公开露面；欢迎欢迎！
+
+:::tip BOLT 是啥？
+BOLT 是最早由 Facebook（现 Meta）团队创造，之后贡献给 LLVM 项目的一款二进制优化器。
+只要喂给它带有重定位信息的成品二进制程序，以及实际运行中收集的代码段热度信息；
+不要源代码，它就能优化这个输入程序的代码布局，从而不改一行代码轻松提升性能。
+这对使用编译型语言的大小厂都非常有用。
+详见 [BOLT 项目 README](https://github.com/llvm/llvm-project/tree/main/bolt)。
+:::
+
+## 张贴栏
+
+本栏目可供张贴公益性质的各种信息。
+
+* 友情扩散：[安同开源社区（AOSC）][aosc]的龙架构移植主线化工作「合龙」仍在如火如荼进行中，
+  此工作完成后龙架构将升格为 AOSC OS 的 Tier 1 架构。
+  欢迎同学们试用、反馈，也欢迎有志之士一同加入（沟通渠道详见 AOSC 网站相关栏目）。
+* 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
+
+[aosc]: https://aosc.io
+[call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16

@@ -1,0 +1,11 @@
+@media (max-width: 500px) {
+  .columnedList {
+    columns: unset !important;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 900px) {
+  .columnedList {
+    columns: 2 !important;
+  }
+}

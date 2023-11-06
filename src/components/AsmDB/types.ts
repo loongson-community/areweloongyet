@@ -9,6 +9,7 @@ type Insn = {
   manual_mnemonic?: string
   format: InsnFormat
   manual_format?: InsnFormat
+  since_rev?: string
   subsets: SubsetFlags
 }
 
@@ -18,6 +19,9 @@ type SubsetFlags = {
   la64?: boolean
   lsx?: boolean
   lasx?: boolean
+  lbt?: boolean
+  lvz?: boolean
+  provisional?: boolean
 }
 
 type InsnFormat = {
