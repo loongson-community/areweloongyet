@@ -188,6 +188,8 @@ GSGPU 同时还实现了笔记本背光相关的控制接口，与上游 `loongs
 * 友情扩散：[安同开源社区（AOSC）][aosc]的龙架构移植主线化工作「合龙」仍在如火如荼进行中，
   此工作完成后龙架构将升格为 AOSC OS 的 Tier 1 架构。
   欢迎同学们试用、反馈，也欢迎有志之士一同加入（沟通渠道详见 AOSC 网站相关栏目）。
+* 11 月 11 日，AOSC 的本期双周报《安记冰室・十一月上》[发布了](https://github.com/AOSC-Dev/newsroom/blob/b747c8e383b40695dce1fb9d7efbb19d64991d68/coffee-break/20231111/zh_CN.md)，
+  欢迎同学们阅读。An English version [is also available](https://github.com/AOSC-Dev/newsroom/blob/b747c8e383b40695dce1fb9d7efbb19d64991d68/coffee-break/20231111/en.md).
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
 [aosc]: https://aosc.io
