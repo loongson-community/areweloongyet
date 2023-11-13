@@ -17,6 +17,9 @@ import type { PluginOptions as AWLYDataPluginOptions } from './src/plugins/awly-
 
 import awlyAsmDBPlugin from './src/plugins/awly-asmdb-plugin'
 import awlyDataPlugin from './src/plugins/awly-data-plugin'
+import awlyRemarkNatlangUsage from './src/plugins/awly-remark-natlang-usage'
+
+const commonBeforeDefaultRemarkPlugins = [awlyRemarkNatlangUsage]
 
 const commonRehypePlugins = [
   [
@@ -119,6 +122,7 @@ const config: Config = {
         blogTitle: '每周一龙',
         blogDescription: '龙架构®新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch® 社区最前线的第一手新鲜资讯！',
         editUrl: 'https://github.com/loongson-community/areweloongyet',
+        beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
         rehypePlugins: commonRehypePlugins,
       } satisfies BlogOptions,
     ],
@@ -134,6 +138,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/loongson-community/areweloongyet',
+          beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
           rehypePlugins: commonRehypePlugins,
         },
         blog: {
@@ -144,6 +149,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/loongson-community/areweloongyet',
+          beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
           rehypePlugins: commonRehypePlugins,
         },
         theme: {

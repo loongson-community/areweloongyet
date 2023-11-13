@@ -49,7 +49,7 @@ LLVM 的变更情况见 LLVM 一节。
 
 详情请[移步龙架构的上游集成分支](https://git.kernel.org/chenhuacai/linux-loongson/l/loongarch-next)。
 
-6 月 20 日，Youling Tang 基于 tā [4 月份的 libelf 工作](https://sourceware.org/pipermail/elfutils-devel/2023q2/006107.html)，
+6 月 20 日，Youling Tang 基于 :ta: [4 月份的 libelf 工作](https://sourceware.org/pipermail/elfutils-devel/2023q2/006107.html)，
 开始将 [ORC unwinder](https://www.kernel.org/doc/html/latest/arch/x86/orc-unwinder.html)
 移植到龙架构：[发出了](https://lore.kernel.org/loongarch/1687247209-31676-1-git-send-email-tangyouling@loongson.cn/)一版初稿补丁。
 （感谢 [@xry111](https://github.com/xry111) 的新闻线索。）
@@ -77,10 +77,10 @@ LLVM 的变更情况见 LLVM 一节。
 
 * Ami-zhang 接近完成了 MSan 的龙架构移植：[D140528](https://reviews.llvm.org/D140528)、[D152692](https://reviews.llvm.org/D152692)，不日将合并。
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 [loongarch-opcodes 项目](https://github.com/loongson-community/loongarch-opcodes)整理完成了所有
 LSX、LASX 指令编码信息。有需要的同学可以参考起来了。

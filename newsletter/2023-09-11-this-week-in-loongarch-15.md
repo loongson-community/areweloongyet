@@ -36,7 +36,7 @@ Linux 6.6-rc1。
 9 月 8 日，GCC 14 最新开发版本[被发现](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111334)在编译 Mesa 时崩溃。
 问题原因已找到，补丁[贴出来了](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/629749.html)，等待合并。
 
-:::info 所以问题在哪<small>儿</small>？
+:::info 所以问题在哪:儿:？
 LoongArch&reg; v1.00 手册提到了 LA64 的 32 位除法、取模操作有坑（中文版卷一 2.2.1.13 节；英文版中没有注明该坑）：
 
 「在 LoongArch64 位兼容的机器上，执行 `DIV.W[U]` 和 `MOD.W[U]` 指令时，
@@ -75,10 +75,10 @@ LoongArch&reg; v1.00 手册提到了 LA64 的 32 位除法、取模操作有坑�
 9 月 7 日，将 LA64 裸机编译目标们提升至 Tier 2 支持级别的 MCP [进入了公示期](https://github.com/rust-lang/compiler-team/issues/664#issuecomment-1710266066)，公示期 10 天。
 （这个提案是 8 月 15 号发出来的，这么久都没有反对意见，大概率之后也不会有了。9 月 17 号应该会自动通过。）
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 （补充报道）9 月 3 日，Jiajie Chen 在 fuzz 他手头的龙架构 CPU 时，[找出了](https://github.com/loongson-community/loongarch-opcodes/issues/1)未见于公开文档的几条指令：
 

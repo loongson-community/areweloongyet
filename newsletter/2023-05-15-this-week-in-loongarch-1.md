@@ -56,10 +56,10 @@ tags: [每周一龙]
 [D150089]: https://reviews.llvm.org/D150089
 [D150522]: https://reviews.llvm.org/D150522
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 donmor 同学使用 QEMU 模拟的龙架构验证了很多软件和游戏：
 

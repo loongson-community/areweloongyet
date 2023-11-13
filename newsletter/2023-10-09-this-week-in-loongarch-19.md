@@ -23,7 +23,7 @@ tags: [每周一龙]
 故亲自[完善了](https://lore.kernel.org/loongarch/20231009042841.635366-1-uwu@icenowy.me/)这部分逻辑。
 实测打上此补丁后，相关的纹理损坏问题（部分花屏，戏称「字节跳动」）以及 AMD Oland 微架构 GPU
 在 `amdgpu` 内核模块驱动下的 ring timeout 问题都解决了，稳定性也有部分改善。
-让我们欢迎 tā 的首个 LoongArch 内核补丁！
+让我们欢迎 :ta: 的首个 LoongArch 内核补丁！
 
 同一天，Bibo Mao 把他的 vDSO & 栈内存布局优化补丁[迭代到了](https://lore.kernel.org/loongarch/20231008012036.1415883-1-maobibo@loongson.cn/)第 3 版。
 他学 x86 让 vDSO 和栈共享同一条 PMD，而得以从每个线程省出一页；还做了其他小优化。
@@ -36,8 +36,8 @@ KVM 代码在特定内核配置下编译失败的问题，Randy 测了能用。
 被问到的函数 `copy_user_highpage` 只对 32 位内核有用，
 因此如果没打算支持纯 32 位系统那么其实最好把它删掉。Huacai Chen 回复说「近期」就会加入 LA32 支持，
 然后顺手把 Deepak 的建议写成补丁[贴出来了](https://lore.kernel.org/loongarch/20231007095229.235551-1-chenhuacai@loongson.cn/)。Deepak 对此表示感谢，
-并且 tā 仍然打算准备一个 LoongArch 编译环境来帮忙测试。
-我们也感谢 tā 的帮忙！
+并且 :ta: 仍然打算准备一个 LoongArch 编译环境来帮忙测试。
+我们也感谢 :ta: 的帮忙！
 
 10 月 5 日，Huacai Chen 向 KVM 子系统维护者[发送了](https://lore.kernel.org/kvm/20231005091825.3207300-1-chenhuacai@loongson.cn/)增加龙架构 KVM 支持的 <ruby>PR<rt>拉取请求</rt></ruby>。
 距离主线一步之遥！
@@ -71,7 +71,7 @@ linker relaxation 的作用打上了相当大的问号；
 都应该遵守的对齐指示就会被错误无视，使得生成代码的布局错误，
 最终导致运行时崩溃之类难以排查的不好结果。
 算上一两个月前同样被坑到但十分抱歉未能及时一句话报出 bug 的笔者，
-至少已经有 3 人共计几个甚至十几小时的宝贵业余时间交待在这<small>儿</small>了。
+至少已经有 3 人共计几个甚至十几小时的宝贵业余时间交待在这:儿:了。
 
 由于报告问题时正值假期，目前暂未有反馈，但我们预期龙芯工具链的同学将很快得知并着手配合修复此事。
 
@@ -81,10 +81,10 @@ linker relaxation 的作用打上了相当大的问号；
 恭喜 :tada:！
 
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 10 月 4 日，jiegec [又发现了](https://github.com/loongson-community/loongarch-opcodes/issues/1#issuecomment-1746975991) 21 条未见于龙架构手册的神奇指令！
 其中有一些疑似是执行更快但精度更低的浮点求倒数操作，如果做更多实验比对相应有文档记载指令的输出，则有望知晓更多细节。

@@ -48,16 +48,16 @@ drm-misc 仓库的合并权限。
 #### LLVM
 
 Ami-zhang 7 月 3 日[合并了](https://reviews.llvm.org/D140690) DFSan 的龙架构适配，
-又在 7 月 6 日[合并了](https://reviews.llvm.org/D154405) tā 4 号提交的一行 Profile 适配。
+又在 7 月 6 日[合并了](https://reviews.llvm.org/D154405) :ta: 4 号提交的一行 Profile 适配。
 
 xen0n 7 月 5 日在社区[征询了](https://discourse.llvm.org/t/how-to-best-implement-code-model-overriding-for-certain-values/71816)龙架构 `model` 属性的最佳实现方案，
 得到了社区前辈的帮助。
 由于此支持大概率将涉及 LLVM IR 级别的变更，影响较为深远，预计将在 LLVM 18 开发周期实现。
 
-## 社区整活<small>儿</small>
+## 社区整活:儿:
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活<small>儿</small>）或是博君一笑都一概欢迎！
+无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 * xry111 爆料说 OpenJPEG 上游[出现了 LASX 优化补丁](https://github.com/uclouvain/openjpeg/pull/1458)。
   （该优化 2 月 24 日即被提交，显然太早了：社区群众直到两周前才有可能明白指令含义从而有效审查代码。作者 jinbo 是龙芯员工。）
