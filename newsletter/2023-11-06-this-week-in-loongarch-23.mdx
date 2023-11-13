@@ -31,13 +31,14 @@ LoongArch&reg; v1.10 的新增特性。
 我们在周报第 14 期[整理过了](./2023-09-04-this-week-in-loongarch-14.md#linux-6.6-loongarch-changes)
 Linux 6.6 的龙架构相关变更，可方便跳转阅读。
 
-除此之外值得一提的是：从该版本开始，Linux 的默认调度算法从 CFS（completely fair scheduler；完全公平调度器）
+除此之外值得一提的是：从该版本开始，Linux 的默认调度算法被重做了，
+从 CFS（completely fair scheduler；完全公平调度器）
 变为了[上世纪九十年代一篇论文][eevdf-paper]提出的
 EEVDF（earliest eligible virtual deadline first；最早到期的虚拟截止时刻优先），LWN 对此[做了讲解][eevdf-lwn]。
-显然，CFS 并不「完全公平」，尽管它确实也比它的前任 O(1) 调度器更公平些。
-该重构由著名 Linux 调度器维护者 Peter Zijlstra 操刀。
+该改造由著名 Linux 调度器维护者 Peter Zijlstra 操刀。
 
 经社区测试，EEVDF 调度算法能以更少的配置项，在大多数场景下实现更高的公平性与吞吐；
+显然，CFS 并不「完全公平」，尽管它确实也比它的前任 O(1) 调度器更公平些。
 但也不排除个别场景由于受益于先前 CFS 算法的不公平，而在新内核反而性能劣化，像是受了 EEVDF 惩罚一样。
 请那些需要或者已经迫近系统性能极限的开发者和用户们注意：升级内核前重新跑跑压测。
 
