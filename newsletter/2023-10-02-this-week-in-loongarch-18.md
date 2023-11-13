@@ -116,6 +116,8 @@ Slackwareloong 1.0 LTS 版本。
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
+<a name="gsgpu-for-mainline"></a>
+
 LA UOSC 网友 autistic-chad（GitHub [@cl91](https://github.com/cl91)）[在憋大招](https://bbs.loongarch.org/d/303-gsgpu)：
 将 GSGPU 的内核驱动从 Loongnix 4.19 内核移植到主线版本（6.6+）！
 

@@ -98,6 +98,7 @@ Debian 上游工作也有所进展：`binutils` 包的改动[获合并](https://
 
 ## 杂闻播报
 
+<a name="freedesktop-sdk-initial-support-merged"></a>
 10 月 10 日，社区同学 Robin Lee 做的 FreeDesktop SDK 龙架构初步适配[获合并](https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/merge_requests/12203)。
 FreeDesktop SDK 是 Flatpak 打包方案的基础运行时。
 
