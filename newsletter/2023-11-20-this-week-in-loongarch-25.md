@@ -84,6 +84,8 @@ LA664 新增特性的 GCC 适配，可以用 `-march=la664` 了，
 也未去除那些在 LA664 上不再必要的 `DBAR 0x700` 指令；
 因此 Xi Ruoyao 以这一版龙芯代码为基础，又[改了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/637090.html)一版。
 
+<a name="CLZ_DEFINED_VALUE_AT_ZERO"></a>
+
 同一天，Jiahao Xu [修了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636792.html)一些
 LSX、LASX 测试；Li Wei
 也向 GCC [明确了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636789.html)
