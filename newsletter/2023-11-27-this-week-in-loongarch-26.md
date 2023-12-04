@@ -82,7 +82,7 @@ LoongArch 不太直接相关的一处浮点优化错误。
 笔者上周[排查出了](https://github.com/loongson-community/discussions/issues/19)
 GCC 14 构建 `systemd-boot` UKI stub 不能正常引导内核的问题原因：
 是在编译时带了 `-march=la464` 或其他表示有 SIMD 扩展用的编译参数时，GCC 便在 UEFI 代码里使用了 SIMD 指令，
-而这时 SIMD 单元是没有使能的，导致死掉。
+而这时 SIMD 单元未为更早阶段运行的固件代码所启用，导致死掉。
 在尝试解决问题过程中，发现加了 `-mabi=lp64s` 会导致构建失败，因为想引用软浮点配置的 glibc 头而不能；
 此时 Xi Ruoyao 发现 GCC 的 `<limits.h>` 总是会引用 libc 的同名头，而在 `-ffreestanding`
 情形下这是可以避免的，因而[发起了](https://gcc.gnu.org/PR112699)该提议。

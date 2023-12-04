@@ -1,8 +1,8 @@
 ---
-slug: this-week-in-loongarch-27
-title: 每周一龙：第 27 期
+slug: this-week-in-loongarch-28
+title: 每周一龙：第 28 期
 authors: [xen0n]
-date: 2023-12-04T00:00:00+08:00
+date: 2023-12-11T00:00:00+08:00
 tags: [每周一龙]
 draft: true
 ---
@@ -15,32 +15,32 @@ draft: true
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看
+## 先「马」再看 {#marked-projects}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
 
-### Linux
+### Linux {#linux}
 
 TODO
 
-### 工具链
+### 工具链 {#toolchain}
 
 #### TODO
 
 TODO
 
-## 杂闻播报
+## 杂闻播报 {#assorted-news}
 
 TODO
 
-## 社区整活:儿:
+## 社区整活:儿: {#grins}
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 TODO
 
-## 张贴栏
+## 张贴栏 {#bulletin}
 
 本栏目可供张贴公益性质的各种信息。
 
