@@ -4,7 +4,6 @@ title: 每周一龙：第 27 期
 authors: [xen0n]
 date: 2023-12-05T01:35:00+08:00
 tags: [每周一龙]
-draft: true
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
