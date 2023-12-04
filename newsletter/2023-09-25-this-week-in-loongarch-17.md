@@ -23,7 +23,7 @@ Linux v6.6-rc3 [推送了](https://lore.kernel.org/loongarch/20230923091031.1075
 由于此 rc 包含重要的修复工作（见下），建议所有紧跟主线的同学们尽快升级或跟进最新的
 linux-next（&ge; `next-20230925`）。
 
-* [修复了](https://lore.kernel.org/loongarch/CAAhV-H7r2iNVUstHuYHj8Ve=sY9c5JoMvZNX_pDaUVhL7oGWXw@mail.gmail.com/T/#m74d1c148796ffb824ced5986e3160d055778899c)龙架构上一旦使能
+* [修复了](https://lore.kernel.org/loongarch/CAAhV-H7r2iNVUstHuYHj8Ve=sY9c5JoMvZNX_pDaUVhL7oGWXw@mail.gmail.com/T/#m74d1c148796ffb824ced5986e3160d055778899c)龙架构上一旦启用内核配置项
   `CONFIG_DEFERRED_STRUCT_PAGE_INIT` 则系统无法正常启动的问题。
   （对于插了很多内存的机器，此优化可少许提升启动速度。
   因此内存插满又喜欢微操的社区开发者们被第一时间坑到了：
