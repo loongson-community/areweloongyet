@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-27
 title: 每周一龙：第 27 期
 authors: [xen0n]
-date: 2023-12-05T01:35:00+08:00
+date: 2023-12-05T03:00:00+08:00
 tags: [每周一龙]
 ---
 
