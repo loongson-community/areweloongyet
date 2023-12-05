@@ -20,7 +20,7 @@ tags: [每周一龙]
 ## 要闻速递 {#breaking-news}
 
 11 月 28 日，龙芯公司在国家会议中心举办了 2023 龙芯产品发布暨用户大会。
-笔者在现场获得了一些有价值信息；在接下来的周报中将陆续为您播报。
+笔者在现场获得了一些有价值信息；在未来几期的周报中将陆续为您播报。
 
 ## 先「马」再看 {#marked-projects}
 
@@ -80,19 +80,20 @@ TLS LE 操作的 relaxation 支持。
 帮忙加的 LoongArch&reg; v1.10 新指令，已经进入主线：[补丁甲](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=cd51849c90e8fd13779bec69f5d4c7aadf03a532)、[补丁乙](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=9ff4752d0f6d46ca0f7d275ea07e05790ac8dd1d)。
 
 mengqinggang 继续跟进新的中等代码模型（medium code model）过程调用方式 `R_LARCH_CALL36`
-的适配工作，给 binutils [添加了](https://sourceware.org/pipermail/binutils/2023-December/130906.html)
+的适配工作，给 binutils [增加了](https://sourceware.org/pipermail/binutils/2023-December/130906.html)
 `call` 和 `tail` 伪指令支持。
 在邮件列表已经进行了一些讨论，因此这些指令的具体形态可能还会微调，但要加入这两类伪指令这件事:儿:应该是确定了。
 熟悉 RISC-V 的读者应该（终于）会感到家的温暖 :wink:
 
 #### GCC {#gcc}
 
-Joern Rennecke 与 Jeff Law [做了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638380.html)一稿多余的符号扩展、零扩展的消除工序（pass）。
+Joern Rennecke 与 Jeff Law [做了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638380.html)一稿消除多余符号扩展、零扩展的工序（pass）。
 这不是专门为 LoongArch 做的工作，但包括 LoongArch 在内的不少架构将从中受益。
 
 Jiahao Xu 按照[之前 Xi Ruoyao 的改法](../2023-11-13-this-week-in-loongarch-24.md#gcc)，
 修复了剩余的子寄存器（subreg）误用，
 等于消灭了这些问题逻辑将导致的编译器崩溃（ICE）。
+（GCC 要求不能取子寄存器的子寄存器，否则崩溃。）
 
 Jiahao Xu 还[修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638556.html)
 `{v,xv}shuf` 的测试用例在 LA664 上失败的问题（bug [PR112611]）。
@@ -104,7 +105,8 @@ Jiahao Xu 还[加了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/63
 `-mrecip` 选项，用来控制是否利用 LA664 的两种浮点近似倒数指令。代码仍需修改。
 
 liwei 用 LoongArch SIMD 指令[优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638384.html)标量的
-`__builtin_popcount`（置 1 个数）操作。
+`__builtin_popcount` 操作。
+（这个操作的含义是求整数的二进制表示中 `1` 的个数；population count 直译是「人口计数」，很形象。）
 
 :::info 编者按
 这个操作有向量版：`{v,xv}pcnt.[bhwd]`，却没有标量版，不对称。
@@ -122,7 +124,7 @@ LoongArch 后端在处理立即数时，可能触发的一处未定义行为。
 
 guojie 还[优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/637858.html)高 32 位与低 32 位碰巧相同的立即数的装载。
 
-本期的 GCC 新闻都是 [Xi Ruoyao][xry111] 帮忙整理（以及一部分自己制造）的，让我们感谢 :ta: 的奉献！
+本期的 GCC 新闻都是 [Xi Ruoyao][xry111] 帮忙整理的，让我们感谢 :ta: 的奉献！
 
 #### LLVM {#llvm}
 
@@ -148,7 +150,7 @@ LLVM IR 的 [`extractelement` 操作](https://llvm.org/docs/LangRef.html#extract
 ### Firefox {#firefox}
 
 [安同开源社区（AOSC）][aosc]注重桌面用户体验与生产力，已经在圈内小有名气。AOSC 的开发者们本次也为火狐（Firefox）浏览器在
-LoongArch 的良好用户体验帮了很大忙。
+LoongArch 的良好用户体验帮了大忙。
 
 [liushuyu](https://github.com/liushuyu) 成功适配了 WebRTC，已经可以用 Discord 连麦了，其他类似网站说不定也能用：
 
