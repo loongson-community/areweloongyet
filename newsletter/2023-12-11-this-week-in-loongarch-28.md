@@ -25,9 +25,14 @@ TODO
 
 ### 工具链 {#toolchain}
 
-#### TODO
+#### binutils
 
-TODO
+Xi Ruoyao 为共享库[启用了](https://sourceware.org/pipermail/binutils/2023-December/130991.html)
+`la.got` 到 `la.pcrel` 的 relaxation 优化。
+
+mengqinggang [意图](https://sourceware.org/pipermail/binutils/2023-December/130993.html)为
+LoongArch 汇编语言增加双引号括起来的符号名和寄存器名支持，但未一并给出意欲支持的需求场景。
+Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不用支持。
 
 ## 杂闻播报 {#assorted-news}
 
