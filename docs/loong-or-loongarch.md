@@ -38,7 +38,7 @@ sidebar_position: 2
 
 ## 关于 `loong` 与 `loongarch` 两种叫法（长短名的争端）
 
-由于注册了商标的写法是 `LoongArch`，在龙芯中科对社区项目做的最早一批适配贡献中，
+由于注册了商标的写法是 `LoongArch` 与 `LoongArch64`，在龙芯中科对社区项目做的最早一批适配贡献中，
 这个架构的名字都叫 `loongarch`、`LOONGARCH` 或这个名字再加上后缀 `64`。
 但 `loongarch64` 的全称与常见的其他架构如 `x86_64`、`aarch64`、`riscv64` 相比
 显得有些长了，加之在 `ARCH=loongarch` 等情况下会显得更加冗余
@@ -96,15 +96,29 @@ Linux 发行版一般都使用一个较短的架构标识符，因此基本都�
 
 |发行版|架构标识符|
 |------|----------|
-|Loong Arch Linux|`loong64`|
-|Debian|`loong64`|
-|Fedora|:question: 不详[^3]|
+|AOSC OS|`loongarch64`|
+|Debian|<ul><li>旧世界：`loongarch64`</li><li>新世界：`loong64`</li></ul>|
 |Gentoo|`loong`|
+|Loong Arch Linux|`loong64`|
+|RPM 系|`loongarch64`[^3]|
 |Slackware|`loong64`|
 
-[^3]: 在 [Fedora LoongArch Remix][fedora] 中，似乎使用了 `loongarch64` 的写法，但暂时没有推入上游。
+:::info AOSC OS 是新世界发行版，为何也沿用 `loongarch64` 的称呼？
+根据维护者自行说明，主要有两方面原因：
 
-[fedora]: https://github.com/fedora-remix-loongarch/releases-info
+* 维护者有意遵循了龙芯公司官方叫法；
+* AOSC OS 开始 LoongArch 工作时，已有 `loongson2f` 与 `loongson3` 两个架构名了，怕 `loong64` 使用户觉得不明所以。
+:::
+
+:::info 为何 RPM 系发行版也沿用 `loongarch64` 的称呼？
+[RPM 的 LoongArch 支持][rpm-loongarch64]在 2022 年初即被提交上游了。
+彼时龙芯员工不了解社区已有此话题的讨论，社区贡献者也未感知到龙芯的活动；
+并且 RPM 内也将 AArch64 称作 `aarch64`，因此 `loongarch64` 的称呼在 RPM 范畴内自洽，
+RPM 上游遂迅速合并了。
+因此时至今日 RPM 系的发行版都保留了这个目前看来像是旧世界的叫法。
+:::
+
+[rpm-loongarch64]: https://github.com/rpm-software-management/rpm/commit/7a014dae736f9c7a7c75f63deaa4dbbb9ae0249c
 
 以上信息也适用各发行版的相关衍生项目，如果相应项目也跟进了龙架构适配的话。
 
