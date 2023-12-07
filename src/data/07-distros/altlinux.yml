@@ -1,0 +1,11 @@
+name: 'ALT Linux'
+homepageURL: 'https://en.altlinux.org/Main_Page'
+repoURL: 'https://git.altlinux.org'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: 'https://en.altlinux.org/Ports/loongarch64'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
