@@ -9,5 +9,6 @@ sidebar_position: 1
 
 * [如何称呼龙架构？](loong-or-loongarch.md)
 * [旧世界与新世界](old-and-new-worlds.md)
+* [基础设施版本基线参考](baseline-reference.md)
 * [龙芯硬件 Errata 整理](errata.md)
 * [Linux 上游硬件支持状态](linux-upstream-support.md)
