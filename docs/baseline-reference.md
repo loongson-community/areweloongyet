@@ -51,7 +51,6 @@ sidebar_position: 4
 * 编译器方面，初步具备了自动向量化能力。
 * 首度获得了 Rust 语言支持。可用 Rust 为 Linux glibc 环境，以及裸机环境开发了。
 
-
 ## 2023Q1 {#2023q1}
 
 |Binutils|GCC|Linux|glibc|LLVM|Rust|Go |
