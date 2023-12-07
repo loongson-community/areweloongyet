@@ -1,0 +1,11 @@
+name: '勇豹 (Yongbao)'
+homepageURL: 'https://github.com/sunhaiyong1978/Yongbao'
+repoURL: 'https://github.com/sunhaiyong1978/Yongbao'
+portingEfforts:
+  - authors: ['sunhaiyong1978']
+    desc: 'CLFS for LoongArch 作者出品的不可变发行版'
+    link: 'https://github.com/sunhaiyong1978/Yongbao'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
