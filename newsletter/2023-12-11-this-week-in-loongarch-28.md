@@ -36,7 +36,9 @@ Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不�
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+AOSC 贡献者 [eatradish](https://github.com/eatradish) 为 Rust 的 Lua 绑定库
+mlua [新增了](https://github.com/khvzak/mlua/pull/339) LoongArch 支持。
+感谢 [MingcongBai](https://github.com/MingcongBai) 投递新闻线索！
 
 ## 社区整活:儿: {#grins}
 
