@@ -36,6 +36,9 @@ Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不�
 
 ## 杂闻播报 {#assorted-news}
 
+Xinmudotmoe 十月份向 ROCm 的 ROCR-Runtime 组件[提交的](https://github.com/ROCm/ROCR-Runtime/pull/168)
+LoongArch 支持补丁，已为 AMD 维护者所确认：将进入 ROCm 6.1 官方版本。
+
 AOSC 贡献者 [eatradish](https://github.com/eatradish) 为 Rust 的 Lua 绑定库
 mlua [新增了](https://github.com/khvzak/mlua/pull/339) LoongArch 支持。
 感谢 [MingcongBai](https://github.com/MingcongBai) 投递新闻线索！
