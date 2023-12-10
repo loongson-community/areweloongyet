@@ -243,6 +243,10 @@ const config: Config = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
+      // ideally there would be an assembly highlighter (TWiL 28 has some x86
+      // asm in GAS AT&T syntax), but currently there isn't one
+      //
+      // see https://github.com/PrismJS/prism/issues/482
       additionalLanguages: ['bash', 'shell-session'],
     },
   } satisfies PresetClassicThemeConfig,
