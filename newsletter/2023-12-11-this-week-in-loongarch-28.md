@@ -31,8 +31,8 @@ Xi Ruoyao 为共享库[启用了](https://sourceware.org/pipermail/binutils/2023
 `la.got` 到 `la.pcrel` 的 relaxation 优化。
 
 mengqinggang [意图](https://sourceware.org/pipermail/binutils/2023-December/130993.html)为
-LoongArch 汇编语言增加双引号括起来的符号名和寄存器名支持，但未一并给出意欲支持的需求场景。
-Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不用支持；作者同意了，会再改一版。
+LoongArch 汇编语言增加双引号括起来的符号名和寄存器名支持，但未一并给出意欲支持的需求场景。Fangrui Song
+随后指出了寄存器名还加引号有点奇怪，应该是不用支持；作者同意了，会再改一版。
 
 :::info 引号表示符号名的意义
 这样做大概是为了支持引用那些内含奇特字符的符号。例如在 x86 上：
