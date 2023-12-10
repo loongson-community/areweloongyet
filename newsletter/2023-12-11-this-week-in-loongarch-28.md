@@ -34,6 +34,36 @@ mengqinggang [意图](https://sourceware.org/pipermail/binutils/2023-December/13
 LoongArch 汇编语言增加双引号括起来的符号名和寄存器名支持，但未一并给出意欲支持的需求场景。
 Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不用支持。
 
+#### LLVM {#llvm}
+
+[wangleiat](https://github.com/wangleiat) 教会了 LLVM 做很多 SIMD 代码生成：
+
+* [整数元素的取完整乘法结果高半部分](https://github.com/llvm/llvm-project/commit/e9cd197d15300f186a5a32092103add65fbd3f50)，
+  对应 LLVM IR 中操作向量数据类型的 [`mul`][llvm-langref-mul] 随后
+  `ashr`/`lshr` 再 `trunc` 的操作；
+* [整数元素的选择](https://github.com/llvm/llvm-project/commit/de21308f78f3b0f0910638dbdac90967150d19f0)，
+  对应 LLVM IR 中操作向量数据类型的 [`select`][llvm-langref-select]；
+* [浮点、整数的元素比较](https://github.com/llvm/llvm-project/pull/74700)，
+  分别对应 LLVM IR 中操作向量数据类型的 [`fcmp`][llvm-langref-fcmp]
+  与 [`icmp`][llvm-langref-icmp]；
+* [浮点开平方、求倒数](https://github.com/llvm/llvm-project/pull/74795)，
+  分别对应 LLVM IR 中的 [`llvm.sqrt.*`][llvm-langref-sqrt] intrinsics，
+  以及被除数是 1.0 的 [`fdiv`][llvm-langref-fdiv]；
+* [浮点求相反数](https://github.com/llvm/llvm-project/commit/cdc37325669c0321328a7245083c427b229e79e9),
+  对应 LLVM IR 中操作向量数据类型的 [`fneg`][llvm-langref-fneg]。
+
+[llvm-langref-fcmp]: https://llvm.org/docs/LangRef.html#fcmp-instruction
+[llvm-langref-fdiv]: https://llvm.org/docs/LangRef.html#fdiv-instruction
+[llvm-langref-fneg]: https://llvm.org/docs/LangRef.html#fneg-instruction
+[llvm-langref-icmp]: https://llvm.org/docs/LangRef.html#icmp-instruction
+[llvm-langref-mul]: https://llvm.org/docs/LangRef.html#mul-instruction
+[llvm-langref-select]: https://llvm.org/docs/LangRef.html#select-instruction
+[llvm-langref-sqrt]: https://llvm.org/docs/LangRef.html#llvm-sqrt-intrinsic
+
+[SixWeining](https://github.com/SixWeining)
+[同步了](https://github.com/llvm/llvm-project/pull/73345)
+LoongArch ELF psABI 20231102 版本（整体版本号 v2.20）变更了的重定位类型定义。
+
 ## 杂闻播报 {#assorted-news}
 
 Xinmudotmoe 十月份向 ROCm 的 ROCR-Runtime 组件[提交的](https://github.com/ROCm/ROCR-Runtime/pull/168)
