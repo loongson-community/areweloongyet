@@ -34,6 +34,39 @@ mengqinggang [意图](https://sourceware.org/pipermail/binutils/2023-December/13
 LoongArch 汇编语言增加双引号括起来的符号名和寄存器名支持，但未一并给出意欲支持的需求场景。
 Fangrui Song 随后指出了寄存器名还加引号有点奇怪，应该是不用支持。
 
+#### GCC {#gcc}
+
+[杰哥](https://github.com/jiegec)三天前
+（12 月 8 日）[发现](https://github.com/loongson-community/discussions/issues/23)
+GCC 14 的 20231203 快照版本，相比 GCC 13.2.1 居然劣化了 3A6000 的 CoreMark 跑分高达 15%！Xi Ruoyao
+立即加入排查队伍。
+大家发现了至少 4 个彼此独立的问题：
+
+* [PR112919]：先前在 LA464 上证实最优的代码块对齐参数，对 LA664 反而是损害；
+* [PR112935]：架构无关部分发生了劣化，Andrew Pinski
+  已经[给出](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640030.html)补丁；
+* [PR112936]：排查上一个问题时，发现 LoongArch 的乘除法指令成本定义得非常坏，完全不反映现实，Xi Ruoyao
+  也已[给出](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640012.html)补丁；以及
+* [PR111126] 也与本问题存在一定关系，是后续可以惠及 LoongArch、RISC-V 和 MIPS64r6 的一项改进。
+
+[PR112919]: https://gcc.gnu.org/PR112919
+[PR112935]: https://gcc.gnu.org/PR112935
+[PR112936]: https://gcc.gnu.org/PR112936
+[PR111126]: https://gcc.gnu.org/PR111126
+
+Xi Ruoyao [允许了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/639748.html)把 `-mcmodel=extreme` 与 `model` 属性，
+搭配 `-mexplicit-relocs=auto` 使用。
+
+Yang Yujie [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/639651.html)对
+`__builtin_eh_return` 的调用会导致同一函数中其他常规返回路径的返回值被破坏的问题。
+此问题被发现会导致 libgcc 的 `_Unwind_RaiseException` 在极端情况下返回错误结果。
+
+Yang Yujie 还基于 AOSC 开发者 Zixing Liu 先前在 9 月份[发出的](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/631260.html)
+D 语言 LoongArch 适配补丁，
+将其[迭代到了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/638912.html)第三版。
+
+本期的大多数 GCC 新闻都是 Xi Ruoyao 帮忙整理（以及自己制造）的，让我们感谢 :ta: 的奉献！
+
 #### LLVM {#llvm}
 
 [wangleiat](https://github.com/wangleiat) 教会了 LLVM 做很多 SIMD 代码生成：
