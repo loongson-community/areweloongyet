@@ -52,6 +52,7 @@ movq $1, "%rax"  ; 向名为 %rax 的符号指向的 8 字节位置写 1
 movq $1, %rax    ; 向 rax 寄存器写 1
 ```
 
+详见 [Xi Ruoyao][xry111] 的[解释文字](https://github.com/loongson-community/areweloongyet/pull/105#discussion_r1417857333)。
 :::
 
 #### GCC {#gcc}
