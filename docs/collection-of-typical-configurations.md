@@ -171,7 +171,7 @@ Hardware Watchpoint	: yes, iwatch count: 8, dwatch count: 4
 </details>
 
 <details>
-<summary>`sudo dmidecode -t 0,1,2,4`</summary>
+<summary>`sudo dmidecode -t 0,1,2,4,7`</summary>
 
 ```
 # dmidecode 3.5
@@ -220,6 +220,60 @@ Base Board Information
 	Type: Motherboard
 	Contained Object Handles: 0
 
+Handle 0x0004, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: Not Specified
+	Configuration: Enabled, Not Socketed, Level 1
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 64 kB
+	Maximum Size: 64 kB
+	Supported SRAM Types:
+		Burst
+		Pipeline Burst
+		Synchronous
+	Installed SRAM Type: Burst Pipeline Burst Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Data
+	Associativity: 4-way Set-associative
+
+Handle 0x0005, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: Not Specified
+	Configuration: Enabled, Not Socketed, Level 2
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 256 kB
+	Maximum Size: 256 kB
+	Supported SRAM Types:
+		Burst
+		Pipeline Burst
+		Synchronous
+	Installed SRAM Type: Burst Pipeline Burst Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Data
+	Associativity: 16-way Set-associative
+
+Handle 0x0006, DMI type 7, 27 bytes
+Cache Information
+	Socket Designation: Not Specified
+	Configuration: Enabled, Not Socketed, Level 3
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 16 MB
+	Maximum Size: 16 MB
+	Supported SRAM Types:
+		Burst
+		Pipeline Burst
+		Synchronous
+	Installed SRAM Type: Burst Pipeline Burst Synchronous
+	Speed: Unknown
+	Error Correction Type: Single-bit ECC
+	System Type: Data
+	Associativity: 16-way Set-associative
+
 Handle 0x0007, DMI type 4, 48 bytes
 Processor Information
 	Socket Designation: CPU0
@@ -247,6 +301,7 @@ Processor Information
 		64-bit capable
 		Multi-Core
 		Hardware Thread
+
 ```
 
 </details>
@@ -288,7 +343,7 @@ TODO
 </details>
 
 <details>
-<summary>`sudo dmidecode -t 0,1,2,4`</summary>
+<summary>`sudo dmidecode -t 0,1,2,4,7`</summary>
 
 ```
 TODO
