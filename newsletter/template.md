@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-xx
 title: 每周一龙：第 XX 期
 authors: [xen0n]
-date: 2023-12-11T00:00:00+08:00
+date: 2024-12-31T00:00:00+08:00  # hope we're still around at that time!
 tags: [每周一龙]
 draft: true  # TODO
 ---
@@ -25,7 +25,19 @@ TODO
 
 ### 工具链 {#toolchain}
 
-#### TODO
+#### ABI {#abi}
+
+TODO
+
+#### binutils {#binutils}
+
+TODO
+
+#### GCC {#gcc}
+
+TODO
+
+#### LLVM {#llvm}
 
 TODO
 
