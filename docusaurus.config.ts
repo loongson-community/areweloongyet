@@ -41,7 +41,8 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  trailingSlash: true, // to reduce number of 301's with GitHub Pages
+  // currently breaks TWiL 28's original pic links
+  // trailingSlash: true, // to reduce number of 301's with GitHub Pages
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
