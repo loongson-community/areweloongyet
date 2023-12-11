@@ -8,7 +8,9 @@ sidebar_position: 5
 本文是活的文档（living document），内容会随着现状变化而不时更新。不妨多来看看！
 :::
 
-## 3A6000 评估板（同 XA61200）
+本页面开放编辑！欢迎通过 GitHub 提交您的龙架构硬件配置，内容格式可参照附带的[模板章节](#template)。
+
+## 3A6000 评估板（同 XA61200） {#3a6000-evb-xa61200}
 
 `uname -srvmpio`: `Linux 6.6.0-rc3-next-20230928-gbcdaf018db45 #3 SMP PREEMPT Sun Jun 25 12:04:01 AM CST 2023 loongarch64 unknown unknown GNU/Linux`
 
@@ -306,7 +308,7 @@ Processor Information
 
 </details>
 
-## 贡献者用：新增软硬件平台时可用的模板
+## 贡献者用：新增软硬件平台时可用的模板 {#template}
 
 `uname -srvmpio`: `TODO`
 
