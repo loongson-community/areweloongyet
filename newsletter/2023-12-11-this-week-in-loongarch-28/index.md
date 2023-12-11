@@ -143,9 +143,9 @@ LoongArch 支持补丁，已为 AMD 维护者所确认：将进入 ROCm 6.1 官�
 
 [Xinmudotmoe]: https://github.com/Xinmudotmoe
 
-AOSC 贡献者 [eatradish](https://github.com/eatradish) 为 Rust 的 Lua 绑定库
+AOSC 贡献者[傅孝元](https://github.com/eatradish)为 Rust 的 Lua 绑定库
 mlua [新增了](https://github.com/khvzak/mlua/pull/339) LoongArch 支持。
-感谢 [MingcongBai](https://github.com/MingcongBai) 投递新闻线索！
+感谢[白铭骢](https://github.com/MingcongBai)投递新闻线索！
 
 ## 社区整活:儿: {#grins}
 
