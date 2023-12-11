@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # 龙芯硬件 Errata 整理

@@ -1,10 +1,10 @@
 ---
-slug: this-week-in-loongarch-28
-title: 每周一龙：第 28 期
+slug: this-week-in-loongarch-xx
+title: 每周一龙：第 XX 期
 authors: [xen0n]
 date: 2023-12-11T00:00:00+08:00
 tags: [每周一龙]
-draft: true
+draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
