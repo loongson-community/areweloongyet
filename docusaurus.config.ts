@@ -11,6 +11,8 @@ const darkCodeTheme = themes.dracula
 import inspectUrls from '@jsdevtools/rehype-url-inspector'
 import type { Options as RehypeURLInspectorOptions } from '@jsdevtools/rehype-url-inspector'
 
+import type { PluginOptions as DocusaurusSearchLocalOptions } from '@easyops-cn/docusaurus-search-local'
+
 import annotateOverseasLinks from './src/plugins/awly-rehype-annotate-overseas-links'
 import type { PluginOptions as AWLYAsmDBPluginOptions } from './src/plugins/awly-asmdb-plugin'
 import type { PluginOptions as AWLYDataPluginOptions } from './src/plugins/awly-data-plugin'
@@ -157,6 +159,18 @@ const config: Config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
       } as PresetClassicOptions,
+    ],
+  ],
+
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        language: ['en', 'zh'],
+        blogDir: ['blog', 'newsletter'],
+        blogRouteBasePath: ['/blog', '/newsletter'],
+      } satisfies DocusaurusSearchLocalOptions,
     ],
   ],
 
