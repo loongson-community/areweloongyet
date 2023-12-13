@@ -14,7 +14,7 @@ tags: [每周一龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-本期周报的实际发稿时间是周二凌晨，因为这个点:儿:才写完——白天都在忙别的。
+本期周报的实际发稿时间是周二凌晨，因为这个点才写完——白天都在忙别的。
 网页上显示的发稿时间仍然是 12 月 4 日：这是 [Docusaurus 早期为了修复一个时区 bug 而导致的又一个时区 bug](https://github.com/facebook/docusaurus/issues/4881)。
 
 ## 要闻速递 {#breaking-news}
@@ -82,7 +82,7 @@ TLS LE 操作的 relaxation 支持。
 mengqinggang 继续跟进新的中等代码模型（medium code model）过程调用方式 `R_LARCH_CALL36`
 的适配工作，给 binutils [增加了](https://sourceware.org/pipermail/binutils/2023-December/130906.html)
 `call` 和 `tail` 伪指令支持。
-在邮件列表已经进行了一些讨论，因此这些指令的具体形态可能还会微调，但要加入这两类伪指令这件事:儿:应该是确定了。
+在邮件列表已经进行了一些讨论，因此这些指令的具体形态可能还会微调，但要加入这两类伪指令这件事应该是确定了。
 熟悉 RISC-V 的读者应该（终于）会感到家的温暖 :wink:
 
 #### GCC {#gcc}

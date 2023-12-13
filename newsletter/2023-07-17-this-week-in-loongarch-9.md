@@ -22,7 +22,7 @@ tags: [每周一龙]
 `copy_user_fast` 和 `clear_user_fast` 各自异常处理路径中的一处下溢。
 
 7 月 13 日，FreeFlyingSheep [贴出了](https://lore.kernel.org/loongarch/cover.1689215889.git.chenfeiyang@loongson.cn/)
-LS7A 集成网卡的驱动补丁草稿，请社区给点:儿:意见。
+LS7A 集成网卡的驱动补丁草稿，请社区给点意见。
 
 7 月 11 日，xen0n 将龙架构 CPU 空闲时执行的函数名字[加入了](https://lore.kernel.org/loongarch/20230711102202.1206488-1-kernel@xen0n.name/)
 `perf` 工具的相关列表，以去除 `perf` 输出中的这部分噪声。
@@ -40,11 +40,11 @@ LS7A 集成网卡的驱动补丁草稿，请社区给点:儿:意见。
 
 #### LLVM
 
-上周 7 月 11 日开始 hev 陆续交了一串:儿:代码生成优化：[补丁一](https://reviews.llvm.org/D154762)、[补丁二](https://reviews.llvm.org/D154811)、[补丁三](https://reviews.llvm.org/D154819)、[补丁四](https://reviews.llvm.org/D154919)，主要都是告诉 LLVM 优化器更多相关信息以辅助其决策。
+上周 7 月 11 日开始 hev 陆续交了一串代码生成优化：[补丁一](https://reviews.llvm.org/D154762)、[补丁二](https://reviews.llvm.org/D154811)、[补丁三](https://reviews.llvm.org/D154819)、[补丁四](https://reviews.llvm.org/D154919)，主要都是告诉 LLVM 优化器更多相关信息以辅助其决策。
 
 同样在 7 月 11 日，leecheechen 为 Clang [增加了](https://reviews.llvm.org/D154931) LSX/LASX 的内联汇编支持。
 
-xen0n 也在这一天[整理了](https://reviews.llvm.org/D154916)龙架构指令定义文件让它清爽一点:儿:，也为接下来的重构作准备。
+xen0n 也在这一天[整理了](https://reviews.llvm.org/D154916)龙架构指令定义文件让它清爽一点，也为接下来的重构作准备。
 
 #### Rust
 
@@ -57,9 +57,9 @@ $ rustup target list | grep loong
 loongarch64-unknown-linux-gnu (installed)
 ```
 
-在此之后，为了龙架构电脑:儿:用户也能方便使用官方安装渠道
+在此之后，为了龙架构电脑用户也能方便使用官方安装渠道
 [rustup.rs](https://rustup.rs/)，hev [提交了](https://github.com/rust-lang/rustup/pull/3405)为其稳定分支
-开启龙架构二进制构建的变更并请求发布新版，xen0n [整了个活:儿:](https://github.com/rust-lang/rustup/pull/3404)让安装脚本可以识别新旧世界，为旧世界用户报个友好的错:儿:。
+开启龙架构二进制构建的变更并请求发布新版，xen0n [整了个活:儿:](https://github.com/rust-lang/rustup/pull/3404)让安装脚本可以识别新旧世界，为旧世界用户报个友好的错。
 
 ### 杂项
 
@@ -76,7 +76,7 @@ loongarch64-unknown-linux-gnu (installed)
 
 xen0n [整了](https://gist.github.com/xen0n/5ee04aaa6cecc5c7794b9a0c3b65fc7f)个
 156 字节的新旧世界内核 ABI 检测工具
-（看源码需要梯子，不过总共也没几行，复杂度主要在于 ELF 头:儿:需要手工构造）。
+（看源码需要梯子，不过总共也没几行，复杂度主要在于 ELF 头需要手工构造）。
 
 Try it yourself!
 

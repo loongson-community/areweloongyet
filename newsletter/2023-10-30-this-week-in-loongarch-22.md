@@ -103,11 +103,11 @@ CPU 特性，后续据此生成、运行对当前系统最优化的机器语言�
 笔者实测了 `frsqrte.s` 指令比[著名的 <ruby>*Quake III Arena*<rt>《雷神之锤 3 竞技场》</rt></ruby> 快速平方倒数算法](https://en.wikipedia.org/wiki/Fast_inverse_square_root)精确，
 且不是单纯将这个经典算法最后一步的 Newton 迭代多跑一两轮那么简单。
 具体用的啥算法目前不知道，毕竟笔者没精力对处理器设计领域的前沿论文保持关注；
-快就完事:儿:了！
+快就完事了！
 这些操作虽然不如 IEEE 754 规范上要求的那么精确，但胜在执行快：这对 3D 渲染、
-物理引擎、粗浅的数值模拟，之类精度要求不那么高的场景都是好事:儿:。
+物理引擎、粗浅的数值模拟，之类精度要求不那么高的场景都是好事。
 不过龙架构这个发明比较有开创性，以至于从目前的编程语言都不太容易调用它们，
-非得手写点:儿:汇编不可；
+非得手写点汇编不可；
 有兴趣的同学可以看看能不能给你爱用的数学、图形学软件提 PR 加支持了！
 
 总之，这次更新对性能提升行之有效，对群众折腾十分友好，相信它能成为众发烧友多年后的美好回忆（也可能不 :smiling_imp:）。
@@ -121,7 +121,7 @@ CPU 特性，后续据此生成、运行对当前系统最优化的机器语言�
 Linux 6.6 正式版[已经发布](https://lore.kernel.org/lkml/CAHk-=wiZuU984NWVgP4snp8sEt4Ux5Mp_pxAN5MNV9VpcGUo+A@mail.gmail.com/)。
 本周和下周是 Linux 6.7 的合并窗口；
 目前龙架构分支仍然保持在只有 <abbr title="kernel virtual machine; 内核虚拟机">KVM</abbr> 补丁的状态，等待 KVM 维护者的拉取。
-不用急：有两周时间，并且本身龙芯也习惯在第二周的周五发出 PR，争取多点:儿:完善代码的时间。
+不用急：有两周时间，并且本身龙芯也习惯在第二周的周五发出 PR，争取多点完善代码的时间。
 
 ### 工具链
 
@@ -130,19 +130,19 @@ Linux 6.6 正式版[已经发布](https://lore.kernel.org/lkml/CAHk-=wiZuU984NWV
 Jiajie Chen [研究完](https://github.com/jiegec/la-inst) 3A6000 彼时尚未公开的指令之后，
 一看到 LoongArch v1.10 正式公布，
 两天后的 10 月 25 号就[掏出了](https://sourceware.org/pipermail/binutils/2023-October/130139.html)给
-binutils 新增这些指令汇编、反汇编支持的补丁:儿:（当然只做了正式见诸文档的那部分）。
+binutils 新增这些指令汇编、反汇编支持的补丁（当然只做了正式见诸文档的那部分）。
 杰哥威武！
 感谢 xry111 提供新闻线索。
 
 #### gcc
 
-正在笔者龟速赶稿:儿:之际，Xi Ruoyao
+正在笔者龟速赶稿之际，Xi Ruoyao
 [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/634687.html)交叉汇编器就绪前，
 构建交叉编译器会失败的问题。
 
 #### LLVM
 
-[上期报道过的](./2023-10-23-this-week-in-loongarch-21.md#llvm) FCC 搬运支持补丁:儿:，
+[上期报道过的](./2023-10-23-this-week-in-loongarch-21.md#llvm) FCC 搬运支持补丁，
 10 月 27 日[被移植回了](https://github.com/llvm/llvm-project-release-prs/pull/746) LLVM 17 分支。
 
 :::tip 花絮
@@ -158,17 +158,17 @@ binutils 新增这些指令汇编、反汇编支持的补丁:儿:（当然只做
 
 来自[安同开源社区（AOSC）][aosc]的朋友 [Jiangjin Wang](https://github.com/RedL0tus) 为 Google 的 OpenSSL
 fork BoringSSL [提交了](https://boringssl-review.googlesource.com/c/boringssl/+/63565)适配任意非官方支持的小端
-（little-endian）32 位或 64 位平台的补丁:儿:。
+（little-endian）32 位或 64 位平台的补丁。
 
 xen0n 在给 Debian loong64 port 监工的过程中，发现
 [buildd.debian.org 的统计图表页面](https://buildd.debian.org/stats/)一直缺龙架构，
-于是顺手:儿:帮忙:儿:[加上了](https://salsa.debian.org/wb-team/wanna-build/-/commit/1f64a552b488f2565cbc1e8336416abac0376243)。
-虽然历史数据没法:儿:补，但也无伤大雅——这 port 出生都没几天:儿:哪！
+于是顺手帮忙[加上了](https://salsa.debian.org/wb-team/wanna-build/-/commit/1f64a552b488f2565cbc1e8336416abac0376243)。
+虽然历史数据没法补，但也无伤大雅——这 port 出生都没几天哪！
 
 :::tip 花絮
 xen0n 选取了 R 语言的番茄色 `tomato` 为龙架构配色，原因写在了提交说明：
 
-* 跟龙芯的 logo 配色差不多，都红不溜秋:儿:的，以及
+* 跟龙芯的 logo 配色差不多，都红不溜秋的，以及
 * 番茄 :tomato: 基本上也好吃！
 
 （其实当然首要考虑是区分度；这点倒是忘记在提交说明写上了。:joy:）

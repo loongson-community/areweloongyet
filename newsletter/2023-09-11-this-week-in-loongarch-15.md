@@ -36,7 +36,7 @@ Linux 6.6-rc1。
 9 月 8 日，GCC 14 最新开发版本[被发现](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111334)在编译 Mesa 时崩溃。
 问题原因已找到，补丁[贴出来了](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/629749.html)，等待合并。
 
-:::info 所以问题在哪:儿:？
+:::info 所以问题在哪？
 LoongArch&reg; v1.00 手册提到了 LA64 的 32 位除法、取模操作有坑（中文版卷一 2.2.1.13 节；英文版中没有注明该坑）：
 
 「在 LoongArch64 位兼容的机器上，执行 `DIV.W[U]` 和 `MOD.W[U]` 指令时，

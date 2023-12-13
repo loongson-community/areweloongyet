@@ -78,7 +78,7 @@ LSX 浮点向量 shuffle 最终生成代码其差无比的问题。
 11 月 16 日，Xi Ruoyao [完成了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636795.html)一版
 LA664 新增特性的 GCC 适配，可以用 `-march=la664` 了，
 也给 `-march=native` 加了相应处理。
-不巧龙芯也做了同样的事:儿:，撞车了；Lulu Cheng
+不巧龙芯也做了同样的事，撞车了；Lulu Cheng
 第二天[发了出来](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636946.html)。
 龙芯的这版代码只做了原子操作的一部分优化，而未放宽 32 位除法、取余操作的入参要求，
 也未去除那些在 LA664 上不再必要的 `DBAR 0x700` 指令；
@@ -113,7 +113,7 @@ AArch64 的优化，能为形如 `copysign(x, -1)` 的操作产生高效的向�
 又[移植了](https://gcc.gnu.org/r14-5432) LLVM 的 `DBAR` 优化
 （周报第 20 期[有报道](./2023-10-16-this-week-in-loongarch-20.md#LLVM)）。
 
-以上新增的大块:儿:内容都赶上了 GCC 14 stage 1，在明年的 GCC 14.1 正式版就能用上了。
+以上新增的大块内容都赶上了 GCC 14 stage 1，在明年的 GCC 14.1 正式版就能用上了。
 等不及的同学也可以下载 GCC 14 快照自行编译，或使用 Gentoo（直接 unmask 相应版本即可）等滚动发行版，
 马上体验。
 
