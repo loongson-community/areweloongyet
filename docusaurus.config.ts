@@ -166,7 +166,7 @@ const config: Config = {
     [
       '@easyops-cn/docusaurus-search-local',
       {
-        hashed: true,
+        hashed: "filename",
         language: ['en', 'zh'],
         blogDir: ['blog', 'newsletter'],
         blogRouteBasePath: ['/blog', '/newsletter'],
