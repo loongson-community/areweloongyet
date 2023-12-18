@@ -20,7 +20,7 @@ tags: [每周一龙]
 
 5 月 26 日，mengqinggang 在 binutils 邮件列表贴出了 [LoongArch linker relaxation 优化][binutils-loong-relax]的补丁。
 
-:::info 这啥玩意:儿:，这么放松？
+:::info 这啥玩意，这么放松？
 
 Linker relaxation 暂无广泛采用的中文翻译，拙译「链接器弛豫」或「链接器松弛」：
 简单地说，该优化是链接器根据编译器、汇编器生成代码时提供的额外信息，将可缩短的较长序列缩短，

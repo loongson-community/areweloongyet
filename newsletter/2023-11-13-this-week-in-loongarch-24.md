@@ -37,7 +37,7 @@ tags: [每周一龙]
 而每一方都只需跑自己环境的测试即可。
 :::
 
-本开发周期中，较为引人注目的大块:儿:变更有：
+本开发周期中，较为引人注目的大块变更有：
 
 * 合并了 bcachefs 的支持；
 * 移除了 IA-64 架构的支持；
@@ -160,7 +160,7 @@ Phoronix 也[报道了](https://www.phoronix.com/news/systemd-255-rc1)此事。
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-社区开发者 cl91 从[周报第 18 期](./2023-10-02-this-week-in-loongarch-18.md#gsgpu-for-mainline)开始憋的大招:儿:，
+社区开发者 cl91 从[周报第 18 期](./2023-10-02-this-week-in-loongarch-18.md#gsgpu-for-mainline)开始憋的大招，
 搞定了！
 龙芯 7A2000 中的独显[^what-does-discrete-mean]模块的内核驱动 GSGPU 已经移植到了最新的 Linux v6.6。
 

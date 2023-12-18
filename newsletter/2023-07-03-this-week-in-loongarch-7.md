@@ -48,14 +48,14 @@ tags: [每周一龙]
 以下内容均已进入主线，静待 binutils 2.41 发布：
 
 * FreeFlyingSheep [添加了](https://sourceware.org/pipermail/binutils/2023-June/127873.html)以 `$fcsrX` 称呼 <ruby>FCSR<rt>浮点控制状态寄存器</rt></ruby> 的支持。
-  :::info 以前咋回事:儿:
+  :::info 以前咋回事
   以前要用 `$rX` 称呼 FCSR，也就是说：当成整数寄存器！这显然不对，而且跟 LLVM 也不兼容。现在两种写法都支持了，旧写法先留一阵子不删，方便下游迁移。
   :::
 * mengqinggang 添加了 [LSX、LASX]、[LVZ、LBT] 的指令定义。
 * xen0n [改进了](https://sourceware.org/pipermail/binutils/2023-June/128082.html)龙架构汇编器、反汇编器的一系列行为：
     - 支持以彩色（语法高亮）显示反汇编输出了。参见 `--disassembler-color` 选项的帮助文本。
     - 在不影响语义的前提下，会显示一些伪指令了。
-    - 有符号立即数后边:儿:不会打印对应的十六进制位域表示了。
+    - 有符号立即数后边不会打印对应的十六进制位域表示了。
     - 未知指令字将会以 `.word` 为助记符的形式展示了。
     - 遵循规范文档，弃用了 `$v[01]`、`$fv[01]`、`$x` 几个远古时期遗留的寄存器别名，现在使用它们将被警告。
       :::info shenmegui
