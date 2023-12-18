@@ -83,7 +83,7 @@ LoongArch 支持，以及[增加](https://github.com/gentoo/gentoo/pull/34324) C
 
 任何受到广泛支持的架构，都免不了被安全研究者们仔细审视。LoongArch 作为国内外的产业界、开源社区多少都在拥抱的一门新兴架构，
 它受到 NSA 项目组重视并进入 Ghidra 全家桶，是必然的发展。
-某种程度上，这也能起到积极效果——逼迫龙芯及社区的参与者们，必须通过精心设计实现软硬件的整体安全，
+某种程度上，这也能起到积极效果——逼迫龙芯及社区的参与者们，必须通过可公开的精心设计实现软硬件的整体安全，
 而不能指望靠着向公众隐藏什么东西来换取暂时的「安全感」。
 
 实际上：即便 LoongArch 文档始终不被公开，在足够多的社区成员折腾过后，同样的文档被写出也只是时间问题——例如在《龙芯架构参考手册》卷一尚未公布的
@@ -98,7 +98,8 @@ LoongArch 支持，以及[增加](https://github.com/gentoo/gentoo/pull/34324) C
 
 （此外，接下来将为您报道的社区制 3A6000 超频固件，就是那位信息安全从业者使用 Ghidra
 研究、操作龙芯固件的结果。
-考虑到「真正敏感的信息不会被公开」这一点，NSA 选择将 Ghidra 开源，可能也是对全球同行的贡献了。）
+考虑到「真正敏感的信息不会被公开」这一点，NSA 选择将 Ghidra 开源，可能也是对全球同行的贡献了。——由于中国同行们并未将自己的类似框架也开源，
+为 :ta: 们担心的中国立场网友们，也可以放心了。）
 
 </details>
 
@@ -108,7 +109,7 @@ LoongArch 支持，以及[增加](https://github.com/gentoo/gentoo/pull/34324) C
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 也许是热心群众觉得快到年末了，社区里新闻还不够大；
-因此在全国降温的背景下，我们的勇士们还是挺身而出，用狠活:儿:温暖屏幕前阅读周报的您
+因此在全国降温的背景下，我们的勇士们还是挺身而出，用狠活:儿:加热屏幕前阅读周报的您
 （和您的电脑主机——如果您看完之后也热血沸腾，而决定上手干点啥的话）！
 
 ### 3A6000 XA61200 官方固件爆改超频！
@@ -126,9 +127,10 @@ XA61200 主板（3A6000）手动自定义超频固件。
 [nywkkk]: https://space.bilibili.com/25097496
 [@naivekun]: https://github.com/naivekun
 
-nywkkk 上周根据手册逆向并修改了主板 UEFI 固件，通过二进制修改 PEI 阶段 PLL 配置，达成了 3A6000 的 2.7GHz 超频；:ta:
+nywkkk 上周根据手册逆向并修改了主板 UEFI 固件，通过二进制修改 PEI（Pre-EFI Initialization，EFI 前初始化）阶段
+PLL 配置，达成了 3A6000 的 2.7GHz 超频；:ta:
 将改好的固件文件在 GitHub 上[发布了](https://github.com/naivekun/ls3a6000-overclock-firmware)。
-本周他再进一步，编写了超频 UEFI PEI 模块并[公开了](https://github.com/naivekun/LoongsonOverclockPkg)模块源码：
+本周 :ta: 再进一步，编写了超频 UEFI PEI 模块并[公开了](https://github.com/naivekun/LoongsonOverclockPkg)模块源码：
 该模块插入主板固件 PEI 启动链后，可以实现对电压、频率的自定义调节。
 
 刷入修改版固件后，也可以在 UEFI shell 中通过新增的 `overclock` 命令调节处理器电压，频率，重启后生效。
@@ -149,7 +151,7 @@ nywkkk 上周根据手册逆向并修改了主板 UEFI 固件，通过二进制�
 
 nywkkk 还同步[开发了](https://github.com/naivekun/ls3a6000_freq_tool)用来查看频率功耗的工具。
 此工具需要名为 `devmem` 的工具辅助（未给出源码，但看上去实现较为简单，自己写一个即可），且搭配 4.19 内核使用。
-以下是 :ta: 在 Bilibili 视频评论区展示了他将 3A6000 超频至 2.8GHz 时满载测试的截图：
+以下是 :ta: 在 Bilibili 视频评论区展示了 :ta: 将 3A6000 超频至 2.8GHz 时满载测试的截图：
 
 <!-- https://github.com/loongson-community/areweloongyet/assets/5524744/61208f01-d939-4619-a85d-180d6e855cfa -->
 ![3A6000 超频之后 7z benchmark 与同时的时钟、电压、功率信息显示](./3a6000-at-2.8ghz-running-7z-and-freq.jpg)
