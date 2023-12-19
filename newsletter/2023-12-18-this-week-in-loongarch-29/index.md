@@ -28,7 +28,7 @@ Linux 6.6 LTS 分支日前[向后移植了](https://git.kernel.org/pub/scm/linux
 
 #### ABI {#abi}
 
-[安同开源社区（AOSC）][aosc]开发者 [王江津](https://github.com/RedL0tus) 在适配 JetBrains&reg; 开发环境全家桶时，
+[安同开源社区（AOSC）][aosc]开发者[王江津](https://github.com/RedL0tus)在适配 JetBrains&reg; 开发环境全家桶时，
 发现有 [Java 组件](https://github.com/JetBrains/pty4j)想动态加载 `libutil.so`，而该共享库在 LoongArch 上并不存在。
 在 glibc 的实现中，该共享库的所有函数都[合并入 `libc.so` 了](https://sourceware.org/git/?p=glibc.git;a=commit;h=734c60ebb607086ad6d67b2544d6b7baba72a652)；
 此事发生在 LoongArch 进入 glibc 上游之前，因此 glibc 在 LoongArch 上自始就不提供该共享库。
