@@ -28,11 +28,11 @@ Linux 6.6 LTS 分支日前[向后移植了](https://git.kernel.org/pub/scm/linux
 
 #### ABI {#abi}
 
-[安同开源社区（AOSC）][aosc]开发者 [Icenowy](https://github.com/Icenowy) 在适配 JetBrains&reg; 开发环境全家桶时，
-发现有 Java 组件想动态加载 `libutil.so`，而该共享库在 LoongArch 上并不存在。
-在 glibc 的实现中，该共享库的所有函数都合并入 `libc.so` 了；
+[安同开源社区（AOSC）][aosc]开发者 [王江津](https://github.com/RedL0tus) 在适配 JetBrains&reg; 开发环境全家桶时，
+发现有 [Java 组件](https://github.com/JetBrains/pty4j)想动态加载 `libutil.so`，而该共享库在 LoongArch 上并不存在。
+在 glibc 的实现中，该共享库的所有函数都[合并入 `libc.so` 了](https://sourceware.org/git/?p=glibc.git;a=commit;h=734c60ebb607086ad6d67b2544d6b7baba72a652)；
 此事发生在 LoongArch 进入 glibc 上游之前，因此 glibc 在 LoongArch 上自始就不提供该共享库。
-但 Icenowy 翻查规范文档发现 LSB 似乎有要求提供该文件，
+但同样来自 AOSC 的 [Icenowy](https://github.com/Icenowy) 翻查规范文档发现 [LSB 似乎有要求提供该文件](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/libutil.html)，
 故[建立了](https://github.com/loongson-community/discussions/issues/29)龙芯社区的跟踪工单，
 以及相应的 [glibc 问题报告](https://sourceware.org/bugzilla/show_bug.cgi?id=31136)。
 根据目前的上游口径，似乎提供一个指向 `libc.so` 的符号链接就足够了。
