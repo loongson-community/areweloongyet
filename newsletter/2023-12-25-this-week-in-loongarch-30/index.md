@@ -62,7 +62,13 @@ TODO
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+欧洲时间 12 月 20 日晚间，首度包含了龙架构支持的 GRUB 2.12
+[正式发布了](https://lists.gnu.org/archive/html/grub-devel/2023-12/msg00052.html)。
+久等了！
+知名科技媒体 Phoronix 也[报道了](https://www.phoronix.com/news/GRUB-2.12-Released)此事。
+感谢 [xry111] 提供新闻线索。
+
+[xry111]: https://github.com/xry111
 
 ## 社区整活:儿: {#grins}
 
