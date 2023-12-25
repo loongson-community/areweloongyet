@@ -162,7 +162,7 @@ AOSC 开发者[王邈][shankerwangmiao]与[刘子兴][liushuyu]，
 在内核层面实现了以外挂模块（亦可理解为「驱动」）方式，动态载入的旧世界系统调用支持。
 王邈也设计、实现了位于用户态的运行时部分：打包了旧世界参考发行版 Loongnix&reg; 的核心运行时库，
 使旧世界应用能够有「回家的感觉」从而正常启动。
-在本期周报发稿当天，AOSC OS 已经能够运行 WPS Office 与龙芯浏览器等标志性的旧世界应用，
+目前 AOSC OS 已经能够运行 WPS Office 与龙芯浏览器等标志性的旧世界应用，
 如图所示（点击即看高清大图）：
 
 [![启用了 libLoL 的 AOSC 系统上成功运行旧世界 WPS 与龙芯浏览器的截图](./liblol-showcase@0.5x.webp)](./liblol-showcase.webp)
