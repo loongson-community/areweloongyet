@@ -20,7 +20,27 @@ tags: [每周一龙]
 
 ### Linux {#linux}
 
-TODO
+Huacai Chen [发出了](https://lore.kernel.org/loongarch/20231223120642.1067728-1-chenhuacai@loongson.cn/)
+Linux v6.8 开发周期的龙架构 KVM 变更 PR。
+其中，Bibo Mao 修复了定时器的模拟；Tianrui Zhao 让虚拟机内部可以使用 LSX、LASX 指令。
+
+Huacai Chen [修复了](https://lore.kernel.org/loongarch/20231225070002.1350705-1-chenhuacai@loongson.cn/)单节点的逻辑处理器数量大于 64 时，系统引导过程会写坏一些内存内容的问题。
+
+龙芯 QEMU 开发者 Song Gao 为方便用户以 FDT（flattened device tree，拍平设备树）协议启动主线内核，
+预备为主线内核的默认配置[开启](https://lore.kernel.org/loongarch/20231222024628.3138406-1-gaosong@loongson.cn)通用 PCIe 宿主支持。
+
+[Xi Ruoyao][xry111] 尝试[微调了](https://lore.kernel.org/loongarch/20231214130206.21219-1-xry111@xry111.site/)
+LoongArch 上下文切换代码中保存、恢复 8 个浮点条件码的片段，
+因为先前的简单写法在 LA464 上性能很差。
+然而 Huacai Chen 还是[喜欢](https://lore.kernel.org/loongarch/CAAhV-H5m65qL05W9VZw7Qff-qg8TUc_wY8zs-pSeBuWSAFnSaQ@mail.gmail.com/)简单的代码，
+因此估计在谁掏出这么改可以提升上下文切换性能的客观证据，例如跑分对比之前，这个补丁是不会被收了 :confused:。
+
+:::info 究竟有多差？
+根据 Xi Ruoyao 的实验结果，LA464 上每次 `movcf2gr` 花的时间是 `movcf2fr + movfr2gr` 的 7 倍，
+而 `movgr2cf` 更是 `movgr2fr + movfr2cf` 的 15 倍！
+想在浮点条件码和整数寄存器之间搬运多达 1 比特的数据，多经过浮点寄存器倒一手，居然能快几倍甚至十几倍，简直离谱。
+还好 LA664 把这坑填掉了。
+:::
 
 ### 工具链 {#toolchain}
 
