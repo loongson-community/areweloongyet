@@ -153,13 +153,13 @@ LLVM IR 的 [`extractelement` 操作](https://llvm.org/docs/LangRef.html#extract
 [安同开源社区（AOSC）][aosc]注重桌面用户体验与生产力，已经在圈内小有名气。AOSC 的开发者们本次也为火狐（Firefox）浏览器在
 LoongArch 的良好用户体验帮了大忙。
 
-[liushuyu](https://github.com/liushuyu) 成功适配了 WebRTC，已经可以用 Discord 连麦了，其他类似网站说不定也能用：
+[刘子兴](https://github.com/liushuyu)成功适配了 WebRTC，已经可以用 Discord 连麦了，其他类似网站说不定也能用：
 
 ![Firefox WebRTC on LoongArch](./firefox-webrtc.jpg)
 
 此工作后续会推入上游。
 
-[Jiangjin Wang](https://github.com/RedL0tus) [去除了](https://phabricator.services.mozilla.com/D194320)视频硬解接口
+[王江津](https://github.com/RedL0tus)[去除了](https://phabricator.services.mozilla.com/D194320)视频硬解接口
 VA-API 的架构放行名单，使所有的 Linux 平台不论架构，只要能成功加载 `libva`，即可硬解视频。Firefox 122 将包含此改进。
 
 ### 固件 {#firmware}

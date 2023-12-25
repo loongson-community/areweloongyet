@@ -156,7 +156,7 @@ binutils 新增这些指令汇编、反汇编支持的补丁（当然只做了�
 应微信「龙芯读者俱乐部」群的「啊哈哈」群友反馈，从本期《每周一龙》开始，
 略微扩充了前言部分。感谢这位读者的建议！
 
-来自[安同开源社区（AOSC）][aosc]的朋友 [Jiangjin Wang](https://github.com/RedL0tus) 为 Google 的 OpenSSL
+来自[安同开源社区（AOSC）][aosc]的朋友[王江津](https://github.com/RedL0tus)为 Google 的 OpenSSL
 fork BoringSSL [提交了](https://boringssl-review.googlesource.com/c/boringssl/+/63565)适配任意非官方支持的小端
 （little-endian）32 位或 64 位平台的补丁。
 

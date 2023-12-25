@@ -72,7 +72,7 @@ Chenghui Pan [在修测试](https://gcc.gnu.org/pipermail/gcc-patches/2023-Septe
 
 #### D
 
-AOSC 社区的刘子兴（[@liushuyu](https://github.com/liushuyu)）为 D 语言的
+AOSC 社区的[刘子兴](https://github.com/liushuyu)为 D 语言的
 [GCC 前端](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/631259.html)与[运行时](https://github.com/dlang/dmd/pull/15628)添加了龙架构支持。
 欢迎！
 
