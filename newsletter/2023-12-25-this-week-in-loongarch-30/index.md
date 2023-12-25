@@ -46,7 +46,18 @@ LoongArch 上下文切换代码中保存、恢复 8 个浮点条件码的片段�
 
 #### ABI {#abi}
 
-TODO
+今（25）日下班前，龙芯工具链团队[合并了](https://github.com/loongson/la-abi-specs/pull/5)
+LoongArch ABI 规范文档的 v2.30 更新。本次更新了以下内容：
+
+* 明确了基础 ABI 下，函数的向量参数的传递方式。基础 ABI 不保证 SIMD 扩展一定存在，因此只能将向量参数视作基本类型量的数组处理。
+* 修复了一些重定位操作的算术描述。
+* 增加了代码模型（code model）章节。主要是明确定义了 `normal`、`medium` 与 `extreme` 三种代码模型，以及要求 `extreme` 代码模型的四条拼接地址指令必须相邻。
+  后者是先前针对该问题的社区讨论所[提到的](https://github.com/loongson-community/discussions/issues/17)简单方案。
+  周报第 26 期的[猜测](../2023-11-27-this-week-in-loongarch-26.md#abi)出了些偏差：
+  可能出于工作量和兼容性考虑，本次并未「一步到位」，直接实现那个通过提供完整关联信息而解决问题的复杂方案。
+  本站的基线参考文档也已[同步更新了](/docs/baseline-reference/)。
+* 正式加入了周报第 27 期[提及的](../2023-12-05-this-week-in-loongarch-27/index.md#abi)
+  TLS 描述符（TLSDESC）相关定义。
 
 #### binutils {#binutils}
 
