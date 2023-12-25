@@ -151,11 +151,12 @@ LLVM MC 的 LoongArch 后端决策是否产生「加、减」类型重定位记�
 龙芯公司都表态将开发新旧世界应用的兼容方案，
 但截至目前，关于龙芯方案的技术细节，满怀热忱的同学们仍未在公开渠道得到正面回应。
 考虑到性能喜人的 3A6000 板卡已经陆续上市，不难作出合理推测：
-总有群众等不及两年后（或者甚至更久）这些软件的官方新世界版本，而现在就要用！
+总有群众等不及两年后（无论实际更早或更晚）这些软件的官方新世界版本，而**现在就要用**！
 
 [sse-roadshow]: https://roadshow.sseinfo.com/roadshowIndex.do?id=16536#cd-placeholder-hdjl
 
-[安同开源社区（AOSC）][aosc]作为「牢记服务用户需求这一宗旨」的一群人，此刻便站了出来。:ta: 们给出的答案是：`libLoL`——LoongArch on LoongArch。
+[安同开源社区（AOSC）][aosc]作为「牢记服务用户需求这一宗旨」的一群人，此刻便站了出来。:ta: 们给出的答案是
+`libLoL`: LoongArch on LoongArch。
 
 AOSC 开发者[王邈][shankerwangmiao]与[刘子兴][liushuyu]，
 在内核层面实现了以外挂模块（亦可理解为「驱动」）方式，动态载入的旧世界系统调用支持。
