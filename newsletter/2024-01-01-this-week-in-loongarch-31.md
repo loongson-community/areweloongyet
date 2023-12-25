@@ -1,8 +1,8 @@
 ---
-slug: this-week-in-loongarch-30
-title: 每周一龙：第 30 期
+slug: this-week-in-loongarch-31
+title: 每周一龙：第 31 期
 authors: [xen0n]
-date: 2023-12-25T00:00:00+08:00
+date: 2024-01-01T00:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---

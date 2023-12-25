@@ -10,13 +10,14 @@ function isHostLikelyCNDomestic(hostname: string): boolean {
     return true
   }
 
-  if (hostname.endsWith('gitee.com') || hostname.endsWith('katyusha.net'))
+  if (hostname.endsWith('gitee.com') || hostname.endsWith('katyusha.net')
+    || hostname.endsWith('sseinfo.com'))
     return true
 
   return false
 }
 
-export default function doAnnotateOverseasLinks({url, node}: UrlMatch) {
+export default function doAnnotateOverseasLinks({ url, node }: UrlMatch) {
   if (!url.startsWith('http')) {
     // non-absolute or non-HTTP(S) link
     return
