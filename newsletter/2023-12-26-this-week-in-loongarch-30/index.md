@@ -107,7 +107,25 @@ Li Wei [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/64140
 
 #### LLVM {#llvm}
 
-TODO
+紧随 LoongArch ELF psABI v20231219（整体版本号 v2.30）的发布，[SixWeining]
+[更新了](https://github.com/llvm/llvm-project/pull/73387)先前对 LLD `extreme`
+代码模型的立即数处理的重制。
+按照目前的实现方式，这会让一些先前错误的边界情况变正确，但也会让一些先前正确的边界情况变错误：
+还好目前几乎没有软件用到 `extreme` 代码模型，剩下的就只有祈祷！
+
+[MQ-mengqing] 给 linker relaxation 做准备：仿照 RISC-V，[推迟了](https://github.com/llvm/llvm-project/pull/72960)
+LLVM MC 的 LoongArch 后端决策是否产生「加、减」类型重定位记录的时机。
+然而在该补丁合并之后，发现一些软件开始链接失败：
+这是由于 DWARF v5 调试信息用到了 ULEB128 类型的加减操作，
+而 LoongArch 暂未如 RISC-V 一样[实现了](https://github.com/llvm/llvm-project/pull/72610)这些操作。
+目前 MQ-mengqing [写了](https://github.com/llvm/llvm-project/pull/72960#issuecomment-1868650942)一版修复，
+正在补充测试用例。
+
+[SixWeining] 为 LLD [新增了](https://github.com/llvm/llvm-project/pull/73346)
+`R_LARCH_CALL36` 支持。
+
+[SixWeining]: https://github.com/SixWeining
+[MQ-mengqing]: https://github.com/MQ-mengqing
 
 ## 杂闻播报 {#assorted-news}
 
