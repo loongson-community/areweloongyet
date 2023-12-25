@@ -7,7 +7,7 @@ tags: [每周一龙]
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有 LoongArch&reg; ABI v2.30、工具链，以及 AOSC 研发的新旧世界兼容方案。
 详情点进来看！
 
 <!-- truncate -->
