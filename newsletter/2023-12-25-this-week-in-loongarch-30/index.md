@@ -65,7 +65,36 @@ TODO
 
 #### GCC {#gcc}
 
-TODO
+[Xi Ruoyao][xry111] 修复了[杰哥][jiegec][发现的](https://gcc.gnu.org/PR113033)编译
+LSX 的循环移位操作会崩溃（ICE）的问题：[补丁甲](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640937.html)、[补丁乙](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/641401.html)。
+
+Xi Ruoyao 还[修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640808.html)同样由杰哥[发现的](https://gcc.gnu.org/PR113034)
+`__m128` 类型的「不等于」比较操作会被错误编译的问题。
+
+Xi Ruoyao 还[节约了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640809.html)每次 32 位循环移位操作先前都附带的一次多余符号扩展。
+
+Xi Ruoyao 还[尝试解决了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640280.html)先前在
+`-mexplicit-relocs=auto` 时，有些适合合并的符号地址装载操作没被识别出来、予以合并的问题；
+目前还有小坑，正在调整。
+
+Xi Ruoyao 还改善了对于浮点条件码的处理：[清理了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640731.html)
+LoongArch 后端定义中一处不会被用到的情况，
+又[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640713.html)浮点条件码（`FCCmode`）
+的重新装载（reload）。
+后者有利于在某处浮点比较操作的结果无法预测时，提升此处结果向目标位置的保存性能。
+
+Lulu Cheng [实现了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/640977.html)
+TLS LE (local-exec) relaxation（线程本地存储的本地执行模型的松弛）优化的编译器一侧。
+搭配周报第 27 期[提到的](../2023-12-05-this-week-in-loongarch-27/index.md#abi)汇编器一侧支持，
+预计能在某些多线程场景下提升性能。
+
+Li Wei [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/641407.html)启用链接时优化（LTO）时，
+可能导致个别位域装载操作被错误编译的问题；原因是 `*bstrins_<mode>_for_ior_mask` 这条规则写错了。
+该问题至少波及了 SPEC 2006 的 `400.perlbench` 用例。
+
+本期的 GCC 新闻都是 [Xi Ruoyao][xry111] 帮忙整理的，让我们感谢 :ta: 的奉献！
+
+[jiegec]: https://github.com/jiegec
 
 #### LLVM {#llvm}
 
