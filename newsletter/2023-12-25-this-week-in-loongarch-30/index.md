@@ -64,7 +64,8 @@ TODO
 
 [安同开源社区（AOSC）][aosc]作为「牢记服务用户需求这一宗旨」的一群人，此刻便站了出来。:ta: 们给出的答案是：`libLoL`——LoongArch on LoongArch。
 
-AOSC 开发者[王邈][shankerwangmiao]与[刘子兴][liushuyu]，在主线内核上实现了可通过外挂模块方式动态载入的旧世界系统调用支持。
+AOSC 开发者[王邈][shankerwangmiao]与[刘子兴][liushuyu]，
+在内核层面实现了以外挂模块（亦可理解为「驱动」）方式，动态载入的旧世界系统调用支持。
 王邈也设计、实现了位于用户态的运行时部分：打包了旧世界参考发行版 Loongnix&reg; 的核心运行时库，
 使旧世界应用能够有「回家的感觉」从而正常启动。
 在本期周报发稿当天，AOSC OS 已经能够运行 WPS Office 与龙芯浏览器等标志性的旧世界应用，
@@ -75,7 +76,7 @@ AOSC 开发者[王邈][shankerwangmiao]与[刘子兴][liushuyu]，在主线内�
 [shankerwangmiao]: https://github.com/shankerwangmiao
 [liushuyu]: https://github.com/liushuyu
 
-后续，在完成配套内核模块（亦可理解为「驱动」）的载入向导后，使用龙架构设备的 AOSC OS 用户便可按需启用此兼容方案了。AOSC 同仁们也欢迎其他新世界发行版维护者考察 `libLoL`，并视自身情况和需求集成此项目的成果。
+后续，在完成配套内核模块的载入向导后，使用龙架构设备的 AOSC OS 用户便可按需启用此兼容方案了。AOSC 同仁们也欢迎其他新世界发行版维护者考察 `libLoL`，并视自身情况和需求集成此项目的成果。
 
 12 月 23 日发布的 AOSC 双周报《安记冰室・十二月下》[记载了](https://github.com/AOSC-Dev/newsroom/blob/2c5443a792291702438cbf6059d8d4039ca5dc85/coffee-break/20231223/zh_CN.md#%E5%B1%95%E6%9C%9B-liblol%E9%BE%99%E6%9E%B6%E6%9E%84%E6%97%A7%E4%B8%96%E7%95%8C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%85%BC%E5%AE%B9%E8%BF%90%E8%A1%8C%E6%97%B6)这项工作的更多信息，推荐阅读。
 
