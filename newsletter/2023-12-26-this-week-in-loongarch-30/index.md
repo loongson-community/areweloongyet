@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-30
 title: 每周一龙：第 30 期
 authors: [xen0n]
-date: 2023-12-26T00:30:00+08:00
+date: 2023-12-26T00:50:00+08:00
 tags: [每周一龙]
 ---
 
