@@ -15,7 +15,8 @@ tags: [每周一龙]
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
 本期周报的实际发稿时间是周二凌晨，因为这个点才写完——白天都在忙别的。
-网页上显示的发稿时间仍然是 12 月 25 日：这是 [Docusaurus 早期为了修复一个时区 bug 而导致的又一个时区 bug](https://github.com/facebook/docusaurus/issues/4881)。
+网页上显示的发稿时间仍然是 12 月 25 日：
+这是 Docusaurus 早期为了修复一个时区 bug 而[导致的](https://github.com/facebook/docusaurus/issues/4881)又一个时区 bug。
 
 ## 先「马」再看 {#marked-projects}
 
