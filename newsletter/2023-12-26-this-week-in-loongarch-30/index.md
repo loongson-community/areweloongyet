@@ -65,7 +65,11 @@ LoongArch ABI 规范文档的 v2.30 更新。本次更新了以下内容：
 
 #### binutils {#binutils}
 
-TODO
+mengqinggang [修复了](https://sourceware.org/pipermail/binutils/2023-December/131391.html)先前会给不是函数类型的符号也生成
+PLT（procedure linkage table，过程链接表）记录的问题。
+
+mengqinggang 还按照最新的 ELF psABI 更新，[实现了](https://sourceware.org/pipermail/binutils/2023-December/131386.html)
+`R_LARCH_ALIGN` 对汇编器 `.align` 第三位置的表达式参数的支持。
 
 #### GCC {#gcc}
 
