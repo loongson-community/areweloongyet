@@ -50,7 +50,13 @@ TODO
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-TODO
+LoongArch 非官方开源社区（LA UOSC）版主[杜比][dbhrscom][发起了](https://bbs.loongarch.org/d/351-lauosc-freebsd-ports)
+FreeBSD 移植项目，工作进度[放在了](https://gitee.com/lauosc/freebsd) Gitee 上。
+无尘（yu shan wei）同学也单独[维护了](https://gitee.com/yushanwei/freebsd4loongarch)补丁集合。
+感谢 [Haowu Ge][haowuge] 在群聊中投递新闻线索！
+
+[dbhrscom]: https://bbs.loongarch.org/u/4
+[haowuge]: https://github.com/haowuge
 
 ## 张贴栏 {#bulletin}
 
