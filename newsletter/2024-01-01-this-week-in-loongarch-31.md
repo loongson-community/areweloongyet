@@ -45,7 +45,7 @@ TLS LE relaxation 特性的 binutils 部分，成功进入主线了。
 
 [Xi Ruoyao][xry111] [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/641443.html)
 xen0n [报告的][PR113148] bug:
-XWayland 等软件中存在大量涉及浮点数比较操作的函数，编译这些函数时 gcc 会崩溃。
+XWayland 等软件中存在个别内含大量浮点数比较操作的函数，编译这些函数时 gcc 会崩溃。
 
 [PR113148]: https://gcc.gnu.org/PR113148
 
