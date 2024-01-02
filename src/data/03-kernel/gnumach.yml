@@ -1,0 +1,4 @@
+name: 'GNU Mach'
+homepageURL: 'https://www.gnu.org/software/hurd/microkernel/mach/gnumach.html'
+repoURL: 'https://git.savannah.gnu.org/git/hurd/gnumach.git'
+portingEfforts: []
