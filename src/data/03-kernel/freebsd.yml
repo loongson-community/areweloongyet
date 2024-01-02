@@ -1,4 +1,11 @@
 name: 'FreeBSD'
 homepageURL: 'https://www.freebsd.org'
 repoURL: 'https://cgit.freebsd.org'
-portingEfforts: []
+portingEfforts:
+  - authors: ['yushanwei']
+    desc: ''
+    link: 'https://gitee.com/lauosc/freebsd'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NeedsCleanup
