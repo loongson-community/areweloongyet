@@ -25,7 +25,7 @@ tags: [每周一龙]
 [Xi Ruoyao][xry111] [查明并修复了](https://lore.kernel.org/loongarch/20240102123706.6099-2-xry111@xry111.site/)龙架构上
 Linux 一直以来的[偶现问题](https://github.com/loongson-community/discussions/issues/7)：
 创建新进程时，新进程可能继承到不干净的 FCSR（浮点控制状态寄存器）内容，导致后续做浮点操作时迟早发生非预期行为甚至崩溃。
-此 bug 是从 MIPS 内核带来的遗产。由于 MIPS 的 FCSR 初始化需要考虑程序的执行域（personality），Xi Ruoyao 不会修，
+此 bug 是从 MIPS 内核带来的遗产。由于 MIPS 的 FCSR 初始化需要考虑程序的执行域（personality），Xi Ruoyao 不知道怎么修，
 所以只能[报告了](https://lore.kernel.org/linux-mips/7a6aa1bbdbbe2e63ae96ff163fab0349f58f1b9e.camel@xry111.site/)该问题，
 等待 MIPS 相关维护者处理。
 
