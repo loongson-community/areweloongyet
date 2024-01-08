@@ -76,6 +76,17 @@ TODO
 
 ## 杂闻播报 {#assorted-news}
 
+[heiher] 给 Rust 最常用的 JSON 格式支持库 `serde_json`
+[标记了](https://github.com/serde-rs/json/pull/1100)
+LoongArch 最适合大数运算的整数类型宽度是 64 位。
+上游维护者半小时后就给合并了，且发了 `1.0.111` 新版本。
+请同学们按需 `cargo update` 以查收这部分免费性能提升。
+
+:::info 花絮
+这坑是 xen0n 在编译 ripgrep 时候百无聊赖，躺在椅子上看屏幕上滚动的编译进度，偶然注意到的。
+有时躺平放空也能创造价值！
+:::
+
 [xen0n] 向 gentoo-zh overlay [推入了](https://github.com/microcai/gentoo-zh/pull/4109)
 AOSC OS 的 liblol 新旧世界兼容解决方案打包。
 此 overlay 包含华语用户圈子常用的许多软件；
