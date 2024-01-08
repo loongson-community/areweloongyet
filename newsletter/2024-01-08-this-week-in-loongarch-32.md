@@ -161,6 +161,10 @@ app-emulation/liblol Loongnix-Base-EULA
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
+社区新面孔 [LiarOnce] 给 Loong Arch Linux [打包了](https://github.com/LiarOnce-LoongAL/vscodium-electron-loong64)使用系统 Electron 的最新版本 VSCodium。
+
+[LiarOnce]: https://github.com/LiarOnce
+
 社区新面孔 [hackpascal] 在 OpenWrt 上游[贴出了](https://github.com/openwrt/openwrt/pull/14357)
 LoongArch64 的移植，使用 Linux 6.6 内核。
 先前 [phorcys] 已经[维护了](https://github.com/phorcys/openwrt-loongarch)一个
