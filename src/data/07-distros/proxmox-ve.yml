@@ -1,0 +1,11 @@
+name: 'Proxmox VE'
+homepageURL: 'https://proxmox.com'
+repoURL: 'https://git.proxmox.com'
+portingEfforts:
+  - authors: ['jiangcuo']
+    desc: 'Proxmox VE 上游似乎仅支持 x86 架构，因此在该上游接受新架构之前，此 fork 即为 LoongArch 等其他架构的上游。'
+    link: 'https://github.com/jiangcuo/Proxmox-Port'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
