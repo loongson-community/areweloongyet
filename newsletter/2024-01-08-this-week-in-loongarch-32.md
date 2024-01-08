@@ -146,7 +146,20 @@ app-emulation/liblol Loongnix-Base-EULA
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-TODO
+社区新面孔 [hackpascal] 在 OpenWrt 上游[贴出了](https://github.com/openwrt/openwrt/pull/14357)
+LoongArch64 的移植，使用 Linux 6.6 内核。
+先前 [phorcys] 已经[维护了](https://github.com/phorcys/openwrt-loongarch)一个
+fork 有一段时间，但笔者印象中 :ta: 似乎无意将其上游；结果又一名勇士就出现了。
+看起来 OpenWrt 确实是玩家刚需！
+
+[hackpascal]: https://github.com/hackpascal
+[phorcys]: https://github.com/phorcys
+
+群友 [amdyes][jiangcuo] 近日将 :ta: [维护的](https://github.com/jiangcuo/Proxmox-Port)
+Proxmox VE（PVE）移植与上游最新版本同步了，支持 64 位的 LoongArch 以及 ARM、RISC-V 平台。
+龙架构的家庭数据中心应用拼图眼见地完整起来！
+
+[jiangcuo]: https://github.com/jiangcuo
 
 ## 张贴栏 {#bulletin}
 
