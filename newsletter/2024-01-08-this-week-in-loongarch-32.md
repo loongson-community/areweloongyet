@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-32
 title: 每周一龙：第 32 期
 authors: [xen0n]
-date: 2024-01-08T00:00:00+08:00
+date: 2024-01-08T20:00:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有 Linux、GCC、LLVM 以及许多的发行版。
 详情点进来看！
 
 <!-- truncate -->
