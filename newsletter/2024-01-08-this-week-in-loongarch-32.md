@@ -58,14 +58,6 @@ LoongArch KVM 性能：
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
-#### binutils {#binutils}
-
-TODO
-
 #### GCC {#gcc}
 
 TODO
