@@ -1,6 +1,12 @@
 # 请保持 key 按字母顺序排列。
 # Please keep the keys alphabetically sorted.
 
+hackpascal:
+  name: Weijie Gao
+  kind: Community
+  url: ''
+  githubUsername: hackpascal
+  giteeUsername: ''
 liushuyu:
   name: Liu Zixing
   kind: Community
@@ -18,6 +24,12 @@ lrzlin:
   kind: Community
   url: ''
   githubUsername: lrzlin
+  giteeUsername: ''
+phorcys:
+  name: phorcys
+  kind: Community
+  url: ''
+  githubUsername: phorcys
   giteeUsername: ''
 shipujin:
   name: Shi Pujin
