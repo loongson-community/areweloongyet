@@ -60,7 +60,23 @@ LoongArch KVM 性能：
 
 #### GCC {#gcc}
 
-TODO
+Yang Yujie [在重构](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/642084.html)
+LoongArch 后端的命令行选项处理逻辑。
+
+Lulu Cheng [优化掉了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641989.html)伴随一些位操作的多余的符号扩展操作。
+这对所有软件的位操作性能都有积极影响；在跑分方面，也对 SPEC2017 的 `500.perlbench` 用例有 1.8% 的提升。
+
+Yang Yujie 为了更好的 LTO（链接时优化），给 LoongArch 后端[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641930.html)编译选项的保存恢复。
+这将修复上游 bug [PR113233](https://gcc.gnu.org/PR113233)。
+
+Jiahao Xu 为 LA464 [避免了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641889.html)执行
+`xvpermi.q` 指令时可能碰到的未定义行为。
+
+chenxiaolong 为了能给 LoongArch 正常启用 GCC 向量化方面的公共测试用例，[修了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641868.html)[一堆](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641878.html)地方。
+
+liwei 把 LSX 与 LASX 原先不共享的两份常量向量排列（constant vector permutation）实现
+[统一成了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/641477.html)一份。
+在净删除了 888 行代码之外，跑分还提高了。
 
 #### LLVM {#llvm}
 
