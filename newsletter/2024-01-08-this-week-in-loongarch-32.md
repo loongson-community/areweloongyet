@@ -76,7 +76,51 @@ TODO
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+[xen0n] 向 gentoo-zh overlay [推入了](https://github.com/microcai/gentoo-zh/pull/4109)
+AOSC OS 的 liblol 新旧世界兼容解决方案打包。
+此 overlay 包含华语用户圈子常用的许多软件；
+后续 Gentoo 用户们也能用相同姿势安装 WPS Office 等旧世界闭源软件了。
+例如：只要 `emerge wps-office` 即可自动拉入 liblol 及其内核模块。
+
+:::info 注意事项
+目前 liblol 提供的依赖库主要都来自 Loongnix&reg;，
+因此在我们完成审计这些来自 Loongnix 的文件的开源许可、并确认其中不含闭源或专有内容之前，
+您都需要明确接受《基础版 Loongnix 操作系统最终用户许可协议》，才能安装 liblol：
+
+```
+# e.g. /etc/portage/package.license/liblol
+app-emulation/liblol Loongnix-Base-EULA
+```
+
+此外，首次安装 `la_ow_syscall` 内核模块之后，该模块不会被自动载入——在 Gentoo
+我们一般不帮用户做这种事，而代之以 `emerge` 结束后的温馨提醒。
+在安装完 liblol 后、使用旧世界软件前，
+您可以简单重启系统，或者以 `root` 身份 `modprobe la_ow_syscall`：
+只需执行这一次即可，后续每次系统启动时都会自动加载了。
+:::
+
+<details>
+<summary>致打包人们</summary>
+
+对旧世界软件包的标记方式是 `RDEPEND` 中的 `loong? ( virtual/loong-ow-compat )`
+表达式。
+
+需要注意：旧世界程序的动态链接依赖都是基于 liblol sysroot（`/opt/lol`）解析的，
+而与宿主系统 libdir 无关。
+这与 Gentoo 当下的 multilib 方案不同，反倒与几年前的 `emul-linux-x86-*` 大包神似；
+因此大部分情况下，意在满足动态链接依赖的 `RDEPEND` 项，都不应当对 `loong` 适用。
+
+打包人们可参考 [WPS Office 的打包做法](https://github.com/microcai/gentoo-zh/pull/4112)，
+为其他旧世界软件打包。
+提交前，记得简单测下软件功能：
+如果 liblol sysroot 里缺依赖，可以[去 liblol 上游报告](https://github.com/shankerwangmiao/liblol/issues)。
+
+后续，此打包工作（尤其是起到标记作用的 virtual 包）将进一步上游至 Gentoo 主源；
+这将在 liblol 的 license 审计工作完成之后进行。
+
+</details>
+
+[xen0n]: https://github.com/xen0n
 
 ## 社区整活:儿: {#grins}
 
