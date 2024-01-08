@@ -111,7 +111,7 @@ Xi Ruoyao 准备赶在 GCC 14 stage 1 截止（笔者注：11 月 19 号）前�
 
 本期的很大一部分 GCC 新闻都是 Xi Ruoyao 提供的，感谢 :ta: 从现场发回的报道。
 
-#### LLVM
+#### LLVM {#llvm}
 
 在[周报第 8 期](./2023-07-10-this-week-in-loongarch-8.md#llvm)笔者打算做掉
 `model` 属性支持，在上游讨论确定了技术方案。

@@ -72,7 +72,23 @@ TODO
 
 #### LLVM {#llvm}
 
-TODO
+[heiher] 最终完成了周报第 24 期[报道的](./2023-11-13-this-week-in-loongarch-24.md#llvm) `code_model` 支持工作：
+合并了 [Clang](https://github.com/llvm/llvm-project/pull/72078) 与
+[LoongArch 后端](https://github.com/llvm/llvm-project/pull/72079)两部分的最终版本。
+
+来自腾讯的 [DamonFool] 走过路过，给 LoongArch 后端[修了](https://github.com/llvm/llvm-project/commit/52d1397e38ee88b170585c9c824d08e6975890ca)一处非调试配置下未使用的变量（否则会报错）。
+
+[wangleiat] [实现了](https://github.com/llvm/llvm-project/pull/76555)更多
+LoongArch psABI v2.30 语义：
+换用 `pcaddu18i + jirl` 实现 `medium` 代码模型的过程调用，
+并确保了 `extreme` 代码模型下装载符号地址操作的指令一定相邻。
+
+[MQ-mengqing] [改进了](https://github.com/llvm/llvm-project/pull/76552)
+LLVM MC 对代码段对齐的处理方式，LoongArch 和 RISC-V 都从中获益。
+
+[DamonFool]: https://github.com/DamonFool
+[wangleiat]: https://github.com/wangleiat
+[MQ-mengqing]: https://github.com/MQ-mengqing
 
 ## 杂闻播报 {#assorted-news}
 
