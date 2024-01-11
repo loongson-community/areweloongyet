@@ -59,6 +59,10 @@ const config: Config = {
     locales: ['zh-Hans'],
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
   plugins: [
     [
       awlyAsmDBPlugin,
@@ -172,6 +176,7 @@ const config: Config = {
         blogRouteBasePath: ['/blog', '/newsletter'],
       } satisfies DocusaurusSearchLocalOptions,
     ],
+    '@docusaurus/theme-mermaid',
   ],
 
   themeConfig: {
