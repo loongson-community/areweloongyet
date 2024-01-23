@@ -1,10 +1,9 @@
 ---
-slug: this-week-in-loongarch-33
-title: 每周一龙：第 33 期
+slug: these-weeks-in-loongarch-33
+title: 每周两龙：第 33 期
 authors: [xen0n]
-date: 2024-01-15T00:00:00+08:00
-tags: [每周一龙]
-draft: true  # TODO
+date: 2024-01-24T01:00:00+08:00
+tags: [每周一龙, 每周两龙]
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
@@ -12,6 +11,11 @@ draft: true  # TODO
 详情点进来看！
 
 <!-- truncate -->
+
+因为笔者上周现实生活繁忙，本期改为周二更新前两周的内容，预计下期恢复周一更新。
+本期周报的实际发稿时间是周三凌晨，因为这个点才写完——白天都在忙别的。
+网页上显示的发稿时间仍然是 1 月 23 日：
+这是 Docusaurus 早期为了修复一个时区 bug 而[导致的](https://github.com/facebook/docusaurus/issues/4881)又一个时区 bug。
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
