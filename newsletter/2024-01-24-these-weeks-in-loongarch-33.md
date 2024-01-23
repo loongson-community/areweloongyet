@@ -129,10 +129,11 @@ linker relaxation 情况下的 DWARF 调试信息处理。
 在测试正则表达式库 PCRE2 新版的 LoongArch JIT 支持时，[xen0n](https://github.com/xen0n)
 [发现](https://github.com/loongson-community/discussions/issues/36)代码中缺失了关于浮点数转整数操作在
 LoongArch 上的边界情况行为的记载。
-虽然 lrzlin 马上[做了实验并修复了](https://github.com/zherczeg/sljit/pull/226)此问题，
+虽然 [lrzlin] 马上[做了实验并修复了](https://github.com/zherczeg/sljit/pull/226)此问题，
 但 [xry111] 随即[指出][ftint-issue]《龙芯架构参考手册》对此未加详细说明，因而理论上仍可能存在行为与当下实验结果不符的芯片。
 社区已将此问题提醒到龙芯官方：我们没权限改《手册》，只能你们来了！
 
+[lrzlin]: https://github.com/lrzlin
 [ftint-issue]: https://github.com/loongson-community/discussions/issues/38
 
 ### 社区维护的 LoongArch Chromium 补丁集现已可用 {#chromium-patchset}
@@ -156,8 +157,8 @@ Chromium 的构建与测试工作，成果已在安同开源社区（AOSC）组�
 
 ### OpenSSL {#openssl}
 
-[xry111] [修复了](https://github.com/openssl/openssl/pull/23301)自己之前重构代码时的一处不小心，
-此 bug 有可能导致 ChaCha20 算法的 SIMD 优化版本永远跑不到 :clown_face:。
+[lrzlin] [修复了](https://github.com/openssl/openssl/pull/23301) xry111（:clown_face:——本人语）之前重构代码时的一处不小心，
+此 bug 有可能导致 ChaCha20 算法的 SIMD 优化版本永远跑不到。
 
 ## 社区整活:儿: {#grins}
 
