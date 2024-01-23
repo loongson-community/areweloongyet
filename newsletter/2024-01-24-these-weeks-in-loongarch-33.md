@@ -97,6 +97,11 @@ v1.10 的新增指令支持。
 [Ami-zhang] 还[新增了](https://github.com/llvm/llvm-project/pull/78962)目标特性 `frecipe`，
 以及相应的 Clang intrinsics，以便开发者控制 LoongArch v1.10 的浮点近似取倒数等操作的使用与否。
 
+[MQ-mengqing] 给 LLD [增加了](https://github.com/llvm/llvm-project/pull/78692)基本的
+LoongArch linker relaxation 支持。
+截至发稿，此 PR 仍然没有合并；鉴于 linker relaxation 在 LoongArch 最新基线状态中的根本性地位，
+[SixWeining] 的建议是将其合入主线之后再单独摘入 LLVM 18 发布分支，待组件维护者定夺。
+
 [MQ-mengqing] [完善了](https://github.com/llvm/llvm-project/pull/77728)开启
 linker relaxation 情况下的 DWARF 调试信息处理。
 
@@ -106,6 +111,7 @@ linker relaxation 情况下的 DWARF 调试信息处理。
 
 [Ami-zhang]: https://github.com/Ami-zhang
 [MQ-mengqing]: https://github.com/MQ-mengqing
+[SixWeining]: https://github.com/SixWeining
 [wangleiat]: https://github.com/wangleiat
 [yjijd]: https://github.com/yjijd
 
