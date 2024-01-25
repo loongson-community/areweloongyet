@@ -37,6 +37,12 @@ phorcys:
   url: ''
   githubUsername: phorcys
   giteeUsername: ''
+PinelliaC:
+  name: PinelliaC
+  kind: Community
+  url: ''
+  githubUsername: PinelliaC
+  giteeUsername: ''
 shipujin:
   name: Shi Pujin
   kind: Loongson

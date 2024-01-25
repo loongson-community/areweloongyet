@@ -2,9 +2,9 @@ name: 'FibJS'
 homepageURL: 'https://fibjs.org'
 repoURL: 'https://github.com/fibjs/fibjs'
 portingEfforts:
-  - authors: ['pinelliaw']
+  - authors: ['PinelliaC']
     desc: ''
-    link: 'https://github.com/fibjs/fibjs'
+    link: ''
     supportStatus: Released
     releasedSinceVersion: '0.36.0'
     goodSinceVersion: '0.36.0'
