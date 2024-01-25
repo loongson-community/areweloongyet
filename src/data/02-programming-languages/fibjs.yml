@@ -1,0 +1,11 @@
+name: 'FibJS'
+homepageURL: 'https://fibjs.org'
+repoURL: 'https://github.com/fibjs/fibjs'
+portingEfforts:
+  - authors: ['PinelliaC']
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '0.36.0'
+    goodSinceVersion: '0.36.0'
+    quality: OnPar
