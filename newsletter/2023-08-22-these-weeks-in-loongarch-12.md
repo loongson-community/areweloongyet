@@ -34,7 +34,7 @@ xen0n 使用龙架构向量扩展做的 RAID5、RAID6 计算优化已[被 linux-
 8 月 6 日，Jiajie Chen [提交了](https://gcc.gnu.org/pipermail/gcc-patches/2023-August/626413.html)
 32 位龙架构（LA32）的 GCC 支持补丁。
 该同学是近一段时间以来的新鲜面孔，且并非龙芯员工，欢迎欢迎！
-（感谢 xry111 的线索投递；他还有句吐槽：建议大家别在脑子里总把 32 位 ISA 跟 32 位 ABI “强绑定”一起。）
+（感谢 xry111 的线索投递；他还有句吐槽：建议大家别在脑子里总把 32 位 ISA 跟 32 位 ABI「强绑定」一起。）
 
 #### LLVM
 
