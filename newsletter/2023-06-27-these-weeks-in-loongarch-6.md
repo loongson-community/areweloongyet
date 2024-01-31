@@ -42,7 +42,7 @@ LLVM 的变更情况见 LLVM 一节。
   需要编译器、汇编器支持向量指令，才能打开相应 Kconfig 配置项。
   过一阵子应该都能用上了。
 * 3A6000/LA664 的[细粒度内存栅障支持](https://lore.kernel.org/loongarch/20230516124536.535343-1-chenhuacai@loongson.cn/)。
-* 3A6000/LA664 的[同时多线程（SMT，“超线程”）支持](https://lore.kernel.org/loongarch/20230614093755.88881-1-wangliupu@loongson.cn/)。
+* 3A6000/LA664 的[同时多线程（SMT，「超线程」）支持](https://lore.kernel.org/loongarch/20230614093755.88881-1-wangliupu@loongson.cn/)。
   补丁透露该支持需要固件配合，以最初用于 AArch64 的 ACPI PPTT 表结构传递处理器核的拓扑信息。
 * 3A6000/LA664 的[硬件页表遍历单元支持](https://lore.kernel.org/loongarch/20230516124610.535360-1-chenhuacai@loongson.cn/)。
 * 初步的 ClangBuiltLinux 适配。

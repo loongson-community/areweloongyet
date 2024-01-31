@@ -71,7 +71,7 @@ GNU Binutils 2.42 分支已于 1 月 15 日[切出](https://sourceware.org/piper
 #### GCC {#gcc}
 
 Lulu Cheng 让 GCC 在使用 `extreme` 代码模型时，[使用](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641865.html)宏指令生成符号地址，
-但 [Xi Ruoyao] [认为](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641919.html)应该换一种做法。
+但 [Xi Ruoyao][xry111] [认为](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641919.html)应该换一种做法。
 
 Lulu Cheng 还将 GOT（全局偏移表）记录[标记为了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/642896.html)只读。
 这可能会允许更多优化。

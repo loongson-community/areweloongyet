@@ -21,7 +21,7 @@ tags: [每周一龙]
 * 7 月 24 日，Huacai Chen [发出了](https://lore.kernel.org/loongarch/20230722072201.2677516-1-chenhuacai@loongson.cn/)一版测试补丁，
   以允许内核自身使用 LSX/LASX 为特定操作加速。xen0n 将很快基于此补丁优化龙架构上的 RAID5/6 计算性能。
 * 7 月 19 日，来自麒麟的 Enze Li [贴出了](https://lore.kernel.org/loongarch/20230719082732.2189747-1-lienze@kylinos.cn/)龙架构的
-  [KFENCE](https://www.kernel.org/doc/html/latest/dev-tools/kfence.html) 适配。KFENCE（Kernel Electric-Fence，“内核电子围栏”）
+  [KFENCE](https://www.kernel.org/doc/html/latest/dev-tools/kfence.html) 适配。KFENCE（Kernel Electric-Fence，「内核电子围栏」）
   是基于采样的低开销内存安全检查工具，可以帮助检查堆越界访问、<ruby>释放后使用<rt>use-after-free</rt></ruby>、非法释放内存等常见的内存安全 bug。
 * 7 月 18 日，上游开发者 Dan Carpenter 为龙芯集显显控驱动[增加了](https://lore.kernel.org/dri-devel/0da6859b-40cc-4b3e-b8b6-fed157517083@moroto.mountain/T/#u)一处错误处理。
   由于龙芯的代码维护者似乎一开始并不想接受该补丁，加之使用了错误的英语表达，差点吵起来，还好后边和平解决了。
@@ -55,12 +55,8 @@ tags: [每周一龙]
 7 月 20 日，Gentoo 的龙架构移植从 <ruby>WD40<rt>no rust</rt></ruby> 状态[毕业了](https://github.com/gentoo/gentoo/pull/31957)。
 待 LLD 支持上游后，预计 GNOME3 的 keywording 工作将能够很快推进了。
 
-7 月 19、20 日，KatyushaScarlet 向 [v2ray](https://github.com/v2fly/v2ray-core/pull/2609)
-与 [Xray](https://github.com/XTLS/Xray-core/pull/2338) 分别提交了 `loong64`
-的适配，只需提升一个依赖的版本即可编出龙架构的二进制了。
-
 7 月 17 日，龙芯在其 GitHub 组织下[创建了](https://github.com/loongson/la-softdev-convention)名为
-`la-softdev-convention`“龙架构软件开发约定”的仓库，
+`la-softdev-convention`「龙架构软件开发约定」的仓库，
 内容也是先前被归档的《龙架构工具链约定》等文档的微调。
 如同[先前的 `la-abi-specs` 仓库](https://github.com/loongson/la-abi-specs)，[向该库贡献](https://github.com/loongson/la-softdev-convention/blob/master/CONTRIBUTING.md)也需要签署龙芯 CLA。
 目前仍未有龙芯 CLA 方面的公开进度，但观察到 [@loongson-admin](https://github.com/loongson-admin)

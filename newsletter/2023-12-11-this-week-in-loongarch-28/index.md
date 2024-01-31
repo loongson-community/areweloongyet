@@ -86,7 +86,8 @@ Jiahao Xu 做的 LoongArch v1.10 的近似浮点倒数指令 `frecipe.[sd]`、�
 `__builtin_eh_return` 的调用会导致同一函数中其他常规返回路径的返回值被破坏的问题。
 此问题被发现会导致 libgcc 的 `_Unwind_RaiseException` 在极端情况下返回错误结果。
 
-[Yang Yujie][scylaac] 还基于 AOSC 开发者 Zixing Liu 先前在 9 月份[发出的](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/631260.html)
+[Yang Yujie][scylaac] 还基于安同开源社区（AOSC）开发者[刘子兴](https://github.com/liushuyu)先前在
+9 月份[发出的](https://gcc.gnu.org/pipermail/gcc-patches/2023-September/631260.html)
 D 语言 LoongArch 适配补丁，
 将其[迭代到了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/638912.html)第三版。
 
@@ -143,7 +144,7 @@ LoongArch 支持补丁，已为 AMD 维护者所确认：将进入 ROCm 6.1 官�
 
 [Xinmudotmoe]: https://github.com/Xinmudotmoe
 
-AOSC 贡献者[傅孝元](https://github.com/eatradish)为 Rust 的 Lua 绑定库
+安同开源社区（AOSC）贡献者[傅孝元](https://github.com/eatradish)为 Rust 的 Lua 绑定库
 mlua [新增了](https://github.com/khvzak/mlua/pull/339) LoongArch 支持。
 感谢[白铭骢](https://github.com/MingcongBai)投递新闻线索！
 
