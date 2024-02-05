@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-35
 title: 每周一龙：第 35 期
 authors: [xen0n]
-date: 2024-02-05T17:00:00+08:00
+date: 2024-02-05T18:40:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有 Linux 以及工具链。
 详情点进来看！
 
 <!-- truncate -->
@@ -159,6 +158,9 @@ LoongArch 软浮点系统上的构建，[Xi Ruoyao][xry111]
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
+[xen0n] 与安同开源社区（AOSC）开发者、`libLoL` 维护者[王邈][shankerwangmiao]一同为
+`libLoL` 撰写了技术文档，已加入本站阅读材料全家桶：[欢迎阅读](/docs/world-compat-details/liblol/)！
+
 2023 年 11 月 23 日，[Liu Yan][moontide] 为 `rtl8852au`
 项目[提交了](https://github.com/lwfinger/rtl8852au/pull/68)增加 LoongArch 支持的小补丁，
 使该驱动程序可以在 LoongArch CPU 下编译。`rtl8852au`
@@ -167,6 +169,7 @@ LoongArch 软浮点系统上的构建，[Xi Ruoyao][xry111]
 
 [lwfinger]: https://github.com/lwfinger
 [moontide]: https://github.com/moontide
+[shankerwangmiao]: https://github.com/shankerwangmiao
 
 ## 张贴栏 {#bulletin}
 
