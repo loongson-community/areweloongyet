@@ -61,7 +61,31 @@ GNU Binutils 2.42 已于北京时间 1 月 29 日 23:57 [正式发布](https://s
 
 #### GCC {#gcc}
 
-TODO
+Lulu Cheng 与 Xi Ruoyao 合作，为 `extreme`
+代码模型[适配了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/644159.html)
+LoongArch ABI v2.30（LoongArch ELF psABI v20231219）：Lulu Cheng 完成了
+`-mexplicit-relocs=none` 的情形，Xi Ruoyao 则搞定了
+`-mexplicit-relocs={always,auto}` 两种情形。
+
+Guoqi Chen [允许开启了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/644274.html)
+TSan、LSan 两种检查机制（sanitizers）。
+
+Lulu Cheng 使用 `alsl` 指令[优化了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/644288.html)
+相对帧指针的寻址。
+
+Xi Ruoyao 一如既往地呵护着主线工具链：
+
+* [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/644749.html)
+  GCC LoongArch 代码中的 C++ ODR 规则违反一例。
+* [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/644797.html)一处
+  LSX 代码生成逻辑中，由 MIPS 遗产导致的越界访问；
+  有意思的是，[相应的 MIPS 问题](https://gcc.gnu.org/PR98491)也是 Xi Ruoyao
+  三年前[解决的](https://gcc.gnu.org/g:06505e701dcfdb1b9855601d6cf0aa1caea62975)。
+* [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/644889.html)
+  LSX 浮点取相反数操作的实现错误：未能正确处理浮点零值的符号位。
+  这[也是 MIPS 遗产](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/644928.html)。
+
+感谢 Xi Ruoyao 提供（以及制造）本节的新闻线索！
 
 #### LLVM {#llvm}
 
