@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-35
 title: 每周一龙：第 35 期
 authors: [xen0n]
-date: 2024-02-05T18:40:00+08:00
+date: 2024-02-05T19:40:00+08:00
 tags: [每周一龙]
 ---
 
