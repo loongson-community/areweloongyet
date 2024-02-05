@@ -154,7 +154,14 @@ LoongArch 软浮点系统上的构建，[Xi Ruoyao][xry111]
 本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-TODO
+2023 年 11 月 23 日，[Liu Yan][moontide] 为 `rtl8852au`
+项目[提交了](https://github.com/lwfinger/rtl8852au/pull/68)增加 LoongArch 支持的小补丁，
+使该驱动程序可以在 LoongArch CPU 下编译。`rtl8852au`
+是社区开发者 [lwfinger] 基于瑞昱半导体（Realtek）的官方 USB WiFi 驱动程序代码修改而来的项目，
+适配了新版本的 Linux 内核，也额外包含了一些优化。
+
+[lwfinger]: https://github.com/lwfinger
+[moontide]: https://github.com/moontide
 
 ## 张贴栏 {#bulletin}
 
