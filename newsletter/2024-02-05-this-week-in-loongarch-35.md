@@ -137,7 +137,17 @@ Rust 标准库是带着 `-Ccode-model=medium` 编译的了。
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+带有 [LSX 优化](https://github.com/pnggroup/libpng/commit/6b0d1bd75b6c51bb5da12f35327508cc31b92da4)的
+libpng 版本现已可用：请用 1.6.42 或更高版本（1.6.41 版本有 bug，不能用）。
+此优化工作来自龙芯员工 Jin Bo（编者注：姓在前）。
+
+近日 libffi 在龙架构上的构建被发现有两处问题：[杨屿杰][scylaac][修复了](https://github.com/libffi/libffi/pull/817)
+LoongArch 软浮点系统上的构建，[Xi Ruoyao][xry111]
+则[修复了](https://github.com/libffi/libffi/pull/825)使用 GCC 14 的构建。
+
+感谢 Xi Ruoyao 提供本节的新闻线索！
+
+[scylaac]: https://github.com/scylaac
 
 ## 社区整活:儿: {#grins}
 
