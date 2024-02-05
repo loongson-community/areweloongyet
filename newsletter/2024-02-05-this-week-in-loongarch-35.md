@@ -135,10 +135,6 @@ Rust 标准库是带着 `-Ccode-model=medium` 编译的了。
 [heiher]: https://github.com/heiher
 [xen0n]: https://github.com/xen0n
 
-#### LLVM {#llvm}
-
-TODO
-
 ## 杂闻播报 {#assorted-news}
 
 TODO
