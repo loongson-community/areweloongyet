@@ -55,7 +55,12 @@ GNU Binutils 2.42 已于北京时间 1 月 29 日 23:57 [正式发布](https://s
 三种方式被引用的符号类型也标记为 TLS 了。
 请打包人们按需集成。
 
-感谢 Xi Ruoyao 提供本节的新闻线索！
+此外，先前[发现的](https://github.com/loongson-community/discussions/issues/40)
+BFD 链接器（即 GNU ld）有时不能正确处理 `--gc-sections` 的问题，虽然当初报告的问题在
+binutils 2.42 证实了并不存在，但在搭配 GCC 14 开发版本使用时，仍有少数测试失败，待解决；
+龙芯维护者在评论区说可能要到年后。
+
+感谢 Xi Ruoyao 协助提供本节的新闻线索！
 
 [xry111]: https://github.com/xry111
 
