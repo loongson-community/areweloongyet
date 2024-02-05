@@ -44,7 +44,20 @@ KVM 会启动软件模拟定时器的场合。
 
 #### binutils {#binutils}
 
-TODO
+GNU Binutils 2.42 已于北京时间 1 月 29 日 23:57 [正式发布](https://sourceware.org/pipermail/binutils/2024-January/132213.html)。
+好消息是：该版本包含了上期周报[提到的](./2024-01-29-this-week-in-loongarch-34/index.md#binutils)最后关头的 TLS relaxation 修复；
+坏消息是，没有人在正式发布前拿 GCC 14 做过测试，
+因此很快[被发现了](https://sourceware.org/pipermail/binutils/2024-February/132266.html)一些问题。
+当时 xen0n 报告的无法开启 LTO 构建 Firefox、Thunderbird 等软件的问题也未被修复。
+
+不过，[Xi Ruoyao][xry111] 很快便将此问题[定位并修复了](https://sourceware.org/pipermail/binutils/2024-February/132290.html)：
+在先前的 TLS relaxation 工作中，忘记将那些通过 `%le_{hi20,lo12,add}_r`
+三种方式被引用的符号类型也标记为 TLS 了。
+请打包人们按需集成。
+
+感谢 Xi Ruoyao 提供本节的新闻线索！
+
+[xry111]: https://github.com/xry111
 
 #### GCC {#gcc}
 
