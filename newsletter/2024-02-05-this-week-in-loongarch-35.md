@@ -87,6 +87,54 @@ Xi Ruoyao 一如既往地呵护着主线工具链：
 
 感谢 Xi Ruoyao 提供（以及制造）本节的新闻线索！
 
+#### glibc {#glibc}
+
+2 月 4 日，Xi Ruoyao [允许了](https://sourceware.org/pipermail/libc-alpha/2024-February/154419.html)
+glibc 以编译器提供的 `__builtin_ffs` 实现 `ffs` 系列的库函数。
+由于非教学版（即所谓 LA32 Primary）的 LoongArch 总能保证 `ctz` 指令可用，这么做即有助于这些函数的性能。
+
+北京时间 2 月 1 日清晨，glibc 2.39 [正式发布了](https://sourceware.org/pipermail/libc-alpha/2024-January/154363.html)。
+打包同仁们请注意：有一些重大变化可能需要在下游相应调整；为方便参考，现将一部分总结如下，其余请自行参考邮件或代码。
+
+* 彻底移除了废弃多年的 crypt 支持。请尽快迁移至 [libxcrypt](https://github.com/besser82/libxcrypt)。
+
+  特别地：由于 glibc crypt 的弃用发生在 LoongArch 进入主线之前，但当时的 LoongArch 移植工作者未为
+  LoongArch 完全禁用 `libcrypt.so.1` 的构建；为在尽可能早的时机降低今后所有 LoongArch
+  发行版的依赖复杂度，强烈建议 LoongArch 发行版都使用 `--enable-obsolete-api=no`
+  以确保系统中仅存在 `libcrypt.so.2` 这一 soname。
+  （据称，龙芯对第三方厂商就 LoongArch 旧世界的适配，也提出了相同要求。）
+
+  如果一切顺利，数年后我们即可援引此一事实，证明所谓「兼容性」之确实不必要，从而在 libxcrypt
+  上游成功去除此非预期的历史包袱。
+* 对 LoongArch 而言：由于引入了 LSX/LASX 等因素，可用于构建 glibc 2.39 的最低 binutils
+  版本现已提升至 2.41。
+
+在 glibc 2.39 发布前的准备流程中，发现测试套件在 GCC 编译农场的 LoongArch 节点 `cfarm401`
+上大量失败；Xi Ruoyao
+[指出](https://sourceware.org/pipermail/libc-alpha/2024-January/154302.html)这是由
+Debian multiarch 目录布局，以及 Linux 头文件版本老旧所导致的。
+后续或将需要与此机器的维护者协调，以彻底解决此问题。
+
+感谢 Xi Ruoyao 提供本节的新闻线索！
+
+#### Rust {#rust}
+
+[xen0n] 将 Rust LoongArch targets 默认采用的代码模型从默认的 `normal`（LLVM 称之为 `small`）
+[扩大到了](https://github.com/rust-lang/rust/pull/120661) `medium`，
+预计将于五月份正式发布的 Rust 1.78 可用（时运不济，刚好错过 1.77 的班车）。
+届时，含 Rust 组件的超大型软件如 Chromium 的构建将更加便捷了：打包者们不再需要为此特制 Rust——以确保
+Rust 标准库是带着 `-Ccode-model=medium` 编译的了。
+
+暌违近一年，Rust 官方的工具链管理工具 `rustup`
+[即将发布](https://github.com/rust-lang/rustup/pull/3653)其 1.27.0 版本。[heiher]
+突然发现它在 LoongArch 下无法编译了，
+遂迅速[修复了](https://github.com/rust-lang/libc/pull/3570)根因，
+并[更新了](https://github.com/rust-lang/rustup/pull/3655) `rustup`。
+很快 LoongArch 用户也可像 x86、ARM 等常见架构用户一样，便捷管理 Rust 工具链了。
+
+[heiher]: https://github.com/heiher
+[xen0n]: https://github.com/xen0n
+
 #### LLVM {#llvm}
 
 TODO
