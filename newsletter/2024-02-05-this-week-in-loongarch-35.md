@@ -21,7 +21,24 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+Linux 构建系统维护者 Masahiro Yamada 帮忙跟进了两处 Kconfig 相关改动：
+
+* [切换至](https://lore.kernel.org/loongarch/20240204134946.62509-1-masahiroy@kernel.org/)公共的
+  seccomp 选单：[先前的重构](https://github.com/torvalds/linux/commit/282a181b1a0d)完成时，LoongArch
+  还尚未进入主线，因此错过了。
+* [修复了](https://lore.kernel.org/loongarch/20240204134813.61884-1-masahiroy@kernel.org/)
+  `ARCH_ENABLE_THP_MIGRATION` 选项的控制方式。
+
+Huacai Chen [修复了](https://lore.kernel.org/loongarch/20240131072151.1023985-1-chenhuacai@loongson.cn/)
+Linux 6.7 以来，大型（NUMA 节点数量超过 8）LoongArch 机器启动时无法引导从核的问题。
+此修复也会进入 v6.1、v6.6 两个稳定分支。
+
+同为 Linux 维护者的信息安全研究者 Kees Cook
+帮忙[修复了](https://lore.kernel.org/loongarch/20240130233140.work.887-kees@kernel.org/)开启
+UBSAN 时无法构建 LoongArch vDSO 的问题。
+
+Bibo Mao [减少了](https://lore.kernel.org/loongarch/20240130072238.2829831-1-maobibo@loongson.cn/)
+KVM 会启动软件模拟定时器的场合。
 
 ### 工具链 {#toolchain}
 
