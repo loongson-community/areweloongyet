@@ -42,10 +42,6 @@ KVM 会启动软件模拟定时器的场合。
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
 #### binutils {#binutils}
 
 TODO
