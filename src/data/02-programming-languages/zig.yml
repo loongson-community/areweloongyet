@@ -3,7 +3,7 @@ homepageURL: 'https://ziglang.org/'
 repoURL: 'https://github.com/ziglang/zig'
 portingEfforts:
   - authors: ['community']
-    desc: '正在进行 zig-bootstrap 的支持'
+    desc: '正在进行 zig-bootstrap 的支持，已经能 bootstrap 一个不含 libc 支持的 stage3 zig'
     link: 'https://github.com/ziglang/zig-bootstrap/issues/166'
     supportStatus: WIP
     releasedSinceVersion: ''
