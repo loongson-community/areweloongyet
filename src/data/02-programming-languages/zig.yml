@@ -1,0 +1,11 @@
+name: 'zig'
+homepageURL: 'https://ziglang.org/'
+repoURL: 'https://github.com/ziglang/zig'
+portingEfforts:
+  - authors: ['community']
+    desc: '正在进行 zig-bootstrap 的支持'
+    link: 'https://github.com/ziglang/zig-bootstrap/issues/166'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NeedsCleanup
