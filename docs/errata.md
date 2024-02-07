@@ -10,15 +10,13 @@ sidebar_position: 8
 本文是活的文档（living document），内容会随着现状变化而不时更新。不妨多来看看！
 :::
 
-## AMDGPU 失去响应
+## LS7A 桥片某硬件缺陷可能导致 AMDGPU 显卡驱动崩溃
 
 如果在内核日志中发现类似的log，和/或桌面环境卡死。
-
 ```
 [ 9037.053812] radeon 0000:07:00.0: ring 0 stalled for more than 5657104msec
 [ 9037.060557] radeon 0000:07:00.0: GPU lockup (current fence id 0x00000000000001b4 last fence id 0x00000000000001ca on ring 0)
 ```
-
-可以在内核命令行上加上 `amdgpu.dpm=0` 禁用AMDGPU动态调频来缓解此问题。此问题已确认是7A桥片的硬件缺陷导致的。
+可以尝试在内核命令行上加上 `amdgpu.dpm=0` 禁用AMDGPU动态调频来缓解此问题。此问题已确认是7A桥片的硬件缺陷导致的。
 
 确认平台：3A5000, 3A6000, 3C5000（7A1000 和 7A2000 桥片的主板均可复现）
