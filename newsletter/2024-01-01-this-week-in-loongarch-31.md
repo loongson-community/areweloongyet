@@ -6,7 +6,7 @@ date: 2024-01-02T23:25:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 上周的进展主要有 Linux 和工具链。
 详情点进来看！
 
@@ -18,7 +18,7 @@ tags: [每周一龙]
 
 ## 先「马」再看 {#marked-projects}
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux {#linux}
 
@@ -89,7 +89,7 @@ Slackwareloong 维护者 [shipujin] 说：Slackware 中文社区在 Slackwareloo
 
 ## 社区整活:儿: {#grins}
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 LoongArch 非官方开源社区（LA UOSC）版主[杜比][dbhrscom][发起了](https://bbs.loongarch.org/d/351-lauosc-freebsd-ports)
