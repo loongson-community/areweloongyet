@@ -6,7 +6,7 @@ date: 2023-12-18T23:30:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 上周的进展主要有社区版龙芯 SIMD 指令文档、3A6000 社区版超频固件，以及 ABI。
 详情点进来看！
 
@@ -16,7 +16,7 @@ tags: [每周一龙]
 
 ## 先「马」再看 {#marked-projects}
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux {#linux}
 
@@ -28,7 +28,7 @@ Linux 6.6 LTS 分支日前[向后移植了](https://git.kernel.org/pub/scm/linux
 
 #### ABI {#abi}
 
-[安同开源社区（AOSC）][aosc]开发者[王江津](https://github.com/RedL0tus)在适配 JetBrains&reg; 开发环境全家桶时，
+[安同开源社区（AOSC）][aosc]开发者[王江津](https://github.com/RedL0tus)在适配 JetBrains 开发环境全家桶时，
 发现有 [Java 组件](https://github.com/JetBrains/pty4j)想动态加载 `libutil.so`，而该共享库在 LoongArch 上并不存在。
 在 glibc 的实现中，该共享库的所有函数都[合并入 `libc.so` 了](https://sourceware.org/git/?p=glibc.git;a=commit;h=734c60ebb607086ad6d67b2544d6b7baba72a652)；
 此事发生在 LoongArch 进入 glibc 上游之前，因此 glibc 在 LoongArch 上自始就不提供该共享库。
@@ -46,7 +46,7 @@ Linux 6.6 LTS 分支日前[向后移植了](https://git.kernel.org/pub/scm/linux
 
 * .net 8.0 EA 版的新世界二进制已经有首个发布版本：[GitHub 页面](https://github.com/shushanhf/LoongArch64-Blog-for-.NET-Mono/releases/tag/sdk8.0.0-LA64-newABI-upstream)
 - Mono LoongArch 支持预计 2024Q1 开始推送社区，计划在 2024 年 7 月之前完成
-- Unity&reg;（团结引擎）已与 LoongArch 完成适配
+- Unity（团结引擎）已与 LoongArch 完成适配
 
 出于历史原因，开源世界对于 .net/Mono 的关注度并不高，但 .net/Mono 是 Unreal（虚幻）、Unity（团结）、Godot
 等游戏引擎的核心组件，也是大量商业公司部署桌面、服务端产品的重要生态。LoongArch .net/Mono port
@@ -105,7 +105,7 @@ LoongArch 支持，以及[增加](https://github.com/gentoo/gentoo/pull/34324) C
 
 ## 社区整活:儿: {#grins}
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 也许是热心群众觉得快到年末了，社区里新闻还不够大；

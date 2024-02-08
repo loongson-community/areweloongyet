@@ -6,7 +6,7 @@ date: 2023-06-27T13:57:42+08:00
 tags: [每周一龙, 每周两龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 
 <!-- truncate -->
 
@@ -16,7 +16,7 @@ tags: [每周一龙, 每周两龙]
 
 ## 先「马」再看
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### ClangBuiltLinux
 
@@ -79,7 +79,7 @@ LLVM 的变更情况见 LLVM 一节。
 
 ## 社区整活:儿:
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 [loongarch-opcodes 项目](https://github.com/loongson-community/loongarch-opcodes)整理完成了所有

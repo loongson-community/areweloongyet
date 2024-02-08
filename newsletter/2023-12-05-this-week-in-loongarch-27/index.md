@@ -6,7 +6,7 @@ date: 2023-12-05T03:00:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 上周的进展主要有 ABI、工具链、Firefox、固件、OpenSSL。
 详情点进来看！
 
@@ -25,7 +25,7 @@ tags: [每周一龙]
 
 ## 先「马」再看 {#marked-projects}
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux {#linux}
 
@@ -78,7 +78,7 @@ TLS LE 操作的 relaxation 支持。
 
 先前[报道过的](../2023-10-30-this-week-in-loongarch-22.md#binutils)
 [Jiajie Chen](https://github.com/jiegec)
-帮忙加的 LoongArch&reg; v1.10 新指令，已经进入主线：[补丁甲](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=cd51849c90e8fd13779bec69f5d4c7aadf03a532)、[补丁乙](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=9ff4752d0f6d46ca0f7d275ea07e05790ac8dd1d)。
+帮忙加的 LoongArch v1.10 新指令，已经进入主线：[补丁甲](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=cd51849c90e8fd13779bec69f5d4c7aadf03a532)、[补丁乙](https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=9ff4752d0f6d46ca0f7d275ea07e05790ac8dd1d)。
 
 mengqinggang 继续跟进新的中等代码模型（medium code model）过程调用方式 `R_LARCH_CALL36`
 的适配工作，给 binutils [增加了](https://sourceware.org/pipermail/binutils/2023-December/130906.html)

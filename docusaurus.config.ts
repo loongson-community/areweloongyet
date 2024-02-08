@@ -127,7 +127,7 @@ const config: Config = {
         routeBasePath: 'newsletter',
         path: './newsletter',
         blogTitle: '每周一龙',
-        blogDescription: '龙架构®新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch® 社区最前线的第一手新鲜资讯！',
+        blogDescription: '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
         editUrl: 'https://github.com/loongson-community/areweloongyet',
         beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
         rehypePlugins: commonRehypePlugins,
@@ -258,7 +258,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `© 2022-${new Date().getFullYear()} 本项目的贡献者们。本项目与龙芯公司利益无关。<br />龙芯®、龙芯中科®、龙芯架构®、龙架构®、Loongson®、LoongArch®等是龙芯中科技术股份有限公司（688047.SH）的注册商标。`,
+      copyright: `© 2022-${new Date().getFullYear()} 本项目的贡献者们。本项目与任何营利性实体均利益无关。<br />本站内容中提及的商标均为相应拥有者的财产。`,
     },
     prism: {
       theme: lightCodeTheme,

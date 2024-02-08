@@ -6,7 +6,7 @@ date: 2023-06-12T14:42:22+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 
 <!-- truncate -->
 
@@ -61,7 +61,7 @@ tags: [每周一龙]
 
 ## 先「马」再看
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### ClangBuiltLinux
 
@@ -117,7 +117,7 @@ heiher 旋即[推进了](https://github.com/rust-lang/rust/pull/112310)实现。
 
 ## 社区整活:儿:
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 YANG Xudong [优化了](https://www.postgresql.org/message-id/flat/b522a0c5-e3b2-99cc-6387-58134fb88cbe%40ymatrix.cn)

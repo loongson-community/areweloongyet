@@ -6,8 +6,8 @@ date: 2023-11-06T18:40:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
-上周的进展主要有 LoongArch&reg; ABI v2.20、Linux、GCC 以及 LLVM。
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
+上周的进展主要有 LoongArch ABI v2.20、Linux、GCC 以及 LLVM。
 详情点进来看！
 
 {/* truncate */}
@@ -16,12 +16,12 @@ tags: [每周一龙]
 
 ## 先「马」再看
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux
 
 上期我们用较大的篇幅[报道了](./2023-10-30-this-week-in-loongarch-22.md#loongarch-r1p10)
-LoongArch&reg; v1.10 的新增特性。
+LoongArch v1.10 的新增特性。
 因此虽然 Linux 6.6 也在上周正式发布了，但我们并未马上详细报道。
 截至目前，Linux 6.7 的合并窗口仍在火热开放中，而龙架构的变更相对不多；
 我们可以先把上周的 Linux 6.6 内容补上，再简单过一遍本周期的新功能。
@@ -123,7 +123,7 @@ LoongArch percpu 辅助函数的内联标记：由于近日 LLVM 优化方面的
 
 #### ABI
 
-11 月 4 日，龙芯工具链团队将 LoongArch&reg; ABI 规范文档[更新到了](https://github.com/loongson/la-abi-specs/pull/4)整体版本
+11 月 4 日，龙芯工具链团队将 LoongArch ABI 规范文档[更新到了](https://github.com/loongson/la-abi-specs/pull/4)整体版本
 v2.20。
 
 其中，ELF psABI 子文档的版本号更新到了 20231102，相比 20230519 版本：
@@ -154,7 +154,7 @@ v2.20。
 * 以前没有这玩意时候，已经实装了「给立即数宽 16 位还自带左移 2 位的 `jirl` 上
 `R_LARCH_PCALA_LO12` 这个正常只往不同位域写低 12 位还不做右移处理的记录」这个 workaround，
 导致需要实现 workaround 语义才能正常链接的目标代码早就遍地都是，没法消除了。
-* 此外，LoongArch&reg; v1.10 也没有添加当时呼吁的 `pcalau18i`
+* 此外，LoongArch v1.10 也没有添加当时呼吁的 `pcalau18i`
 以便链接器不用带「[PC-relative][pcrel-llvm-example]」
 跟「[PC-aligned][pcala-llvm-impl]」两套迥异的计算逻辑——优雅不能当饭吃。
 
@@ -169,7 +169,7 @@ v2.20。
 对龙架构工作者而言，也算是积累经验了吧！
 :::
 
-此外，《LoongArch&reg; 过程调用约定》子文档的版本号更新到了 20231103，
+此外，《LoongArch 过程调用约定》子文档的版本号更新到了 20231103，
 相比 20230519 版本主要是明确了围绕宽度为零的量的处理细节；此外也微调了一些措辞。
 
 :::info 主编评论
@@ -199,7 +199,7 @@ v2.20。
 
 #### LLVM
 
-与前面报道的 LoongArch&reg; ABI 文档修订有些相关，上周有两处 Clang 与 GCC 对 ABI 的理解差异得到了修复。
+与前面报道的 LoongArch ABI 文档修订有些相关，上周有两处 Clang 与 GCC 对 ABI 的理解差异得到了修复。
 
 * [issue #70319][llvm70319]: 由 Ami-zhang 两周前报告，由 SixWeining 在 [#70320][llvm70320] 修复；事关空 `struct`。
 * [issue #70890][llvm70890]: 由 SixWeining 五天前报告，随后在 [#71025][llvm71025] 自己修复；事关空 `union`。

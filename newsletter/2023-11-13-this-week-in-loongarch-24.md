@@ -6,7 +6,7 @@ date: 2023-11-13T23:50:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 上周的进展主要有 Linux、工具链，以及 GSGPU 驱动向主线内核版本的移植成果。
 详情点进来看！
 
@@ -16,7 +16,7 @@ tags: [每周一龙]
 
 ## 先「马」再看
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux
 
@@ -41,14 +41,14 @@ tags: [每周一龙]
 
 * 合并了 bcachefs 的支持；
 * 移除了 IA-64 架构的支持；
-* 开源的 NVIDIA&reg; 显卡驱动 `nouveau` 获得了 GSP 支持。
+* 开源的 NVIDIA 显卡驱动 `nouveau` 获得了 GSP 支持。
 
 <details>
 <summary>啥叫 GSP？</summary>
 
 GSP 是 GPU system processor 的缩写：GPU 系统处理器。
 
-自从 2018 年面世的 Turing 微架构以来，新型号的 NVIDIA&reg; 显卡都新增了一块
+自从 2018 年面世的 Turing 微架构以来，新型号的 NVIDIA 显卡都新增了一块
 RISC-V 微控制器，接管了从前由操作系统驱动控制的许多硬件资源控制职责。
 这使得 NVIDIA 得以开源其内核驱动：这个驱动只剩一个 C/S 架构的客户端空壳子了。
 </details>
@@ -157,7 +157,7 @@ Phoronix 也[报道了](https://www.phoronix.com/news/systemd-255-rc1)此事。
 
 ## 社区整活:儿:
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 社区开发者 cl91 从[周报第 18 期](./2023-10-02-this-week-in-loongarch-18.md#gsgpu-for-mainline)开始憋的大招，

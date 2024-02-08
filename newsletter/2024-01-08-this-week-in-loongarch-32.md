@@ -6,7 +6,7 @@ date: 2024-01-08T20:00:00+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 上周的进展主要有 Linux、GCC、LLVM 以及许多的发行版。
 详情点进来看！
 
@@ -16,7 +16,7 @@ tags: [每周一龙]
 
 ## 先「马」再看 {#marked-projects}
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux {#linux}
 
@@ -117,7 +117,7 @@ AOSC OS 的 liblol 新旧世界兼容解决方案打包。
 例如：只要 `emerge wps-office` 即可自动拉入 liblol 及其内核模块。
 
 :::info 注意事项
-目前 liblol 提供的依赖库主要都来自 Loongnix&reg;，
+目前 liblol 提供的依赖库主要都来自 Loongnix，
 因此在我们完成审计这些来自 Loongnix 的文件的开源许可、并确认其中不含闭源或专有内容之前，
 您都需要明确接受《基础版 Loongnix 操作系统最终用户许可协议》，才能安装 liblol：
 
@@ -158,7 +158,7 @@ app-emulation/liblol Loongnix-Base-EULA
 
 ## 社区整活:儿: {#grins}
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 社区新面孔 [LiarOnce] 给 Loong Arch Linux [打包了](https://github.com/LiarOnce-LoongAL/vscodium-electron-loong64)使用系统 Electron 的最新版本 VSCodium。

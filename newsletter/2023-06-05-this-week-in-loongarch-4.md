@@ -6,7 +6,7 @@ date: 2023-06-05T14:10:50+08:00
 tags: [每周一龙]
 ---
 
-每周一都为大家报道 LoongArch&reg; 社区最前线的第一手新鲜资讯！
+每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
 
 <!-- truncate -->
 
@@ -27,7 +27,7 @@ binutils 的其他上游维护者随后帮忙修复了 LoongArch 代码的一些
 
 ## 先「马」再看
 
-本栏目的内容具有一定延续性，将持续追踪报道 LoongArch&reg; 领域的重要或长期项目（坑）。
+本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### 发行版们
 
@@ -70,7 +70,7 @@ Sui Jingfeng 为龙芯 2K1000 和 LS7A1000 内置的 Vivante GC1000 GPU IP
 
 ## 社区整活:儿:
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch&reg; 有关，并可以为读者带来价值，
+本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 [KatyushaScarlet](https://github.com/KatyushaScarlet)
