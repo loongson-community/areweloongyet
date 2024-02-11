@@ -8,12 +8,20 @@ draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO，以及——农历甲辰龙年新年快乐:dragon:！
+上周的进展主要有 AOSC OS 成功「合龙」、TODO，以及——农历甲辰龙年新年快乐:dragon:！
 详情点进来看！
 
 <!-- truncate -->
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
+
+## 要闻速递 {#breaking-news}
+
+### AOSC OS 成功「合龙」！ {#aosc-os-loongarch64-port-completed}
+
+[安同开源社区（AOSC）][aosc] TODO
+
+[aosc]: https://aosc.io
 
 ## 先「马」再看 {#marked-projects}
 
@@ -69,10 +77,6 @@ TODO
 
 本栏目可供张贴公益性质的各种信息。
 
-* 友情扩散：[安同开源社区（AOSC）][aosc]的龙架构移植主线化工作「合龙」已接近尾声，
-  此工作完成后龙架构将升格为 AOSC OS 的 Tier 1 架构。
-  欢迎同学们试用、反馈，也欢迎有志之士一同加入（沟通渠道详见 AOSC 网站相关栏目）。
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
-[aosc]: https://aosc.io
 [call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16
