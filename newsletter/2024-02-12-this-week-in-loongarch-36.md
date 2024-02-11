@@ -48,7 +48,16 @@ LoongArch targets 默认代码模型变更，以在无需用户手动干预的�
 
 #### binutils {#binutils}
 
-TODO
+上周除了 Binutils 2.42 正式版本发布之外，还有些瞄准 2.43 版本的功能开发，因此延至本期报道了。
+
+mengqinggang [使得](https://sourceware.org/pipermail/binutils/2024-February/132306.html)单纯的
+`.align N` 形态所生成的 `R_LARCH_ALIGN` 记录不再关联到符号。
+
+mengqinggang 还[修复了](https://sourceware.org/pipermail/binutils/2024-February/132301.html)
+`R_LARCH_ALIGN` 与[丢弃输出节（output section discarding）功能](https://sourceware.org/binutils/docs/ld/Output-Section-Discarding.html)相互作用导致的错误。
+
+Lulu Cai [去除了](https://sourceware.org/pipermail/binutils/2024-February/132299.html)不必要的
+TLS IE 模型的动态重定位记录。
 
 #### GCC {#gcc}
 
