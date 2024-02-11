@@ -27,7 +27,20 @@ TODO
 
 #### ABI {#abi}
 
-TODO
+为搭配上期周报[提到的](./2024-02-05-this-week-in-loongarch-35.md#rust) Rust
+LoongArch targets 默认代码模型变更，以在无需用户手动干预的前提下，允许链接 Chromium
+等大型应用的同时，不影响较小应用的性能，[xen0n]
+[发起了](https://github.com/loongson-community/discussions/issues/43)讨论。
+有两种可行的做法，可以只做其中一种，也可以都做：
+
+* 允许 relax `R_LARCH_CALL36` 即 `medium` 代码模型下的过程调用指令序列。
+* 实现范围扩展片段（range extension thunks），以在 `R_LARCH_B26` 即单条 `bl`
+  指令「够不着」跳转目标的情况下，生成小段的「蹦床」片段，帮助跳转到目标。
+
+前者能确保那些实际只需一条指令即可表达的跳转，在最终代码中都如此短，有利于发挥性能；
+后者则能为存量的代码提供兼容，方便开发者与用户的迁移。
+
+[xen0n]: https://github.com/xen0n
 
 #### binutils {#binutils}
 
