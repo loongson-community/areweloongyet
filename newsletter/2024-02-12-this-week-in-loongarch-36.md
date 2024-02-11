@@ -27,10 +27,6 @@ draft: true  # TODO
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
-
-TODO
-
 ### 工具链 {#toolchain}
 
 #### ABI {#abi}
