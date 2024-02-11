@@ -69,7 +69,23 @@ TODO
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+2 月 6 日，Sui Jingfeng 向社区逆向工程并维护的 Vivante 驱动 `etnaviv`
+[提交了](https://lore.kernel.org/dri-devel/20240206172759.421737-1-sui.jingfeng@linux.dev/)第
+13 版的 PCIe 形态的 Vivante 设备支持。
+我们早就知道 LS7A1000 桥片、2K1000 SoC 内置的 GPU 是 Vivante GC1000，
+但是这次提交为我们更新了一个新的知识：
+景嘉微 JM9100、JD9230P 以及凌久 GP102 也都是 Vivante。
+感谢 [zhangn1985] 提供新闻线索！
+
+2 月 2 日，deepin（深度）社区[发布了](https://bbs.deepin.org/post/267828)
+deepin v23 Beta 3，
+首度[包含了](https://ci.deepin.com/repo/obs/deepin-ports-images/test-20240205-loong64/)
+LoongArch 移植。
+但请注意：此 LoongArch 测试镜像非 ISO 格式，而是磁盘镜像。请阅读随附的 README 文档以了解如何使用。
+感谢 [RevySR] 提供新闻线索~~正好错过上期周报的发布~~！
+
+[RevySR]: https://github.com/RevySR
+[zhangn1985]: https://github.com/zhangn1985
 
 ## 社区整活:儿: {#grins}
 
