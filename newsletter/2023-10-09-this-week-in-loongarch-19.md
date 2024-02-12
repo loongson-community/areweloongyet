@@ -50,8 +50,7 @@ KVM 代码在特定内核配置下编译失败的问题，Randy 测了能用。
 Linux 用户组的社区同学 Jan-Benedict Glaw
 [报告了](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/631933.html)龙架构
 gcc 构建错误的问题。
-经过一些讨论研究，10 月 7 日 Yang Yujie
-[贴出了](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/632210.html)一种修复方法，[看上去行](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/632256.html)。
+经过一些讨论研究，10 月 7 日杨屿杰[贴出了](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/632210.html)一种修复方法，[看上去行](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/632256.html)。
 
 10 月 3 日 Xi Ruoyao 跟进了一项上游重构：
 将符号拷贝操作的表示方式从原先的自定义 <ruby>RTL<rt>寄存器传输语言</rt></ruby> 指令[改为了](https://gcc.gnu.org/pipermail/gcc-patches/2023-October/631822.html)新增的通用写法。

@@ -1,8 +1,8 @@
 ---
-slug: this-week-in-loongarch-xx
-title: 每周一龙：第 XX 期
+slug: this-week-in-loongarch-37
+title: 每周一龙：第 37 期
 authors: [xen0n]
-date: 2024-12-31T00:00:00+08:00  # hope we're still around at that time!
+date: 2024-02-19T00:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---

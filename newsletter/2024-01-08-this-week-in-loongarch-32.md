@@ -59,13 +59,13 @@ LoongArch KVM 性能：
 
 #### GCC {#gcc}
 
-Yang Yujie [在重构](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/642084.html)
+杨屿杰[在重构](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/642084.html)
 LoongArch 后端的命令行选项处理逻辑。
 
 Lulu Cheng [优化掉了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641989.html)伴随一些位操作的多余的符号扩展操作。
 这对所有软件的位操作性能都有积极影响；在跑分方面，也对 SPEC2017 的 `500.perlbench` 用例有 1.8% 的提升。
 
-Yang Yujie 为了更好的 LTO（链接时优化），给 LoongArch 后端[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641930.html)编译选项的保存恢复。
+杨屿杰为了更好的 LTO（链接时优化），给 LoongArch 后端[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641930.html)编译选项的保存恢复。
 这将修复上游 bug [PR113233](https://gcc.gnu.org/PR113233)。
 
 Jiahao Xu 为 LA464 [避免了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641889.html)执行

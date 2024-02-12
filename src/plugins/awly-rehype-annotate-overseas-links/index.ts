@@ -11,7 +11,8 @@ function isHostLikelyCNDomestic(hostname: string): boolean {
   }
 
   if (hostname.endsWith('gitee.com') || hostname.endsWith('katyusha.net')
-    || hostname.endsWith('sseinfo.com'))
+    || hostname.endsWith('sseinfo.com') || hostname.endsWith('deepin.com')
+    || hostname.endsWith('deepin.org'))
     return true
 
   return false
