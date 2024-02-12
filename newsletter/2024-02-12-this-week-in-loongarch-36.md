@@ -18,8 +18,8 @@ tags: [每周一龙]
 
 ### AOSC OS 合龙工程圆满收官！ {#aosc-os-loongarch64-port-completed}
 
-[安同开源社区（AOSC）][aosc]在龙年初一，完成了历时逾半年的「合龙」工作，LoongArch 已成为
-AOSC OS 的一级（Tier 1）架构，享受顶级维护与支持。AOSC 开发者[白铭骢][MingcongBai]说：
+[安同开源社区（AOSC）][aosc]在龙年初一完成了历时逾半年的「合龙」工作。
+至此，LoongArch 已成为 AOSC OS 的一级（Tier 1）架构，享受顶级维护与支持。AOSC 开发者[白铭骢][MingcongBai]说：
 
 经过多名社区同事超过半年的努力，AOSC OS 已成功「合龙」——所有龙架构软件包均已进入稳定 (stable) 源。
 考虑到用户和维护者之间关注度和设备持有率较高，龙架构也正式升格为 AOSC OS 的一级架构，
