@@ -94,7 +94,10 @@ TLS IE 模型的动态重定位记录。
 
 #### GCC {#gcc}
 
-TODO
+Lulu Cheng [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/645016.html)
+`__iocsrrd_h` 的错误返回类型，
+又从 `larchintrin.h`
+[移除了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/645017.html)一批冗余的类型转换。
 
 #### LLVM {#llvm}
 
