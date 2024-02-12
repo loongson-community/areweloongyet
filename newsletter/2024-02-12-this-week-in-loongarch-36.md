@@ -101,7 +101,8 @@ Lulu Cheng [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/6
 
 #### LLVM {#llvm}
 
-TODO
+Alexandre Ganea [顺手修了](https://github.com/llvm/llvm-project/commit/5c4a630ab70f98138d6f95d19712bb114d92323d)
+LoongArch LLD 在 MSVC 上的一处编译警告。
 
 ## 杂闻播报 {#assorted-news}
 
