@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-36
 title: 每周一龙：第 36 期
 authors: [xen0n]
-date: 2024-02-12T00:00:00+08:00
+date: 2024-02-12T13:50:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 AOSC OS 成功「合龙」、TODO，以及——农历甲辰龙年新年快乐:dragon:！
+上周的进展主要有 AOSC OS 成功「合龙」以及工具链，以及——农历甲辰龙年新年快乐:dragon:！
 详情点进来看！
 
 <!-- truncate -->
@@ -123,13 +122,6 @@ LoongArch 移植。
 
 [RevySR]: https://github.com/RevySR
 [zhangn1985]: https://github.com/zhangn1985
-
-## 社区整活:儿: {#grins}
-
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
-
-TODO
 
 ## 张贴栏 {#bulletin}
 
