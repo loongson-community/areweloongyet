@@ -145,7 +145,7 @@ flowchart TB
 
 |固件参数|旧世界解释|新世界解释|
 |-----|--------|--------|
-|`fw_arg0`|`int argc`<br />内核命令行的参数个数|`int efi_boot`<br />EFI 引导标志|
+|`fw_arg0`|`int argc`<br />内核命令行的参数个数|`int efi_boot`<br />EFI 引导标志，0 代表 EFI 运行时服务不可用，反之可用|
 |`fw_arg1`|`const char *argv[]`<br />内核命令行，如同用户态的 C `main` 函数一般使用|`const char *argv`<br />内核命令行，单个字符串|
 |`fw_arg2`|`struct boot_params *efi_bp`<br />BPI 表格|`u64 efi_system_table`<br />UEFI system table 的物理地址|
 
