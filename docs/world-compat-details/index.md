@@ -72,15 +72,18 @@ flowchart BT
 * 各类 UEFI 表格中的指针。
     * 旧世界：都是形如 `0x9xxx_xxxx_xxxx_xxxx` 的虚拟地址。
 
-      这「碰巧」是龙芯 Linux 在 MIPS 时代被迫使用的固定「直接映射」窗口之一。
+      这「碰巧」是龙芯 Linux 在 MIPS 时代，由于架构规定而被迫使用的固定 1:1 映射窗口之一。
       快进到 LoongArch 时代，这「碰巧」仍然是旧世界内核，与未全面切换至 TLB
-      的新世界内核所共同约定使用的「一致可缓存」直接映射窗口。
+      的新世界内核，所共同约定使用的「一致可缓存」直接映射窗口（DMW）。
 
       「一致可缓存」是在《龙芯架构参考手册》卷一 2.1.7 节「存储访问类型」中定义的术语，又叫
       Coherent Cached 或 CC。
+
+      讽刺的是：虽然在内核拿到控制权之前，固件已经做了相同的 DMW 配置，但在旧世界内核入口点，仍然重复配了一遍……
+      这显然意味着其中有一次是多余的！
     * 新世界：都是物理地址。
 
-      固件不应该，也确实没有替操作系统操心，甚至半强迫操作系统一定要采用某种特定的 DMW 配置。
+      固件不应该，也确实没有替操作系统操心，甚至在某种意义上半强迫操作系统一定要采用某种特定的 DMW 配置。
 * ACPI 数据结构。
     * 旧世界：个别表格，包括但不限于 MADT，遵循的是 ACPI 6.5 定稿前的早期龙芯标准。
 
@@ -95,6 +98,10 @@ flowchart BT
 
 再具体一些，控制权交接至 Linux 之后，早期引导流程的差异见以下示意图。
 
+:::info 图例
+实线的边表示过程调用。有文字注解的虚线边表示数据流动，无文字注解的虚线边则表示有所简化的过程调用。
+:::
+
 ```mermaid
 flowchart TB
     subgraph ow [旧世界 Linux]
@@ -103,15 +110,15 @@ flowchart TB
         OWStartKernel[start_kernel]
         OWFwInitEnv[fw_init_env]
 
-        OWStartKernel -.-> OWFwInitEnv
-        OWKernelEntry -->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| OWStartKernel
+        OWKernelEntry -.->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| OWFwInitEnv
+        OWKernelEntry --> OWStartKernel -.-> OWFwInitEnv
         OWEfiEntry -->|同新世界处理| OWKernelEntry
 
         OWCheckArg0{{fw_arg0 > 1}}
         OWCheckArg2{{fw_arg2 == 0}}
         OWBPI([BPI 流程])
         OWUEFI([新世界 UEFI 流程])
-        OWFDT([FDT 流程])
+        OWFDT([旧世界 FDT 流程])
 
         OWFwInitEnv --> OWCheckArg0
         OWCheckArg0 -->|是| OWBPI
@@ -123,11 +130,11 @@ flowchart TB
         NWKernelEntry[kernel_entry]
         NWEfiEntry[efi_entry]
         NWStartKernel[start_kernel]
-        NWSetupArch[setup_arch]
+        NWInitEnviron[init_environ]
         NWUEFI([UEFI 流程])
 
-        NWStartKernel -.-> NWSetupArch -.-> NWUEFI
-        NWKernelEntry -->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| NWStartKernel
+        NWKernelEntry -.->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| NWInitEnviron
+        NWKernelEntry --> NWStartKernel -.-> NWInitEnviron -.-> NWUEFI
         NWEfiEntry -->|a0 = 1<br />a1 = cmdline_ptr<br />a2 = efi_system_table| NWKernelEntry
     end
 
@@ -141,19 +148,30 @@ flowchart TB
     UEFI --> NWEfiEntry
 ```
 
+图中未包含新世界 FDT 流程的详细介绍，因为它的真实逻辑比较复杂，您可以先自行查阅代码。
+但简单来说：新世界传递 FDT 根指针的方式是在 UEFI 系统表中包含一条类型为 `DEVICE_TREE_GUID`
+即 `b1b621d5-f19c-41a5-830b-d9152c69aae0`，值为此指针的物理地址的记录。
+因此，新世界 Linux 无论是以 ACPI 还是 FDT 方式启动，其传参方式都遵循 UEFI 约定：奇妙的统一！
+同时也可发现旧世界不具备这种统一性质了。
+
 新旧世界 Linux 对三个固件参数的解释也有如下不同：
 
 |固件参数|旧世界解释|新世界解释|
 |-----|--------|--------|
 |`fw_arg0`|`int argc`<br />内核命令行的参数个数|`int efi_boot`<br />EFI 引导标志，0 代表 EFI 运行时服务不可用，反之可用|
-|`fw_arg1`|`const char *argv[]`<br />内核命令行，如同用户态的 C `main` 函数一般使用|`const char *argv`<br />内核命令行，单个字符串|
-|`fw_arg2`|`struct boot_params *efi_bp`<br />BPI 表格|`u64 efi_system_table`<br />UEFI system table 的物理地址|
+|`fw_arg1`|`const char *argv[]`<br />内核命令行参数列表的虚拟地址，如同用户态的 C `main` 函数一般使用|`const char *argv`<br />内核命令行的物理地址，单个字符串|
+|`fw_arg2`|`struct boot_params *efi_bp`<br />BPI 表的虚拟地址|`u64 efi_system_table`<br />UEFI 系统表的物理地址|
 
-最后，在 2023 年，龙芯为其旧世界 Linux 添加了新世界引导协议的兼容支持，并将其集成进了一些新世界发行版，如
-[openAnolis](https://gitee.com/anolis/cloud-kernel/commit/97a912cb723611c9ab706592621249354c9615a4)。
+最后，在 2023 年，龙芯为其旧世界 Linux fork 添加了新世界引导协议的兼容支持，
+并已经将此支持全面推送至下游商业发行版如 UOS、麒麟等。
 这种内核的 EFI stub 形态就支持了新世界方式的引导。
 如图所示，此时在内核中走到的代码路径都与新世界本质相同了：基于对 `fw_arg0`
 参数的灵活解释——假定所有「正常的」内核引导，其内核命令行参数个数都超过 1——而得以在实践中无歧义地区分两种引导协议。
+
+此外，2023 年龙芯也为新世界 Linux 制作了旧世界引导协议的兼容支持，并向一些有商业背景的、
+需要支持无新世界固件机型的社区发行版，如 openAnolis 等推送了；例如 openAnolis 的[相关提交](https://gitee.com/anolis/cloud-kernel/commit/97a912cb723611c9ab706592621249354c9615a4)。
+（请注意：此功能暂未由第三方社区成员验证。）
+这种排列组合暂未在上文的描述中体现。
 
 ### 系统调用
 
