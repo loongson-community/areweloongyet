@@ -18,11 +18,13 @@ sidebar_position: 4
 事实上，不在新旧世界的差异点内的特性就是他们的共同点。
 为了更好地理解新旧世界的差异与共同点，本文仍然会列举一些二者之间较为重要的共同点。
 
-本文将从内核和用户态（即 glibc）两个方面来讨论新旧世界的差异与共同点，
+本文将从内核和用户态两个方面来讨论新旧世界的差异与共同点，
 主要涵盖的是其对外呈现的特性的异同，而较少涉及其内部实现的差异。
 本文不涉及到新旧世界在编译系统方面的异同，因为一般而言，开发者一定会使用一整套同一世界的工具链。
 本文也不会涉及到新旧世界的非技术层面的差异，如商业策略、社区合作等。
 
+考虑到目前龙芯生态都在使用 Linux 内核与 glibc C 运行时，且所有「旧世界」系统都采用此搭配，
+简明起见，当我们提到「内核」或「用户态」、「libc」，都默认为指代 Linux 或 glibc。
 
 ## 内核
 
@@ -31,8 +33,125 @@ sidebar_position: 4
 
 ### 引导协议
 
-引导协议方面，旧世界发行版提供的内核镜像文件是 ELF 格式的，需要搭配旧世界移植的 Grub 引导器才能启动。
-新世界提供的内核镜像文件是带有 EFI Stub 的，可以直接由 UEFI 引导器启动，也可以由新世界移植的 Grub 引导器启动。
+从表面上看，旧世界发行版提供的内核映像文件是 ELF 格式的，需要搭配旧世界移植的 GRUB2 引导器才能启动。
+新世界提供的内核映像文件则是 PE 格式的 EFI 应用——EFI Stub，可以直接由 UEFI 固件启动，也可以由新世界移植的 GRUB2 引导器启动。
+
+从固件向内核传参的具体细节上看，两个世界的 Linux 内核期待从上一级引导程序接受的数据结构也有不同。
+见以下示意图。
+
+:::info 图例
+* 方形的节点表示 EFI 应用程序，是 PE 格式的映像文件。
+* 圆角的节点表示 ELF 格式的映像文件。
+* 有向的边表示控制权的交接顺序，边上的文字代表被交接的数据结构。
+:::
+
+```mermaid
+flowchart BT
+    subgraph linux [Linux]
+        OWLinuxELF(["旧世界 Linux (ELF)"])
+        OWLinuxStub["旧世界 Linux (EFI stub)"]
+        NWLinuxStub["新世界 Linux (EFI stub)"]
+    end
+    subgraph bootloader [引导器]
+        OWGrub2[旧世界 GRUB2]
+        NWGrub2[新世界 GRUB2]
+    end
+    subgraph firmware [固件]
+        OWUEFI[[旧世界 UEFI]]
+        NWUEFI[[新世界 UEFI]]
+    end
+
+    OWUEFI -->|UEFI 系统表（旧）| OWGrub2 -->|BPI| OWLinuxELF
+    NWUEFI -->|UEFI 系统表| NWGrub2 -->|UEFI 系统表| OWLinuxStub
+    NWUEFI -->|UEFI 系统表| NWGrub2 -->|UEFI 系统表| NWLinuxStub
+    NWUEFI -->|UEFI 系统表| NWLinuxStub
+```
+
+首先，新旧世界的 UEFI 固件，如 EDK2，虽然大部分行为都相同，但就传参而言，存在以下两点明显区别。
+
+* 各类 UEFI 表格中的指针。
+    * 旧世界：都是形如 `0x9xxx_xxxx_xxxx_xxxx` 的虚拟地址。
+
+      这「碰巧」是龙芯 Linux 在 MIPS 时代被迫使用的固定「直接映射」窗口之一。
+      快进到 LoongArch 时代，这「碰巧」仍然是旧世界内核，与未全面切换至 TLB
+      的新世界内核所共同约定使用的「一致可缓存」直接映射窗口。
+
+      「一致可缓存」是在《龙芯架构参考手册》卷一 2.1.7 节「存储访问类型」中定义的术语，又叫
+      Coherent Cached 或 CC。
+    * 新世界：都是物理地址。
+
+      固件不应该，也确实没有替操作系统操心，甚至半强迫操作系统一定要采用某种特定的 DMW 配置。
+* ACPI 数据结构。
+    * 旧世界：个别表格，包括但不限于 MADT，遵循的是 ACPI 6.5 定稿前的早期龙芯标准。
+
+      这些数据结构与 ACPI 6.5 不兼容：例如，新世界内核见到旧世界 MADT，便会认为此系统有 0 个 CPU，
+      而最终启动失败。
+    * 新世界：遵循 ACPI 6.5 或更新的版本。
+
+其次，新世界 Linux 期待直接解析 UEFI 系统表（system table）。
+旧世界 Linux 则与前代（MIPS）龙芯内核一样，
+期待接受龙芯自行定义的「BPI」结构体：`struct bootparamsinterface`（在 Loongnix 的 Linux 源码中，叫作 `struct boot_params`，本质相同）：
+在旧世界，将 UEFI system table 相关信息转换为 BPI 结构，是引导器的职责。
+
+再具体一些，控制权交接至 Linux 之后，早期引导流程的差异见以下示意图。
+
+```mermaid
+flowchart TB
+    subgraph ow [旧世界 Linux]
+        OWKernelEntry[kernel_entry]
+        OWEfiEntry[efi_entry]
+        OWStartKernel[start_kernel]
+        OWFwInitEnv[fw_init_env]
+
+        OWStartKernel -.-> OWFwInitEnv
+        OWKernelEntry -->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| OWStartKernel
+        OWEfiEntry -->|同新世界处理| OWKernelEntry
+
+        OWCheckArg0{{fw_arg0 > 1}}
+        OWCheckArg2{{fw_arg2 == 0}}
+        OWBPI([BPI 流程])
+        OWUEFI([新世界 UEFI 流程])
+        OWFDT([FDT 流程])
+
+        OWFwInitEnv --> OWCheckArg0
+        OWCheckArg0 -->|是| OWBPI
+        OWCheckArg0 -->|否| OWCheckArg2
+        OWCheckArg2 -->|是| OWFDT
+        OWCheckArg2 -->|否| OWUEFI
+    end
+    subgraph nw [新世界 Linux]
+        NWKernelEntry[kernel_entry]
+        NWEfiEntry[efi_entry]
+        NWStartKernel[start_kernel]
+        NWSetupArch[setup_arch]
+        NWUEFI([UEFI 流程])
+
+        NWStartKernel -.-> NWSetupArch -.-> NWUEFI
+        NWKernelEntry -->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| NWStartKernel
+        NWEfiEntry -->|a0 = 1<br />a1 = cmdline_ptr<br />a2 = efi_system_table| NWKernelEntry
+    end
+
+    subgraph protocol [引导协议]
+        BPI[[旧世界 BPI]]
+        UEFI[[新世界 UEFI]]
+    end
+
+    BPI -->|a0 = argc<br />a1 = argv<br />a2 = &boot_params| OWKernelEntry
+    UEFI --> OWEfiEntry
+    UEFI --> NWEfiEntry
+```
+
+新旧世界 Linux 对三个固件参数的解释也有如下不同：
+
+|固件参数|旧世界解释|新世界解释|
+|-----|--------|--------|
+|`fw_arg0`|`int argc`<br />内核命令行的参数个数|`int efi_boot`<br />EFI 引导标志|
+|`fw_arg1`|`const char *argv[]`<br />内核命令行，如同用户态的 C `main` 函数一般使用|`const char *argv`<br />内核命令行，单个字符串|
+|`fw_arg2`|`struct boot_params *efi_bp`<br />BPI 表格|`u64 efi_system_table`<br />UEFI system table 的物理地址|
+
+最后，在 2023 年，龙芯为其旧世界 Linux 添加了新世界引导协议的兼容支持，并将其集成进了一些新世界发行版，如
+[openAnolis](https://gitee.com/anolis/cloud-kernel/commit/97a912cb723611c9ab706592621249354c9615a4)。
+这种内核的 EFI stub 形态就支持了新世界方式的引导。
 
 ### 系统调用
 
