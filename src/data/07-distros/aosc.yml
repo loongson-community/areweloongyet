@@ -2,10 +2,10 @@ name: 'AOSC OS'
 homepageURL: 'https://aosc.io'
 repoURL: 'https://github.com/AOSC-Dev'
 portingEfforts:
-  - authors: []
-    desc: ''
-    link: ''
-    supportStatus: WIP
-    releasedSinceVersion: ''
-    goodSinceVersion: ''
+  - authors: ['AOSC']
+    desc: '一款面向个人桌面用户的发行版，安同开源社区 (AOSC) 出品'
+    link: 'https://aosc.io/downloads'
+    supportStatus: Released
+    releasedSinceVersion: '11.0.0'
+    goodSinceVersion: '11.2.1'
     quality: OnPar
