@@ -50,14 +50,13 @@ LBT 扩展支持。
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+xen0n 1 月 22 号折腾在 LoongArch 上编译 Podman 失败，怒，遂[发英雄帖](https://github.com/loongson-community/discussions/issues/39)纪之；
+其中，网络组件 Netavark 不能构建的主要原因是不少依赖库所依赖的 `nix` 包版本过低。
+而这之中又属 DHCP 客户端库 `mozim` 的此项迁移比较麻烦：xen0n 当天花了几十分钟重构，仍未能通过编译，遂放弃，想着把问题记录下来，总会有更熟悉项目的开发者出手，这样效率更高。
+果不其然：`mozim` 维护者 [Gris Ge][cathay4t] 两小时前突然出现，[完成了](https://github.com/nispor/mozim/commit/c6d8e32d8d300686e198982e77f2a45f76d2f255)迁移，[发布了](https://github.com/nispor/mozim/releases/tag/v0.2.3)新版，并在英雄帖下[冒泡了](https://github.com/loongson-community/discussions/issues/39#issuecomment-1952345004)。
+让我们感谢 Gris 对容器计算领域开源基础设施的贡献！LoongArch 社区周边的潜行者群体眼见地也日益壮大起来。
 
-## 社区整活:儿: {#grins}
-
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
-
-TODO
+[cathay4t]: https://github.com/cathay4t
 
 ## 张贴栏 {#bulletin}
 
