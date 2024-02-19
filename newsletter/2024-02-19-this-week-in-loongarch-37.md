@@ -21,7 +21,20 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+Bibo Mao 为 LoongArch KVM
+[新增了](https://lore.kernel.org/loongarch/20240218063302.218019-1-maobibo@loongson.cn/)软件断点支持。
+
+xen0n [完善了](https://lore.kernel.org/loongarch/20240216085822.3032984-1-kernel@xen0n.name/)
+LoongArch KVM 在设置 CPUCFG 数据时对 CPUCFG ID 的处理。
+
+来自高通创新中心（QuIC）的 Oreoluwa Babatunde 意图确保内核在
+FDT 引导流程下不会不小心用到本应被保留的内存区域，
+为此给 LoongArch、OpenRISC 和 SuperH 三个架构[调整了](https://lore.kernel.org/loongarch/1707524971-146908-1-git-send-email-quic_obabatun@quicinc.com/)初始化函数的执行顺序。Huacai Chen
+[说](https://lore.kernel.org/loongarch/CAAhV-H5f5e-cCaX7Gr20oG8F-aywJcosLn4ajxx2SQWoB8JtSA@mail.gmail.com/)
+LoongArch 上不能简单这么改；Oreoluwa [解释道](https://lore.kernel.org/loongarch/03c2c48d-d05f-4906-b63b-711c94133489@quicinc.com/)关键在于
+`early_init_fdt_scan_reserved_mem` 应该尽早发生。于是
+Huacai [了解了](https://lore.kernel.org/loongarch/CAAhV-H7LjadN99OAdpX4OxU-bcjVC45iUwrzTfQz28UMc0K0JQ@mail.gmail.com/)，
+并[给出了](https://lore.kernel.org/loongarch/20240218151403.2206980-1-chenhuacai@loongson.cn/)一种推荐的改法。
 
 ### 工具链 {#toolchain}
 
