@@ -128,7 +128,7 @@ const config: Config = {
         path: './newsletter',
         blogTitle: '每周一龙',
         blogDescription: '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
-        editUrl: 'https://github.com/loongson-community/areweloongyet',
+        editUrl: 'https://github.com/loongson-community/areweloongyet/edit/main',
         beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
         rehypePlugins: commonRehypePlugins,
       } satisfies BlogOptions,
