@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-37
 title: 每周一龙：第 37 期
 authors: [xen0n]
-date: 2024-02-19T00:00:00+08:00
+date: 2024-02-19T23:00:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有休假和 Linux。
 详情点进来看！
 
 <!-- truncate -->
