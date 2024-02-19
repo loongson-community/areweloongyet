@@ -25,21 +25,15 @@ TODO
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
 #### binutils {#binutils}
 
-TODO
+补充上周未注意到的变更：Hui Li 为 GDB
+[新增了](https://sourceware.org/git?p=binutils-gdb.git;a=commitdiff;h=1e9569f383a3d5a88ee07d0c2401bd95613c222e)向量扩展支持；Feiyang Chen、Binbin Zhou
+与 Hui Li 则为 GDB [新增了](https://sourceware.org/git/?p=binutils-gdb.git;a=commitdiff;h=e4d74c01e77365f1327e4e567e7579cdd3bf74f6)
+LBT 扩展支持。
 
-#### GCC {#gcc}
-
-TODO
-
-#### LLVM {#llvm}
-
-TODO
+此外，Tiezhu Yang 也为 LoongArch 的 GDB [补充了](https://sourceware.org/git/?p=binutils-gdb.git;a=commitdiff;h=be908bd6e7fdcf0b91b949b152a063b5791856b5)
+`catch syscall` 操作的支持。
 
 ## 杂闻播报 {#assorted-news}
 
