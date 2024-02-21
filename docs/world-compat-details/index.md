@@ -355,7 +355,7 @@ LBT 扩展指令集，`magic` = `0x42540001`
 
 在内核态无法实现新旧世界的 `ucontext` 数据的兼容，因为内核无法辨别用户态程序接受的上下文是哪一种。
 即使修改内核，使其在加载可执行程序时对此作出了判断并相应为进程作出标记，
-如果用户态程序混合动态连接了新旧世界的动态链接库，内核也无法辨别要调用的信号处理函数接受的上下文是哪一种。
+如果用户态程序混合动态链接了新旧世界的动态链接库，内核也无法辨别要调用的信号处理函数接受的上下文是哪一种。
 所以这方面的兼容需要在用户态实现。
 
 根据不完全的测试，Chromium 以及基于此的 Electron 打包的程序，
@@ -365,4 +365,347 @@ LBT 扩展指令集，`magic` = `0x42540001`
 
 ## 用户态
 
-TODO
+根据截至目前（2024 年 2 月中）的观察，旧世界系统中打包的 glibc 版本为 2.28；而上游 glibc
+对 LoongArch 的支持是从 2.36 版本开始的。在本文写作时，最新的 glibc 版本为 2.39，
+而目前绝大多数新世界系统中打包的 glibc 版本为 2.37 或 2.38。因为 glibc 具有极佳的兼容性，
+即运行在较旧版本 glibc 上的程序，不出意外都能在较新版本 glibc 上运行，所以本文着重对比 glibc
+2.38 与旧世界移植的 glibc 2.28；未来新世界中更新的 glibc 版本，可以认为一定是与 2.38 版本兼容的，
+所以不出意外的话，本文的结论也适用于未来新世界系统中更新版本的 glibc。
+
+### ELF 文件格式
+
+新旧世界的 ELF 文件格式是一致的，包括 ELF 头中的架构字段 `e_machine`，其值在新旧世界中都为 258；
+其余的构造也基本一致。唯一不同的是 `e_flags` 字段的 `bit[7:6]`。旧世界的取值是 `0`，
+而新世界的 ELF 文件取值是 `1`[^b1]。使用 `readelf --headers` 查看一个 ELF 文件的头部信息，
+在 `ELF Header:` 一节的 `Flags:` 可以看到 `OBJ-v1` 字样，说明这是一个为新世界编译的 ELF
+文件；反之，如果看到 `OBJ-v0` 字样，说明这是一个为旧世界编译的 ELF 文件。
+
+检查这个标志是判断一个 ELF 文件是为新世界编译的还是为旧世界编译的最直接和可靠[^b2]的方法。但是，
+截至目前（2024 年 2 月中），新旧世界运行时（包括内核的 ELF 加载器和 glibc 的动态链接器）都不会因为这个标志的不同而拒绝加载一个 ELF 文件，
+也不会因为这个标志的不同而采取不同的行为。
+
+[^b1]: 事实上，这个标志的真正含义是，目标（`.o`）文件告知链接器其包含的重定位指令语义的版本。
+    这些存在版本区别的重定位指令不会被用于动态链接，也就不会出现在最终链接产物（`.so` 和可执行程序）中。
+    因此，该标志的原始含义对于动态链接库和可执行程序而言是没有意义的。
+    但是恰好可被用于区分新旧世界的程序和动态链接库。
+[^b2]: 该标志是在 binutils 2.40 [引入](https://github.com/bminor/binutils-gdb/commit/c4a7e6b56218e1d5a858682186b542e2eae01a4a)的，
+    因此存在由此前版本的 binutils 为新世界生成的程序和动态链接库不带有 `OBJ-v1` 标志的情况。
+    binutils 2.40 发布的时间是 2023 年初，当时龙架构的新世界尚未形成较为可用的工具链等生态环境，
+    这样的程序和动态链接库的数量应该不多。
+
+### 程序解释器
+
+程序解释器（Program Interpreter）是动态链接的 ELF 可执行程序中的一个字段，
+用于指出该程序需要的动态链接器的路径。内核在加载一个动态链接的 ELF 可执行程序时，
+会根据这个字段的内容来加载动态链接器。新旧世界的程序解释器的路径是不同的：
+新世界的程序解释器路径是 `/lib64/ld-linux-loongarch-lp64d.so.1`，
+而旧世界的程序解释器路径是 `/lib64/ld.so.1`。这个路径是硬编码在所有动态链接的可执行程序中的。
+该路径的不同，直接导致旧世界的程序无法在新世界中运行，反之亦然。
+执行异世界程序时提示的 `No such file or directory` 错误，就是因为找不到对应的程序解释器。
+
+
+### 过程调用约定
+
+新旧世界的过程调用的参数和返回值的传递方式是一致的，大致而言，都是优先通过寄存器传递参数，
+多余的参数通过栈传递，返回值通过寄存器传递。同时，新旧世界用于传递参数和返回值的寄存器的编号也是一致的。
+另外，新旧世界调用者保存（caller-saved）寄存器和被调用者保存（callee-saved）寄存器的集合也是一致的。
+
+### 用户态兼容性概述
+
+正是因为新旧世界中，ELF 文件的头部存在不同的标记，并且对应的程序解释器的路径也不同，
+这使得在新世界系统中，无需 `chroot` 就能运行旧世界程序成为可能。
+
+实现这一目标，存在两种技术路线：隔离型和混合型。其中隔离型是指，
+旧世界的可执行程序调用旧世界的 `ld.so`，后者通过修改搜索路径，避开存储新世界动态链接库的路径，
+只加载旧世界的动态链接库；而新世界的可执行程序调用原有新世界的 `ld.so`，由于旧世界的动态链接库存放在另外的路径中，
+自然不会被搜索和加载，新世界的可执行程序的整个加载和执行过程不会有任何变化。这种技术路线的特点是，
+新旧世界泾渭分明。为实现兼容性，该技术路线不得不携带一整套满足旧世界程序运行的动态链接库。
+其中，那些有框架性质的动态链接库，存在着在特定路径中查找其它作为插件的动态链接库的行为，
+这类框架库，需要被重新编译，相应调整其查找位置。其余的简单的动态链接库则可以直接从旧世界中原样移植。
+这可能导致该解决方案占用较多存储空间。另外，对于插件性质的动态链接库，如果用户的新世界系统中安装了该插件，
+但旧世界的兼容层中没有提供该插件的旧世界版本，可能导致相应功能的缺失。隔离型路线的边界清晰，
+不需要大幅修改 glibc。事实上，隔离型的路线中，glibc 只需要实现信号处理函数中，上下文参数（`ucontext`）
+的转换翻译即可，其余的兼容性都可以交由内核解决。此外，隔离型路线的正确性易于保证，
+因为新旧世界存在着明确的分隔，对在该环境下工作的旧世界 glibc 而言，
+可以明确知道接受程序传入或传出给程序的结构体等数据是旧世界版本的，不至发生错误解读的问题。
+
+混合型则与隔离型相反。混合型利用了新旧世界的过程调用约定相同的特点，提供了一套修改过的 glibc。
+这套 glibc 同时提供了多个版本的符号，使得旧世界的程序和新世界的动态链接库可以同时与之动态链接。
+这种技术路线的特点是，新旧世界混杂，兼容层无须携带一整套满足旧世界程序运行的动态链接库，
+而是直接借用新世界的动态链接库，从而节约了存储空间，并且无需考虑所携带的动态链接库是否完备的问题。
+混合型技术路线需要对 glibc 进行较为复杂的修改。同时，对于接受程序传入或传出给程序的结构体等数据是新世界版本还是旧世界版本，
+可能存在误判的问题，导致错误解读数据。
+
+### glibc 符号版本
+
+众所周知，glibc 具有相当良好的兼容性。这是通过符号版本（Symbol Versioning）来实现的。
+具体而言 glibc 中所有的符号都相应地被分配了一个符号引入时的版本号。如果一个符号的 ABI 发生了变化，
+那么则会引入同名符号的新版本，而旧版本的符号则会被保留（实现可能会被替换为兼容的实现）。这个版本号是一个字符串，
+在动态链接的过程中，只有版本号相同的符号才会被链接。这样，即使 glibc 的 ABI 发生了变化，
+由于和旧版本 glibc 编译链接产生的可执行程序中的符号版本号是旧版本的，所以这个可执行程序在新版本 glibc 上运行时，
+也会使用旧版本的符号，从而保证了兼容性。glibc 的符号名称和关联的版本定义，位于其各目录的 `Versions` 文件中。
+例如 [`io/Versions`](https://elixir.bootlin.com/glibc/glibc-2.38/source/io/Versions)。在下文中，
+我们称在 `Versions` 文件中定义的符号版本号为“源码版本号”。从这个定义可知，一个符号的源码版本号是与架构无关的。
+与源码版本号相区别，在编译生成的二进制 glibc 库文件中定义的符号版本号，我们称之为“二进制版本号”。
+这个版本号会在编译链接其它可执行程序时被写入到可执行程序的符号表中，同时也是动态链接器在加载可执行程序时用来检查符号版本的版本号。
+在类似 i386 这样的架构上，一个符号的源码版本号和二进制版本号是一致的。但是，这并非对所有架构都成立。
+
+我们可以注意到，很多符号都是在最早的 2.0 版本中就定义了的，但是并非所有架构都是从 2.0 版本开始支持的。
+例如 riscv64 即是在 2.27 版本中才开始支持的。那么对于 riscv64 架构，
+是不可能存在与 2.26 或更早版本的 glibc 编译链接的程序的。这意味着，如果有符号在 2.0 至 2.26 版本之间改变了 ABI，
+那么这个符号的旧版本就没有存在的必要了。glibc 对该问题的处理方式是，定义了每一个架构的“纪元版本号”，
+即该架构引入时所在的 glibc 版本号。对于所有的符号，如果其源码版本号小于该架构的纪元版本号，
+那么在该架构上编译出来的 glibc 中，二进制版本号将会被设置为纪元版本号；如果有多个小于纪元版本号的源码版本号，
+则仅编译最新的那一个，并将其二进制版本号设置为纪元版本号。
+
+例如：`setrlimit` 有两个源码版本，分别是 `GLIBC_2.0` 和 `GLIBC_2.2`，而 riscv64 的纪元版本号是 2.27，
+那么在 riscv64 上编译出来的 glibc 中，`setrlimit` 的二进制版本号将会被设置为 `GLIBC_2.27`，
+其实际内容是 `GLIBC_2.2` 版本的符号。假若未来 glibc 2.50 引入了一个新的 `setrlimit` 的源码版本 `GLIBC_2.50`，
+那么在 riscv64 上编译出来的 glibc 中，`setrlimit` 将会存在两个二进制版本号，分别是 `GLIBC_2.27` 和 `GLIBC_2.50`。
+
+新旧世界在符号版本方面存在差异的来源是，旧世界的龙架构的纪元版本号是 2.27[^a1]，而新世界的是 2.36。
+由于 glibc 中的大多数符号的源码版本号都是从 2.0 开始的，因此在旧世界中，
+glibc 大多数符号的二进制版本号就是 `GLIBC_2.27`；而新世界中，相应地，大多数符号的二进制版本号是 `GLIBC_2.36`：
+这样，即使通过修改二进制可执行程序，将其程序解释器强行修改为另一个世界的，也无法正常运行，
+因为它期待要加载的 glibc 的符号版本在异世界中不存在。类似地，如果一个新世界的可执行程序试图加载（例如通过 `dlopen`）旧世界的（非 glibc 的）动态链接库，
+也是无法正确加载的，因为该旧世界动态链接库依赖的 glibc 的符号版本在新世界中不存在。
+
+[^a1]: 巧合的是，riscv64 的[纪元版本号](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/riscv/shlib-versions#L2)也是 2.27
+
+更为复杂的情况出现在 `libpthread` 中。旧世界的龙架构中，唯独 `libpthread` 的纪元版本号是 2.0，
+即旧世界中 `libpthread` 和 `libc` 的纪元版本号不一致。glibc 中已知的全部 Linux 支持的架构中，
+只有旧世界的龙架构存在这样的现象。这样做法的原因不得而知[^a2]，但是导致的后果是明确的。在 glibc 2.34
+之前，`libpthread` 和 `libc` 是分立的两个库。有部分符号，例如 `open`、`write` 等，
+在两个库中都有定义，但是其包括的代码可能不同（通过宏定义在编译期产生区别）。
+一个多线程程序在执行时，其调用的 `open`、`write` 等符号，由 `libpthread` 覆盖了 `libc` 中的定义。
+在 glibc 2.34 以及此后的版本，`libpthread` 合并进了 `libc`，
+于是 `libc` 中 `open`、`write` 等符号始终是多线程的版本。
+旧世界中 `libpthread` 和 `libc` 的纪元版本号不一致，造成了这样的 `open`、`write`
+等符号在旧世界存在两个二进制版本号，分别是 `libpthread` 中的 `GLIBC_2.0` 和 `libc` 中的 `GLIBC_2.27`。
+
+[^a2]: 但是可以注意到 MIPS 架构的[纪元版本号](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/mips/shlib-versions#L25)是 2.0，并跳过了 2.1。事实上，旧世界的 `libpthread` 的纪元版本号也是 2.0，并同样跳过了 2.1。
+
+
+### glibc 库列表
+
+动态链接的 ELF 文件（包括库和可执行程序）对于需要引入的带有版本号的符号，都会描述该符号所属的动态链接库的名称。
+但是 glibc 在执行动态链接时，会忽略实际提供对应版本符号的库的名称，这一行为在 glibc 2.30 被[引入](https://github.com/bminor/glibc/commit/f0b2132b35248c1f4a80f62a2c38cddcc802aa8c)。这为 glibc 后续将符号从其它库向 `libc`
+中集中提供了便利。以 `libpthread` 中的 `pthread_join` 为例。在 glibc 2.34 以及之后的版本中，
+该符号实际由 `libc` 提供，而 `libpthread` 变成了一个空白占位。对于和 glibc 2.34 以前版本链接的程序或其它库，
+显然需要的是 `libpthread` 中的 `pthread_join`。在动态链接时，glibc 会正常查找到 `libc`
+和 `libpthread` 库文件，从而满足了该程序和该库对所依赖的库的需求。当具体要查找 `pthread_join` 时，
+glibc 的动态链接器则不考虑所要求的 `pthread_join` 的提供者，只要载入的所有库中定义有 `pthread_join` 的对应版本，
+即可完成动态链接。
+
+在此之后，且在新世界的纪元版本 2.36 前，又有一些库的符号被移动到了 `libc` 中，这些库文件在新世界就彻底不存在了。
+然而，对于旧世界的程序而言，这些库文件仍然是需要的，应该提供占位库文件。下表是新旧世界中，
+所有对外供动态链接的库的列表。
+
+库名 | 旧世界 | 新世界 | 备注
+-----|------|------|----
+`libBrokenLocale.so.1` | 存在 | 存在
+`libanl.so.1` | 存在 | 不存在 | 需要补充占位库
+`libc.so.6` | 存在 | 存在
+`libc_malloc_debug.so.0` | 不存在 | 存在 | 该库在 2.34 引入
+`libcrypt.so.1`| 存在 | 不存在 | 该库在新世界默认禁用
+`libdl.so.2` | 存在 | 存在（占位）
+`libm.so.6` | 存在 | 存在
+`libnsl.so.1` | 存在 | 不存在 | 该库在新世界默认禁用
+`libpthread.so.0` | 存在 | 存在（占位）
+`libresolv.so.2` | 存在 | 存在
+`librt.so.1` | 存在 | 存在（占位）
+`libthread_db.so.1` | 存在 | 存在
+`libutil.so.1` | 存在 | 不存在 | 需要补充占位库
+
+### 具体函数的行为区别
+
+新旧世界 glibc 提供的函数的行为存在一些区别。这些区别是内核提供的用户态接口的不同导致的。
+本节将会讨论这些函数的行为区别。这里的“行为”主要指的是 glibc 对函数调用者呈现的行为。但是，
+在特定的讨论中，我们也会涉及到其向内核发出系统调用的行为。
+
+#### 信号相关
+
+我们知道，新世界内核中，最大的信号编号是 64；而旧世界内核中，最大的信号编号是 128。
+这导致了内核接受的 `sigset_t` 数据的大小不同。然而，glibc 中定义的 `sigset_t` 结构体的大小是相同的，
+总是能[容纳](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/types/__sigset_t.h) 1024 个信号。
+这意味着，新世界的 glibc 中的 `sigset_t` 数据的大小是 128 字节。因此，所有接受 `sigset_t` 结构体的 glibc 函数的
+ ABI 是兼容的，不至于出现数据溢出的情况。所有读取 `sigset_t` 结构体的新世界函数，完全可以读取旧世界程序提供的 `sigset_t` 结构体，并正常工作。
+所有写入 `sigset_t` 结构体的新世界函数，也可以写入旧世界程序提供的 `sigset_t` 结构体。由于旧世界的程序会使用其中的前 128 个比特位（即 128 个信号），
+而写入 `sigset_t` 结构体的新世界函数仅会写入前 64 个比特位，所以需要补充清零随后的 64 个比特位，以保证旧世界的程序不会接收到未初始化的数据。
+此外，glibc 还提供了一些函数，用于修改 `sigset_t` 结构体或对其进行逻辑运算，这些函数仅会操作对应世界中可用的信号编号所对应的比特位，
+因此对外呈现的行为有所不同。
+
+下列函数属于 `sigset_t` 编辑修改类函数，其所能操作的信号编号的范围不同：
+
+- `sigorset`
+- `sigandset`
+- `sigisemptyset`
+- `sigismember`
+- `sigaddset`
+- `sigfillset`
+- `sigemptyset`
+- `sigdelset`
+
+下列函数属于只读 `sigset_t` 的函数，新世界的该函数可以正常读取旧世界程序提供的 `sigset_t`：
+
+- `epoll_pwait2`
+- `epoll_pwait`
+- `ppoll`
+- `__ppoll_chk`
+- `pselect`
+- `signalfd`
+- `sigwaitinfo`
+- `sigwait`
+- `sigtimedwait`
+- `__sigsuspend`
+- `sigsuspend`
+
+下列函数要写入 `sigset_t`，如果新世界的该函数要写入旧世界提供的 `sigset_t`，还需要补充清零随后的 64 个比特位：
+
+- `sigpending`
+- `pthread_sigmask`
+- `sigprocmask`
+
+下列函数虽然读写了 `sigset_t`，但是完整拷贝了 `sigset_t` 结构体，故其行为与最大的信号编号无关：
+
+- `posix_spawnattr_getsigmask`
+- `posix_spawnattr_getsigdefault`
+- `posix_spawnattr_setsigmask`
+- `posix_spawnattr_setsigdefault`
+
+#### `ucontext` 相关
+
+`ucontext_t` 结构体出现在两种地方：一是在信号处理函数的第三个参数中[^1]；二是在 `getcontext`、`setcontext`、`makecontext`、`swapcontext` 函数中[^2]。
+对 glibc 的用户而言，在这两种地方的 `ucontext_t` 结构体应当能互操作[^3]。例如，一个信号处理函数在接受到信号时，
+将此前用 `getcontext` 函数保存的 `ucontext_t` 结构体复制到其第三个参数所指位置，那么在该信号处理函数结束后，
+程序流将会转向 `getcontext` 函数保存的那个上下文；如果这个信号处理函数又将收到的原始 `ucontext_t` 保存到其它位置，
+然后在此后的某个时刻，对保存的 `ucontext_t` 调用 `setcontext` 函数，即可将程序流转回到发生信号中断的上下文。
+同时注意到，信号处理函数接受的 `ucontext_t` 结构体直接来自于内核，而 `*context` 函数是由 glibc 提供的，
+所以就 `ucontext_t` 而言，glibc 提供的版本和内核提供的版本必须完全二进制兼容。这一点与其它的结构体不同，
+其它的结构体，glibc 可以提供与内核不同的版本，只要 glibc 函数能正确将二者转换即可。例如，`sigaction` 结构体，
+glibc 提供的版本和内核提供的版本是不一致的[^4]，需要 glibc 函数将二者转换。
+
+[^1]: [`sigaction(2)`](https://man7.org/linux/man-pages/man2/sigaction.2.html) “The siginfo_t argument to a SA_SIGINFO handler” 一节
+[^2]: [`getcontext(3)`](https://man7.org/linux/man-pages/man3/getcontext.3.html)
+[^3]: [`getcontext(3)`](https://man7.org/linux/man-pages/man3/getcontext.3.html) “The function setcontext() restores the user context” which “should have
+       been … received as the third argument to a signal handler”
+[^4]: 对比 [`sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/sigaction.h#L27) 和
+       [`kernel_sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/kernel_sigaction.h#L9)
+
+截至 glibc 2.38 版本，新世界的 `*context` 函数仅能处理 `ucontext_t` 结构体中的通用（整数）寄存器部分，而不能处理浮点、向量扩展和 LBT 扩展部分。
+旧世界的 `*context` 函数能处理 `ucontext_t` 结构体中通用（整数）寄存器和浮点寄存器，但不能处理向量扩展和 LBT 扩展部分。
+此外，旧世界 glibc 提供的 `ucontext_t` 定义[^5]与旧世界内核[^6]的定义对比，可以发现前者缺少用于存放 LBT 扩展寄存器的 `uc_mcontext.sc_scr[4]` 字段，
+致使后续用于存放浮点寄存器的 `uc_mcontext.sc_fpregs[32]` 字段的偏移量发生了变化。这意味着，
+旧世界的 `*context` 函数在处理旧世界内核提供给信号处理函数的 `ucontext_t` 结构体时，无法正确处理浮点寄存器。
+综上所述，旧世界 glibc 也仅能正确处理 `ucontext_t` 结构体的通用（整数）寄存器部分。这样，在功能上，
+恰好新旧世界达成了一致——都只能正确处理通用寄存器部分。
+
+[^5]: 可以在 Loongnix 发行版的 `/usr/include/loongarch64-linux-gnu/sys/ucontext.h` 找到
+[^6]: 可以在 Loongnix 发行版的 `/usr/include/loongarch64-linux-gnu/bits/sigcontext.h` 找到
+
+glibc 提供了两个函数，可以被用于注册信号处理函数，这两个函数分别是 `sigaction` 和 `signal`。
+其中，`signal` 函数是对 `sigaction` 函数的封装。这样，无论是如何注册的信号处理函数，
+都会在第三个参数中接受到一个 `ucontext_t` 结构体指针。但是根据 glibc [文档](https://man7.org/linux/man-pages/man2/signal.2.html)，
+`signal` 函数注册的信号处理函数只应该接受第一个参数。这意味着，如果 `signal` 函数注册的信号处理函数
+遵循了文档的要求，只接受第一个参数，那么它会忽略第三个参数，即 `ucontext_t` 结构体指针会被忽略。
+这意味着，`signal` 函数注册的信号处理函数，是新旧世界无关的，不需要针对这样的信号处理函数做任何兼容性处理。
+而 `sigaction` 函数注册的信号处理函数，是新旧世界相关的，需要额外的兼容性处理。一种可能的兼容性处理是，
+当用户调用 `sigaction` 函数注册一个接受旧世界的 `ucontext_t` 结构体信号处理函数时，实际不注册这个函数，
+而是注册一个包裹函数，这个包裹函数接受新世界的 `ucontext_t` 结构体，并在栈上相应构造一个旧世界的 `ucontext_t` 结构体，
+然后调用用户提供的信号处理函数；在用户提供的信号处理函数返回后，将旧世界的 `ucontext_t` 结构体的内容拷贝回新世界的 `ucontext_t` 结构体中。
+需要注意的是，信号处理函数无法接受自定义的参数，这意味着原始用户提供的信号处理函数的地址必须以某种方式保存下来，
+以便包裹函数调用它。而在实现这一点时要十分小心地处理锁和信号屏蔽，因为整个这个注册信号处理函数的过程不再是原子的。
+
+无论如何处理，都不会改变新旧世界 `ucontext_t` 结构体完全不兼容的事实，也无法扭转旧世界 glibc
+和旧世界内核 `ucontext_t` 结构体存在差异的现状，因此如果出现了新旧世界可执行程序和动态链接库的混合链接，
+并且存在将 `ucontext_t` 结构体在新旧世界间传递的情况，始终无法保证正确识别 `ucontext_t` 结构体是新世界的还是旧世界的。
+不过幸运的是，这样的情况十分罕见。
+
+下列函数涉及 `ucontext_t` 结构体，因此新旧世界的函数完全不二进制兼容：
+
+- `getcontext`
+- `setcontext`
+- `makecontext`
+- `swapcontext`
+
+下列函数涉及注册能接收 `ucontext_t` 结构体的信号处理函数，因此需要额外的兼容性处理：
+
+- `sigaction`
+
+下列函数注册的信号处理函数会忽略 `ucontext_t` 结构体指针，因此无需特殊处理：
+
+- `signal`
+
+#### longjmp 相关
+
+`setjmp`、`sigsetjmp`、`longjmp`、`siglongjmp` 函数是用于实现非局部跳转的函数。
+其中 `set*jmp` 函数会将当前的程序状态（可选地，包括当前的信号掩码，即 sigmask）保存到一个 `jmp_buf` 结构体中，
+而 `*longjmp` 函数则将上述状态恢复。这些函数的行为与 `*context` 函数类似。在新旧世界中，
+`jmp_buf` 结构体的定义完全一致，因此这些 `*jmp` 函数是完全二进制兼容的。
+
+下列函数涉及 `jmp_buf` 结构体，在新旧世界间完全兼容：
+
+- `setjmp`
+- `sigsetjmp`
+- `longjmp`
+- `siglongjmp`
+
+#### `fstat` 相关
+
+新世界的内核中，缺少 `fstat` 和 `newfstatat` 系统调用。这两个系统调用可以被用于获取文件的元数据。
+其中，`fstat` 可以获取一个打开的文件描述符（file descriptor, fd）所对应的文件的元数据；
+而 `newfstatat` 则既可以获取一个打开的文件描述符所对应的文件的元数据，也可以获取一个路径所对应的文件的元数据。
+在操作对象上，`statx` 与 `newfstatat` 是一致的，但是可以按需返回更多的信息。因此，在功能上，
+`statx` 是 `fstat` 和 `newfstatat` 的超集，并取代了这两个系统调用。
+
+在 2.38 的 glibc 中，所有 `*stat*` 函数会在编译期通过宏指令检查内核是否提供了 `fstat` 或 `newfstatat` 的定义，
+如果没有，那么这些函数会调用 `statx`[^7] 并负责转换数据结构。这意味着，与旧世界相比，这些 `*stat*` 函数对外呈现的行为是不变的，
+新旧世界的函数是二进制兼容的。本节会着重讨论其向内核发出系统调用的行为区别。
+
+[^7]: 这些函数最终会调用 [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
+
+对于旧世界上基于 Chromium 的浏览器和基于 Electron 的应用程序而言，Chromium 基于 seccomp 的沙箱机制会针对 `statx`
+[返回](https://chromium.googlesource.com/chromium/src/sandbox/+/7462a4fd179376882292be2381a22df6819041c7%5E%21)
+`ENOSYS` 错误，期待沙箱内的进程自行回落至 `fstat` 或 `newfstatat`。
+这是因为，seccomp [无法审查](https://lwn.net/Articles/799557/)系统调用的指针参数背后的内容。
+而 Chromium 的一种沙箱规则则要求程序只能操作已经打开的 fd，而不能访问任何系统路径，
+因此只能放行（在新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
+
+为了能让这部分程序正常运行，需要调整上述函数的行为，当 `statx` 返回 `ENOSYS` 时，
+改为使用 `fstat` 或 `newfstatat`；同时，需要在新世界的内核中补充 `fstat` 和 `newfstatat` 的实现。
+
+glibc 中下列导出函数涉及 `fstat` 和 `newfstatat`，为兼容目前尚未适配 `statx` 的 Chromium 的沙箱机制，需要额外的兼容性处理：
+
+- `stat`
+- `fstat`
+- `lstat`
+- `fstatat`
+
+被上述函数引用，实际进行系统调用的 glibc 内部函数有：
+
+- `__fstatat64_time64`
+
+此外，还有为 2.33 之前版本的 glibc 提供的兼容符号所指向的函数也涉及该问题：
+
+- `___fxstat64`
+- `__fxstatat64`
+- `___lxstat64`
+- `___xstat64`
+
+#### 杂项
+
+新世界系统中同时提供 `clone3` 和 `clone`，而旧世界系统中仅提供 `clone`。
+新世界的 glibc 会在编译期检查内核是否提供了 `clone3`，如果提供了，
+那么 `fork` 和 `pthread_create` 等函数会调用 `clone3`。
+在运行时，如果 `clone3` 返回 `ENOSYS`，
+则[回落](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/clone-internal.c#L109)到 `clone`。
+该行为不会影响新旧世界函数的二进制兼容性。但是，`clone3` 的参数都通过内存中的结构体传递；因此出于上一节提到的原因，Chromium 的 seccomp 沙箱机制也无法审查 `clone3` 的参数，
+因此对 `clone3` 一律[返回](https://chromium.googlesource.com/chromium/src/sandbox/+/482404adee4fc0487452c7ae5ac9c192b0f4fd30%5E%21) `ENOSYS` 错误，
+期待 glibc 回落使用 `clone` 系统调用。
+该机制使得在 `clone3` 方面，新世界的 glibc 库函数可以兼容旧世界的 Chromium 沙箱。
+然而，个别基于 Electron 的旧世界应用，由于打包的 Chromium 版本较旧，其沙箱机制不支持针对
+`clone3` 返回 `ENOSYS`，而是返回其它的错误，致使 glibc 无法回落使用 `clone`，造成程序无法运行。
+
+为了避免这一问题，如果要实现新旧世界混合链接，需要禁用 `clone3` 的支持，直接调用 `clone`。
+
+此外，旧世界的 glibc 对外导出了 `___brk_addr` 符号，而新世界没有导出。
