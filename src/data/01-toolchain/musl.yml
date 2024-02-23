@@ -4,8 +4,8 @@ repoURL: 'https://git.musl-libc.org/cgit/musl'
 portingEfforts:
   - authors: ['loongson']
     desc: ''
-    link: 'https://www.openwall.com/lists/musl/2022/11/15/1'
-    supportStatus: UnderReview
-    releasedSinceVersion: ''
+    link: 'https://git.musl-libc.org/cgit/musl/commit/?id=522bd54edaa2fa404fd428f8ad0bcb0f0bec5639'
+    supportStatus: WaitingRelease
+    releasedSinceVersion: '1.2.5'
     goodSinceVersion: ''
     quality: OnPar
