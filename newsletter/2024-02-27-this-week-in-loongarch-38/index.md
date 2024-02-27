@@ -96,14 +96,29 @@ LoongArch 支持——后者更是一个已发布版本，我们无法坐时光�
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+龙芯中科[发布了](https://mp.weixin.qq.com/s/T-91LzHC1aZYrQPVyWoaSw)基于龙架构讲授的计算机核心课程
+MOOC（慕课）资源。
 
-## 社区整活:儿: {#grins}
+时过境迁，Debian `loong64` 移植的完成度于 2 月 22 日前后再次超过 90%，之后将相对稳定了。
+（先前虽然也达到过 90% 甚至更高，但当时许多基础包是手工上传的，因此每当这些基础包版本更新，完成度就会跌。
+目前此情况已得到相当缓解。）
+感谢 [RevySR] 提供以上两条新闻线索！
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
+![Debian Ports 架构完成度折线图](./debian-ports-built-percent-graph.png)
 
-TODO
+[安同开源社区][aosc]（AOSC）贡献者[白铭骢][MingcongBai] 给 KDE 桌面硬件抽象组件
+Solid [增加了](https://invent.kde.org/frameworks/solid/-/merge_requests/159)
+LoongArch `/proc/cpuinfo` 的解析支持，以便在 KInfoCenter 正确显示龙架构处理器的型号。
+感谢 :ta: 自己制造并提供新闻线索！
+
+2 月 16 日，musl libc 上游[合并了](https://git.musl-libc.org/cgit/musl/commit/?id=522bd54edaa2fa404fd428f8ad0bcb0f0bec5639)龙架构移植。
+待 musl 新版本正式发布后，Rust musl target、Gentoo musl profile、Alpine Linux
+等等大量工作都将可以开展了。
+感谢 [heiher] 提供新闻线索！
+
+[aosc]: https://aosc.io
+[MingcongBai]: https://github.com/MingcongBai
+[RevySR]: https://github.com/RevySR
 
 ## 张贴栏 {#bulletin}
 
