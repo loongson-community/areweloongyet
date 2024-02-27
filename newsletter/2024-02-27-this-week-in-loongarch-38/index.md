@@ -93,7 +93,7 @@ mengqinggang [修复了](https://sourceware.org/pipermail/binutils/2024-February
 CRC intrinsic 被翻译为指令后多余的符号扩展操作。
 由于 CRC 操作几乎总是出现在热点循环中，此优化势必提升性能。
 
-感谢 [Xi Ruoyao][xry111] 提供本节的新闻线索！
+感谢 [Xi Ruoyao][xry111] 自己制造并提供本节的新闻线索！
 
 #### LLVM {#llvm}
 
@@ -141,7 +141,7 @@ LoongArch `/proc/cpuinfo` 的解析支持，以便在 KInfoCenter 正确显示�
 之后对 elfutils [也做了](https://sourceware.org/pipermail/elfutils-devel/2024q1/006839.html)类似的事情。
 
 [Xi Ruoyao][xry111] 还给 XZ 项目[增加了](https://github.com/tukaani-project/xz/pull/86) LoongArch CRC32 优化。
-感谢 [Xi Ruoyao][xry111] 提供以上两条新闻线索！
+感谢 :ta: 自己制造并提供以上两条新闻线索！
 
 [aosc]: https://aosc.io
 [MingcongBai]: https://github.com/MingcongBai
