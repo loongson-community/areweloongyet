@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-38
 title: 每周一龙：第 38 期
 authors: [xen0n]
-date: 2024-02-26T00:00:00+08:00
+date: 2024-02-27T20:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---
