@@ -46,6 +46,9 @@ Linux/LoongArch CVE：CVE-2024-26588。
 * 从 6.1 起，被提交 `bbfddb904df6f82` 引入，在 6.8-rc1 为提交 `36a87385e31c` 所修复
 
 请使用上游内核的 LoongArch 用户、开发者注意。（xen0n 为您检查了 Loongnix 的 Linux 4.19.190.8.14 代码，不存在该问题。但不确定其他旧世界系统或「产品内核」是否受影响。）
+感谢 [xry111] 提供新闻线索！
+
+[xry111]: https://github.com/xry111
 
 :::info 请受中国法律管辖的读者注意
 这是友情提醒：如果您或您的组织在中国大陆法域内提供、运营网络服务或从事信息安全工作，
@@ -73,7 +76,23 @@ mengqinggang [修复了](https://sourceware.org/pipermail/binutils/2024-February
 
 #### GCC {#gcc}
 
-TODO
+为防止先前的 GCC 12.x/13.x 版本与 Binutils 2.42 搭配时[生成错误代码](https://github.com/loongson-community/discussions/issues/41)，
+不得不将 relaxation 支持往回移植到 GCC 12.4 与 GCC 13.3。
+
+对 GCC 12 而言，唯一可感知的明显变化是新增了 `-mrelax` 与 `-mno-relax` 支持；
+当 `-mpass-relax-to-as` 生效时，它们将被透传至汇编器。`-mpass-relax-to-as`
+的默认取值取决于 GCC 构建时搭配的汇编器是否支持 `-mrelax`。GCC 本身的行为则不受这些开关影响。
+
+对 GCC 13 而言，情况也类似：如果在 GCC 构建时检测到汇编器支持 `-mrelax`，
+并且在当次具体的 GCC 调用时也生效了 `-mrelax`，那么将默认开启 `-mno-explicit-relocs`。
+后一条要件是 [Xi Ruoyao][xry111] 为了保持与 Binutils 2.41
+搭配时的行为不变而特意[做的兼容](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/646269.html)。
+
+[Xi Ruoyao][xry111] 还[去除了](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/646487.html)
+CRC intrinsic 被翻译为指令后多余的符号扩展操作。
+由于 CRC 操作几乎总是出现在热点循环中，此优化势必提升性能。
+
+感谢 [Xi Ruoyao][xry111] 提供本节的新闻线索！
 
 #### LLVM {#llvm}
 
@@ -115,6 +134,13 @@ LoongArch `/proc/cpuinfo` 的解析支持，以便在 KInfoCenter 正确显示�
 待 musl 新版本正式发布后，Rust musl target、Gentoo musl profile、Alpine Linux
 等等大量工作都将可以开展了。
 感谢 [heiher] 提供新闻线索！
+
+[Xi Ruoyao][xry111] 给 `elf.h` [增加了](https://sourceware.org/pipermail/libc-alpha/2024-February/154909.html)编号从
+110 到 126 的新 LoongArch 重定位类型定义。
+之后对 elfutils [也做了](https://sourceware.org/pipermail/elfutils-devel/2024q1/006839.html)类似的事情。
+
+[Xi Ruoyao][xry111] 还给 XZ 项目[增加了](https://github.com/tukaani-project/xz/pull/86) LoongArch CRC32 优化。
+感谢 [Xi Ruoyao][xry111] 提供以上两条新闻线索！
 
 [aosc]: https://aosc.io
 [MingcongBai]: https://github.com/MingcongBai
