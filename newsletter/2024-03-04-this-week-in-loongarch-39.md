@@ -56,6 +56,7 @@ TODO
 
 本栏目可供张贴公益性质的各种信息。
 
+* 您可在 GitHub [浏览](https://github.com/loongson-community/discussions/labels/%E8%8B%B1%E9%9B%84%E5%B8%96)目前所有开放的英雄帖。
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
 [call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16
