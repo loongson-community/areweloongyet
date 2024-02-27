@@ -22,10 +22,12 @@ draft: true  # TODO
 ### Linux {#linux}
 
 在移植、测试 Chromium 的过程中，社区同学们发现了 Chromium seccomp 沙箱机制对
-`statx` 系统调用的处理方式存疑。xen0n [重新发起了](https://lore.kernel.org/loongarch/20240226-granit-seilschaft-eccc2433014d@brauner/T/#t)讨论：
+`statx` 系统调用的处理方式存疑。[xen0n] [重新发起了](https://lore.kernel.org/loongarch/20240226-granit-seilschaft-eccc2433014d@brauner/T/#t)讨论：
 本次的问题本质上与数年前就已为社区所深知的 seccomp 深参数审查（deep argument inspection）问题相同。
 截至周一晚间，已经累积了相当多的讨论内容，其深度、复杂度甚至不日即可撑起一篇专栏文章；
 我们将在尘埃落定之后为您追踪报道。
+
+[xen0n]: https://github.com/xen0n
 
 来自统信的 Wang Yuli [意图清理](https://lore.kernel.org/loongarch/20240226080328.334021-1-wangyuli@uniontech.com/)
 LoongArch CRC32 加速代码中的两条 64 位模式用不着的语句。xen0n 建议 :ta:
@@ -73,6 +75,10 @@ mengqinggang [修复了](https://sourceware.org/pipermail/binutils/2024-February
 TODO
 
 #### LLVM {#llvm}
+
+[xen0n] 在研究 Telegram Desktop 为何会在 Scudo 的 `free` 函数中无限递归的过程中，
+顺便发现 Scudo 没有用上 LoongArch 的专门 CRC 计算指令，
+遂顺手[做掉了](https://github.com/llvm/llvm-project/pull/83113)。
 
 [heiher] [改进了](https://github.com/llvm/llvm-project/pull/82767) LoongArch
 代码生成后端对「长得像加法」操作的判断方式，从而能够避免生成少量不必要的指令。
