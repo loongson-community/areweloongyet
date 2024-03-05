@@ -3,9 +3,9 @@ homepageURL: 'https://www.debian.org'
 repoURL: 'https://salsa.debian.org'
 portingEfforts:
   - authors: ['loongson']
-    desc: ''
+    desc: '可以在 https://buildd.debian.org/status/architecture.php?a=loong64&suite=sid 围观移植进度'
     link: 'https://wiki.debian.org/Ports/loong64'
     supportStatus: WIP
     releasedSinceVersion: ''
     goodSinceVersion: ''
-    quality: NeedsCleanup
+    quality: OnPar
