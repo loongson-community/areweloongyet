@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-39
 title: 每周一龙：第 39 期
 authors: [xen0n]
-date: 2024-03-04T00:00:00+08:00
+date: 2024-03-05T21:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---
