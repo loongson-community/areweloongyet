@@ -43,14 +43,32 @@ TODO
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+来自[安同开源社区][aosc]（AOSC）的新旧世界兼容层 `libLoL`
+[发布了](https://liblol.aosc.io/docs/dev/changelog/#014) 0.1.4 版本，
+同时[提供](https://github.com/AOSC-Dev/liblol/releases/tag/debian%2Fv0.1.4-1)适配
+Debian 的安装包。
+另外，社区[整理了](https://liblol.aosc.io/docs/apps/)旧世界应用的兼容性。
+感谢[王邈][shankerwangmiao]提供新闻线索！
 
-## 社区整活:儿: {#grins}
+[aosc]: https://aosc.io
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
+Linux From Scratch 12.1 的 LoongArch 版本——`loongarch-12.1` 现已发布，您可在以下网址阅读：
 
-TODO
+* [官网英文版，systemd 服务管理方式](https://www.linuxfromscratch.org/~xry111/lfs/view/loongarch-12.1-systemd/)
+* [官网英文版，传统服务管理方式](https://www.linuxfromscratch.org/~xry111/lfs/view/loongarch-12.1/)
+* [xry111 中文版，systemd 服务管理方式](https://lfs.xry111.site/zh_CN/loongarch-12.1-systemd/)
+* [xry111 中文版，传统服务管理方式](https://lfs.xry111.site/zh_CN/loongarch-12.1/)
+
+感谢 [xry111] 提供新闻线索！
+
+Debian 的 Linux 内核团队[合并了](https://salsa.debian.org/kernel-team/linux/-/merge_requests/879)
+Weihao Li 的架构支持补丁。随着 Debian 不稳定版的 Linux 版本上升到 `6.7.7-1`，Debian
+内核终于支持了 LoongArch。
+感谢 [zhangn1985] 提供新闻线索！
+
+[shankerwangmiao]: https://github.com/shankerwangmiao
+[xry111]: https://github.com/xry111
+[zhangn1985]: https://github.com/zhangn1985
 
 ## 张贴栏 {#bulletin}
 
