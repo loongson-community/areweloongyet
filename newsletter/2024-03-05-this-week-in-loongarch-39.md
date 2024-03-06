@@ -132,6 +132,15 @@ binutils 2.42 支持之后才方便恢复了。
 
 ## 杂闻播报 {#assorted-news}
 
+[杰哥][jiegec]为 Debian GRUB [增加的](https://salsa.debian.org/grub-team/grub/-/merge_requests/42)
+LoongArch EFI 平台支持终于冲过了终点线，很快将被集成了。
+不过发稿前可能等不到了：`i386` 架构的构建居然[失败了](https://salsa.debian.org/grub-team/grub/-/jobs/5410444)，可能导致自动合并被阻止。
+感谢[杰哥][jiegec]提供新闻线索。
+
+[Xinmudotmoe] [测试了](https://github.com/loongson-community/discussions/issues/47)采用
+64KiB 页的 Linux，发现无法完成引导。目前的调查显示这很可能是因为 BFD 链接器默认使用的页大小是 16KiB。
+以前 xen0n 在做 LLD 移植的时候对此参数采用了 64KiB；后续 binutils 方面可能要跟进此处理。
+
 来自[安同开源社区][aosc]（AOSC）的新旧世界兼容层 `libLoL`
 [发布了](https://liblol.aosc.io/docs/dev/changelog/#014) 0.1.4 版本，
 同时[提供](https://github.com/AOSC-Dev/liblol/releases/tag/debian%2Fv0.1.4-1)适配
@@ -155,7 +164,9 @@ Weihao Li 的架构支持补丁。随着 Debian 不稳定版的 Linux 版本上�
 内核终于支持了 LoongArch。
 感谢 [zhangn1985] 提供新闻线索！
 
+[jiegec]: https://github.com/jiegec
 [shankerwangmiao]: https://github.com/shankerwangmiao
+[Xinmudotmoe]: https://github.com/Xinmudotmoe
 [xry111]: https://github.com/xry111
 [zhangn1985]: https://github.com/zhangn1985
 
@@ -163,7 +174,11 @@ Weihao Li 的架构支持补丁。随着 Debian 不稳定版的 Linux 版本上�
 
 本栏目可供张贴公益性质的各种信息。
 
+* AOSC OS 维护者[白铭骢][MingcongBai]注意到 Intel 独立显卡的驱动支持已进入
+  Linux 6.8，遂[发布了](https://github.com/loongson-community/discussions/issues/46)英雄帖，
+  召唤勇者为其添加非 4KiB 页架构（如:dragon:）支持。
 * 您可在 GitHub [浏览](https://github.com/loongson-community/discussions/labels/%E8%8B%B1%E9%9B%84%E5%B8%96)目前所有开放的英雄帖。
 * 本周报[持续接受网友投稿][call-for-submissions]。欢迎来上游坐坐！
 
+[MingcongBai]: https://github.com/MingcongBai
 [call-for-submissions]: https://github.com/loongson-community/areweloongyet/issues/16
