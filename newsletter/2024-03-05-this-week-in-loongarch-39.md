@@ -25,17 +25,18 @@ TODO
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
 #### binutils {#binutils}
 
-Lulu Cai 为 binutils 汇编器、反汇编器[补充了](https://sourceware.org/pipermail/binutils/2024-February/132734.html)所有
-LoongArch 汇编语法的测试用例。
+近期来自龙芯的维护者 Lulu Cai 生产力爆棚：
 
-Lulu Cai 还为 LVZ 指令集扩展的 `gcsrxchg` 指令[补充了](https://sourceware.org/pipermail/binutils/2024-February/132733.html)比照其基础指令集等价物
-`csrxchg` 的 `rj` 操作数约束检查，意在防止指令编码的实际含义变成 `gcsrrd` 或 `gcsrwr`。
+* [允许了](https://sourceware.org/pipermail/binutils/2024-March/132839.html)
+  gas 在解析到非法操作数之后继续处理余下输入，而非直接退出。这有助于一次性看清输入中存在的所有错误。
+* [继续迭代](https://sourceware.org/pipermail/binutils/2024-March/132767.html)
+  TLS transition 与 relaxation 功能。
+* 为 binutils 汇编器、反汇编器[补充了](https://sourceware.org/pipermail/binutils/2024-February/132734.html)所有
+  LoongArch 汇编语法的测试用例。
+* 为 LVZ 指令集扩展的 `gcsrxchg` 指令[补充了](https://sourceware.org/pipermail/binutils/2024-February/132733.html)比照其基础指令集等价物
+  `csrxchg` 的 `rj` 操作数约束检查，意在防止指令编码的实际含义变成 `gcsrrd` 或 `gcsrwr`。
 
 :::info 为啥要特殊处理 CSR 指令的 `rj` 呢？
 CSR、Guest CSR 系列指令各有 3 条，但同一组的 3 条指令都共享操作码，靠 `rj` 取值来区分语义。`rj`
@@ -65,12 +66,69 @@ LoongArch 设计师觉得这还不过瘾：按照 LoongArch 过程调用约定�
 
 #### GCC {#gcc}
 
+chenxiaolong [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647255.html)一些向量测试用例的错误。
+
+Yang Yujie 为 musl libc [更换了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647240.html)库查找路径：
+从 `/lib64` 换回了 `/lib`，禁用了 multilib 处理。
+
+[Xi Ruoyao][xry111] [重构了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647197.html)向量浮点比较操作的测试用例，
+通过避免使用固定寄存器号的方式，使相关循环能被向量化，进而让这些测试得以正常通过了。
+
 [Xi Ruoyao][xry111] 为 gcc 也[增加了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647193.html)将
 `fp` 称作 `s9` 的支持。
 
 #### LLVM {#llvm}
 
-TODO
+LLVM 18.1.0 已于中国时间 3 月 6 日下午[正式发布](https://github.com/llvm/llvm-project/releases/tag/llvmorg-18.1.0)。请打包人们在处理此版本时注意：
+
+* 需要为 LLD 打上 [ULEB128 支持补丁](https://github.com/llvm/llvm-project/pull/83983)。
+* 需要为 LLVM 打上 [CAS 操作符号扩展补丁](https://github.com/llvm/llvm-project/pull/83750)。
+
+这些 backports 未能赶上 18.1.0，但后续的补丁版本应该会包含了，因此预计只需为
+18.1.0 这个版本做特殊处理。
+
+以下变更都对应当前开发中的分支，即 LLVM 19。
+
+[MQ-mengqing] 一个月前为 LLD [增加了](https://github.com/llvm/llvm-project/pull/81133)
+ULEB128 重定位操作的支持，这对 DWARF v5 调试信息的处理至关重要。此 PR 终于在 3 月 5 日合并了。
+
+[wangleiat] 跟进先前在第 36 期周报[报道过的](./2024-02-12-this-week-in-loongarch-36.md#gcc)
+GCC [同款修复](https://gcc.gnu.org/pipermail/gcc-patches/2024-February/645016.html)，为
+Clang 也[修复了](https://github.com/llvm/llvm-project/pull/84100)
+`__iocsrrd_h` 的返回值类型。
+
+[wangleiat] 还为 LoongArch 代码生成后端[启用了](https://github.com/llvm/llvm-project/pull/83759)
+Machine Scheduler。
+
+[SixWeining] 为解决 Firefox JavaScript 原子操作的[行为错误](https://bugzilla.mozilla.org/show_bug.cgi?id=1882301)，仿照先前
+RISC-V 的[类似修复](https://github.com/llvm/llvm-project/commit/616289ed29225c0ddfe5699c7fdf42a0fcbe0ab4)，
+为 LoongArch CAS 操作的输入[做了符号扩展](https://github.com/llvm/llvm-project/pull/83656)。
+此额外处理对拥有原生 CAS 支持的 LA664 微架构是不必要的；龙芯方面暂时没搞，[xen0n] 准备近期做掉。
+
+[leecheechen] [避免了](https://github.com/llvm/llvm-project/pull/82984)
+`llvm.loongarch.lasx.xvpermi.q` intrinsic 可能的未定义行为。
+
+[leecheechen]: https://github.com/leecheechen
+[MQ-mengqing]: https://github.com/MQ-mengqing
+[SixWeining]: https://github.com/SixWeining
+[wangleiat]: https://github.com/wangleiat
+
+#### Rust {#rust}
+
+[heiher] 与 [xiangzhai] 向 Rust `stdarch` SIMD intrinsics 库[贡献了](https://github.com/rust-lang/stdarch/pull/1535)
+LSX 与 LASX 的包装。这将极大便利 Rust 生态内的 LoongArch SIMD 优化工作。
+虽然代码目前已经合并了，也请关心这方面基础建设的同学们抽空测试、审查这些新增功能，以便尽早发现仍可能存在的设计、易用性问题等等。
+感谢 [heiher] 提供新闻线索！
+
+由于 Rust 官方使用的 LoongArch 工具链版本较低，在之前第 35 期周报[报道的](./2024-02-05-this-week-in-loongarch-35.md#rust)
+`medium` 代码模型工作合并之后，[出现了](https://github.com/rust-lang/rust/issues/121289)死循环的问题，
+[heiher] 只好将其[暂时回滚](https://github.com/rust-lang/rust/pull/121291)。
+由于 GCC 13 与 binutils 2.42 无法互操作是[已知问题](https://github.com/loongson-community/discussions/issues/41)，
+后续预计要等 crosstools-NG 项目[合并](https://github.com/crosstool-ng/crosstool-ng/pull/2095)
+binutils 2.42 支持之后才方便恢复了。
+
+[heiher]: https://github.com/heiher
+[xiangzhai]: https://github.com/xiangzhai
 
 ## 杂闻播报 {#assorted-news}
 
