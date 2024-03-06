@@ -21,7 +21,19 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+社区[仍在讨论](https://lore.kernel.org/loongarch/20240302082532.1415200-1-maobibo@loongson.cn/T/#m6a08c8474fdcf83d7345f388793209164cb65725)
+Linux KVM 在 LoongArch 上的 hypercall 接口定义细节。
+
+Huacai Chen 拟在架构代码中[代替驱动保证](https://lore.kernel.org/loongarch/20240305143958.1752241-1-chenhuacai@loongson.cn/)
+IO 操作的顺序语义，具体来说是将 `__io_aw()` 定义为 `mmiowb()`，并废除先前为
+qspinlock 自定义的行为。但由于涉及精妙、艰深的锁操作，预计仍需一些讨论才能确定此变更是否合理。
+
+Bibo Mao [细化了](https://lore.kernel.org/loongarch/20240305113343.1667480-1-maobibo@loongson.cn/)
+KVM `CPUCFG` 配置字的受支持位域信息。
+
+WANG Rui 跟进上游重构，将 LoongArch Linux 所用的 Rust target
+[切换为了](https://lore.kernel.org/loongarch/20240304141426.163517-1-wangrui@loongson.cn/)
+Rust 内建的 `loongarch64-unknown-none-softfloat`。这降低了一些复杂度与维护工作量。
 
 ### 工具链 {#toolchain}
 
