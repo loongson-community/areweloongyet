@@ -2,18 +2,19 @@
 slug: this-week-in-loongarch-39
 title: 每周一龙：第 39 期
 authors: [xen0n]
-date: 2024-03-05T21:00:00+08:00
+date: 2024-03-06T19:20:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有 Linux、工具链与发行版适配。
 详情点进来看！
 
 <!-- truncate -->
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
+
+本期周报的实际发稿时间是周三晚间，因为前两天都在忙别的——以为这周信息量不高。
 
 ## 先「马」再看 {#marked-projects}
 
