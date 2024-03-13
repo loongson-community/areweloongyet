@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-40
 title: 每周一龙：第 40 期
 authors: [xen0n]
-date: 2024-03-13T18:00:00+08:00
+date: 2024-03-13T17:50:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有工具链以及各种集成、测试工作。
 详情点进来看！
 
 <!-- truncate -->
