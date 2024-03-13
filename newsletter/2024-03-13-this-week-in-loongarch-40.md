@@ -37,7 +37,7 @@ TODO
 
 #### GCC {#gcc}
 
-Xi Ruoyao [允许了](https://gcc.gnu.org/cgi-bin/gcc-gitref.cgi?r=r14-9411)非
+[Xi Ruoyao][xry111] [允许了](https://gcc.gnu.org/cgi-bin/gcc-gitref.cgi?r=r14-9411)非
 `extreme` 代码模型下 IE 模型的 TLS 操作被 relax 到 LE 模型。
 （编者注：MaskRay 的 [*All about thread-local storage*](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage) 是 TLS 话题相当不错的入门材料。）
 
@@ -52,7 +52,26 @@ Lulu Cheng 还[修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/6
 
 #### LLVM {#llvm}
 
-TODO
+[MQ-mengqing] [使得](https://github.com/llvm/llvm-project/pull/84741)
+`R_LARCH_ALIGN` 可以相对于 section 工作。
+
+在上期周报[报道了](./2024-03-06-this-week-in-loongarch-39.md#llvm)
+`llvm.loongarch.lasx.xvpermi.q` 行为的变更之后，[xry111]
+[注意到了](https://github.com/loongson-community/areweloongyet/pull/164#discussion_r1514376491)该变更可能不妥；遂在向 LLVM 18.x 分支集成原变更的 PR 中[建议了](https://github.com/llvm/llvm-project/pull/83540#issuecomment-1981697199)不光不要往回移植，并且最好回滚该变更；[xen0n]
+看到之后[表示](https://github.com/llvm/llvm-project/pull/83540#issuecomment-1985088472)认同。
+龙芯维护者 [SixWeining] 在内部讨论后，接受了建议，[回滚了](https://github.com/llvm/llvm-project/pull/84708)原变更。
+
+[wangleiat] [修复了](https://github.com/llvm/llvm-project/pull/84454)为 LoongArch32
+生成代码时，遇到 MSB 操作数大于 31 的 `bstrins` 会崩溃的问题。该修复也已[往回移植到了](https://github.com/llvm/llvm-project/pull/84716)
+LLVM 18.x 分支。
+
+上期周报提到的修复了 Clang `__iocsrrd_h` intrinsic 返回类型的[变更](https://github.com/llvm/llvm-project/pull/84100)，
+也[往回移植到了](https://github.com/llvm/llvm-project/pull/84715)
+LLVM 18.x 分支。
+
+[MQ-mengqing]: https://github.com/MQ-mengqing
+[SixWeining]: https://github.com/SixWeining
+[wangleiat]: https://github.com/wangleiat
 
 #### Rust {#rust}
 
