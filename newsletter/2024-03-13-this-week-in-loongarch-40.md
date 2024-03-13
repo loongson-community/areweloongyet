@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-40
 title: 每周一龙：第 40 期
 authors: [xen0n]
-date: 2024-03-11T00:00:00+08:00
+date: 2024-03-13T18:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---
@@ -14,6 +14,8 @@ draft: true  # TODO
 <!-- truncate -->
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
+
+本期周报的实际发稿时间是周三晚间，因为前两天都在忙别的。
 
 ## 先「马」再看 {#marked-projects}
 
