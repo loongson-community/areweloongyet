@@ -37,7 +37,18 @@ TODO
 
 #### GCC {#gcc}
 
-TODO
+Xi Ruoyao [允许了](https://gcc.gnu.org/cgi-bin/gcc-gitref.cgi?r=r14-9411)非
+`extreme` 代码模型下 IE 模型的 TLS 操作被 relax 到 LE 模型。
+（编者注：MaskRay 的 [*All about thread-local storage*](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage) 是 TLS 话题相当不错的入门材料。）
+
+Chenghui Pan [清理了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647536.html)一些多余代码。
+
+Lulu Cheng [修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647308.html)
+使用 LL/SC 方式实现原子比较交换（atomic CAS）操作时，由于可能遗漏符号扩展动作，而导致潜在的原子语义错误的问题。
+这与上期周报[报道的](./2024-03-06-this-week-in-loongarch-39.md#llvm)相关 LLVM 变更修复的是同一问题。
+
+Lulu Cheng 还[修复了](https://gcc.gnu.org/pipermail/gcc-patches/2024-March/647311.html)寄存器名称
+`s9` 测试用例的调用方式。
 
 #### LLVM {#llvm}
 
