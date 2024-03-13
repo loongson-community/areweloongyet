@@ -43,16 +43,49 @@ TODO
 
 TODO
 
+#### Rust {#rust}
+
+暌违近一年，rustup 项目终于[迎来了](https://blog.rust-lang.org/2024/03/11/Rustup-1.27.0.html)
+1.27.0 版本的正式发布。
+在 LoongArch 新世界发行版进行 Rust 开发的同学们可以方便地安装、使用 `rustup` 工具了。除
+target tuple 取值不同之外，其余体验都与 x86 或 ARM 平台完全相同。
+感谢 [syhily] 提供新闻线索！
+
+[syhily]: https://github.com/syhily
+
 ## 杂闻播报 {#assorted-news}
 
-TODO
+[安同开源社区][aosc]（AOSC）开发者[王邈][shankerwangmiao]在维护 libLoL
+时，发现龙芯团队当初移植 glibc 数学库时写了一处笔误。
+沟通后，龙芯维护者 caiyinyu [修复了](https://sourceware.org/git/?p=glibc.git;a=commit;h=aeee41f1cf9bf58d3d316af36bb7f5a8699ab129)该笔误。
+该笔误在正常编译 glibc 时不会被触发，因为从
+[`libm_alias_finite` 的定义](https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/ieee754/libm-alias-finite.h;h=c56b43e4df534f2444da4c057b9734cac224ad30;hb=ef321e23c20eebc6d6fb4044425c00e6df27b05f#l27)可见，
+该宏定义对龙架构是无效的：龙架构的纪元版本高于 2.31，因此龙架构上的该宏是空操作。
+而在编译 libLoL 时，因为 libLoL 有意将 glibc 的纪元版本向过去推了，所以带有笔误的该语句生效，进而暴露了缺少符号的问题。
+感谢[王邈][shankerwangmiao]提供新闻线索！
+（编者注：您可查阅本站的[相关文档](/docs/world-compat-details#glibc-符号版本)了解此处涉及的技术细节。）
 
-## 社区整活:儿: {#grins}
+[aosc]: https://aosc.io
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
+[donmor] 在测试 DOSBox 的衍生项目 DOSBox-X 时，[发现](https://github.com/loongson-community/discussions/issues/48)它无法正常进行一些浮点运算。
+在 [xry111] 与 [xen0n] 的协助下，发现原因是该项目对浮点控制状态寄存器（FCSR）的处理不具备跨平台性；
+在 [donmor] 与 [xry111] [一][dosbox-x-4887][系列][dosbox-x-4888]的[修复][dosbox-x-4890]与[重构][dosbox-x-4891]之后，问题已被修复。
+感谢 [donmor] 提供新闻线索！
 
-TODO
+[dosbox-x-4887]: https://github.com/joncampbell123/dosbox-x/pull/4887
+[dosbox-x-4888]: https://github.com/joncampbell123/dosbox-x/pull/4888
+[dosbox-x-4890]: https://github.com/joncampbell123/dosbox-x/pull/4890
+[dosbox-x-4891]: https://github.com/joncampbell123/dosbox-x/pull/4891
+
+上期周报[提到的](./2024-03-06-this-week-in-loongarch-39.md#assorted-news) Debian
+GRUB 的 loong64 改动已被顺利集成，静待 Debian 包版本的下次正式更新。
+感谢 [jiegec] 提供新闻线索！
+
+[donmor]: https://github.com/donmor
+[jiegec]: https://github.com/jiegec
+[shankerwangmiao]: https://github.com/shankerwangmiao
+[xen0n]: https://github.com/xen0n
+[xry111]: https://github.com/xry111
 
 ## 张贴栏 {#bulletin}
 
