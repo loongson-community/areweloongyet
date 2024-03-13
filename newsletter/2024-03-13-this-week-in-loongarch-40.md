@@ -23,17 +23,13 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+Huacai Chen [移除了](https://lore.kernel.org/loongarch/20240312073131.2278318-1-chenhuacai@loongson.cn/)在
+LoongArch 上多余的 `flush_dcache_page` 定义。
+
+Huacai Chen 3 月 7 日[发出了](https://lore.kernel.org/loongarch/20240307144930.3919566-1-chenhuacai@loongson.cn/)
+Linux 6.9 开发周期的 KVM 变更，3 月 11 日已[被接受](https://lore.kernel.org/loongarch/208e03b7-374b-4062-bed2-dda595fcad77@redhat.com/)。
 
 ### 工具链 {#toolchain}
-
-#### ABI {#abi}
-
-TODO
-
-#### binutils {#binutils}
-
-TODO
 
 #### GCC {#gcc}
 
