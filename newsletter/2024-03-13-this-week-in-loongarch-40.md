@@ -81,6 +81,10 @@ LLVM 18.x 分支。
 target tuple 取值不同之外，其余体验都与 x86 或 ARM 平台完全相同。
 感谢 [syhily] 提供新闻线索！
 
+[heiher] [允许了](https://github.com/rust-lang/rust/pull/122022)从 Rust 层面控制底层
+LLVM 所新增的 LoongArch 目标特性 `frecipe` 与 `relax`。
+
+[heiher]: https://github.com/heiher
 [syhily]: https://github.com/syhily
 
 ## 杂闻播报 {#assorted-news}
