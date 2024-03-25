@@ -126,6 +126,7 @@ RPM 上游遂迅速合并了。
 
 |项目|称呼|
 |----|----|
+|C#|[`LoongArch64`](https://learn.microsoft.com/zh-cn/dotnet/api/system.runtime.interopservices.architecture?view=net-8.0)|
 |Go|`GOARCH=loong64`|
 |Rust|`loongarch64-unknown-linux-gnu`|
 
