@@ -117,6 +117,10 @@ const config: Config = {
             to: '/newsletter/this-week-in-loongarch-9',
             from: '/blog/this-week-in-loongarch-9',
           },
+          {
+            to: 'https://liblol.aosc.io/docs/dev/design/',
+            from: '/docs/world-compat-details/liblol',
+          },
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
