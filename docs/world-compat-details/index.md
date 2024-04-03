@@ -9,7 +9,7 @@ sidebar_position: 4
 
 已知的兼容方案有：
 
-* [`libLoL`](liblol.md)
+* [`libLoL`](https://liblol.aosc.io)
 
 ## 导言
 

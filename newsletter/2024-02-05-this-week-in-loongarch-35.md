@@ -159,7 +159,12 @@ LoongArch 软浮点系统上的构建，[Xi Ruoyao][xry111]
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
 [xen0n] 与安同开源社区（AOSC）开发者、`libLoL` 维护者[王邈][shankerwangmiao]一同为
-`libLoL` 撰写了技术文档，已加入本站阅读材料全家桶：[欢迎阅读](/docs/world-compat-details/liblol/)！
+`libLoL` 撰写了技术文档，已加入~~本站阅读材料全家桶~~ `libLoL` 项目网站：[欢迎阅读](https://liblol.aosc.io/docs/dev/design/)！
+
+:::info 修订说明
+原先 `libLoL` 项目没有官网，因此本周报最初发布时，该文档位于本站。自
+2024-04-03 起，该文档已经被转移到 `libLoL` 项目下了。
+:::
 
 2023 年 11 月 23 日，[Liu Yan][moontide] 为 `rtl8852au`
 项目[提交了](https://github.com/lwfinger/rtl8852au/pull/68)增加 LoongArch 支持的小补丁，
