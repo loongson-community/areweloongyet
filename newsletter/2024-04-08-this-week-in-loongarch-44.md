@@ -21,7 +21,11 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+TODO: KFENCE panics fixed
+
+TODO: add `linux/sizes.h`
+
+TODO: Loongson-2K PWM driver submitted
 
 ### 工具链 {#toolchain}
 
@@ -31,11 +35,17 @@ TODO
 
 #### binutils {#binutils}
 
-TODO
+TODO: move GOT before data for RELRO
+
+TODO: error on unknown reloc
 
 #### GCC {#gcc}
 
-TODO
+TODO: kill LSX on LA32
+
+TODO: Alignment params for LA664
+
+TODO: TLSDESC
 
 #### LLVM {#llvm}
 
