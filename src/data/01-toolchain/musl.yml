@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['loongson']
     desc: ''
     link: 'https://git.musl-libc.org/cgit/musl/commit/?id=522bd54edaa2fa404fd428f8ad0bcb0f0bec5639'
-    supportStatus: WaitingRelease
+    supportStatus: Released
     releasedSinceVersion: '1.2.5'
-    goodSinceVersion: ''
+    goodSinceVersion: '1.2.5'
     quality: OnPar
