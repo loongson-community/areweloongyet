@@ -51,7 +51,7 @@ export default async function awlyAsmdbPlugin(
       const dataPath = await actions.createData('asmdb.json', content)
       actions.addRoute({
           path: `/asmdb`,
-          component: '@site/src/components/AsmDBPage',
+          component: '@site/src/components/AsmDB',
           modules: {
             data: dataPath,
           },
