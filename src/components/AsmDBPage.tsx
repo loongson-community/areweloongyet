@@ -6,7 +6,7 @@ import Layout from '@theme/Layout'
 import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
 import AsmDB from '@site/src/components/AsmDB'
 
-class AsmDBPageUIState {
+class AsmDBListPageUIState {
   useManualSyntax: boolean
   selectedSubset: SubsetFlags
 
@@ -74,7 +74,7 @@ class AsmDBPageUIState {
 }
 
 export default function AsmDBPage({data}: {data: AsmDBData}): JSX.Element {
-  let state = new AsmDBPageUIState()
+  let state = new AsmDBListPageUIState()
 
   const subsetsConfig = [
     {name: 'LA32 Primary', get: () => state.subsetLA32Primary, action: (x: boolean) => state.setSubsetLA32Primary(x)},
