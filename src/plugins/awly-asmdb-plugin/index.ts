@@ -1,7 +1,7 @@
 import { spawn } from 'child_process'
 import path from 'path'
 
-import glob from 'glob-promise'
+import { glob } from 'glob'
 
 import type { LoadContext, Plugin } from '@docusaurus/types'
 

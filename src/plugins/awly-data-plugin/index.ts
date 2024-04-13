@@ -1,7 +1,7 @@
 import { opendir, readFile } from 'fs/promises'
 import path from 'path'
 
-import glob from 'glob-promise'
+import { glob } from 'glob'
 import yaml  from 'yaml'
 import type { LoadContext, Plugin } from '@docusaurus/types'
 
@@ -144,7 +144,7 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
     const categoryMetadata = await getCategoryMetadata(categoryDirPath)
 
     // parse projects in categories
-    const projectDefFilenames = await glob.promise('*.yml', {
+    const projectDefFilenames = await glob('*.yml', {
       cwd: categoryDirPath,
       ignore: [categoryIndexFilename],
     })
