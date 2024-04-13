@@ -144,7 +144,7 @@ function InsnList({ data, useManualSyntax, showSubset }: AsmDBOptions): JSX.Elem
   )
 }
 
-export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
+function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
   let state = new AsmDBListPageUIState()
 
   const subsetsConfig = [
@@ -158,28 +158,29 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
     { name: '非正式指令', get: () => state.subsetProvisional, action: (x: boolean) => state.setSubsetProvisional(x) },
   ]
 
+  return <Observer>{() => <>
+    <Switch onChange={(x) => state.setUseManualSyntax(x)} />以龙芯官方指定的指令助记符、汇编语法展示下列内容<br />
+
+    要看哪些指令？
+    {subsetsConfig.map((cfg, i) => <Checkbox
+      key={i}
+      checked={cfg.get()}
+      onChange={(e) => cfg.action(e.target.checked)}>{cfg.name}</Checkbox>)}
+
+    <InsnList
+      data={data}
+      useManualSyntax={state.useManualSyntax}
+      showSubset={state.selectedSubset}
+    />
+  </>}</Observer>
+}
+
+export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   return (
     <Layout title={'LoongArch 汇编指令速查'}>
-      <Observer>{() => {
-        return <>
-          <ThemeAwareAntdContainer>
-            <Switch onChange={(x) => state.setUseManualSyntax(x)} />以龙芯官方指定的指令助记符、汇编语法展示下列内容<br />
-
-            要看哪些指令？
-            {subsetsConfig.map((cfg, i) => <Checkbox
-              key={i}
-              checked={cfg.get()}
-              onChange={(e) => cfg.action(e.target.checked)}>{cfg.name}</Checkbox>)}
-          </ThemeAwareAntdContainer>
-
-          <InsnList
-            data={data}
-            useManualSyntax={state.useManualSyntax}
-            showSubset={state.selectedSubset}
-          />
-        </>
-      }}
-      </Observer>
+      <ThemeAwareAntdContainer>
+        <InsnListPage data={data} />
+      </ThemeAwareAntdContainer>
     </Layout>
   )
 }
