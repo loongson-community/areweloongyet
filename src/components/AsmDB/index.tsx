@@ -1,7 +1,5 @@
 import { Checkbox, Layout as AntdLayout, Menu, Switch } from 'antd'
 import type { MenuProps } from 'antd'
-import { action, computed, makeObservable, observable } from 'mobx'
-import { Observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
 import Layout from '@theme/Layout'
@@ -67,73 +65,6 @@ function subsetFlagsToBitmask(x: SubsetFlags): number {
   return y
 }
 
-class AsmDBListPageUIState {
-  useManualSyntax: boolean
-  selectedSubset: SubsetFlags
-
-  constructor() {
-    this.useManualSyntax = false
-    this.selectedSubset = {
-      primary: false,
-      la32: false,
-      la64: true,
-      lsx: false,
-      lasx: false,
-      lbt: false,
-      lvz: false,
-      provisional: false,
-    }
-
-    // XXX We have to init members here, because Docusaurus doesn't use our
-    // tsconfig which has the required useDefineForClassFields flag set, for
-    // makeAutoObservable without explicit initialization to work.
-    // makeAutoObservable(this)
-    makeObservable(this, {
-      useManualSyntax: observable,
-      selectedSubset: observable,
-      setUseManualSyntax: action,
-      subsetLA32: computed,
-      subsetLA32Primary: computed,
-      subsetLA64: computed,
-      subsetLSX: computed,
-      subsetLASX: computed,
-      subsetLBT: computed,
-      subsetLVZ: computed,
-      subsetProvisional: computed,
-      setSubsetLA32: action,
-      setSubsetLA32Primary: action,
-      setSubsetLA64: action,
-      setSubsetLSX: action,
-      setSubsetLASX: action,
-      setSubsetLBT: action,
-      setSubsetLVZ: action,
-      setSubsetProvisional: action,
-    })
-  }
-
-  setUseManualSyntax(newVal: boolean) {
-    this.useManualSyntax = newVal
-  }
-
-  get subsetLA32() { return this.selectedSubset.la32 }
-  get subsetLA32Primary() { return this.selectedSubset.primary }
-  get subsetLA64() { return this.selectedSubset.la64 }
-  get subsetLSX() { return this.selectedSubset.lsx }
-  get subsetLASX() { return this.selectedSubset.lasx }
-  get subsetLBT() { return this.selectedSubset.lbt }
-  get subsetLVZ() { return this.selectedSubset.lvz }
-  get subsetProvisional() { return this.selectedSubset.provisional }
-
-  setSubsetLA32(x: boolean) { this.selectedSubset.la32 = x }
-  setSubsetLA32Primary(x: boolean) { this.selectedSubset.primary = x }
-  setSubsetLA64(x: boolean) { this.selectedSubset.la64 = x }
-  setSubsetLSX(x: boolean) { this.selectedSubset.lsx = x }
-  setSubsetLASX(x: boolean) { this.selectedSubset.lasx = x }
-  setSubsetLBT(x: boolean) { this.selectedSubset.lbt = x }
-  setSubsetLVZ(x: boolean) { this.selectedSubset.lvz = x }
-  setSubsetProvisional(x: boolean) { this.selectedSubset.provisional = x }
-}
-
 function InsnList({ data, useManualSyntax, showSubset }: AsmDBOptions): JSX.Element {
   const insnAndKeys = data.insns.map((x, i) => { return { insn: x, key: i } })
   const showSubsetMask = subsetFlagsToBitmask(showSubset)
@@ -147,21 +78,47 @@ function InsnList({ data, useManualSyntax, showSubset }: AsmDBOptions): JSX.Elem
 }
 
 function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
-  let state = new AsmDBListPageUIState()
+  const [useManualSyntax, setUseManualSyntax] = useState(false)
+  const [ss, setSelectedSubset] = useState<SubsetFlags>({
+    primary: false,
+    la32: false,
+    la64: true,
+    lsx: false,
+    lasx: false,
+    lbt: false,
+    lvz: false,
+    provisional: false,
+  })
+  const alterSS = (modifier: (origSS: SubsetFlags, x: boolean) => void) => {
+    return (x: boolean) => {
+      let newSS: SubsetFlags = {
+        primary: ss.primary,
+        la32: ss.la32,
+        la64: ss.la64,
+        lsx: ss.lsx,
+        lasx: ss.lasx,
+        lbt: ss.lbt,
+        lvz: ss.lvz,
+        provisional: ss.provisional,
+      }
+      modifier(newSS, x)
+      setSelectedSubset(newSS)
+    }
+  }
 
   const subsetsConfig = [
-    { name: 'LA32 Primary', get: () => state.subsetLA32Primary, action: (x: boolean) => state.setSubsetLA32Primary(x) },
-    { name: 'LA32', get: () => state.subsetLA32, action: (x: boolean) => state.setSubsetLA32(x) },
-    { name: 'LA64', get: () => state.subsetLA64, action: (x: boolean) => state.setSubsetLA64(x) },
-    { name: 'LSX', get: () => state.subsetLSX, action: (x: boolean) => state.setSubsetLSX(x) },
-    { name: 'LASX', get: () => state.subsetLASX, action: (x: boolean) => state.setSubsetLASX(x) },
-    { name: 'LBT', get: () => state.subsetLBT, action: (x: boolean) => state.setSubsetLBT(x) },
-    { name: 'LVZ', get: () => state.subsetLVZ, action: (x: boolean) => state.setSubsetLVZ(x) },
-    { name: '非正式指令', get: () => state.subsetProvisional, action: (x: boolean) => state.setSubsetProvisional(x) },
+    { name: 'LA32 Primary', get: () => ss.primary, action: alterSS((ss, x) => { ss.primary = x }) },
+    { name: 'LA32', get: () => ss.la32, action: alterSS((ss, x) => { ss.la32 = x }) },
+    { name: 'LA64', get: () => ss.la64, action: alterSS((ss, x) => { ss.la64 = x }) },
+    { name: 'LSX', get: () => ss.lsx, action: alterSS((ss, x) => { ss.lsx = x }) },
+    { name: 'LASX', get: () => ss.lasx, action: alterSS((ss, x) => { ss.lasx = x }) },
+    { name: 'LBT', get: () => ss.lbt, action: alterSS((ss, x) => { ss.lbt = x }) },
+    { name: 'LVZ', get: () => ss.lvz, action: alterSS((ss, x) => { ss.lvz = x }) },
+    { name: '非正式指令', get: () => ss.provisional, action: alterSS((ss, x) => { ss.provisional = x }) },
   ]
 
-  return <Observer>{() => <>
-    <Switch onChange={(x) => state.setUseManualSyntax(x)} />以龙芯官方指定的指令助记符、汇编语法展示下列内容<br />
+  return <>
+    <Switch onChange={setUseManualSyntax} />以龙芯官方指定的指令助记符、汇编语法展示下列内容<br />
 
     要看哪些指令？
     {subsetsConfig.map((cfg, i) => <Checkbox
@@ -171,10 +128,10 @@ function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
 
     <InsnList
       data={data}
-      useManualSyntax={state.useManualSyntax}
-      showSubset={state.selectedSubset}
+      useManualSyntax={useManualSyntax}
+      showSubset={ss}
     />
-  </>}</Observer>
+  </>
 }
 
 function InsnExplainerPage({ data }: { data: AsmDBData }): JSX.Element {
@@ -189,8 +146,8 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const [paneIdx, setPaneIdx] = useState(0)
 
   const sideNavItems: MenuProps['items'] = [
-    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0)},
-    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(1)},
+    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0) },
+    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(1) },
   ]
 
   return (
@@ -206,7 +163,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
               items={sideNavItems}
             />
           </AntdLayout.Sider>
-          <AntdLayout.Content style={{padding: '1rem'}}>
+          <AntdLayout.Content style={{ padding: '1rem' }}>
             {panes[paneIdx]}
           </AntdLayout.Content>
         </AntdLayout>
