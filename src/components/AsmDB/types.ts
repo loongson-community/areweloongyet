@@ -1,5 +1,6 @@
 type AsmDBData = {
   insns: Insn[]
+  decodetree: DecodeTreeNode
 }
 
 type Insn = {
@@ -45,4 +46,27 @@ type ArgSlot = {
   repr: string
   offset: number
   width: number
+}
+
+type DecodeTreeNode = {
+  look_at: Bitfield[]
+  matches: DecodeTreeMatch[]
+}
+
+type Bitfield = {
+  lsb: number
+  len: number
+}
+
+enum DecodeTreeAction {
+  Unknown = 0,
+  Finish = 1,
+  Continue = 2,
+}
+
+type DecodeTreeMatch = {
+  match: number
+  action: DecodeTreeAction
+  matched?: string
+  next?: DecodeTreeNode
 }

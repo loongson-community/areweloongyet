@@ -70,9 +70,14 @@ export default function AsmDBBits(props: BitsOptions): JSX.Element {
       insnFormatDesc = <InsnFormatName className={styles.showFormatPrefix} overrideStr={mfn} />
     }
   } else {
+    let mfnDesc = <></>
+    if (props.insn.manual_format && props.insn.manual_format.repr != '') {
+      mfnDesc = <InsnFormatName fmt={props.insn.manual_format} className={styles.showManualFormatPrefix} />
+    }
+
     insnFormatDesc = <>
       <InsnFormatName fmt={props.insn.format} className={styles.showFormatPrefix} />
-      {props.insn.manual_format.repr != '' ? <InsnFormatName fmt={props.insn.manual_format} className={styles.showManualFormatPrefix} />: ''}
+      {mfnDesc}
     </>
   }
 

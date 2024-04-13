@@ -5,7 +5,10 @@ export function getManualInsnFormatName(insn: Insn): string {
 
   // if the manual format matches, it also counts
   // in particular, a few insns (FCSR ops) need this
-  return getManualInsnFormatNameFromRepr(insn.manual_format.repr)
+  if (insn.manual_format)
+    return getManualInsnFormatNameFromRepr(insn.manual_format.repr)
+
+  return ''
 }
 
 function getManualInsnFormatNameFromRepr(fmtRepr: string): string {

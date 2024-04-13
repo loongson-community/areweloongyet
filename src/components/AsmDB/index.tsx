@@ -1,8 +1,14 @@
+import { Checkbox, Layout as AntdLayout, Menu, Switch } from 'antd'
+import type { MenuProps } from 'antd'
+import { useState } from 'react'
+
+import Layout from '@theme/Layout'
 import BoolFlag from '@site/src/components/BoolFlag'
+import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
 import AsmDBBits from './bits'
 import { getInsnMnemonic } from './insn'
 
-function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
+function Subsets({ ss }: { ss: SubsetFlags }): JSX.Element {
   if (ss.provisional)
     return (
       <p>非正式指令</p>
@@ -22,7 +28,7 @@ function Subsets({ss}: {ss: SubsetFlags}): JSX.Element {
   )
 }
 
-function AsmDBInsn({insn, useManualSyntax}: {insn: Insn, useManualSyntax: boolean}): JSX.Element {
+function AsmDBInsn({ insn, useManualSyntax }: { insn: Insn, useManualSyntax: boolean }): JSX.Element {
   return (
     <section>
       <h3>{getInsnMnemonic(insn, useManualSyntax)}</h3>
@@ -59,14 +65,109 @@ function subsetFlagsToBitmask(x: SubsetFlags): number {
   return y
 }
 
-export default function AsmDB({data, useManualSyntax, showSubset}: AsmDBOptions): JSX.Element {
-  const insnAndKeys = data.insns.map((x, i) => { return {insn: x, key: i} })
+function InsnList({ data, useManualSyntax, showSubset }: AsmDBOptions): JSX.Element {
+  const insnAndKeys = data.insns.map((x, i) => { return { insn: x, key: i } })
   const showSubsetMask = subsetFlagsToBitmask(showSubset)
   const shownInsns = insnAndKeys.filter((x) => (subsetFlagsToBitmask(x.insn.subsets) & showSubsetMask) != 0)
 
   return (
     <ul>
-      {shownInsns.map((x) => <li key={x.key}><AsmDBInsn insn={x.insn} useManualSyntax={useManualSyntax}/></li>)}
+      {shownInsns.map((x) => <li key={x.key}><AsmDBInsn insn={x.insn} useManualSyntax={useManualSyntax} /></li>)}
     </ul>
+  )
+}
+
+function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
+  const [useManualSyntax, setUseManualSyntax] = useState(false)
+  const [ss, setSelectedSubset] = useState<SubsetFlags>({
+    primary: false,
+    la32: false,
+    la64: true,
+    lsx: false,
+    lasx: false,
+    lbt: false,
+    lvz: false,
+    provisional: false,
+  })
+  const alterSS = (modifier: (origSS: SubsetFlags, x: boolean) => void) => {
+    return (x: boolean) => {
+      let newSS: SubsetFlags = {
+        primary: ss.primary,
+        la32: ss.la32,
+        la64: ss.la64,
+        lsx: ss.lsx,
+        lasx: ss.lasx,
+        lbt: ss.lbt,
+        lvz: ss.lvz,
+        provisional: ss.provisional,
+      }
+      modifier(newSS, x)
+      setSelectedSubset(newSS)
+    }
+  }
+
+  const subsetsConfig = [
+    { name: 'LA32 Primary', get: () => ss.primary, action: alterSS((ss, x) => { ss.primary = x }) },
+    { name: 'LA32', get: () => ss.la32, action: alterSS((ss, x) => { ss.la32 = x }) },
+    { name: 'LA64', get: () => ss.la64, action: alterSS((ss, x) => { ss.la64 = x }) },
+    { name: 'LSX', get: () => ss.lsx, action: alterSS((ss, x) => { ss.lsx = x }) },
+    { name: 'LASX', get: () => ss.lasx, action: alterSS((ss, x) => { ss.lasx = x }) },
+    { name: 'LBT', get: () => ss.lbt, action: alterSS((ss, x) => { ss.lbt = x }) },
+    { name: 'LVZ', get: () => ss.lvz, action: alterSS((ss, x) => { ss.lvz = x }) },
+    { name: '非正式指令', get: () => ss.provisional, action: alterSS((ss, x) => { ss.provisional = x }) },
+  ]
+
+  return <>
+    <Switch onChange={setUseManualSyntax} />以龙芯官方指定的指令助记符、汇编语法展示下列内容<br />
+
+    要看哪些指令？
+    {subsetsConfig.map((cfg, i) => <Checkbox
+      key={i}
+      checked={cfg.get()}
+      onChange={(e) => cfg.action(e.target.checked)}>{cfg.name}</Checkbox>)}
+
+    <InsnList
+      data={data}
+      useManualSyntax={useManualSyntax}
+      showSubset={ss}
+    />
+  </>
+}
+
+function InsnExplainerPage({ data }: { data: AsmDBData }): JSX.Element {
+  return <p>TODO</p>
+}
+
+export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
+  const panes = [
+    <InsnListPage data={data} />,
+    <InsnExplainerPage data={data} />,
+  ]
+  const [paneIdx, setPaneIdx] = useState(0)
+
+  const sideNavItems: MenuProps['items'] = [
+    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0) },
+    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(1) },
+  ]
+
+  return (
+    <Layout title={'LoongArch 汇编指令速查'}>
+      <ThemeAwareAntdContainer>
+        <AntdLayout>
+          {/* TODO: fixed sidebar */}
+          <AntdLayout.Sider>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['insnList']}
+              style={{ height: '100%' }}
+              items={sideNavItems}
+            />
+          </AntdLayout.Sider>
+          <AntdLayout.Content style={{ padding: '1rem' }}>
+            {panes[paneIdx]}
+          </AntdLayout.Content>
+        </AntdLayout>
+      </ThemeAwareAntdContainer>
+    </Layout>
   )
 }

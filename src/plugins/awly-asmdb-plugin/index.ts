@@ -1,7 +1,7 @@
 import { spawn } from 'child_process'
 import path from 'path'
 
-import glob from 'glob-promise'
+import { glob } from 'glob'
 
 import type { LoadContext, Plugin } from '@docusaurus/types'
 
@@ -43,20 +43,20 @@ export default async function awlyAsmdbPlugin(
   return {
     name: 'awly-asmdb-plugin',
     async loadContent() {
-      const opcodeFiles = await glob('*.txt', {cwd: options.loongarchOpcodesPath})
+      const opcodeFiles = await glob('*.txt', { cwd: options.loongarchOpcodesPath })
       const inputPaths = opcodeFiles.map((x) => path.join(options.loongarchOpcodesPath, x))
       return await runGenerationScript(options.genAsmdbDataPath, inputPaths)
     },
-    async contentLoaded({content, actions}) {
+    async contentLoaded({ content, actions }) {
       const dataPath = await actions.createData('asmdb.json', content)
       actions.addRoute({
-          path: `/asmdb`,
-          component: '@site/src/components/AsmDBPage',
-          modules: {
-            data: dataPath,
-          },
-          exact: true,
-        })
+        path: `/asmdb`,
+        component: '@site/src/components/AsmDB',
+        modules: {
+          data: dataPath,
+        },
+        exact: true,
+      })
     },
     getPathsToWatch() {
       return [

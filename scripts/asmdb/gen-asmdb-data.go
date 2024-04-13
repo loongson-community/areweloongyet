@@ -62,7 +62,14 @@ func main() {
 		}
 	})
 
-	result, err := json.Marshal(asmdbData{Insns: insns})
+	// also build a decode tree for frontend disassembly
+	var db decodetreeBuilder
+	for _, insn := range descs {
+		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask())
+	}
+	decodetreeRoot := db.build()
+
+	result, err := json.Marshal(asmdbData{Insns: insns, DecodeTree: decodetreeRoot})
 	if err != nil {
 		panic(err)
 	}
@@ -74,7 +81,8 @@ func main() {
 }
 
 type asmdbData struct {
-	Insns []asmdbInsn `json:"insns"`
+	Insns      []asmdbInsn     `json:"insns"`
+	DecodeTree *decodetreeNode `json:"decodetree"`
 }
 
 type asmdbInsn struct {
@@ -82,8 +90,8 @@ type asmdbInsn struct {
 	Mask           uint32      `json:"mask"`
 	Mnemonic       string      `json:"mnemonic"`
 	ManualMnemonic string      `json:"manual_mnemonic,omitempty"`
-	Format         insnFormat  `json:"format"`
-	ManualFormat   insnFormat  `json:"manual_format,omitempty"`
+	Format         *insnFormat `json:"format"`
+	ManualFormat   *insnFormat `json:"manual_format,omitempty"`
 	SinceRev       string      `json:"since_rev,omitempty"`
 	Subsets        subsetFlags `json:"subsets"`
 }
@@ -119,12 +127,12 @@ type argSlot struct {
 	Width  uint   `json:"width"`
 }
 
-func convertInsnFormat(x *common.InsnFormat) insnFormat {
+func convertInsnFormat(x *common.InsnFormat) *insnFormat {
 	if x == nil {
-		return insnFormat{}
+		return nil
 	}
 
-	return insnFormat{
+	return &insnFormat{
 		Repr: x.CanonicalRepr(),
 		Args: lo.Map(x.Args, func(a *common.Arg, _ int) insnArgs {
 			shiftAmt := 0

@@ -1,8 +1,8 @@
 import { opendir, readFile } from 'fs/promises'
 import path from 'path'
 
-import glob from 'glob-promise'
-import yaml  from 'yaml'
+import { glob } from 'glob'
+import yaml from 'yaml'
 import type { LoadContext, Plugin } from '@docusaurus/types'
 
 import { CodeQuality, EntityKind, IAuthor, IPortingEffort, IProject, IProjectCategory, LoadedContent, SupportStatus } from '../../types'
@@ -58,35 +58,35 @@ async function getCategoryMetadata(categoryDirPath: string): Promise<CategoryMet
 
 function parseEntityKind(x: string): EntityKind {
   switch (x) {
-  case 'Community': return EntityKind.Community
-  case 'Corporate': return EntityKind.Corporate
-  case 'Loongson': return EntityKind.Loongson
-  default: return EntityKind.Community
+    case 'Community': return EntityKind.Community
+    case 'Corporate': return EntityKind.Corporate
+    case 'Loongson': return EntityKind.Loongson
+    default: return EntityKind.Community
   }
 }
 
 function parseSupportStatus(x: string): SupportStatus {
   switch (x) {
-  case 'Unknown': return SupportStatus.Unknown
-  case 'Rejected': return SupportStatus.Rejected
-  case 'CommercialOnly': return SupportStatus.CommercialOnly
-  case 'Stalled': return SupportStatus.Stalled
-  case 'UpForGrabs': return SupportStatus.UpForGrabs
-  case 'WIP': return SupportStatus.WIP
-  case 'UnderReview': return SupportStatus.UnderReview
-  case 'WaitingRelease': return SupportStatus.WaitingRelease
-  case 'Released': return SupportStatus.Released
-  default: return SupportStatus.Unknown
+    case 'Unknown': return SupportStatus.Unknown
+    case 'Rejected': return SupportStatus.Rejected
+    case 'CommercialOnly': return SupportStatus.CommercialOnly
+    case 'Stalled': return SupportStatus.Stalled
+    case 'UpForGrabs': return SupportStatus.UpForGrabs
+    case 'WIP': return SupportStatus.WIP
+    case 'UnderReview': return SupportStatus.UnderReview
+    case 'WaitingRelease': return SupportStatus.WaitingRelease
+    case 'Released': return SupportStatus.Released
+    default: return SupportStatus.Unknown
   }
 }
 
 function parseCodeQuality(x: string): CodeQuality {
   switch (x) {
-  case 'NoCode': return CodeQuality.NoCode
-  case 'OnPar': return CodeQuality.OnPar
-  case 'NeedsCleanup': return CodeQuality.NeedsCleanup
-  case 'NeedsRework': return CodeQuality.NeedsRework
-  default: return CodeQuality.NoCode
+    case 'NoCode': return CodeQuality.NoCode
+    case 'OnPar': return CodeQuality.OnPar
+    case 'NeedsCleanup': return CodeQuality.NeedsCleanup
+    case 'NeedsRework': return CodeQuality.NeedsRework
+    default: return CodeQuality.NoCode
   }
 }
 
@@ -132,7 +132,7 @@ async function readProjectDef(p: string): Promise<IProject> {
 }
 
 async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
-  const categories: {code: string, name: string, projects: IProject[]}[] = []
+  const categories: { code: string, name: string, projects: IProject[] }[] = []
   const srcDir = await opendir(sourcePath)
   for await (const dirent of srcDir) {
     if (!dirent.isDirectory())
@@ -144,7 +144,7 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
     const categoryMetadata = await getCategoryMetadata(categoryDirPath)
 
     // parse projects in categories
-    const projectDefFilenames = await glob.promise('*.yml', {
+    const projectDefFilenames = await glob('*.yml', {
       cwd: categoryDirPath,
       ignore: [categoryIndexFilename],
     })
@@ -160,7 +160,7 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
   // sort the categories lexicographically according to code (directory name)
   return categories
     .sort((a, b) => a.code < b.code ? -1 : 0)
-    .map((x) => { return {name: x.name, projects: x.projects} })
+    .map((x) => { return { name: x.name, projects: x.projects } })
 }
 
 export default async function awlyDataPlugin(
@@ -180,8 +180,8 @@ export default async function awlyDataPlugin(
         categories: categories,
       }
     },
-    async contentLoaded({content, actions}) {
-      const {addRoute, createData, setGlobalData} = actions
+    async contentLoaded({ content, actions }) {
+      const { addRoute, createData, setGlobalData } = actions
 
       // for homepage
       setGlobalData(content.categories)
