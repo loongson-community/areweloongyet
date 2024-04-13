@@ -62,7 +62,14 @@ func main() {
 		}
 	})
 
-	result, err := json.Marshal(asmdbData{Insns: insns})
+	// also build a decode tree for frontend disassembly
+	var db decodetreeBuilder
+	for _, insn := range descs {
+		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask())
+	}
+	decodetreeRoot := db.build()
+
+	result, err := json.Marshal(asmdbData{Insns: insns, DecodeTree: decodetreeRoot})
 	if err != nil {
 		panic(err)
 	}
@@ -74,7 +81,8 @@ func main() {
 }
 
 type asmdbData struct {
-	Insns []asmdbInsn `json:"insns"`
+	Insns      []asmdbInsn     `json:"insns"`
+	DecodeTree *decodetreeNode `json:"decodetree"`
 }
 
 type asmdbInsn struct {
