@@ -6,39 +6,6 @@ import (
 	"github.com/samber/lo"
 )
 
-type insnBit uint8
-
-const (
-	insnBitIsOne   insnBit = 0b1
-	insnBitIsFixed insnBit = 0b10
-)
-
-func (x insnBit) isFixed() bool {
-	return x&insnBitIsFixed != 0
-}
-
-func (x insnBit) bit() uint32 {
-	return uint32(x & insnBitIsOne)
-}
-
-func explodeInsnMatchMaskToBits(match uint32, mask uint32) [32]insnBit {
-	var result [32]insnBit
-	for i := 0; i < 32; i++ {
-		var x insnBit
-		if (match & 1) != 0 {
-			x |= insnBitIsOne
-		}
-		if (mask & 1) != 0 {
-			x |= insnBitIsFixed
-		}
-		result[i] = x
-
-		match >>= 1
-		mask >>= 1
-	}
-	return result
-}
-
 type bitfield struct {
 	LSB int `json:"lsb"`
 	Len int `json:"len"`
@@ -170,8 +137,12 @@ type decodetreeNode struct {
 
 type insnForDecodeTree struct {
 	mnemonic string
-	rawWord  uint32
-	bits     [32]insnBit
+	match    uint32
+	mask     uint32
+}
+
+func (x *insnForDecodeTree) isBitFixed(bit int) bool {
+	return x.mask&(1<<bit) != 0
 }
 
 type decodetreeBuilder struct {
@@ -181,8 +152,8 @@ type decodetreeBuilder struct {
 func (x *decodetreeBuilder) addInsn(mnemonic string, match uint32, mask uint32) {
 	x.insns = append(x.insns, &insnForDecodeTree{
 		mnemonic: mnemonic,
-		rawWord:  match,
-		bits:     explodeInsnMatchMaskToBits(match, mask),
+		match:    match,
+		mask:     mask,
 	})
 }
 
@@ -197,8 +168,8 @@ func getCommonFixedBitfieldsForSubset(
 	var commonFixedBitsSet map[int]struct{}
 	for _, insn := range subset {
 		fb := make(map[int]struct{})
-		for i, ib := range insn.bits {
-			if !ib.isFixed() || excludeBitfields.isBitCovered(i) {
+		for i := 0; i < 32; i++ {
+			if !insn.isBitFixed(i) || excludeBitfields.isBitCovered(i) {
 				continue
 			}
 			fb[i] = struct{}{}
@@ -242,7 +213,7 @@ func categorizeInsnsByFixedBitfields(
 	fb bitfields,
 ) map[uint32][]*insnForDecodeTree {
 	return lo.GroupBy(insns, func(x *insnForDecodeTree) uint32 {
-		return fb.extractFrom(x.rawWord)
+		return fb.extractFrom(x.match)
 	})
 }
 
