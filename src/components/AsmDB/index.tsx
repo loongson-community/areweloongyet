@@ -2,6 +2,7 @@ import { Checkbox, Layout as AntdLayout, Menu, Switch } from 'antd'
 import type { MenuProps } from 'antd'
 import { action, computed, makeObservable, observable } from 'mobx'
 import { Observer } from 'mobx-react-lite'
+import { useState } from 'react'
 
 import Layout from '@theme/Layout'
 import BoolFlag from '@site/src/components/BoolFlag'
@@ -176,9 +177,20 @@ function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
   </>}</Observer>
 }
 
+function InsnExplainerPage({ data }: { data: AsmDBData }): JSX.Element {
+  return <p>TODO</p>
+}
+
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
+  const panes = [
+    <InsnListPage data={data} />,
+    <InsnExplainerPage data={data} />,
+  ]
+  const [paneIdx, setPaneIdx] = useState(0)
+
   const sideNavItems: MenuProps['items'] = [
-    { key: 'insnList', label: '指令列表'},
+    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0)},
+    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(1)},
   ]
 
   return (
@@ -195,8 +207,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
             />
           </AntdLayout.Sider>
           <AntdLayout.Content style={{padding: '1rem'}}>
-            {/* TODO: switchable pane */}
-            <InsnListPage data={data} />
+            {panes[paneIdx]}
           </AntdLayout.Content>
         </AntdLayout>
       </ThemeAwareAntdContainer>
