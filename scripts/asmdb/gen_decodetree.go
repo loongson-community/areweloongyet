@@ -158,9 +158,9 @@ type decodetreeMatch struct {
 	Action decodetreeAction `json:"action"`
 
 	// if action is finish, contains the matched insn's mnemonic
-	Matched string `json:"matched"`
+	Matched string `json:"matched,omitempty"`
 	// if action is continue, points to the next decodetree node
-	Next *decodetreeNode `json:"next"`
+	Next *decodetreeNode `json:"next,omitempty"`
 }
 
 type decodetreeNode struct {
