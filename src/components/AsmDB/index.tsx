@@ -1,4 +1,5 @@
-import { Checkbox, Switch } from 'antd'
+import { Checkbox, Layout as AntdLayout, Menu, Switch } from 'antd'
+import type { MenuProps } from 'antd'
 import { action, computed, makeObservable, observable } from 'mobx'
 import { Observer } from 'mobx-react-lite'
 
@@ -176,10 +177,28 @@ function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
 }
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
+  const sideNavItems: MenuProps['items'] = [
+    { key: 'insnList', label: '指令列表'},
+  ]
+
   return (
     <Layout title={'LoongArch 汇编指令速查'}>
       <ThemeAwareAntdContainer>
-        <InsnListPage data={data} />
+        <AntdLayout>
+          {/* TODO: fixed sidebar */}
+          <AntdLayout.Sider>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['insnList']}
+              style={{ height: '100%' }}
+              items={sideNavItems}
+            />
+          </AntdLayout.Sider>
+          <AntdLayout.Content style={{padding: '1rem'}}>
+            {/* TODO: switchable pane */}
+            <InsnListPage data={data} />
+          </AntdLayout.Content>
+        </AntdLayout>
       </ThemeAwareAntdContainer>
     </Layout>
   )
