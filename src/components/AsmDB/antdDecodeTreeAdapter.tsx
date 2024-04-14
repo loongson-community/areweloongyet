@@ -111,10 +111,12 @@ function NodeTitle({ match, node, matchNumber, matchPattern, lookAt, parentLookA
       {postAttribs}
     </>
 
+  const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  if (root)
+    postAttribs.push(<span className={styles.attrib}>主操作码</span>)
   if (node)
     postAttribs.push(<span className={styles.attrib}>扇出 {node.matches.length}</span>)
 
-  const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   if (root)
     return <>
       <span>检查 [{representBitfields(lookAt)}] 位</span>
