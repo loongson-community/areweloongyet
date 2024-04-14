@@ -56,7 +56,7 @@ export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData })
         <DecodeTreeView node={augmentedDecodeTree} className={styles.decodeTreeView} />
       </Col>
       <Col span={3}>
-        TODO
+        {/* TODO */}
       </Col>
     </Row>
   </>

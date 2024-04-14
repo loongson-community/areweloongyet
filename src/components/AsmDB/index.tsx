@@ -18,8 +18,8 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
 
   const sideNavItems: MenuProps['items'] = [
     { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(0) },
-    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(1) },
-    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(2) },
+    { key: 'insnList', disabled: true, label: '指令列表', onClick: () => setPaneIdx(1) },
+    { key: 'insnExplainer', disabled: true, label: '解读指令字', onClick: () => setPaneIdx(2) },
   ]
 
   return (
