@@ -21,7 +21,7 @@ const DecodeTreeView: React.FC<DecodeTreeViewProps & React.HTMLAttributes<HTMLDi
   return <Tree
     showLine={{ showLeafIcon: false }}
     showIcon={true}
-    defaultExpandedKeys={['0']}
+    defaultExpandedKeys={['xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']}
     treeData={[antdNode]}
     className={props.className}
     style={props.style}

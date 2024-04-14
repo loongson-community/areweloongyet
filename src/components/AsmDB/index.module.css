@@ -1,3 +1,11 @@
 .decodeTreeView {
   border: 1px solid var(--ifm-color-secondary-contrast-background);
 }
+
+.attrib::before {
+  content: ' ';
+}
+
+.attrib {
+  color: var(--ifm-color-gray-700);
+}
