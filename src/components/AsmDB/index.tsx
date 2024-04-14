@@ -4,21 +4,21 @@ import { useState } from 'react'
 
 import Layout from '@theme/Layout'
 import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
-import EncodingSpaceOverviewPage from './encodingSpageOverviewPage'
+import EncodingSpaceOverviewPage from './encodingSpaceOverviewPage'
 import InsnExplainerPage from './insnExplainerPage'
 import InsnListPage from './insnListPage'
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const panes = [
-    <InsnListPage data={data} />,
     <EncodingSpaceOverviewPage data={data} />,
+    <InsnListPage data={data} />,
     <InsnExplainerPage data={data} />,
   ]
   const [paneIdx, setPaneIdx] = useState(0)
 
   const sideNavItems: MenuProps['items'] = [
-    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0) },
-    { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(1) },
+    { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(0) },
+    { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(1) },
     { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(2) },
   ]
 
@@ -30,7 +30,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
           <AntdLayout.Sider>
             <Menu
               mode="inline"
-              defaultSelectedKeys={['insnList']}
+              defaultSelectedKeys={['encodingSpaceOverview']}
               style={{ height: '100%' }}
               items={sideNavItems}
             />
