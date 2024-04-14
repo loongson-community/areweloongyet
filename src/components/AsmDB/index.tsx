@@ -134,6 +134,10 @@ function InsnListPage({ data }: { data: AsmDBData }): JSX.Element {
   </>
 }
 
+function EncodingSpaceOverviewPage({ data }: { data: AsmDBData }): JSX.Element {
+  return <p>TODO</p>
+}
+
 function InsnExplainerPage({ data }: { data: AsmDBData }): JSX.Element {
   return <p>TODO</p>
 }
@@ -141,13 +145,15 @@ function InsnExplainerPage({ data }: { data: AsmDBData }): JSX.Element {
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const panes = [
     <InsnListPage data={data} />,
+    <EncodingSpaceOverviewPage data={data} />,
     <InsnExplainerPage data={data} />,
   ]
   const [paneIdx, setPaneIdx] = useState(0)
 
   const sideNavItems: MenuProps['items'] = [
     { key: 'insnList', label: '指令列表', onClick: () => setPaneIdx(0) },
-    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(1) },
+    { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(1) },
+    { key: 'insnExplainer', label: '解读指令字', onClick: () => setPaneIdx(2) },
   ]
 
   return (
