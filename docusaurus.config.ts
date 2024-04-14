@@ -197,8 +197,8 @@ const config: Config = {
           position: 'left',
           label: '阅读材料',
         },
-        // {to: '/asmdb', label: '汇编指令速查', position: 'left'},
         { to: '/newsletter', label: '每周一龙', position: 'left' },
+        { to: '/asmdb', label: '汇编速查', position: 'left' },
         { to: '/blog', label: '本站动态', position: 'left' },
         {
           href: 'https://github.com/loongson-community/areweloongyet',
@@ -216,6 +216,10 @@ const config: Config = {
             {
               label: '每周一龙',
               to: '/newsletter',
+            },
+            {
+              label: '汇编速查',
+              to: '/asmdb',
             },
             {
               label: '本站动态',
