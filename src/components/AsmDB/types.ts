@@ -67,6 +67,7 @@ enum DecodeTreeAction {
 type DecodeTreeMatch = {
   match: number
   action: DecodeTreeAction
+  fmt?: string
   matched?: string
   next?: DecodeTreeNode
 }

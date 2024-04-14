@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"sort"
 
@@ -65,9 +66,18 @@ func main() {
 	// also build a decode tree for frontend disassembly
 	var db decodetreeBuilder
 	for _, insn := range descs {
-		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask())
+		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask(), insn.Format.CanonicalRepr())
 	}
 	decodetreeRoot := db.build()
+
+	if len(os.Getenv("GEN_ASMDB_DATA_DEBUG")) != 0 {
+		fmt.Fprintf(
+			os.Stderr,
+			"decode tree dump: depth %d\n\n%s\n",
+			decodetreeRoot.depth(),
+			decodetreeRoot.dump(),
+		)
+	}
 
 	result, err := json.Marshal(asmdbData{Insns: insns, DecodeTree: decodetreeRoot})
 	if err != nil {

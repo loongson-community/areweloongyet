@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"sort"
+	"strconv"
+	"strings"
 
 	"github.com/samber/lo"
 )
@@ -9,6 +12,13 @@ import (
 type bitfield struct {
 	LSB int `json:"lsb"`
 	Len int `json:"len"`
+}
+
+func (x bitfield) String() string {
+	if x.Len == 1 {
+		return strconv.Itoa(x.LSB)
+	}
+	return fmt.Sprintf("%d:%d", x.LSB+x.Len-1, x.LSB)
 }
 
 func (x bitfield) isBitCovered(bitIndex int) bool {
@@ -28,6 +38,25 @@ func (x bitfield) toSet() map[int]struct{} {
 }
 
 type bitfields []bitfield
+
+func (x bitfields) String() string {
+	var sb strings.Builder
+	for i, bf := range x {
+		if i != 0 {
+			sb.WriteRune(',')
+		}
+		sb.WriteString(bf.String())
+	}
+	return sb.String()
+}
+
+func (x bitfields) totalWidth() int {
+	w := 0
+	for _, bf := range x {
+		w += bf.Len
+	}
+	return w
+}
 
 func (x bitfields) toSet() map[int]struct{} {
 	s := map[int]struct{}{}
@@ -124,6 +153,9 @@ type decodetreeMatch struct {
 	Match  uint32           `json:"match"`
 	Action decodetreeAction `json:"action"`
 
+	// contains the determined insn format if all descendant nodes share this
+	// format
+	Fmt string `json:"fmt,omitempty"`
 	// if action is finish, contains the matched insn's mnemonic
 	Matched string `json:"matched,omitempty"`
 	// if action is continue, points to the next decodetree node
@@ -133,12 +165,93 @@ type decodetreeMatch struct {
 type decodetreeNode struct {
 	LookAt  bitfields          `json:"look_at"`
 	Matches []*decodetreeMatch `json:"matches"`
+
+	fmt string
+}
+
+func (n *decodetreeNode) depth() int {
+	if n == nil {
+		return 0
+	}
+	var result int
+	for _, m := range n.Matches {
+		result = max(result, m.Next.depth())
+	}
+	return result + 1
+}
+
+func (n *decodetreeNode) dump() string {
+	var sb strings.Builder
+	n.dumpInner(&sb, 0, 0, 0, "")
+	return sb.String()
+}
+
+func (n *decodetreeNode) dumpInner(
+	sb *strings.Builder,
+	indentLevel int,
+	matchBits uint32,
+	matchLen int,
+	matchFmt string,
+) {
+	indent := strings.Repeat("  ", indentLevel)
+	myWidth := n.LookAt.totalWidth()
+
+	fanout := len(n.Matches)
+	numLeaves := 0
+	for _, m := range n.Matches {
+		if m.Next == nil {
+			numLeaves++
+		}
+	}
+
+	sb.WriteString(indent)
+	sb.WriteString("- ")
+	if indentLevel > 0 {
+		// fixed-length strconv.FormatInt(x, 2)
+		for i := matchLen - 1; i >= 0; i-- {
+			bit := (matchBits & (1 << i)) != 0
+			if bit {
+				sb.WriteRune('1')
+			} else {
+				sb.WriteRune('0')
+			}
+		}
+		sb.WriteString(": ")
+
+		if len(matchFmt) > 0 {
+			sb.WriteString(" [")
+			sb.WriteString(matchFmt)
+			sb.WriteString("] ")
+		}
+	}
+
+	sb.WriteString(n.LookAt.String())
+	fmt.Fprintf(sb, " (fanout = %d, decided = %d)", fanout, numLeaves)
+	if numLeaves > 0 {
+		sb.WriteString("  #")
+		for _, m := range n.Matches {
+			if m.Next != nil {
+				continue
+			}
+			sb.WriteRune(' ')
+			sb.WriteString(m.Matched)
+		}
+	}
+	sb.WriteRune('\n')
+
+	for _, m := range n.Matches {
+		if m.Next == nil {
+			continue
+		}
+		m.Next.dumpInner(sb, indentLevel+1, m.Match, myWidth, m.Fmt)
+	}
 }
 
 type insnForDecodeTree struct {
 	mnemonic string
 	match    uint32
 	mask     uint32
+	fmt      string
 }
 
 func (x *insnForDecodeTree) isBitFixed(bit int) bool {
@@ -149,16 +262,19 @@ type decodetreeBuilder struct {
 	insns []*insnForDecodeTree
 }
 
-func (x *decodetreeBuilder) addInsn(mnemonic string, match uint32, mask uint32) {
+func (x *decodetreeBuilder) addInsn(mnemonic string, match uint32, mask uint32, fmt string) {
 	x.insns = append(x.insns, &insnForDecodeTree{
 		mnemonic: mnemonic,
 		match:    match,
 		mask:     mask,
+		fmt:      fmt,
 	})
 }
 
 func (x *decodetreeBuilder) build() *decodetreeNode {
-	return buildDecodetreeSubset(x.insns, nil)
+	n := buildDecodetreeSubset(x.insns, nil)
+	propagateFormats(n)
+	return n
 }
 
 func getCommonFixedBitfieldsForSubset(
@@ -227,6 +343,7 @@ func buildDecodetreeSubset(
 	n := &decodetreeNode{
 		LookAt:  commonFixedBits,
 		Matches: nil,
+		fmt:     "",
 	}
 	for k, l := range furtherSubsets {
 		if len(l) == 1 {
@@ -234,6 +351,7 @@ func buildDecodetreeSubset(
 			n.Matches = append(n.Matches, &decodetreeMatch{
 				Match:   k,
 				Action:  decodetreeActionFinish,
+				Fmt:     l[0].fmt,
 				Matched: l[0].mnemonic,
 				Next:    nil,
 			})
@@ -247,6 +365,7 @@ func buildDecodetreeSubset(
 		n.Matches = append(n.Matches, &decodetreeMatch{
 			Match:   k,
 			Action:  decodetreeActionContinue,
+			Fmt:     "",
 			Matched: "",
 			Next:    subsetNode,
 		})
@@ -257,4 +376,30 @@ func buildDecodetreeSubset(
 	})
 
 	return n
+}
+
+func propagateFormats(n *decodetreeNode) {
+	if len(n.Matches) == 0 {
+		return
+	}
+
+	// traverse the decodetree post-order
+	for _, m := range n.Matches {
+		if m.Next != nil {
+			propagateFormats(m.Next)
+			m.Fmt = m.Next.fmt
+		}
+	}
+
+	// if all children of a node share the same format, mark the node with
+	// that format as well
+	sharedFmt := n.Matches[0].Fmt
+	for _, m := range n.Matches {
+		if m.Fmt != sharedFmt {
+			// format cannot be determined at this level yet
+			sharedFmt = ""
+			break
+		}
+	}
+	n.fmt = sharedFmt
 }
