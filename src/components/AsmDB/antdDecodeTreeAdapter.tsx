@@ -51,6 +51,7 @@ function representMatchValue(val: number, bfs: Bitfield[]): string {
 
 type NodeTitleProps = {
   match?: DecodeTreeMatch
+  node?: DecodeTreeNode
   matchNumber?: number
   matchPattern?: string
   lookAt: Bitfield[]
@@ -93,7 +94,7 @@ const wellKnownMatchPatterns = {
   '011101xxxxxxxxxxxxxxxxxxxxxxxxxx': '运算-LASX',
 }
 
-function NodeTitle({ match, matchNumber, matchPattern, lookAt, parentLookAt, insn }: NodeTitleProps): JSX.Element {
+function NodeTitle({ match, node, matchNumber, matchPattern, lookAt, parentLookAt, insn }: NodeTitleProps): JSX.Element {
   if (match)
     matchNumber = match.match
 
@@ -109,6 +110,9 @@ function NodeTitle({ match, matchNumber, matchPattern, lookAt, parentLookAt, ins
       <span>{representMatchValue(matchNumber, lookAt)}{preAttribs}: {insn}</span>
       {postAttribs}
     </>
+
+  if (node)
+    postAttribs.push(<span className={styles.attrib}>扇出 {node.matches.length}</span>)
 
   const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   if (root)
@@ -166,6 +170,7 @@ function transformDecodeTreeForAntd(
 
   return {
     title: <NodeTitle
+      node={node}
       matchNumber={myMatch}
       matchPattern={matchPattern}
       lookAt={node.look_at}
