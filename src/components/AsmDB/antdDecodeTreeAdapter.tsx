@@ -50,8 +50,8 @@ function representMatchValue(val: number, bfs: Bitfield[]): string {
 }
 
 type NodeTitleProps = {
-  match?: DecodeTreeMatch
-  node?: DecodeTreeNode
+  match?: AugmentedDecodeTreeMatch
+  node?: AugmentedDecodeTreeNode
   matchNumber?: number
   matchPattern?: string
   lookAt: Bitfield[]
@@ -105,17 +105,24 @@ function NodeTitle({ match, node, matchNumber, matchPattern, lookAt, parentLookA
   if (wellKnownMatchPatterns.hasOwnProperty(matchPattern))
     preAttribs.push(<span className={styles.attrib} key={`${matchPattern}-alias`}>{wellKnownMatchPatterns[matchPattern]}</span>)
 
-  if (insn)
+  if (insn) {
+    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>空间占用 {match.numUsedInsnWords}</span>)
     return <>
       <span>{representMatchValue(matchNumber, lookAt)}{preAttribs}: {insn}</span>
       {postAttribs}
     </>
+  }
 
   const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   if (root)
-    postAttribs.push(<span className={styles.attrib}>主操作码</span>)
+    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-major`}>主操作码</span>)
   if (node)
-    postAttribs.push(<span className={styles.attrib}>扇出 {node.matches.length}</span>)
+    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>扇出 {node.matches.length}</span>)
+
+  if (node.numUsedInsnWords == node.numTotalInsnWords)
+    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间共 {node.numTotalInsnWords} 已满</span>)
+  else
+    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间共 {node.numTotalInsnWords} 已分配 {node.numUsedInsnWords} ({(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%)</span>)
 
   if (root)
     return <>
@@ -130,8 +137,8 @@ function NodeTitle({ match, node, matchNumber, matchPattern, lookAt, parentLookA
 }
 
 function makeMatchNode(
-  m: DecodeTreeMatch,
-  node: DecodeTreeNode,
+  m: AugmentedDecodeTreeMatch,
+  node: AugmentedDecodeTreeNode,
   matchSoFar: number,
   myMatchBitfields: Bitfield[],
 ): TreeDataNode {
@@ -139,7 +146,7 @@ function makeMatchNode(
   const key = `m${makeMatchPatternKey(myMatch, myMatchBitfields)}`
 
   if (m.next)
-    return transformDecodeTreeForAntd(m.next, m.match, node.look_at, myMatch, myMatchBitfields)
+    return transformDecodeTreeForAntdInner(m.next, m.match, node.look_at, myMatch, myMatchBitfields)
 
   return {
     title: <NodeTitle match={m} lookAt={node.look_at} insn={m.matched} />,
@@ -159,8 +166,8 @@ function makeMatchPatternKey(match: number, bfs: Bitfield[]): string {
   return y.join('')
 }
 
-function transformDecodeTreeForAntd(
-  node: DecodeTreeNode,
+function transformDecodeTreeForAntdInner(
+  node: AugmentedDecodeTreeNode,
   myMatch: number,
   parentLookAt: Bitfield[],
   matchSoFar: number,
@@ -184,6 +191,49 @@ function transformDecodeTreeForAntd(
   }
 }
 
-export default function (node: DecodeTreeNode): TreeDataNode {
-  return transformDecodeTreeForAntd(node, 0, [], 0, [])
+type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
+  next?: AugmentedDecodeTreeNode
+  numUsedInsnWords: number
+}
+
+export type AugmentedDecodeTreeNode = DecodeTreeNode & {
+  matches: AugmentedDecodeTreeMatch[]
+  numTotalInsnWords: number
+  numUsedInsnWords: number
+}
+
+export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
+  let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
+  augmentDecodeTreeInplace(x, [])
+  return x
+}
+
+function augmentDecodeTreeInplace(
+  node: AugmentedDecodeTreeNode,
+  matchBitfieldsSoFar: Bitfield[],
+) {
+  const myMatchBitfields = mergeBitfields(matchBitfieldsSoFar, node.look_at)
+  const myChildMatchWidth = bitfieldWidth(myMatchBitfields)
+  if (matchBitfieldsSoFar.length == 0)
+    // 1 << 32 = 1...
+    node.numTotalInsnWords = 0x100000000
+  else
+    node.numTotalInsnWords = 1 << (32 - bitfieldWidth(matchBitfieldsSoFar))
+
+  node.numUsedInsnWords = 0
+
+  for (let m of node.matches)
+    if (m.next) {
+      augmentDecodeTreeInplace(m.next, myMatchBitfields)
+      node.numUsedInsnWords += m.next.numUsedInsnWords
+    } else {
+      m.numUsedInsnWords = 1 << (32 - myChildMatchWidth)
+      node.numUsedInsnWords += m.numUsedInsnWords
+    }
+
+  return node
+}
+
+export function transformDecodeTreeForAntd(node: AugmentedDecodeTreeNode): TreeDataNode {
+  return transformDecodeTreeForAntdInner(node, 0, [], 0, [])
 }
