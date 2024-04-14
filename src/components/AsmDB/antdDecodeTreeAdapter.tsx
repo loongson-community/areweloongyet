@@ -21,6 +21,24 @@ function representMatchValue(val: number, bfs: Bitfield[]): string {
   return `0b${val.toString(2).padStart(width, '0')}`
 }
 
+type NodeTitleProps = {
+  match: number
+  lookAt: Bitfield[]
+  parentLookAt?: Bitfield[]
+  insn?: string
+  root?: boolean
+}
+
+function NodeTitle({ match, lookAt, parentLookAt, insn, root }: NodeTitleProps): JSX.Element {
+  if (insn)
+    return <span>{representMatchValue(match, lookAt)}: {insn}</span>
+
+  if (root)
+    return <span>检查 [{representBitfields(lookAt)}] 位</span>
+
+  return <span>{representMatchValue(match, parentLookAt)}: 检查 [{representBitfields(lookAt)}] 位</span>
+}
+
 function makeMatchNode(m: DecodeTreeMatch, node: DecodeTreeNode, keyPrefix: string): TreeDataNode {
   const key = `${keyPrefix}-m${m.match}`
 
@@ -28,17 +46,20 @@ function makeMatchNode(m: DecodeTreeMatch, node: DecodeTreeNode, keyPrefix: stri
     return transformDecodeTreeForAntd(m.next, key, m.match, node.look_at)
 
   return {
-    title: `${representMatchValue(m.match, node.look_at)}: ${m.matched}`,
+    title: <NodeTitle match={m.match} lookAt={node.look_at} insn={m.matched} />,
     key: key,
     icon: <CheckOutlined />,
   }
 }
 
 function transformDecodeTreeForAntd(node: DecodeTreeNode, key: string, myMatch: number, parentLookAt: Bitfield[]): TreeDataNode {
-  const lookAtBitfield = `检查 [${representBitfields(node.look_at)}] 位`
-
   return {
-    title: key == '0' ? lookAtBitfield : `${representMatchValue(myMatch, parentLookAt)}: ${lookAtBitfield}`,
+    title: <NodeTitle
+      match={myMatch}
+      lookAt={node.look_at}
+      parentLookAt={parentLookAt}
+      root={key == '0'}
+    />,
     key: key,
     icon: <EyeOutlined />,
     children: _.map(node.matches, (x) => makeMatchNode(x, node, key)),
