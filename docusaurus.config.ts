@@ -214,6 +214,10 @@ const config: Config = {
           title: '站内导航',
           items: [
             {
+              label: '阅读材料',
+              to: '/docs/intro',
+            },
+            {
               label: '每周一龙',
               to: '/newsletter',
             },
