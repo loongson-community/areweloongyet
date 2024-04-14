@@ -1,6 +1,6 @@
 module github.com/loongson-community/areweloongyet/scripts/asmdb
 
-go 1.19
+go 1.21
 
 require (
 	github.com/loongson-community/loongarch-opcodes/scripts/go v0.0.0-00000000000000-000000000000
