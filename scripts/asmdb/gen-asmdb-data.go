@@ -66,7 +66,7 @@ func main() {
 	// also build a decode tree for frontend disassembly
 	var db decodetreeBuilder
 	for _, insn := range descs {
-		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask())
+		db.addInsn(insn.Mnemonic, insn.Word, insn.Format.MatchBitmask(), insn.Format.CanonicalRepr())
 	}
 	decodetreeRoot := db.build()
 
