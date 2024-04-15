@@ -130,9 +130,54 @@ LoongArch 单体系统，因此在所有现存的 LoongArch 系统上，页表�
 
 </details>
 
-TODO: add `linux/sizes.h`
+Randy Dunlap 给 `asm/addrspace.h` [增加了](https://lore.kernel.org/loongarch/20240404045701.27284-1-rdunlap@infradead.org/)
+`linux/sizes.h` 的引用，以修复近期以来的构建错误。
 
-TODO: Loongson-2K PWM driver submitted
+Binbin Zhou [贴出了](https://lore.kernel.org/loongarch/cover.1712732719.git.zhoubinbin@loongson.cn/)适用龙芯 2K 全系列、7A 全系列的 PWM 驱动。
+
+Binbin Zhou 还为现有的龙芯 2 号温度传感器驱动[增加了](https://lore.kernel.org/loongarch/cover.1713147645.git.zhoubinbin@loongson.cn/)
+2K0500 与 2K2000 型号的支持，也对龙芯 2 号时钟源驱动[做了](https://lore.kernel.org/loongarch/cover.1712731524.git.zhoubinbin@loongson.cn/)同样的事。
+
+Huacai Chen [修复了](https://lore.kernel.org/loongarch/20240410131804.2165848-1-chenhuacai@loongson.cn/)内核自带龙芯 2K
+设备树的一些错误，涉及 LPC 总线、PCI MSI 特性与 GMAC、GNET 网口。
+
+Huacai Chen 还[使得](https://lore.kernel.org/loongarch/20240410131256.2165746-1-chenhuacai@loongson.cn/)
+LoongArch 使用透明巨页（THP）处理内存交换，录得 46.75% 的换出（swap-out）操作带宽提升。
+
+Tiezhu Yang [意图](https://lore.kernel.org/loongarch/20240411010510.22135-1-yangtiezhu@loongson.cn/)使
+LoongArch Linux 支持单线程配置，或者用 Kconfig 术语，`!CONFIG_SMP` 配置。这种配置的内核在多线程
+CPU 上也只能利用单线程，因此唯一的好处是可以搭配已知必然单核的硬件，获得少量性能提升；根据
+Tiezhu Yang 在第一版补丁中的[描述](https://lore.kernel.org/loongarch/20240326062101.9822-1-yangtiezhu@loongson.cn/)，能提升
+UnixBench `-c 1` 的跑分约 9%。
+
+<details>
+<summary>这不很鸡肋吗？</summary>
+
+对于一定的内核配置，允许的排列组合越多，得不到充分测试的组合就越多，这种配置在用户手上坏掉的可能性就更大。LoongArch
+的用户、开发者本就没有其他流行架构多，但三年发展下来，软硬件组合一点不少，因此质量保障的压力只会更大：这意味着我们在维护
+LoongArch 相关的软件时，都必须更加关注维护成本问题。
+
+`CONFIG_SMP` 恰好是比较麻烦的配置选项之一：它的打开与否会影响内核的许多根本特性（例如在 `!CONFIG_SMP`
+情况下，只要关中断便可保证所有原子操作的原子性了），所以支持开关 `CONFIG_SMP` 就意味着不小的维护成本。
+并且，借助 alternatives 机制，SMP 内核也能在检测到单线程硬件后动态修改自身代码，
+以去除现已不必要的原子操作（例如在 x86 上，这就是打补丁干掉 `lock` 前缀，显然有助于提升性能），因此明确支持
+`!CONFIG_SMP` 的必要性更低了。
+
+然而，上游维护者 Arnd Bergmann [介绍了](https://lore.kernel.org/loongarch/b752273b-0e94-4325-9cf8-6f16a204818b@app.fastmail.com/)最新情况，提到 LoongArch 作为 RISC 架构，大概应该与 ARM 或 RISC-V 处于相同境地：
+ARM64 Linux 从未支持过非 SMP 内核配置，但有许多流行的 system-in-package 产品在从 32 位转向 64 位，
+而它们只有单核与不到 128MiB 的内存；如果能构建 64 位的单处理器内核，那么就能省下好几 MiB，因此未来是有可能给
+ARM64 Linux 增加 `!CONFIG_SMP` 支持的。而 RISC-V 目前已经支持 `!CONFIG_SMP` 配置了。
+那么，从现在开始统一对待这三个架构，让它们都支持 `!CONFIG_SMP`，就说得过去了。
+
+尽管如此，Arnd 仍然觉得去除 SMP 支持之后，得到的性能提升不应该这么高：这意味着 SMP 内核在单核硬件上对自身的优化低于预期。
+如果有条件的话，仍应深入研究、优化 SMP 内核在单核硬件上的表现：这样 SMP 内核便可适用更多的资源受限场景，从而免得下游用户费心在
+SMP 与否这个点上抉择，也减轻内核开发者们的维护负担。
+
+</details>
+
+Song Gao 给 LoongArch Linux KVM [增加了](https://lore.kernel.org/loongarch/20240410095812.2943706-1-gaosong@loongson.cn/)性能监测计数器的支持。
+
+Bibo Mao 也给 KVM [增加了](https://lore.kernel.org/loongarch/20240409094900.1118699-1-maobibo@loongson.cn/)内存映射 I/O 跟踪事件（MMIO trace events）的支持。
 
 ### 工具链 {#toolchain}
 
