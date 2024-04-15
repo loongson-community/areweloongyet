@@ -1,8 +1,8 @@
 ---
-slug: this-week-in-loongarch-44
-title: 每周一龙：第 44 期
+slug: these-weeks-in-loongarch-44
+title: 每周两龙：第 44 期
 authors: [xen0n]
-date: 2024-04-08T00:00:00+08:00
+date: 2024-04-15T23:30:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---
@@ -15,13 +15,15 @@ draft: true  # TODO
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
+因为笔者上周现实生活繁忙，本期改为更新前两周的内容，预计下期恢复周一更新。
+
 ## 先「马」再看 {#marked-projects}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
 ### Linux {#linux}
 
-上期周报[提到的](./2024-04-08-this-week-in-loongarch-44.md#linux) KFENCE
+上期周报[提到的](./2024-04-01-this-week-in-loongarch-43.md#linux) KFENCE
 导致系统崩溃的问题，根因已被找到；Huacai Chen
 [提交了](https://lore.kernel.org/loongarch/20240404133642.971583-1-chenhuacai@loongson.cn/)修复。
 
