@@ -1,8 +1,10 @@
-import { Col, Row, Statistic, Tree } from 'antd'
+import { Col, Grid, Row, Statistic, Tree } from 'antd'
 import _ from 'lodash'
 
 import styles from './index.module.css'
 import { augmentDecodeTree, transformDecodeTreeForAntd, type AugmentedDecodeTreeNode } from './antdDecodeTreeAdapter'
+
+const { useBreakpoint } = Grid
 
 function decodeTreeDepth(node: DecodeTreeNode): number {
   if (!node)
@@ -40,22 +42,32 @@ export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData })
   // HACK: we know all insns are 1st-party so far, so no need to really filter anything
   const firstPartyAllocationRatio = augmentedDecodeTree.numUsedInsnWords / 0x80000000 * 100
 
+  const screens = useBreakpoint()
+
   return <>
     <Row gutter={16}>
-      <Col span={3}>
-        <Statistic title="已知指令数" value={numInsns} />
-        <Statistic title="指令格式数" value={numInsnFormats} style={{ marginTop: 16 }} />
-        <Statistic title="译码决策树深度" value={depth} style={{ marginTop: 16 }} />
-        <Statistic title="已分配主操作码" value={numAllocatedOpcodes} suffix="/ 64" style={{ marginTop: 16 }} />
-        <Statistic title="已分配第一方主操作码" value={numFirstPartyOpcodes} suffix="/ 32" style={{ marginTop: 16 }} />
-        <Statistic title="已分配第三方统一扩展主操作码" value={numUnifiedExtOpcodes} suffix="/ 16" style={{ marginTop: 16 }} />
-        <Statistic title="已分配编码空间" value={allocationRatio.toFixed(2)} suffix="%" style={{ marginTop: 16 }} />
-        <Statistic title="已分配第一方编码空间" value={firstPartyAllocationRatio.toFixed(2)} suffix="%" style={{ marginTop: 16 }} />
+      <Col xs={24} xl={3}>
+        <Row>
+          <Col xs={12} xl={24}><Statistic title="已知指令数" value={numInsns} /></Col>
+          <Col xs={12} xl={24}><Statistic title="指令格式数" value={numInsnFormats} style={{ marginTop: screens.xl ? 16 : 0 }} /></Col>
+        </Row>
+        <Row>
+          <Col xs={12} xl={24}><Statistic title="译码决策树深度" value={depth} style={{ marginTop: 16 }} /></Col>
+          <Col xs={12} xl={24}><Statistic title="已分配主操作码" value={numAllocatedOpcodes} suffix="/ 64" style={{ marginTop: 16 }} /></Col>
+        </Row>
+        <Row>
+          <Col xs={12} xl={24}><Statistic title="已分配第一方主操作码" value={numFirstPartyOpcodes} suffix="/ 32" style={{ marginTop: 16 }} /></Col>
+          <Col xs={12} xl={24}><Statistic title="已分配第三方统一扩展主操作码" value={numUnifiedExtOpcodes} suffix="/ 16" style={{ marginTop: 16 }} /></Col>
+        </Row>
+        <Row>
+          <Col xs={12} xl={24}><Statistic title="已分配编码空间" value={allocationRatio.toFixed(2)} suffix="%" style={{ marginTop: 16 }} /></Col>
+          <Col xs={12} xl={24}><Statistic title="已分配第一方编码空间" value={firstPartyAllocationRatio.toFixed(2)} suffix="%" style={{ marginTop: 16 }} /></Col>
+        </Row>
       </Col>
-      <Col span={18}>
+      <Col xs={24} xl={18} style={{ marginTop: screens.xl ? 0 : 16 }}>
         <DecodeTreeView node={augmentedDecodeTree} className={styles.decodeTreeView} />
       </Col>
-      <Col span={3}>
+      <Col xs={24} xl={3} style={{ marginTop: screens.xl ? 0 : 16 }}>
         {/* TODO */}
       </Col>
     </Row>

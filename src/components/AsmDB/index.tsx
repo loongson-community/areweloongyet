@@ -27,7 +27,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
       <ThemeAwareAntdContainer>
         <AntdLayout>
           {/* TODO: fixed sidebar */}
-          <AntdLayout.Sider>
+          <AntdLayout.Sider breakpoint='lg' collapsedWidth={0}>
             <Menu
               mode="inline"
               defaultSelectedKeys={['encodingSpaceOverview']}
