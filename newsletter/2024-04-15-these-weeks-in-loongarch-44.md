@@ -181,38 +181,79 @@ Bibo Mao 也给 KVM [增加了](https://lore.kernel.org/loongarch/20240409094900
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
 #### binutils {#binutils}
 
-TODO: move GOT before data for RELRO
+mengqinggang 为 gas [增加了](https://sourceware.org/pipermail/binutils/2024-April/133561.html)
+`-mignore-start-align` 选项。这是因为上期周报[报道的](./2024-04-01-this-week-in-loongarch-43.md#binutils)无视节头
+`.align` 指示的变更，会在部分链接（partial linking）时导致对齐行为错误。
 
-TODO: error on unknown reloc
+mengqinggang 将 GOT：`.got` 与 `.got.plt` 两节（section）[挪到了](https://sourceware.org/pipermail/binutils/2024-April/133472.html)
+`.data` 之前，以便将 GOT 置于 RELRO 保护之下，提升系统整体安全性。感谢 [xry111] 投递新闻线索！
+
+Lulu Cai [让](https://sourceware.org/pipermail/binutils/2024-April/133271.html)
+GNU ld 碰到不认识的重定位操作时要报错。
 
 #### GCC {#gcc}
 
-TODO: kill LSX on LA32
+Lulu Cheng 为几个命令行选项[补充了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/649038.html)文档链接信息。
+在支持的终端下，如果 gcc 的报错或警告信息提及了这些命令行选项，便可以点击选项名，自动跳转到官方文档了。
 
-TODO: Alignment params for LA664
+Yang Yujie 在先前重构的基础上，[完成了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648918.html)上游问题报告
+[PR113233](https://gcc.gnu.org/PR113233) 的修复。感谢 [xry111] 投递新闻线索！
 
-TODO: TLSDESC
+:::info 勘误
+[xry111] 发现上一期周报[所采纳的](./2024-04-01-this-week-in-loongarch-43.md#gcc)新闻线索措辞不准确：当时
+Lulu Cheng 做的变更其实是为真正的修复铺路，而非实际解决了。特此更正。
+:::
+
+Jiahao Xu [移除了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648641.html)非 64 位
+LoongArch 的 LSX 支持，简化了一些地方的实现。注意到 Jiahao 的邮箱地址表明了其龙芯员工身份，我们可以推定今后大概率不会有支持
+SIMD 扩展的 LA32 型号或软核出现了。
+
+Lulu Cheng 做完了 LA664 微架构的对齐参数实验，[更新了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648639.html)为
+LA664 优化时对应的默认对齐参数。以此补丁结合上 gcc 其他部分的近期修改，第 28 期周报[提到的](./2023-12-11-this-week-in-loongarch-28/index.md#gcc)
+CoreMark 性能劣化问题也随之消失了。
+
+Lulu Cheng 还[合并了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648635.html)
+3 月中 mengqinggang 提交的 TLS 描述符（TLSDESC）的 gcc 一侧实现工作。这意味着不久之后的 gcc 14.1
+正式版将支持 LoongArch TLSDESC 特性了，有助于此特性带来的性能优化在接下来的一两年内快速铺开。
 
 #### LLVM {#llvm}
 
-TODO
+[heiher] [发现了](https://github.com/llvm/llvm-project/issues/88109)当函数的栈帧很大时，函数的序（prologue）会塞满了栈指针的调节指令，
+并将其[修复了](https://github.com/llvm/llvm-project/pull/88110)：先前不得不这么做的原因是
+`RegScavenger` 存在其他问题，因此需要做如此规避，但隔壁的 RISCV 同仁先前已将 `RegScavenger`
+的问题[解决了](https://github.com/llvm/llvm-project/commit/18c5f3c35d18ca069f02b78e62468d7494ed6c7c)。
+
+[wangleiat] [修复了](https://github.com/llvm/llvm-project/pull/88372) LoongArch
+后端的目标变换信息（`TargetTransformInfo`）对 LoongArch 各类寄存器数量的错误认知：先前回落到了默认实现，会认为每种寄存器都只有 8 个。
+从提交说明看，此问题显然是在优化 LLVM 的 LoongArch 自动向量化（auto-vectorization）背景下发现的。
+
+[wangleiat] 还修复了日前 ClangBuiltLinux 维护者 Nathan 在自动化测试中[发现的](https://github.com/ClangBuiltLinux/linux/issues/2014)个别情况下函数栈帧大小莫名暴涨的问题。具体修复是围绕着取数组元素 `getelementptr`（GEP）这一 LLVM IR 操作的处理展开的：
+
+* [修复了](https://github.com/llvm/llvm-project/pull/88694)关于寻址模式是否合法的判断，
+* [允许了](https://github.com/llvm/llvm-project/pull/88371)拆分 GEP 偏移量的变换。
+
+[wangleiat]: https://github.com/wangleiat
+
+#### Rust {#rust}
+
+[heiher] 为 Rust 界常用的交叉编译、测试工具 cross [增加了](https://github.com/cross-rs/cross/pull/1465)
+LoongArch 标准镜像，又[增加了](https://github.com/cross-rs/cross/pull/1466) QEMU 模拟支持。
+此支持将随着 cross 的下一个正式版本发布。感谢 [heiher] 自己制造并投递新闻线索！
+
+[heiher]: https://github.com/heiher
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+[xry111] 提醒说：三个月前在测试 pixman 的 LSX、LASX 优化补丁时，踩到的 GCC LTO 坑已被修复（就是前文提到的 PR113233），
+因此打包的同学们可以继续测试了。（编者注：测试前记得确认您用的 GCC 包含了修复补丁！）
 
-## 社区整活:儿: {#grins}
+[xiangzhai] 为 WebKit 在 Linux LoongArch 上[实现了](https://github.com/WebKit/WebKit/pull/23282)取当前栈指针的操作。
+感谢 [xry111] 投递新闻线索！
 
-本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
-无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
-
-TODO
+[xiangzhai]: https://github.com/xiangzhai
+[xry111]: https://github.com/xry111
 
 ## 张贴栏 {#bulletin}
 
