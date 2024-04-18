@@ -141,24 +141,16 @@ func bitfieldsFromSet(s map[int]struct{}) bitfields {
 	return r
 }
 
-type decodetreeAction int
-
-const (
-	decodetreeActionUnknown  decodetreeAction = 0
-	decodetreeActionFinish   decodetreeAction = 1
-	decodetreeActionContinue decodetreeAction = 2
-)
-
 type decodetreeMatch struct {
-	Match  uint32           `json:"match"`
-	Action decodetreeAction `json:"action"`
+	Match uint32 `json:"match"`
 
 	// contains the determined insn format if all descendant nodes share this
 	// format
 	Fmt string `json:"fmt,omitempty"`
-	// if action is finish, contains the matched insn's mnemonic
+	// if node is leaf (insn is already fully decided), contains the matched
+	// insn's mnemonic
 	Matched string `json:"matched,omitempty"`
-	// if action is continue, points to the next decodetree node
+	// if node is not leaf, points to the next decodetree node
 	Next *decodetreeNode `json:"next,omitempty"`
 }
 
@@ -350,7 +342,6 @@ func buildDecodetreeSubset(
 			// fully decided
 			n.Matches = append(n.Matches, &decodetreeMatch{
 				Match:   k,
-				Action:  decodetreeActionFinish,
 				Fmt:     l[0].fmt,
 				Matched: l[0].mnemonic,
 				Next:    nil,
@@ -364,7 +355,6 @@ func buildDecodetreeSubset(
 
 		n.Matches = append(n.Matches, &decodetreeMatch{
 			Match:   k,
-			Action:  decodetreeActionContinue,
 			Fmt:     "",
 			Matched: "",
 			Next:    subsetNode,

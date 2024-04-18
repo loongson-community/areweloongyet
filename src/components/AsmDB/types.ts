@@ -58,15 +58,8 @@ type Bitfield = {
   len: number
 }
 
-enum DecodeTreeAction {
-  Unknown = 0,
-  Finish = 1,
-  Continue = 2,
-}
-
 type DecodeTreeMatch = {
   match: number
-  action: DecodeTreeAction
   fmt?: string
   matched?: string
   next?: DecodeTreeNode
