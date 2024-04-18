@@ -193,11 +193,13 @@ function transformDecodeTreeForAntdInner(
 }
 
 type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
+  parentNode: AugmentedDecodeTreeNode
   next?: AugmentedDecodeTreeNode
   numUsedInsnWords: number
 }
 
 export type AugmentedDecodeTreeNode = DecodeTreeNode & {
+  parentMatch?: AugmentedDecodeTreeMatch
   matches: AugmentedDecodeTreeMatch[]
   numTotalInsnWords: number
   numUsedInsnWords: number
@@ -205,12 +207,13 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
 
 export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
   let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
-  augmentDecodeTreeInplace(x, [])
+  augmentDecodeTreeInplace(x, null, [])
   return x
 }
 
 function augmentDecodeTreeInplace(
   node: AugmentedDecodeTreeNode,
+  nodeMatch: AugmentedDecodeTreeMatch,
   matchBitfieldsSoFar: Bitfield[],
 ) {
   const myMatchBitfields = mergeBitfields(matchBitfieldsSoFar, node.look_at)
@@ -223,14 +226,18 @@ function augmentDecodeTreeInplace(
 
   node.numUsedInsnWords = 0
 
-  for (const m of node.matches)
+  node.parentMatch = nodeMatch
+  for (const m of node.matches) {
+    m.parentNode = node
+
     if (m.next) {
-      augmentDecodeTreeInplace(m.next, myMatchBitfields)
+      augmentDecodeTreeInplace(m.next, m, myMatchBitfields)
       node.numUsedInsnWords += m.next.numUsedInsnWords
     } else {
       m.numUsedInsnWords = 1 << (32 - myChildMatchWidth)
       node.numUsedInsnWords += m.numUsedInsnWords
     }
+  }
 
   return node
 }
