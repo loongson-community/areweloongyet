@@ -144,7 +144,7 @@ function makeMatchNode(
   myMatchBitfields: Bitfield[],
 ): TreeDataNode {
   const myMatch = matchSoFar | restoreIntoBitfields(m.match, node.look_at)
-  const key = `m${makeMatchPatternKey(myMatch, myMatchBitfields)}`
+  const key = makeMatchPatternKey(myMatch, myMatchBitfields)
 
   if (m.next)
     return transformDecodeTreeForAntdInner(m.next, m, node.look_at, myMatch, myMatchBitfields)
@@ -193,12 +193,14 @@ function transformDecodeTreeForAntdInner(
 }
 
 type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
+  key: string
   parentNode: AugmentedDecodeTreeNode
   next?: AugmentedDecodeTreeNode
   numUsedInsnWords: number
 }
 
 export type AugmentedDecodeTreeNode = DecodeTreeNode & {
+  key: string
   parentMatch?: AugmentedDecodeTreeMatch
   matches: AugmentedDecodeTreeMatch[]
   numTotalInsnWords: number
@@ -207,13 +209,14 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
 
 export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
   let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
-  augmentDecodeTreeInplace(x, null, [])
+  augmentDecodeTreeInplace(x, null, 0, [])
   return x
 }
 
 function augmentDecodeTreeInplace(
   node: AugmentedDecodeTreeNode,
   nodeMatch: AugmentedDecodeTreeMatch,
+  matchSoFar: number,
   matchBitfieldsSoFar: Bitfield[],
 ) {
   const myMatchBitfields = mergeBitfields(matchBitfieldsSoFar, node.look_at)
@@ -226,12 +229,15 @@ function augmentDecodeTreeInplace(
 
   node.numUsedInsnWords = 0
 
+  node.key = makeMatchPatternKey(matchSoFar, matchBitfieldsSoFar)
   node.parentMatch = nodeMatch
   for (const m of node.matches) {
+    const myMatch = matchSoFar | restoreIntoBitfields(m.match, node.look_at)
+    m.key = makeMatchPatternKey(myMatch, myMatchBitfields)
     m.parentNode = node
 
     if (m.next) {
-      augmentDecodeTreeInplace(m.next, m, myMatchBitfields)
+      augmentDecodeTreeInplace(m.next, m, myMatch, myMatchBitfields)
       node.numUsedInsnWords += m.next.numUsedInsnWords
     } else {
       m.numUsedInsnWords = 1 << (32 - myChildMatchWidth)
