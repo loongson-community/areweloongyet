@@ -74,3 +74,41 @@ function augmentDecodeTreeInplace(
 
   return node
 }
+
+export type FlattenedAugmentedNode = {
+  key: string
+  node?: AugmentedDecodeTreeNode
+  match?: AugmentedDecodeTreeMatch
+}
+
+export type AugmentedNodeMap = { [key: string]: FlattenedAugmentedNode }
+
+function makeFlattenedAugmentedNode(
+  node?: AugmentedDecodeTreeNode,
+  match?: AugmentedDecodeTreeMatch,
+): FlattenedAugmentedNode {
+  const key = node ? node.key : match.key
+  return {
+    key: key,
+    node: node,
+    match: match,
+  }
+}
+
+function flattenAugmentedDecodeTreeInto(node: AugmentedDecodeTreeNode, result: FlattenedAugmentedNode[]): void {
+  result.push(makeFlattenedAugmentedNode(node, null))
+  result.push(...(_.map(node.matches, (x) => makeFlattenedAugmentedNode(null, x))))
+  for (const m of node.matches)
+    if (m.next)
+      flattenAugmentedDecodeTreeInto(m.next, result)
+}
+
+function flattenAugmentedDecodeTree(node: AugmentedDecodeTreeNode): FlattenedAugmentedNode[] {
+  const result = []
+  flattenAugmentedDecodeTreeInto(node, result)
+  return result
+}
+
+export function mapifyAugmentedDecodeTree(node: AugmentedDecodeTreeNode): AugmentedNodeMap {
+  return _.keyBy(flattenAugmentedDecodeTree(node), 'key')
+}

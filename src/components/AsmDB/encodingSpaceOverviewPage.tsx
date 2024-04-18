@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import styles from './index.module.css'
 import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
-import { augmentDecodeTree, type AugmentedDecodeTreeNode } from './augmentedDecodeTree'
+import { augmentDecodeTree, type AugmentedDecodeTreeNode, mapifyAugmentedDecodeTree, type AugmentedNodeMap } from './augmentedDecodeTree'
 
 const { useBreakpoint } = Grid
 
@@ -37,16 +37,22 @@ const DecodeTreeView: React.FC<DecodeTreeViewProps & React.HTMLAttributes<HTMLDi
 }
 
 type DecodeTreeNodeDetailProps = {
-  node: AugmentedDecodeTreeNode
+  data: AugmentedNodeMap
+  selectedKey: string
 }
 
 const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
-  return "TODO"
+  if (!props.data.hasOwnProperty(props.selectedKey))
+    return <></>
+
+  const selectedNode = props.data[props.selectedKey]
+  return <span>{selectedNode.key}</span>
 }
 
 export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData }): JSX.Element {
   const numInsns = data.insns.length
   const augmentedDecodeTree = augmentDecodeTree(data.decodetree)
+  const augmentedDataMap = mapifyAugmentedDecodeTree(augmentedDecodeTree)
   const antdNode = transformDecodeTreeForAntd(augmentedDecodeTree)
   const depth = decodeTreeDepth(data.decodetree)
   const numAllocatedOpcodes = data.decodetree.matches.length
@@ -88,7 +94,7 @@ export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData })
         />
       </Col>
       <Col xs={24} xl={9} style={{ marginTop: screens.xl ? 0 : 16 }}>
-        {/* TODO */}
+        <DecodeTreeNodeDetail data={augmentedDataMap} selectedKey={selectedMatchKey} />
       </Col>
     </Row>
   </>
