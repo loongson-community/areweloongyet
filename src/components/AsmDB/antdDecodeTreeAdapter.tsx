@@ -14,10 +14,6 @@ function representMatchValue(val: number, bfs: Bitfield[]): string {
 type NodeTitleProps = {
   match?: AugmentedDecodeTreeMatch
   node?: AugmentedDecodeTreeNode
-  matchPattern?: string
-  lookAt: Bitfield[]
-  parentLookAt?: Bitfield[]
-  insn?: string
 }
 
 const wellKnownMatchPatterns = {
@@ -55,8 +51,15 @@ const wellKnownMatchPatterns = {
   '011101xxxxxxxxxxxxxxxxxxxxxxxxxx': '运算-LASX',
 }
 
-function NodeTitle({ match, node, matchPattern, lookAt, parentLookAt, insn }: NodeTitleProps): JSX.Element {
+function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
+  if (!match)
+    match = node.parentMatch
+
   const matchNumber = match ? match.match : 0
+  const matchPattern = node ? node.key : match.key
+  const insn = match ? match.matched : ''
+  const lookAt = node ? node.look_at : match.parentNode.look_at
+  const parentLookAt = node ? node.parentLookAt : null
 
   const preAttribs: JSX.Element[] = []
   const postAttribs: JSX.Element[] = []
@@ -106,7 +109,7 @@ function makeMatchNode(
     return transformDecodeTreeForAntd(m.next)
 
   return {
-    title: <NodeTitle match={m} lookAt={m.parentNode.look_at} insn={m.matched} />,
+    title: <NodeTitle match={m} />,
     key: m.key,
     icon: <CheckOutlined />,
   }
@@ -116,15 +119,9 @@ export function transformDecodeTreeForAntd(
   node: AugmentedDecodeTreeNode,
 ): TreeDataNode {
   return {
-    title: <NodeTitle
-      node={node}
-      match={node.parentMatch}
-      matchPattern={node.key}
-      lookAt={node.look_at}
-      parentLookAt={node.parentLookAt}
-    />,
+    title: <NodeTitle node={node} />,
     key: node.key,
     icon: <EyeOutlined />,
-    children: _.map(node.matches, (x) => makeMatchNode(x)),
+    children: _.map(node.matches, makeMatchNode),
   }
 }
