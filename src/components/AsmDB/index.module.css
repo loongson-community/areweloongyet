@@ -2,7 +2,8 @@
   border: 1px solid var(--ifm-color-secondary-contrast-background);
 }
 
-.attrib::before {
+.attrib::before,
+.contentAttrib::before {
   content: ' ';
 }
 

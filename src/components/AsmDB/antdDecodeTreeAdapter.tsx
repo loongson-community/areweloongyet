@@ -52,7 +52,6 @@ function representMatchValue(val: number, bfs: Bitfield[]): string {
 type NodeTitleProps = {
   match?: AugmentedDecodeTreeMatch
   node?: AugmentedDecodeTreeNode
-  matchNumber?: number
   matchPattern?: string
   lookAt: Bitfield[]
   parentLookAt?: Bitfield[]
@@ -94,14 +93,16 @@ const wellKnownMatchPatterns = {
   '011101xxxxxxxxxxxxxxxxxxxxxxxxxx': '运算-LASX',
 }
 
-function NodeTitle({ match, node, matchNumber, matchPattern, lookAt, parentLookAt, insn }: NodeTitleProps): JSX.Element {
-  if (match)
-    matchNumber = match.match
+function NodeTitle({ match, node, matchPattern, lookAt, parentLookAt, insn }: NodeTitleProps): JSX.Element {
+  const matchNumber = match ? match.match : 0
 
-  let preAttribs: JSX.Element[] = []
-  let postAttribs: JSX.Element[] = []
+  const preAttribs: JSX.Element[] = []
+  const postAttribs: JSX.Element[] = []
   if (match?.fmt)
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fmt`}>格式 {match.fmt}</span>)
+    if (node)
+      postAttribs.push(<span className={styles.contentAttrib} key={`${matchPattern}-fmt`}>并确定格式为 {match.fmt}</span>)
+    else
+      postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fmt`}>格式 {match.fmt}</span>)
   if (wellKnownMatchPatterns.hasOwnProperty(matchPattern))
     preAttribs.push(<span className={styles.attrib} key={`${matchPattern}-alias`}>{wellKnownMatchPatterns[matchPattern]}</span>)
 
@@ -146,7 +147,7 @@ function makeMatchNode(
   const key = `m${makeMatchPatternKey(myMatch, myMatchBitfields)}`
 
   if (m.next)
-    return transformDecodeTreeForAntdInner(m.next, m.match, node.look_at, myMatch, myMatchBitfields)
+    return transformDecodeTreeForAntdInner(m.next, m, node.look_at, myMatch, myMatchBitfields)
 
   return {
     title: <NodeTitle match={m} lookAt={node.look_at} insn={m.matched} />,
@@ -168,7 +169,7 @@ function makeMatchPatternKey(match: number, bfs: Bitfield[]): string {
 
 function transformDecodeTreeForAntdInner(
   node: AugmentedDecodeTreeNode,
-  myMatch: number,
+  myMatch: AugmentedDecodeTreeMatch,
   parentLookAt: Bitfield[],
   matchSoFar: number,
   matchBitfieldsSoFar: Bitfield[],
@@ -180,7 +181,7 @@ function transformDecodeTreeForAntdInner(
   return {
     title: <NodeTitle
       node={node}
-      matchNumber={myMatch}
+      match={myMatch}
       matchPattern={matchPattern}
       lookAt={node.look_at}
       parentLookAt={parentLookAt}
@@ -222,7 +223,7 @@ function augmentDecodeTreeInplace(
 
   node.numUsedInsnWords = 0
 
-  for (let m of node.matches)
+  for (const m of node.matches)
     if (m.next) {
       augmentDecodeTreeInplace(m.next, myMatchBitfields)
       node.numUsedInsnWords += m.next.numUsedInsnWords
@@ -235,5 +236,5 @@ function augmentDecodeTreeInplace(
 }
 
 export function transformDecodeTreeForAntd(node: AugmentedDecodeTreeNode): TreeDataNode {
-  return transformDecodeTreeForAntdInner(node, 0, [], 0, [])
+  return transformDecodeTreeForAntdInner(node, null, [], 0, [])
 }
