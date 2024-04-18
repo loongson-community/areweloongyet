@@ -1,5 +1,6 @@
-import { Col, Grid, Row, Statistic, Tree } from 'antd'
+import { Col, Grid, Row, Statistic, Tree, TreeDataNode } from 'antd'
 import _ from 'lodash'
+import { useState } from 'react'
 
 import styles from './index.module.css'
 import { augmentDecodeTree, transformDecodeTreeForAntd, type AugmentedDecodeTreeNode } from './antdDecodeTreeAdapter'
@@ -14,25 +15,38 @@ function decodeTreeDepth(node: DecodeTreeNode): number {
 }
 
 type DecodeTreeViewProps = {
-  node: AugmentedDecodeTreeNode
+  treeData: TreeDataNode
+  onMatchKeyChange?: (newVal: string) => void
 }
 
 const DecodeTreeView: React.FC<DecodeTreeViewProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
-  const antdNode = transformDecodeTreeForAntd(props.node)
+  let onSelect = null
+  if (props.onMatchKeyChange)
+    onSelect = (sk: string[]) => props.onMatchKeyChange(sk[0])
 
   return <Tree
     showLine={{ showLeafIcon: false }}
     showIcon={true}
     defaultExpandedKeys={['xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']}
-    treeData={[antdNode]}
+    treeData={[props.treeData]}
     className={props.className}
     style={props.style}
+    onSelect={onSelect}
   />
+}
+
+type DecodeTreeNodeDetailProps = {
+  node: AugmentedDecodeTreeNode
+}
+
+const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
+  return "TODO"
 }
 
 export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData }): JSX.Element {
   const numInsns = data.insns.length
   const augmentedDecodeTree = augmentDecodeTree(data.decodetree)
+  const antdNode = transformDecodeTreeForAntd(augmentedDecodeTree)
   const depth = decodeTreeDepth(data.decodetree)
   const numAllocatedOpcodes = data.decodetree.matches.length
   const numFirstPartyOpcodes = _.filter(data.decodetree.matches, (x) => x.match <= 0b011111).length
@@ -43,6 +57,7 @@ export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData })
   const firstPartyAllocationRatio = augmentedDecodeTree.numUsedInsnWords / 0x80000000 * 100
 
   const screens = useBreakpoint()
+  const [selectedMatchKey, setSelectedMatchKey] = useState('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
   return <>
     <Row gutter={16}>
@@ -64,10 +79,14 @@ export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData })
           <Col xs={12} xl={24}><Statistic title="已分配第一方编码空间" value={firstPartyAllocationRatio.toFixed(2)} suffix="%" style={{ marginTop: 16 }} /></Col>
         </Row>
       </Col>
-      <Col xs={24} xl={18} style={{ marginTop: screens.xl ? 0 : 16 }}>
-        <DecodeTreeView node={augmentedDecodeTree} className={styles.decodeTreeView} />
+      <Col xs={24} xl={12} style={{ marginTop: screens.xl ? 0 : 16 }}>
+        <DecodeTreeView
+          treeData={antdNode}
+          className={styles.decodeTreeView}
+          onMatchKeyChange={setSelectedMatchKey}
+        />
       </Col>
-      <Col xs={24} xl={3} style={{ marginTop: screens.xl ? 0 : 16 }}>
+      <Col xs={24} xl={9} style={{ marginTop: screens.xl ? 0 : 16 }}>
         {/* TODO */}
       </Col>
     </Row>
