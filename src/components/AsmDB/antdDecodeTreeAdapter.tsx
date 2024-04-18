@@ -3,46 +3,8 @@ import { CheckOutlined, EyeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
 import styles from './index.module.css'
-
-function representBitfield(bf: Bitfield): string {
-  return bf.len == 1 ? bf.lsb.toString(10) : `${bf.lsb + bf.len - 1}:${bf.lsb}`
-}
-
-function representBitfields(bfs: Bitfield[]): string {
-  if (bfs.length == 1)
-    return representBitfield(bfs[0])
-  return _.map(_.reverse(_.cloneDeep(bfs)), representBitfield).join(',')
-}
-
-function bitfieldWidth(bfs: Bitfield[]): number {
-  return _.sum(_.map(bfs, (x) => x.len))
-}
-
-function mergeBitfields(a: Bitfield[], b: Bitfield[]): Bitfield[] {
-  const tmp = _.sortBy(_.concat(_.cloneDeep(a), ..._.cloneDeep(b)), 'lsb')
-  if (tmp.length < 2)
-    return tmp
-
-  for (let i = 1; i < tmp.length; i++) {
-    if (tmp[i].lsb == tmp[i - 1].lsb + tmp[i - 1].len) {
-      // merge tmp[i] into tmp[i-1]
-      tmp[i - 1].len += tmp[i].len
-      tmp.splice(i, 1)
-      i--
-    }
-  }
-
-  return tmp
-}
-
-function restoreIntoBitfields(num: number, bfs: Bitfield[]): number {
-  let y = 0
-  for (const bf of bfs) {
-    y |= (num & ((1 << bf.len) - 1)) << bf.lsb
-    num >>= bf.len
-  }
-  return y
-}
+import { type AugmentedDecodeTreeMatch, type AugmentedDecodeTreeNode } from "./augmentedDecodeTree"
+import { bitfieldWidth, representBitfields } from "./bitfield"
 
 function representMatchValue(val: number, bfs: Bitfield[]): string {
   const width = bitfieldWidth(bfs)
@@ -139,115 +101,30 @@ function NodeTitle({ match, node, matchPattern, lookAt, parentLookAt, insn }: No
 
 function makeMatchNode(
   m: AugmentedDecodeTreeMatch,
-  node: AugmentedDecodeTreeNode,
-  matchSoFar: number,
-  myMatchBitfields: Bitfield[],
 ): TreeDataNode {
-  const myMatch = matchSoFar | restoreIntoBitfields(m.match, node.look_at)
-  const key = makeMatchPatternKey(myMatch, myMatchBitfields)
-
   if (m.next)
-    return transformDecodeTreeForAntdInner(m.next, m, node.look_at, myMatch, myMatchBitfields)
+    return transformDecodeTreeForAntd(m.next)
 
   return {
-    title: <NodeTitle match={m} lookAt={node.look_at} insn={m.matched} />,
-    key: key,
+    title: <NodeTitle match={m} lookAt={m.parentNode.look_at} insn={m.matched} />,
+    key: m.key,
     icon: <CheckOutlined />,
   }
 }
 
-function makeMatchPatternKey(match: number, bfs: Bitfield[]): string {
-  let s = match.toString(2).padStart(32, '0').split('')
-  s.reverse()
-  let y = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.split('')
-  for (const bf of bfs)
-    for (let i = bf.lsb; i < bf.lsb + bf.len; i++)
-      y[i] = s[i]
-  y.reverse()
-  return y.join('')
-}
-
-function transformDecodeTreeForAntdInner(
+export function transformDecodeTreeForAntd(
   node: AugmentedDecodeTreeNode,
-  myMatch: AugmentedDecodeTreeMatch,
-  parentLookAt: Bitfield[],
-  matchSoFar: number,
-  matchBitfieldsSoFar: Bitfield[],
 ): TreeDataNode {
-  // figure out the actual match pattern so far, for showing helpful opcode aliases
-  const myMatchBitfields = mergeBitfields(matchBitfieldsSoFar, node.look_at)
-  const matchPattern = makeMatchPatternKey(matchSoFar, matchBitfieldsSoFar)
-
   return {
     title: <NodeTitle
       node={node}
-      match={myMatch}
-      matchPattern={matchPattern}
+      match={node.parentMatch}
+      matchPattern={node.key}
       lookAt={node.look_at}
-      parentLookAt={parentLookAt}
+      parentLookAt={node.parentLookAt}
     />,
-    key: matchPattern,
+    key: node.key,
     icon: <EyeOutlined />,
-    children: _.map(node.matches, (x) => makeMatchNode(x, node, matchSoFar, myMatchBitfields)),
+    children: _.map(node.matches, (x) => makeMatchNode(x)),
   }
-}
-
-type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
-  key: string
-  parentNode: AugmentedDecodeTreeNode
-  next?: AugmentedDecodeTreeNode
-  numUsedInsnWords: number
-}
-
-export type AugmentedDecodeTreeNode = DecodeTreeNode & {
-  key: string
-  parentMatch?: AugmentedDecodeTreeMatch
-  matches: AugmentedDecodeTreeMatch[]
-  numTotalInsnWords: number
-  numUsedInsnWords: number
-}
-
-export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
-  let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
-  augmentDecodeTreeInplace(x, null, 0, [])
-  return x
-}
-
-function augmentDecodeTreeInplace(
-  node: AugmentedDecodeTreeNode,
-  nodeMatch: AugmentedDecodeTreeMatch,
-  matchSoFar: number,
-  matchBitfieldsSoFar: Bitfield[],
-) {
-  const myMatchBitfields = mergeBitfields(matchBitfieldsSoFar, node.look_at)
-  const myChildMatchWidth = bitfieldWidth(myMatchBitfields)
-  if (matchBitfieldsSoFar.length == 0)
-    // 1 << 32 = 1...
-    node.numTotalInsnWords = 0x100000000
-  else
-    node.numTotalInsnWords = 1 << (32 - bitfieldWidth(matchBitfieldsSoFar))
-
-  node.numUsedInsnWords = 0
-
-  node.key = makeMatchPatternKey(matchSoFar, matchBitfieldsSoFar)
-  node.parentMatch = nodeMatch
-  for (const m of node.matches) {
-    const myMatch = matchSoFar | restoreIntoBitfields(m.match, node.look_at)
-    m.key = makeMatchPatternKey(myMatch, myMatchBitfields)
-    m.parentNode = node
-
-    if (m.next) {
-      augmentDecodeTreeInplace(m.next, m, myMatch, myMatchBitfields)
-      node.numUsedInsnWords += m.next.numUsedInsnWords
-    } else {
-      m.numUsedInsnWords = 1 << (32 - myChildMatchWidth)
-      node.numUsedInsnWords += m.numUsedInsnWords
-    }
-  }
-
-  return node
-}
-
-export function transformDecodeTreeForAntd(node: AugmentedDecodeTreeNode): TreeDataNode {
-  return transformDecodeTreeForAntdInner(node, null, [], 0, [])
 }

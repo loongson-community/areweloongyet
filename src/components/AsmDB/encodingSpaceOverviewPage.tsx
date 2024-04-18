@@ -3,7 +3,8 @@ import _ from 'lodash'
 import { useState } from 'react'
 
 import styles from './index.module.css'
-import { augmentDecodeTree, transformDecodeTreeForAntd, type AugmentedDecodeTreeNode } from './antdDecodeTreeAdapter'
+import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
+import { augmentDecodeTree, type AugmentedDecodeTreeNode } from './augmentedDecodeTree'
 
 const { useBreakpoint } = Grid
 
