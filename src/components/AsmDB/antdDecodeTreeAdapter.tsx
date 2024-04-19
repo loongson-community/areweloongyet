@@ -7,8 +7,15 @@ import { type AugmentedDecodeTreeMatch, type AugmentedDecodeTreeNode } from "./a
 import { bitfieldWidth, representBitfields } from "./bitfield"
 
 function representMatchValue(val: number, bfs: Bitfield[]): string {
-  const width = bitfieldWidth(bfs)
-  return `0b${val.toString(2).padStart(width, '0')}`
+  const sortedBFs = _.sortBy(_.clone(bfs), 'lsb')
+  const reprs = []
+  for (const bf of sortedBFs) {
+    reprs.push((val & ((1 << bf.len) - 1)).toString(2).padStart(bf.len, '0'))
+    val >>= bf.len
+  }
+  reprs.reverse()
+
+  return `0b${reprs.join("'")}`
 }
 
 type NodeTitleProps = {
