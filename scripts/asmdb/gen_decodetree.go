@@ -29,6 +29,10 @@ func (x bitfield) extractFrom(n uint32) uint32 {
 	return (n >> uint32(x.LSB)) & ((1 << x.Len) - 1)
 }
 
+func (x bitfield) toMask() uint32 {
+	return ((1 << x.Len) - 1) << x.LSB
+}
+
 func (x bitfield) toSet() map[int]struct{} {
 	s := map[int]struct{}{}
 	for i := x.LSB; i < x.LSB+x.Len; i++ {
@@ -56,6 +60,14 @@ func (x bitfields) totalWidth() int {
 		w += bf.Len
 	}
 	return w
+}
+
+func (x bitfields) toMask() uint32 {
+	ret := uint32(0)
+	for _, bf := range x {
+		ret |= bf.toMask()
+	}
+	return ret
 }
 
 func (x bitfields) toSet() map[int]struct{} {
@@ -338,19 +350,22 @@ func buildDecodetreeSubset(
 		fmt:     "",
 	}
 	for k, l := range furtherSubsets {
+		nextConsumedFixedBitfields := consumedFixedBitfields.union(commonFixedBits)
+
 		if len(l) == 1 {
-			// fully decided
-			n.Matches = append(n.Matches, &decodetreeMatch{
-				Match:   k,
-				Fmt:     l[0].fmt,
-				Matched: l[0].mnemonic,
-				Next:    nil,
-			})
-			continue
+			if l[0].mask == nextConsumedFixedBitfields.toMask() {
+				// fully decided (all fixed bits are already checked)
+				n.Matches = append(n.Matches, &decodetreeMatch{
+					Match:   k,
+					Fmt:     l[0].fmt,
+					Matched: l[0].mnemonic,
+					Next:    nil,
+				})
+				continue
+			}
 		}
 
 		// recurse
-		nextConsumedFixedBitfields := consumedFixedBitfields.union(commonFixedBits)
 		subsetNode := buildDecodetreeSubset(l, nextConsumedFixedBitfields)
 
 		n.Matches = append(n.Matches, &decodetreeMatch{
