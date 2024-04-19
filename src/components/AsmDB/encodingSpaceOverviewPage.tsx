@@ -31,6 +31,7 @@ const DecodeTreeView: React.FC<DecodeTreeViewProps & React.HTMLAttributes<HTMLDi
     defaultExpandedKeys={['xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']}
     treeData={[props.treeData]}
     className={props.className}
+    height={600}
     style={props.style}
     onSelect={onSelect}
   />
