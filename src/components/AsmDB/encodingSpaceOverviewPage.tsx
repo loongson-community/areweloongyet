@@ -5,7 +5,7 @@ import { useState } from 'react'
 import styles from './index.module.css'
 import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
 import { augmentDecodeTree, mapifyAugmentedDecodeTree, type AugmentedNodeMap } from './augmentedDecodeTree'
-import { bitfieldWidth } from './bitfield'
+import { bitfieldWidth, bitfieldsToMask } from './bitfield'
 import { BitsRepr } from './bits'
 import { parseInsnFormat } from './insnFormat'
 import type { AsmDBData, DecodeTreeNode } from './types'
@@ -66,7 +66,7 @@ const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttri
 
     return <>
       <h2>{m.matched}</h2>
-      <BitsRepr word={m.rawMatch} mask={m.mask} fmt={fmt} />
+      <BitsRepr word={m.rawMatch} mask={m.mask} maskToEmph={bitfieldsToMask(m.parentNode.look_at)} fmt={fmt} />
       <Row gutter={16}>
         <Col span={8}><Statistic title="指令格式" value={m.fmt} style={vertMargin} /></Col>
         <Col span={8}><Statistic title="编码空间占用" value={m.numUsedInsnWords} style={vertMargin} /></Col>
@@ -108,7 +108,12 @@ const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttri
 
   return <>
     <h2>{title}</h2>
-    <BitsRepr word={n.rawMatch} mask={n.mask} />
+    <BitsRepr
+      word={n.rawMatch}
+      mask={n.mask}
+      maskToCheck={bitfieldsToMask(n.look_at)}
+      maskToEmph={bitfieldsToMask(n.parentLookAt || [])}
+    />
     <Row gutter={16}>
       <Col span={8}><Statistic title="子前缀空间大小" value={numTotalPrefixes} style={vertMargin} /></Col>
       <Col span={8}><Statistic title="子前缀空间已分配" value={numAllocatedPrefixes} style={vertMargin} /></Col>
