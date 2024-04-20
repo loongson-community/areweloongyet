@@ -46,7 +46,6 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
     preAttribs.push(<span className={styles.attrib} key={`${matchPattern}-alias`}>{alias}</span>)
 
   if (insn) {
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>空间占用 {match.numUsedInsnWords}</span>)
     return <>
       <span>{representMatchValue(matchNumber, lookAt)}{preAttribs}: {insn}</span>
       {postAttribs}
@@ -56,13 +55,23 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
   const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   if (root)
     postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-major`}>主操作码</span>)
-  if (node)
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>扇出 {node.matches.length}</span>)
+  if (node) {
+    const numAllocatedPrefixes = node.matches.length
+    const numTotalPrefixes = 1 << bitfieldWidth(node.look_at)
+    if (numAllocatedPrefixes == numTotalPrefixes && node.numUsedInsnWords == node.numTotalInsnWords) {
+      postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间已满</span>)
+    } else {
+      if (numAllocatedPrefixes == numTotalPrefixes)
+        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>子前缀空间已满</span>)
+      else
+        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>子前缀空间 {numAllocatedPrefixes}/{numTotalPrefixes}</span>)
 
-  if (node.numUsedInsnWords == node.numTotalInsnWords)
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间共 {node.numTotalInsnWords} 已满</span>)
-  else
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间共 {node.numTotalInsnWords} 已分配 {node.numUsedInsnWords} ({(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%)</span>)
+      if (node.numUsedInsnWords == node.numTotalInsnWords)
+        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间已满</span>)
+      else
+        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间占用 {(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%</span>)
+    }
+  }
 
   if (root)
     return <>

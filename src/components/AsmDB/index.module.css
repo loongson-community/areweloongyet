@@ -10,3 +10,11 @@
 .attrib {
   color: var(--ifm-color-gray-700);
 }
+
+.insnFmtTag {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.statsVal {
+  font-size: 18px;
+}

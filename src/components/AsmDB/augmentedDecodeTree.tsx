@@ -61,6 +61,7 @@ export type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
   parentNode: AugmentedDecodeTreeNode
   next?: AugmentedDecodeTreeNode
   numUsedInsnWords: number
+  possibleFmts: string[]
 }
 
 export type AugmentedDecodeTreeNode = DecodeTreeNode & {
@@ -72,6 +73,7 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
   matches: AugmentedDecodeTreeMatch[]
   numTotalInsnWords: number
   numUsedInsnWords: number
+  possibleFmts: string[]
 }
 
 export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
@@ -111,11 +113,16 @@ function augmentDecodeTreeInplace(
     if (m.next) {
       augmentDecodeTreeInplace(m.next, m, myMatch, myMatchBitfields)
       node.numUsedInsnWords += m.next.numUsedInsnWords
+      m.possibleFmts = m.next.possibleFmts
     } else {
       m.numUsedInsnWords = 1 << (32 - myChildMatchWidth)
+      m.possibleFmts = [m.fmt]
       node.numUsedInsnWords += m.numUsedInsnWords
     }
   }
+
+  node.possibleFmts = _.uniq(_.flatten(_.map(node.matches, 'possibleFmts')))
+  node.possibleFmts.sort()
 
   return node
 }

@@ -1,10 +1,11 @@
-import { Col, Grid, Row, Statistic, Tree, TreeDataNode } from 'antd'
+import { Col, Grid, Row, Statistic, Tag, Tree, TreeDataNode } from 'antd'
 import _ from 'lodash'
 import { useState } from 'react'
 
 import styles from './index.module.css'
 import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
-import { augmentDecodeTree, type AugmentedDecodeTreeNode, mapifyAugmentedDecodeTree, type AugmentedNodeMap } from './augmentedDecodeTree'
+import { augmentDecodeTree, mapifyAugmentedDecodeTree, type AugmentedNodeMap } from './augmentedDecodeTree'
+import { bitfieldWidth } from './bitfield'
 
 const { useBreakpoint } = Grid
 
@@ -44,10 +45,79 @@ type DecodeTreeNodeDetailProps = {
 
 const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
   if (!props.data.hasOwnProperty(props.selectedKey))
-    return <></>
+    return <>
+      <h2>编码空间明细</h2>
+      <p>在译码决策树中选择一个节点，以查看其详细信息。</p>
+    </>
+
+  const vertMargin = { marginTop: 16 }
 
   const selectedNode = props.data[props.selectedKey]
-  return <span>{selectedNode.key}</span>
+  if (!selectedNode.node) {
+    // insn
+    const m = selectedNode.match
+    const subspaceUsageRatio = m.numUsedInsnWords / m.parentNode.numTotalInsnWords * 100
+    const universeUsageRatio = m.numUsedInsnWords / 0x100000000 * 1000
+    const universeUsageRatioText = universeUsageRatio < 0.001 ? '< 0.001' : universeUsageRatio.toFixed(3).toString()
+
+    return <>
+      <h2>{m.matched}</h2>
+      <span>{selectedNode.key}</span>
+      <Row gutter={16}>
+        <Col span={8}><Statistic title="指令格式" value={m.fmt} style={vertMargin} /></Col>
+        <Col span={8}><Statistic title="编码空间占用" value={m.numUsedInsnWords} style={vertMargin} /></Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={8}><Statistic title="本级空间占比" value={subspaceUsageRatio.toFixed(2)} suffix="%" style={vertMargin} /></Col>
+        <Col span={8}><Statistic title="根空间占比" value={universeUsageRatioText} suffix="‰" style={vertMargin} /></Col>
+      </Row>
+    </>
+  }
+
+  // (sub)space
+  const n = selectedNode.node
+  const root = props.selectedKey == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  const title = root ? '根编码空间' : '子编码空间'
+  const allocationRatio = n.numUsedInsnWords / n.numTotalInsnWords * 100
+  const subspaceUsageRatio = root ? 1 : n.numTotalInsnWords / n.parentMatch.parentNode.numTotalInsnWords * 100
+  const universeUsageRatio = root ? 1 : n.numTotalInsnWords / 0x100000000 * 1000
+  const universeUsageRatioText = universeUsageRatio < 0.001 ? '< 0.001' : universeUsageRatio.toFixed(3).toString()
+  const numAllocatedPrefixes = n.matches.length
+  const numTotalPrefixes = 1 << bitfieldWidth(n.look_at)
+
+  let spaceUsageRatios = <></>
+  if (!root)
+    spaceUsageRatios = <Row gutter={16}>
+      <Col span={8}><Statistic title="本级空间占比" value={subspaceUsageRatio.toFixed(2)} suffix="%" style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="根空间占比" value={universeUsageRatioText} suffix="‰" style={vertMargin} /></Col>
+    </Row>
+
+  let insnFmtDisplay
+  if (n.possibleFmts.length == 1)
+    insnFmtDisplay = n.possibleFmts[0]
+  else if (n.possibleFmts.length < 50)
+    insnFmtDisplay = <>
+      {_.map(n.possibleFmts, (x) => <Tag className={styles.insnFmtTag}>{x}</Tag>)}
+    </>
+  else
+    insnFmtDisplay = `${n.possibleFmts.length} 种`
+
+  return <>
+    <h2>{title}</h2>
+    <span>{selectedNode.key}</span>
+    <Row gutter={16}>
+      <Col span={8}><Statistic title="子前缀空间大小" value={numTotalPrefixes} style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="子前缀空间占用" value={numAllocatedPrefixes} style={vertMargin} /></Col>
+    </Row>
+    {spaceUsageRatios}
+    <Row gutter={16}>
+      <Col span={8}><Statistic title="子编码空间大小" value={n.numTotalInsnWords} style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="子编码空间占用" value={n.numUsedInsnWords} style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="已分配比例" value={allocationRatio.toFixed(2)} suffix="%" style={vertMargin} /></Col>
+    </Row>
+    {/* https://github.com/ant-design/ant-design/issues/43830 */}
+    <Statistic title="指令格式" formatter={() => insnFmtDisplay} style={vertMargin} />
+  </>
 }
 
 export default function EncodingSpaceOverviewPage({ data }: { data: AsmDBData }): JSX.Element {
