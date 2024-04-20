@@ -7,7 +7,7 @@ import { isImmArg } from './insnFormat'
 import InsnFormatName from './insnFormatName'
 import { getManualInsnFormatName } from './manualFormatNames'
 import { BitPalette, type AlphaStep, styleFromBitPalette } from './palette'
-import type { Insn, InsnFormat } from './types'
+import { ArgKind, type Insn, type InsnFormat } from './types'
 
 type BitsOptions = {
   insn: Insn
@@ -15,6 +15,8 @@ type BitsOptions = {
 }
 
 type BitProps = {
+  isFixed: boolean
+  isUndecided: boolean
   placeholder?: string | JSX.Element
   value: 0 | 1
   palette: BitPalette
@@ -31,15 +33,14 @@ function littleEndianBitsFromU32(x: number): (0 | 1)[] {
 }
 
 const Bit: React.FC<BitProps & React.HTMLAttributes<HTMLSpanElement>> = (props) => {
-  const isPlaceholderBit = !!props.placeholder
   const classNames = [props.className, styles.bit]
   if (props.isEmphasized)
     classNames.push(styles.bitEmph)
   return <span
     className={clsx(...classNames)}
-    style={styleFromBitPalette(props.palette, props.alpha, isPlaceholderBit)}
+    style={styleFromBitPalette(props.palette, props.alpha, props.isUndecided)}
   >{
-      _.isNull(props.placeholder) ? props.value : props.placeholder
+      props.isFixed ? props.value : props.placeholder
     }</span>
 }
 
@@ -53,6 +54,28 @@ function placeholderForBit(
   if (hasFmt)
     return ''
   return isBeingChecked ? <EyeOutlined /> : 'x'
+}
+
+function getOperandPrefixForDisplay(k: ArgKind): string {
+  switch (k) {
+    case ArgKind.IntReg:
+    default:
+      return ''
+    case ArgKind.FPReg:
+      return 'F'
+    case ArgKind.FCCReg:
+      return 'C'
+    case ArgKind.ScratchReg:
+      return 'T'
+    case ArgKind.VReg:
+      return 'V'
+    case ArgKind.XReg:
+      return 'X'
+    case ArgKind.SignedImm:
+      return '±'
+    case ArgKind.UnsignedImm:
+      return 'U'
+  }
 }
 
 function cookBits(
@@ -69,10 +92,13 @@ function cookBits(
   const maskToEmphBits = littleEndianBitsFromU32(maskToEmph)
   const result: BitProps[] = bits.map((b, i) => {
     const isFixed = maskBits[i] != 0
+    const isUndecided = !isFixed && !hasFmt
     const isBeingChecked = maskToCheckBits[i] != 0
     const isEmphasized = maskToEmphBits[i] != 0
     const placeholder = placeholderForBit(hasFmt, isFixed, isBeingChecked)
     return {
+      isFixed,
+      isUndecided,
       placeholder,
       value: b,
       // this will get refined later if we have insn fmt
@@ -90,11 +116,16 @@ function cookBits(
   fmt.args.forEach((arg, argIdx) => {
     const totalArgWidth = _.sum(_.map(arg.slots, 'width'))
     const shouldApplyImmGradient = isImmArg(arg) && totalArgWidth >= 8
-    let argBitIdx = totalArgWidth - 1
+    const argMSB = totalArgWidth - 1
+    let argBitIdx = argMSB
     for (const slot of arg.slots) {
       for (let i = slot.width - 1; i >= 0; i--) {
         const bitIdx = slot.offset + i
         result[bitIdx].palette = (argIdx + 1) as BitPalette
+
+        if (argBitIdx == argMSB)
+          result[bitIdx].placeholder = getOperandPrefixForDisplay(arg.kind)
+
         if (shouldApplyImmGradient) {
           result[bitIdx].alpha = {
             step: argBitIdx,

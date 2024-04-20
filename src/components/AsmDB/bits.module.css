@@ -47,6 +47,12 @@
   --bit-bg-p6: var(--bit-palette-p6);
 
   --bit-fg-p0: var(--ifm-color-content);
+  --bit-fg-p1: var(--ifm-color-black);
+  --bit-fg-p2: var(--ifm-color-black);
+  --bit-fg-p3: var(--ifm-color-black);
+  --bit-fg-p4: var(--ifm-color-black);
+  --bit-fg-p5: var(--ifm-color-black);
+  --bit-fg-p6: var(--ifm-color-black);
 }
 
 .bit {
