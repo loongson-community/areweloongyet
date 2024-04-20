@@ -1,5 +1,5 @@
 import styles from './bits.module.css'
-import InsnFormatName from './insnFormat'
+import InsnFormatName from './insnFormatName'
 import { getManualInsnFormatName } from './manualFormatNames'
 import { BitPalette, styleFromBitPalette } from './palette'
 
