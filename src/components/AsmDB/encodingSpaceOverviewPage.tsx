@@ -107,12 +107,12 @@ const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttri
     <span>{selectedNode.key}</span>
     <Row gutter={16}>
       <Col span={8}><Statistic title="子前缀空间大小" value={numTotalPrefixes} style={vertMargin} /></Col>
-      <Col span={8}><Statistic title="子前缀空间占用" value={numAllocatedPrefixes} style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="子前缀空间已分配" value={numAllocatedPrefixes} style={vertMargin} /></Col>
     </Row>
     {spaceUsageRatios}
     <Row gutter={16}>
       <Col span={8}><Statistic title="子编码空间大小" value={n.numTotalInsnWords} style={vertMargin} /></Col>
-      <Col span={8}><Statistic title="子编码空间占用" value={n.numUsedInsnWords} style={vertMargin} /></Col>
+      <Col span={8}><Statistic title="子编码空间已分配" value={n.numUsedInsnWords} style={vertMargin} /></Col>
       <Col span={8}><Statistic title="已分配比例" value={allocationRatio.toFixed(2)} suffix="%" style={vertMargin} /></Col>
     </Row>
     {/* https://github.com/ant-design/ant-design/issues/43830 */}

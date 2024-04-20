@@ -69,7 +69,7 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
       if (node.numUsedInsnWords == node.numTotalInsnWords)
         postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间已满</span>)
       else
-        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间占用 {(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%</span>)
+        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间已用 {(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%</span>)
     }
   }
 
