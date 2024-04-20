@@ -7,12 +7,29 @@
   content: ' ';
 }
 
-.attrib {
+.attrib,
+.insnFmtTagAttrib {
   color: var(--ifm-color-gray-700);
 }
 
-.insnFmtTag {
+.aliasTagAttrib {
+  color: var(--ifm-color-info);
+  background-color: var(--ifm-color-info-contrast-background);
+}
+
+.insnFmtTag,
+.insnFmtTagAttrib {
   font-family: var(--ifm-font-family-monospace);
+}
+
+.aliasTagAttrib,
+.insnFmtTagAttrib {
+  font-size: 14px;  /* should follow default style of tree node titles */
+  line-height: 20px;
+}
+
+.insnFmtTagAttrib {
+  margin-left: 0.5em;
 }
 
 .statsVal {

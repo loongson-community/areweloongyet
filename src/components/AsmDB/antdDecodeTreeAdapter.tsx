@@ -1,4 +1,4 @@
-import type { TreeDataNode } from "antd"
+import { Tag, type TreeDataNode } from "antd"
 import { CheckOutlined, EyeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
@@ -41,13 +41,13 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
     if (node)
       postAttribs.push(<span className={styles.contentAttrib} key={`${matchPattern}-fmt`}>并确定格式为 {match.fmt}</span>)
     else
-      postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fmt`}>格式 {match.fmt}</span>)
+      postAttribs.push(<Tag className={styles.insnFmtTagAttrib} key={`${matchPattern}-fmt`}>{match.fmt}</Tag>)
   if (alias)
-    preAttribs.push(<span className={styles.attrib} key={`${matchPattern}-alias`}>{alias}</span>)
+    preAttribs.push(<Tag className={styles.aliasTagAttrib} key={`${matchPattern}-alias`}>{alias}</Tag>)
 
   if (insn) {
     return <>
-      <span>{representMatchValue(matchNumber, lookAt)}{preAttribs}: {insn}</span>
+      <span>{representMatchValue(matchNumber, lookAt)}: {preAttribs}{insn}</span>
       {postAttribs}
     </>
   }
@@ -80,7 +80,7 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
     </>
 
   return <>
-    <span>{representMatchValue(matchNumber, parentLookAt)}{preAttribs}: 检查 [{representBitfields(lookAt)}] 位</span>
+    <span>{representMatchValue(matchNumber, parentLookAt)}: {preAttribs}检查 [{representBitfields(lookAt)}] 位</span>
     {postAttribs}
   </>
 }
