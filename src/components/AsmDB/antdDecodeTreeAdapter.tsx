@@ -5,6 +5,7 @@ import _ from 'lodash'
 import styles from './index.module.css'
 import { type AugmentedDecodeTreeMatch, type AugmentedDecodeTreeNode } from "./augmentedDecodeTree"
 import { bitfieldWidth, representBitfields } from "./bitfield"
+import type { Bitfield } from "./types"
 
 function representMatchValue(val: number, bfs: Bitfield[]): string {
   const sortedBFs = _.sortBy(_.clone(bfs), 'lsb')

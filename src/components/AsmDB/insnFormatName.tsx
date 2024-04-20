@@ -2,6 +2,7 @@ import clsx from 'clsx'
 
 import styles from './bits.module.css'
 import { styleFromBitPalette } from './palette'
+import type { InsnFormat } from './types'
 
 type InsnFormatNameOptions = {
   fmt?: InsnFormat

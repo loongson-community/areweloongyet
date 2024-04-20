@@ -6,6 +6,9 @@ import styles from './index.module.css'
 import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
 import { augmentDecodeTree, mapifyAugmentedDecodeTree, type AugmentedNodeMap } from './augmentedDecodeTree'
 import { bitfieldWidth } from './bitfield'
+import { BitsRepr } from './bits'
+import { parseInsnFormat } from './insnFormat'
+import type { AsmDBData, DecodeTreeNode } from './types'
 
 const { useBreakpoint } = Grid
 
@@ -56,13 +59,14 @@ const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttri
   if (!selectedNode.node) {
     // insn
     const m = selectedNode.match
+    const fmt = parseInsnFormat(m.fmt)
     const subspaceUsageRatio = m.numUsedInsnWords / m.parentNode.numTotalInsnWords * 100
     const universeUsageRatio = m.numUsedInsnWords / 0x100000000 * 1000
     const universeUsageRatioText = universeUsageRatio < 0.001 ? '< 0.001' : universeUsageRatio.toFixed(3).toString()
 
     return <>
       <h2>{m.matched}</h2>
-      <span>{selectedNode.key}</span>
+      <BitsRepr word={m.rawMatch} mask={m.mask} fmt={fmt} />
       <Row gutter={16}>
         <Col span={8}><Statistic title="指令格式" value={m.fmt} style={vertMargin} /></Col>
         <Col span={8}><Statistic title="编码空间占用" value={m.numUsedInsnWords} style={vertMargin} /></Col>
@@ -104,7 +108,7 @@ const DecodeTreeNodeDetail: React.FC<DecodeTreeNodeDetailProps & React.HTMLAttri
 
   return <>
     <h2>{title}</h2>
-    <span>{selectedNode.key}</span>
+    <BitsRepr word={n.rawMatch} mask={n.mask} />
     <Row gutter={16}>
       <Col span={8}><Statistic title="子前缀空间大小" value={numTotalPrefixes} style={vertMargin} /></Col>
       <Col span={8}><Statistic title="子前缀空间已分配" value={numAllocatedPrefixes} style={vertMargin} /></Col>

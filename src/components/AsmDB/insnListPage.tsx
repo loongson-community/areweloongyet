@@ -2,8 +2,9 @@ import { Checkbox, Switch } from 'antd'
 import { useState } from 'react'
 
 import BoolFlag from '@site/src/components/BoolFlag'
-import AsmDBBits from './bits'
+import { InsnBitsRepr } from './bits'
 import { getInsnMnemonic } from './insn'
+import type { AsmDBData, Insn, SubsetFlags } from './types'
 
 function Subsets({ ss }: { ss: SubsetFlags }): JSX.Element {
   if (ss.provisional)
@@ -29,7 +30,7 @@ function AsmDBInsn({ insn, useManualSyntax }: { insn: Insn, useManualSyntax: boo
   return (
     <section>
       <h3>{getInsnMnemonic(insn, useManualSyntax)}</h3>
-      <AsmDBBits insn={insn} useManualSyntax={useManualSyntax} />
+      <InsnBitsRepr insn={insn} useManualSyntax={useManualSyntax} />
       <Subsets ss={insn.subsets} />
     </section>
   )

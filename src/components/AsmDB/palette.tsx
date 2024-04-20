@@ -14,7 +14,13 @@ function colorVarFromBitPalette(kind: 'bg' | 'fg', x: BitPalette): string {
   return `var(--bit-${kind}-p${x})`
 }
 
-export function styleFromBitPalette(p: BitPalette): CSSProperties {
+export function styleFromBitPalette(p: BitPalette, showAsUndecided?: boolean): CSSProperties {
+  if (showAsUndecided)
+    return {
+      color: 'var(--bit-fg-undecided)',
+      backgroundColor: 'var(--bit-bg-undecided)',
+    }
+
   return {
     color: colorVarFromBitPalette('fg', p),
     backgroundColor: colorVarFromBitPalette('bg', p),

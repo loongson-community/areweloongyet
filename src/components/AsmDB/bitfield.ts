@@ -1,5 +1,7 @@
 import _ from 'lodash'
 
+import type { Bitfield } from './types'
+
 function representBitfield(bf: Bitfield): string {
   return bf.len == 1 ? bf.lsb.toString(10) : `${bf.lsb + bf.len - 1}:${bf.lsb}`
 }
@@ -38,4 +40,11 @@ export function restoreIntoBitfields(num: number, bfs: Bitfield[]): number {
     num >>= bf.len
   }
   return y
+}
+
+export function bitfieldsToMask(bfs: Bitfield[]): number {
+  let mask = 0
+  for (const bf of bfs)
+    mask |= (bf.len == 32 ? 0xffffffff : ((1 << bf.len) - 1)) << bf.lsb
+  return mask
 }

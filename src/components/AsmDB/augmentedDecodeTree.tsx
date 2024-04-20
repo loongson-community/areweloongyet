@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
-import { bitfieldWidth, mergeBitfields, restoreIntoBitfields } from './bitfield'
+import { bitfieldWidth, bitfieldsToMask, mergeBitfields, restoreIntoBitfields } from './bitfield'
+import type { Bitfield, DecodeTreeMatch, DecodeTreeNode } from './types'
 
 const wellKnownMatchPatterns = {
   '000000xxxxxxxxxxxxxxxxxxxxxxxxxx': '运算',
@@ -51,6 +52,7 @@ export type AugmentedDecodeTreeMatch = DecodeTreeMatch & {
   key: string
   wellKnownAlias: string
   rawMatch: number
+  mask: number
   parentNode: AugmentedDecodeTreeNode
   next?: AugmentedDecodeTreeNode
   numUsedInsnWords: number
@@ -61,6 +63,7 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
   key: string
   wellKnownAlias: string
   rawMatch: number
+  mask: number
   parentMatch?: AugmentedDecodeTreeMatch
   parentLookAt?: Bitfield[]
   matches: AugmentedDecodeTreeMatch[]
@@ -94,6 +97,7 @@ function augmentDecodeTreeInplace(
   node.key = makeMatchPatternKey(matchSoFar, matchBitfieldsSoFar)
   node.wellKnownAlias = getWellKnownAlias(node.key)
   node.rawMatch = matchSoFar
+  node.mask = bitfieldsToMask(matchBitfieldsSoFar)
   node.parentMatch = nodeMatch
   node.parentLookAt = nodeMatch ? nodeMatch.parentNode.look_at : []
   for (const m of node.matches) {
@@ -101,6 +105,7 @@ function augmentDecodeTreeInplace(
     m.key = makeMatchPatternKey(myMatch, myMatchBitfields)
     m.wellKnownAlias = getWellKnownAlias(m.key)
     m.rawMatch = myMatch
+    m.mask = bitfieldsToMask(myMatchBitfields)
     m.parentNode = node
 
     if (m.next) {

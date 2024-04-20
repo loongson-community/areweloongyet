@@ -7,6 +7,7 @@ import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContaine
 import EncodingSpaceOverviewPage from './encodingSpaceOverviewPage'
 import InsnExplainerPage from './insnExplainerPage'
 import InsnListPage from './insnListPage'
+import type { AsmDBData } from './types'
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const panes = [

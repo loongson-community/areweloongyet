@@ -1,3 +1,5 @@
+import type { Insn } from "./types"
+
 export function getManualInsnFormatName(insn: Insn): string {
   const a = getManualInsnFormatNameFromRepr(insn.format.repr)
   if (a != '')

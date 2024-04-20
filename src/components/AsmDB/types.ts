@@ -1,9 +1,9 @@
-type AsmDBData = {
+export type AsmDBData = {
   insns: Insn[]
   decodetree: DecodeTreeNode
 }
 
-type Insn = {
+export type Insn = {
   word: number
   mask: number
   mnemonic: string
@@ -14,7 +14,7 @@ type Insn = {
   subsets: SubsetFlags
 }
 
-type SubsetFlags = {
+export type SubsetFlags = {
   la32?: boolean
   primary?: boolean
   la64?: boolean
@@ -25,12 +25,12 @@ type SubsetFlags = {
   provisional?: boolean
 }
 
-type InsnFormat = {
+export type InsnFormat = {
   repr: string
   args: InsnArg[]
 }
 
-type InsnArg = {
+export type InsnArg = {
   kind: ArgKind
   repr: string
   slots: ArgSlot[]
@@ -38,27 +38,35 @@ type InsnArg = {
   add_amt?: number
 }
 
-enum ArgKind {
+export enum ArgKind {
   Unknown = 0,
+  IntReg = 1,
+  FPReg = 2,
+  FCCReg = 3,
+  ScratchReg = 4,
+  VReg = 5,
+  XReg = 6,
+  SignedImm = 7,
+  UnsignedImm = 8,
 }
 
-type ArgSlot = {
+export type ArgSlot = {
   repr: string
   offset: number
   width: number
 }
 
-type DecodeTreeNode = {
+export type DecodeTreeNode = {
   look_at: Bitfield[]
   matches: DecodeTreeMatch[]
 }
 
-type Bitfield = {
+export type Bitfield = {
   lsb: number
   len: number
 }
 
-type DecodeTreeMatch = {
+export type DecodeTreeMatch = {
   match: number
   fmt?: string
   matched?: string
