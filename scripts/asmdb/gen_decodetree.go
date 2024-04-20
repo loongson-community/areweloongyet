@@ -29,6 +29,10 @@ func (x bitfield) extractFrom(n uint32) uint32 {
 	return (n >> uint32(x.LSB)) & ((1 << x.Len) - 1)
 }
 
+func (x bitfield) toMask() uint32 {
+	return ((1 << x.Len) - 1) << x.LSB
+}
+
 func (x bitfield) toSet() map[int]struct{} {
 	s := map[int]struct{}{}
 	for i := x.LSB; i < x.LSB+x.Len; i++ {
@@ -56,6 +60,14 @@ func (x bitfields) totalWidth() int {
 		w += bf.Len
 	}
 	return w
+}
+
+func (x bitfields) toMask() uint32 {
+	ret := uint32(0)
+	for _, bf := range x {
+		ret |= bf.toMask()
+	}
+	return ret
 }
 
 func (x bitfields) toSet() map[int]struct{} {
@@ -141,24 +153,16 @@ func bitfieldsFromSet(s map[int]struct{}) bitfields {
 	return r
 }
 
-type decodetreeAction int
-
-const (
-	decodetreeActionUnknown  decodetreeAction = 0
-	decodetreeActionFinish   decodetreeAction = 1
-	decodetreeActionContinue decodetreeAction = 2
-)
-
 type decodetreeMatch struct {
-	Match  uint32           `json:"match"`
-	Action decodetreeAction `json:"action"`
+	Match uint32 `json:"match"`
 
 	// contains the determined insn format if all descendant nodes share this
 	// format
 	Fmt string `json:"fmt,omitempty"`
-	// if action is finish, contains the matched insn's mnemonic
+	// if node is leaf (insn is already fully decided), contains the matched
+	// insn's mnemonic
 	Matched string `json:"matched,omitempty"`
-	// if action is continue, points to the next decodetree node
+	// if node is not leaf, points to the next decodetree node
 	Next *decodetreeNode `json:"next,omitempty"`
 }
 
@@ -346,25 +350,26 @@ func buildDecodetreeSubset(
 		fmt:     "",
 	}
 	for k, l := range furtherSubsets {
+		nextConsumedFixedBitfields := consumedFixedBitfields.union(commonFixedBits)
+
 		if len(l) == 1 {
-			// fully decided
-			n.Matches = append(n.Matches, &decodetreeMatch{
-				Match:   k,
-				Action:  decodetreeActionFinish,
-				Fmt:     l[0].fmt,
-				Matched: l[0].mnemonic,
-				Next:    nil,
-			})
-			continue
+			if l[0].mask == nextConsumedFixedBitfields.toMask() {
+				// fully decided (all fixed bits are already checked)
+				n.Matches = append(n.Matches, &decodetreeMatch{
+					Match:   k,
+					Fmt:     l[0].fmt,
+					Matched: l[0].mnemonic,
+					Next:    nil,
+				})
+				continue
+			}
 		}
 
 		// recurse
-		nextConsumedFixedBitfields := consumedFixedBitfields.union(commonFixedBits)
 		subsetNode := buildDecodetreeSubset(l, nextConsumedFixedBitfields)
 
 		n.Matches = append(n.Matches, &decodetreeMatch{
 			Match:   k,
-			Action:  decodetreeActionContinue,
 			Fmt:     "",
 			Matched: "",
 			Next:    subsetNode,

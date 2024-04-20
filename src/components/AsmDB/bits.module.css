@@ -1,5 +1,6 @@
-.widget {
+:root {
   --bit-palette-opcode: var(--ifm-color-emphasis-200);
+  --bit-palette-undecided: var(--ifm-color-emphasis-100);
   --bit-palette-p1: #feb30b;
   --bit-palette-p2: #66ccff;
   --bit-palette-p3: #90d408;
@@ -37,6 +38,7 @@
   font-family: var(--ifm-font-family-monospace);
 
   --bit-bg-p0: var(--bit-palette-opcode);
+  --bit-bg-undecided: var(--bit-palette-undecided);
   --bit-bg-p1: var(--bit-palette-p1);
   --bit-bg-p2: var(--bit-palette-p2);
   --bit-bg-p3: var(--bit-palette-p3);
@@ -45,6 +47,12 @@
   --bit-bg-p6: var(--bit-palette-p6);
 
   --bit-fg-p0: var(--ifm-color-content);
+  --bit-fg-p1: var(--ifm-color-black);
+  --bit-fg-p2: var(--ifm-color-black);
+  --bit-fg-p3: var(--ifm-color-black);
+  --bit-fg-p4: var(--ifm-color-black);
+  --bit-fg-p5: var(--ifm-color-black);
+  --bit-fg-p6: var(--ifm-color-black);
 }
 
 .bit {
@@ -61,6 +69,10 @@
 
 .bit:first-child {
   margin-left: 0;
+}
+
+.bitEmph {
+  text-emphasis-style: triangle;
 }
 
 .hex {
