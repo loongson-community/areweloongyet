@@ -2,6 +2,10 @@ import _ from "lodash"
 
 import { ArgKind, type ArgSlot, type InsnArg, type InsnFormat } from "./types"
 
+export function isImmArg(a: InsnArg): boolean {
+  return a.kind == ArgKind.SignedImm || a.kind == ArgKind.UnsignedImm
+}
+
 export function parseInsnFormat(s: string): InsnFormat {
   if (s == 'EMPTY')
     return { repr: s, args: [] }

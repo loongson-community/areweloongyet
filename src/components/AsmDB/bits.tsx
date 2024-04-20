@@ -3,9 +3,10 @@ import { EyeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
 import styles from './bits.module.css'
+import { isImmArg } from './insnFormat'
 import InsnFormatName from './insnFormatName'
 import { getManualInsnFormatName } from './manualFormatNames'
-import { BitPalette, styleFromBitPalette } from './palette'
+import { BitPalette, type AlphaStep, styleFromBitPalette } from './palette'
 import type { Insn, InsnFormat } from './types'
 
 type BitsOptions = {
@@ -17,6 +18,7 @@ type BitProps = {
   placeholder?: string | JSX.Element
   value: 0 | 1
   palette: BitPalette
+  alpha?: AlphaStep
   isEmphasized: boolean
 }
 
@@ -35,7 +37,7 @@ const Bit: React.FC<BitProps & React.HTMLAttributes<HTMLSpanElement>> = (props) 
     classNames.push(styles.bitEmph)
   return <span
     className={clsx(...classNames)}
-    style={styleFromBitPalette(props.palette, isPlaceholderBit)}
+    style={styleFromBitPalette(props.palette, props.alpha, isPlaceholderBit)}
   >{
       _.isNull(props.placeholder) ? props.value : props.placeholder
     }</span>
@@ -65,7 +67,7 @@ function cookBits(
   const maskBits = littleEndianBitsFromU32(mask)
   const maskToCheckBits = littleEndianBitsFromU32(maskToCheck)
   const maskToEmphBits = littleEndianBitsFromU32(maskToEmph)
-  const result = bits.map((b, i) => {
+  const result: BitProps[] = bits.map((b, i) => {
     const isFixed = maskBits[i] != 0
     const isBeingChecked = maskToCheckBits[i] != 0
     const isEmphasized = maskToEmphBits[i] != 0
@@ -86,10 +88,20 @@ function cookBits(
 
   // assign color to bits according to insn format
   fmt.args.forEach((arg, argIdx) => {
+    const totalArgWidth = _.sum(_.map(arg.slots, 'width'))
+    const shouldApplyImmGradient = isImmArg(arg) && totalArgWidth >= 8
+    let argBitIdx = totalArgWidth - 1
     for (const slot of arg.slots) {
-      for (let i = 0; i < slot.width; i++) {
+      for (let i = slot.width - 1; i >= 0; i--) {
         const bitIdx = slot.offset + i
         result[bitIdx].palette = (argIdx + 1) as BitPalette
+        if (shouldApplyImmGradient) {
+          result[bitIdx].alpha = {
+            step: argBitIdx,
+            totalSteps: totalArgWidth - 1,
+          }
+        }
+        argBitIdx--
       }
     }
   })
