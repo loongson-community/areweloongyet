@@ -62,6 +62,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
         with:
           artifact_name: 'gh-pages-${{github.sha}}'
