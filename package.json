@@ -16,9 +16,12 @@
     "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.6",
     "@docusaurus/core": "^3.2.1",
     "@docusaurus/plugin-client-redirects": "^3.2.1",
+    "@docusaurus/plugin-content-blog": "^3.2.1",
     "@docusaurus/preset-classic": "^3.2.1",
+    "@docusaurus/theme-common": "^3.2.1",
     "@docusaurus/theme-mermaid": "^3.2.1",
     "@easyops-cn/docusaurus-search-local": "^0.38.1",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
@@ -28,9 +31,11 @@
     "@types/lodash": "^4.14.200",
     "@types/react": "^18",
     "antd": "^5",
+    "browserslist": "^4.23.0",
     "clsx": "^1.2.1",
     "glob": "^10.3.12",
     "lodash": "^4.17.21",
+    "mdast-util-find-and-replace": "^3.0.1",
     "prism-react-renderer": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -56,5 +61,6 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
