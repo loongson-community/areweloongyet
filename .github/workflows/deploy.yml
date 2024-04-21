@@ -24,7 +24,7 @@ jobs:
             scripts/asmdb/go.sum
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
       - name: Build AWLY helpers
         run: yarn build-helpers
       - name: Build website
