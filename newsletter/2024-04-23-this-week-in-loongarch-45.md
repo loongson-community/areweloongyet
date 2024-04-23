@@ -64,7 +64,7 @@ experienced assembly language developer and that you are familiar with the
 建议行有余力的同学考虑去 GitHub 帮官方做做校对。
 :::
 
-龙芯官方也[发布了](https:/github.com/loongson/la-toolchain-conventions)
+龙芯官方也[发布了](https://github.com/loongson/la-toolchain-conventions)
 *Toolchain Conventions of the LoongArch™ Architecture*（《LoongArch&trade; 架构工具链约定》）的
 1.1 版本。相比很久之前的 1.0 版本，主要的变化是终于新增了不与具体硬件型号相关，而仅反映架构版本的通用
 `-march` 写法 `-march=la64v1.0`、`-march=la64v1.1`。
