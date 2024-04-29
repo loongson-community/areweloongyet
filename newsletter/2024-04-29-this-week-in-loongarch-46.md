@@ -21,7 +21,20 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+Huacai Chen 为 v6.9-rc6 [提交了](https://lore.kernel.org/loongarch/20240426145606.981607-1-chenhuacai@loongson.cn/)一批修复，包含了上期周报[提到的](./2024-04-23-this-week-in-loongarch-45.md#linux)修复，以及一些其他修复。
+此 tag 已经在主线可用，请打包同学与自行维护内核的用户查收。
+
+Tiezhu Yang [修复了](https://lore.kernel.org/loongarch/20240428030530.24399-1-yangtiezhu@loongson.cn/T/#m227d1a834b2635b42226d8cc042e6f6ba692db54)
+Linux vDSO 自我测试在 LoongArch 上的构建时与运行时错误。
+
+Bibo Mao [移动了](https://lore.kernel.org/loongarch/20240425121443.1009824-1-maobibo@loongson.cn/)性能监测单元（PMU）的初始化动作到所有
+CPU 上线之后。此补丁也在 `v6.9-rc6` tag 包含了。
+
+Huacai Chen [修复了](https://lore.kernel.org/loongarch/20240423074322.2480319-1-chenhuacai@loongson.cn/)
+`perf` 工具在 LoongArch 上无法正确追踪内核跟踪点事件（tracepoint events）的调用链的问题。
+具体来讲，是补充了每个架构需要各自实现的获取当前程序计数器、栈指针、帧指针的操作。此补丁也在 `v6.9-rc6` tag 包含了。
+值得一提的是：此问题与解决方法都是先前在龙芯任职的 Youling Tang 同学报告的，显然
+Youling 仍然在关心 LoongArch 的前沿动态。
 
 ### 工具链 {#toolchain}
 
