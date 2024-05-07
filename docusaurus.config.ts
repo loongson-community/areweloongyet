@@ -121,6 +121,25 @@ const config: Config = {
             to: 'https://liblol.aosc.io/docs/dev/design/',
             from: '/docs/world-compat-details/liblol',
           },
+
+          // allow iterating over all TWiL articles with the singular title
+          // form, i.e. "this-week-..."
+          {
+            to: '/newsletter/these-weeks-in-loongarch-6',
+            from: '/newsletter/this-week-in-loongarch-6',
+          },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-12',
+            from: '/newsletter/this-week-in-loongarch-12',
+          },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-33',
+            from: '/newsletter/this-week-in-loongarch-33',
+          },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-44',
+            from: '/newsletter/this-week-in-loongarch-44',
+          },
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
