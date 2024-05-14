@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-48
 title: 每周一龙：第 48 期
 authors: [xen0n]
-date: 2024-05-13T18:00:00+08:00
+date: 2024-05-14T20:00:00+08:00
 tags: [每周一龙]
 draft: true  # TODO
 ---
