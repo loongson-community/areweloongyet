@@ -29,6 +29,7 @@
     "@types/glob": "^8.1.0",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.1",
+    "@types/node": "^20.12.12",
     "@types/react": "^18.3.1",
     "antd": "^5.17.0",
     "browserslist": "^4.23.0",
