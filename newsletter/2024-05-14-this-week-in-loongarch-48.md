@@ -7,7 +7,7 @@ tags: [每周一龙]
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 Linux 与 LATX 预览版发布。
+上周的进展主要有 Linux、Golang 与 LATX 预览版发布。
 详情点进来看！
 
 <!-- truncate -->
