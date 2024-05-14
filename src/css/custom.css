@@ -133,3 +133,14 @@ em.cjk {
   text-emphasis-style: dot;
   text-emphasis-position: under right;
 }
+
+/*
+ * https://github.com/mermaid-js/mermaid/issues/1236
+ *
+ * This is only available for Firefox and Chromium 124+ (!), so manual
+ * workarounds are still necessary for the moment.
+ */
+[aria-roledescription='flowchart-v2'] .marker {
+  fill: context-stroke !important;
+  stroke: context-stroke !important;
+}
