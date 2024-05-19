@@ -2,13 +2,12 @@
 slug: this-week-in-loongarch-49
 title: 每周一龙：第 49 期
 authors: [xen0n]
-date: 2024-05-20T18:00:00+08:00
+date: 2024-05-20T11:00:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
-上周的进展主要有 TODO。
+上周的进展主要有 Linux、工具链与 Mono 龙架构移植主线化。
 详情点进来看！
 
 <!-- truncate -->
@@ -21,7 +20,16 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+Huacai Chen [新增了](https://lore.kernel.org/loongarch/20240514073232.3694867-1-chenhuacai@loongson.cn/)
+IRQ work 类型的处理器间中断（IPI）支持，这使得在硬件中断上下文进行 IRQ work 成为可能，也是后续支持
+`NOHZ_FULL` 配置的前提。`NOHZ_FULL` 意为允许在一个或一些核上完全关闭定时器中断，
+这对于一些对硬件行为的确定性、延迟要求极端苛刻的场景，很有帮助，甚至不可或缺。
+
+Huacai Chen [默认开启了](https://lore.kernel.org/loongarch/20240511100105.2334509-1-chenhuacai@loongson.cn/)
+BPF JIT。
+
+Bibo Mao [贴出了](https://lore.kernel.org/loongarch/20240513011235.3233776-1-maobibo@loongson.cn/)
+LoongArch KVM 的 LBT 支持。不日即可在 KVM 虚拟机中用上 LBT 扩展指令。
 
 ### 工具链 {#toolchain}
 
@@ -45,6 +53,8 @@ ABI 属性设置错误的问题。例如：如果使用 `loongarch64` 作为目�
 
 [wangleiat] 还[再次提议引入](https://github.com/llvm/llvm-project/pull/92483)模拟 TLS（emulated TLS）支持。根据提交说明，此特性应该是开源鸿蒙（OHOS）所需要的；先前人们基于此特性已经过时而不希望 LoongArch 作为一个新架构而仍然支持，目前看来可能要重新评估这一决定。
 
+[wangleiat] 还消除了对库调用（libcalls，如对软浮点例程的调用）参数的多余符号扩展：[补丁甲](https://github.com/llvm/llvm-project/pull/92375)、[补丁乙](https://github.com/llvm/llvm-project/pull/92376)。
+
 [heiher]: https://github.com/heiher
 [wangleiat]: https://github.com/wangleiat
 
@@ -56,7 +66,8 @@ ABI 属性设置错误的问题。例如：如果使用 `loongarch64` 作为目�
 龙芯做的 Mono 龙架构移植[已进入上游](https://github.com/mono/mono/pull/21769)（链接目标为五个 PRs 中的最后一个）。Mono
 是在微软的官方 .NET 运行时开源之前，由社区开发的 .NET 运行时；目前最著名的
 Mono 使用者是游戏引擎 Unity。此次 Mono 主线加入 LoongArch 支持，有助于降低那些需要将其
-Unity 项目向 LoongArch 部署的开发者的魔改工作量。
+Unity 项目向 LoongArch 部署的开发者的魔改工作量。同时，雄心勃勃的读者朋友或许也可以少许期待一下未来
+Unity——或者至少其国区版本「团结引擎」——增加官方 LoongArch 支持的可能性。
 
 [lrzlin]: https://github.com/lrzlin
 
