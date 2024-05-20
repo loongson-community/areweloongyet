@@ -2,7 +2,7 @@
 slug: this-week-in-loongarch-49
 title: 每周一龙：第 49 期
 authors: [xen0n]
-date: 2024-05-20T11:00:00+08:00
+date: 2024-05-20T13:00:00+08:00
 tags: [每周一龙]
 ---
 
