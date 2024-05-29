@@ -40,7 +40,7 @@ mengqinggang 在邮件列表上[询问了](https://sourceware.org/pipermail/binu
 
 #### LLVM {#llvm}
 
-[heiher] 用上了 32 位除法、取余指令，[消除了]((https://github.com/llvm/llvm-project/pull/92205)这些
+[heiher] 用上了 32 位除法、取余指令，[消除了](https://github.com/llvm/llvm-project/pull/92205)这些
 32 位操作的编译产物中，对结果进行的多余符号扩展。
 
 [heiher] 还为 LoongArch 上的循环优化[开启了](https://github.com/llvm/llvm-project/pull/92629/files)交织向量化（interleaved vectorization）工序（pass），初期使用默认的交织系数 2。
