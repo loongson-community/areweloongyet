@@ -1,0 +1,11 @@
+name: 'Anolis OS'
+homepageURL: 'https://openanolis.cn/anolisos'
+repoURL: 'https://gitee.com/anolis'
+portingEfforts:
+  - authors: []
+    desc: 'Anolis OS 8.8 与 8.9 的 LoongArch port 是旧世界，直至 23.1 才迁移到新世界'
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '23.1'
+    goodSinceVersion: ''
+    quality: OnPar
