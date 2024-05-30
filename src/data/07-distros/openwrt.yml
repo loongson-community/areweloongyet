@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['hackpascal']
     desc: ''
     link: 'https://github.com/openwrt/openwrt/pull/14357'
-    supportStatus: UnderReview
+    supportStatus: WaitingRelease
     releasedSinceVersion: ''
     goodSinceVersion: ''
     quality: OnPar
