@@ -1,0 +1,6 @@
+name: 'NEMU'
+homepageURL: ''
+repoURL: 'https://github.com/NJU-ProjectN/nemu'
+# only the extremely reduced LA32R variant is supported, which does NOT count
+# as "support" in the more popular sense in the maintainer's opinion.
+portingEfforts: []

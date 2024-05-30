@@ -1,0 +1,11 @@
+name: 'deepin'
+homepageURL: 'https://deepin.org'
+repoURL: 'https://github.com/linuxdeepin'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: ''
+    supportStatus: WaitingRelease
+    releasedSinceVersion: '23'
+    goodSinceVersion: ''
+    quality: OnPar

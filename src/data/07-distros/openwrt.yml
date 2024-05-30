@@ -5,14 +5,14 @@ portingEfforts:
   - authors: ['hackpascal']
     desc: ''
     link: 'https://github.com/openwrt/openwrt/pull/14357'
-    supportStatus: UnderReview
+    supportStatus: WaitingRelease
     releasedSinceVersion: ''
     goodSinceVersion: ''
     quality: OnPar
   - authors: ['phorcys']
     desc: '可用，但似乎无意推入上游'
     link: 'https://github.com/phorcys/openwrt-loongarch'
-    supportStatus: WIP
+    supportStatus: Stalled
     releasedSinceVersion: ''
     goodSinceVersion: ''
     quality: NoCode

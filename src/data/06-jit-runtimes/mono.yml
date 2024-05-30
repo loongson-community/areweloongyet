@@ -3,9 +3,9 @@ homepageURL: 'https://www.mono-project.com/'
 repoURL: 'https://github.com/mono/mono'
 portingEfforts:
   - authors: ['loongson']
-    desc: '龙芯似乎对 .NET 的支持更感兴趣，Mono 的移植目前停滞'
-    link: 'https://github.com/shushanhf/mono/tree/main_loongarch64_1'
-    supportStatus: Stalled
+    desc: ''
+    link: 'https://github.com/mono/mono/issues/21381'
+    supportStatus: WaitingRelease
     releasedSinceVersion: ''
     goodSinceVersion: ''
-    quality: NeedsCleanup
+    quality: OnPar

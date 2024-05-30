@@ -1,0 +1,11 @@
+name: 'openEuler'
+homepageURL: 'https://www.openeuler.org'
+repoURL: 'https://gitee.com/openeuler'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: ''
+    supportStatus: WaitingRelease
+    releasedSinceVersion: '24.03'
+    goodSinceVersion: ''
+    quality: OnPar

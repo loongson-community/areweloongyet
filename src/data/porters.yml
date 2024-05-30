@@ -1,6 +1,18 @@
 # 请保持 key 按字母顺序排列。
 # Please keep the keys alphabetically sorted.
 
+factfinding:
+  name: Haichen Wu
+  kind: Community
+  url: ''
+  githubUsername: factfinding
+  giteeUsername: ''
+flygoat:
+  name: Jiaxun Yang
+  kind: Community
+  url: https://flygoat.com
+  githubUsername: FlyGoat
+  giteeUsername: flygoat
 hackpascal:
   name: Weijie Gao
   kind: Community
@@ -13,6 +25,12 @@ jiangcuo:
   url: ''
   githubUsername: jiangcuo
   giteeUsername: jiangcuo
+ksco:
+  name: Yang Liu
+  kind: Community
+  url: https://ksco.cc
+  githubUsername: ksco
+  giteeUsername: ''
 liushuyu:
   name: Liu Zixing
   kind: Community
@@ -48,6 +66,12 @@ shipujin:
   kind: Loongson
   url: ''
   githubUsername: shipujin
+  giteeUsername: ''
+shouhuanxiaoji:
+  name: xiaoji
+  kind: Community
+  url: ''
+  githubUsername: shouhuanxiaoji
   giteeUsername: ''
 sunhaiyong1978:
   name: Sun Haiyong
