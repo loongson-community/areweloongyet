@@ -12,7 +12,7 @@ portingEfforts:
   - authors: ['phorcys']
     desc: '可用，但似乎无意推入上游'
     link: 'https://github.com/phorcys/openwrt-loongarch'
-    supportStatus: WIP
+    supportStatus: Stalled
     releasedSinceVersion: ''
     goodSinceVersion: ''
     quality: NoCode
