@@ -1,6 +1,12 @@
 # 请保持 key 按字母顺序排列。
 # Please keep the keys alphabetically sorted.
 
+flygoat:
+  name: Jiaxun Yang
+  kind: Community
+  url: https://flygoat.com
+  githubUsername: FlyGoat
+  giteeUsername: flygoat
 hackpascal:
   name: Weijie Gao
   kind: Community

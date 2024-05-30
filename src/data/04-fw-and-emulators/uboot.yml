@@ -1,0 +1,11 @@
+name: 'Das U-Boot'
+homepageURL: 'https://u-boot.org'
+repoURL: 'https://github.com/u-boot/u-boot'
+portingEfforts:
+  - authors: ['flygoat']
+    desc: 'Fork: https://github.com/FlyGoat/u-boot'
+    link: 'https://lists.denx.de/pipermail/u-boot/2024-May/554168.html'
+    supportStatus: UnderReview
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
