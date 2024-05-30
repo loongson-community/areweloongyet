@@ -1,0 +1,11 @@
+name: 'Box64'
+homepageURL: 'https://box86.org'
+repoURL: 'https://github.com/ptitSeb/box64'
+portingEfforts:
+  - authors: ['factfinding', 'ksco', 'shouhuanxiaoji']
+    desc: 'shouhuanxiaoji 添加了基本支持：https://github.com/ptitSeb/box64/pull/117。factfinding 与 ksco 完善了 DynaRec JIT 支持'
+    link: 'https://box86.org/2024/05/new-version-of-box64-v0-2-8-and-box86-v0-3-6/'
+    supportStatus: Released
+    releasedSinceVersion: '0.1.6'
+    goodSinceVersion: '0.2.8'
+    quality: OnPar
