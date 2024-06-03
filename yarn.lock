@@ -4341,6 +4341,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prismjs@npm:^1":
+  version: 1.26.4
+  resolution: "@types/prismjs@npm:1.26.4"
+  checksum: 10c0/996be7d119779c4cbe66e58342115a12d35a02226dae3aaa4a744c9652d5a3939c93c26182e18156965ac4f93575ebb309c3469c36f52e60ee5c0f8f27e874df
+  languageName: node
+  linkType: hard
+
 "@types/prismjs@npm:^1.26.0":
   version: 1.26.3
   resolution: "@types/prismjs@npm:1.26.3"
@@ -5002,6 +5009,7 @@ __metadata:
     "@types/js-yaml": "npm:^4.0.9"
     "@types/lodash": "npm:^4.17.4"
     "@types/node": "npm:^20.12.13"
+    "@types/prismjs": "npm:^1"
     "@types/react": "npm:^18.3.3"
     antd: "npm:^5.17.4"
     browserslist: "npm:^4.23.0"
@@ -5010,10 +5018,12 @@ __metadata:
     lodash: "npm:^4.17.21"
     mdast-util-find-and-replace: "npm:^3.0.1"
     prism-react-renderer: "npm:^2.3.1"
+    prismjs: "npm:^1.29.0"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     typescript: "npm:^5.4.5"
     update-browserslist-db: "npm:^1.0.16"
+    utility-types: "npm:^3.11.0"
     yaml: "npm:^2.4.2"
   languageName: unknown
   linkType: soft
@@ -14998,7 +15008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utility-types@npm:^3.10.0":
+"utility-types@npm:^3.10.0, utility-types@npm:^3.11.0":
   version: 3.11.0
   resolution: "utility-types@npm:3.11.0"
   checksum: 10c0/2f1580137b0c3e6cf5405f37aaa8f5249961a76d26f1ca8efc0ff49a2fc0e0b2db56de8e521a174d075758e0c7eb3e590edec0832eb44478b958f09914920f19

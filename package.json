@@ -33,8 +33,10 @@
     "lodash": "^4.17.21",
     "mdast-util-find-and-replace": "^3.0.1",
     "prism-react-renderer": "^2.3.1",
+    "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "utility-types": "^3.11.0",
     "yaml": "^2.4.2"
   },
   "devDependencies": {
@@ -44,6 +46,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.4",
     "@types/node": "^20.12.13",
+    "@types/prismjs": "^1",
     "@types/react": "^18.3.3",
     "typescript": "^5.4.5",
     "update-browserslist-db": "^1.0.16"
