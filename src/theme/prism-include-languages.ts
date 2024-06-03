@@ -27,5 +27,8 @@ export default function prismIncludeLanguages(
     require(`prismjs/components/prism-${lang}`);
   });
 
+  // AWLY addition(s)
+  require('../plugins/prism-asmloong');
+
   delete (globalThis as Optional<typeof globalThis, 'Prism'>).Prism;
 }
