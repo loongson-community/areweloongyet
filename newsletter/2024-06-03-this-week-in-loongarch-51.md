@@ -31,7 +31,42 @@ TODO
 
 #### binutils {#binutils}
 
-TODO
+Lulu Cai 为 LoongArch 汇编语言[增加了](https://sourceware.org/pipermail/binutils/2024-May/134440.html)
+`.option` 指示（directive）支持，用于对局部某段代码单独调整个别汇编器配置，以实现特殊效果。初期支持的是
+linker relaxation 的开关。
+
+:::info 对比记忆
+在 RISC-V 汇编中，也用 `.option` 做此类临时调整；而在 MIPS 汇编中，则用 `.set`。
+:::
+
+为方便学习，特在此附上补丁中的示例代码片段，已对其中的 `.option` 用法作出注释。
+
+<details>
+<summary>示例代码片段</summary>
+
+```asmloong
+    .text
+1:
+    // 将当前的汇编器配置入栈
+    .option push
+
+    // 现在 linker relaxation 一定处于禁用状态
+    // s 是被指向的符号
+    .option norelax
+    lu12i.w $t0, %le_hi20(s)       // R_LARCH_TLS_LE_HI20
+    addi.d  $t0, $t0, %le_lo12(s)  // R_LARCH_TLS_LE_LO12
+
+    // 现在 linker relaxation 一定处于启用状态
+    .option relax
+    lu12i.w $t0, %le_hi20(s)       // R_LARCH_TLS_LE_HI20_R
+    addi.d  $t0, $t0, %le_lo12(s)  // R_LARCH_TLS_LE_LO12_R
+
+    // 恢复先前的汇编器配置
+    // 现在 linker relaxation 的开关状态重新取决于 as 的命令行参数
+    .option pop
+```
+
+</details>
 
 #### GCC {#gcc}
 
