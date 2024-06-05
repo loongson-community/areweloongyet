@@ -74,7 +74,24 @@ TODO
 
 #### LLVM {#llvm}
 
-TODO
+[wangleiat] 为 LLD [实现了](https://github.com/llvm/llvm-project/pull/94451)基本的
+TLS 描述符（TLSDESC）支持。
+
+[xen0n] 在浏览 LLVM LoongArch 工单（以便撰写本期周报）时，发现 Rust 和 Zig 都开始利用 16
+位浮点数了，而 LoongArch 后端面对此数据类型[会崩溃](https://github.com/llvm/llvm-project/issues/93894)；顺手将其[修复了](https://github.com/llvm/llvm-project/pull/94456)。
+
+[heiher] [允许了](https://github.com/llvm/llvm-project/pull/93814) LoongArch
+后端将 32 位整型 `i32` 也视作原生支持的合法类型。这将使 LLVM 能够更充分地利用 LoongArch 的
+`*.w` 系列的 32 位操作：而这正是
+heiher 在另一组变更中[所做的](https://github.com/llvm/llvm-project/pull/93811)。
+
+[heiher] 还为 LoongArch 后端[实现了](https://github.com/llvm/llvm-project/pull/93813)
+LLVM `TargetLowering` 的公共钩子 `signExtendConstant`，使 LLVM IR phi 节点的 `i32`
+常量操作数也能先变为符号扩展形式再被实例化（materialize）——否则默认是零扩展的，从而让生成的指令序列更短。
+
+[heiher]: https://github.com/heiher
+[wangleiat]: https://github.com/wangleiat
+[xen0n]: https://github.com/xen0n
 
 ## 杂闻播报 {#assorted-news}
 
