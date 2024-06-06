@@ -7,5 +7,5 @@ portingEfforts:
     link: ''
     supportStatus: WaitingRelease
     releasedSinceVersion: '24.03'
-    goodSinceVersion: ''
+    goodSinceVersion: '24.03'
     quality: OnPar
