@@ -1,0 +1,11 @@
+name: 'OCaml'
+homepageURL: 'https://ocaml.org'
+repoURL: 'https://github.com/ocaml/ocaml'
+portingEfforts:
+  - authors: ['loongson']
+    desc: '字节码解释器一直可用。此移植是增加了 ocamlopt 支持，即支持编译到 LoongArch 机器语言'
+    link: 'https://github.com/ocaml/ocaml/pull/11974'
+    supportStatus: UnderReview
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
