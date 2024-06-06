@@ -5,7 +5,7 @@ portingEfforts:
   - authors: ['loongson', 'liushuyu']
     desc: 'GDC 和 LDC 这两个 D 语言编译器的支持也在推进'
     link: 'https://github.com/dlang/dmd/pull/15628'
-    supportStatus: WaitingRelease
+    supportStatus: Released
     releasedSinceVersion: '2.106'
     goodSinceVersion: ''
     quality: OnPar
