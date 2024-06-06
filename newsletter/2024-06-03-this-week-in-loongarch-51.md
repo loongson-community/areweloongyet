@@ -23,11 +23,13 @@ draft: true  # TODO
 
 TODO
 
+Bibo Mao 使 LoongArch KVM 对只读内存区域[跳过了](https://lore.kernel.org/loongarch/20240604121502.1985410-1-maobibo@loongson.cn/)脏页跟踪：页不会被写，就不会变脏。
+
+Bibo Mao 还[增加了](https://lore.kernel.org/loongarch/20240604121502.1985410-1-maobibo@loongson.cn/)使得用户态虚拟机管理程序（VMM）能够将自身特性告知
+KVM 的机制。从提交说明看，初期是为了让 KVM 能知道有的 VMM 的中断控制器能支持 256 个虚拟
+CPU，而不像真机只能支持 4 个。
+
 ### 工具链 {#toolchain}
-
-#### ABI {#abi}
-
-TODO
 
 #### binutils {#binutils}
 
@@ -67,10 +69,6 @@ linker relaxation 的开关。
 ```
 
 </details>
-
-#### GCC {#gcc}
-
-TODO
 
 #### LLVM {#llvm}
 
