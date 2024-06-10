@@ -7,5 +7,5 @@ portingEfforts:
     link: ''
     supportStatus: Released
     releasedSinceVersion: '23.1'
-    goodSinceVersion: ''
+    goodSinceVersion: '23.1'
     quality: OnPar

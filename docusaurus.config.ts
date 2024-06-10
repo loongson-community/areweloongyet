@@ -140,6 +140,10 @@ const config: Config = {
             to: '/newsletter/these-weeks-in-loongarch-44',
             from: '/newsletter/this-week-in-loongarch-44',
           },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-51',
+            from: '/newsletter/this-week-in-loongarch-51',
+          },
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
@@ -298,6 +302,11 @@ const config: Config = {
       // asm in GAS AT&T syntax), but currently there isn't one
       //
       // see https://github.com/PrismJS/prism/issues/482
+      //
+      // this is now resolved for the LoongArch asm with custom plugin housed
+      // right in the repo, and swizzled prism-include-languages component,
+      // as per Docusaurus docs, so the "loongasm" language is not being
+      // represented here
       additionalLanguages: ['bash', 'shell-session'],
     },
   } satisfies PresetClassicThemeConfig,
