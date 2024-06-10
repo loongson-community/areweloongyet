@@ -1,10 +1,9 @@
 ---
-slug: this-week-in-loongarch-51
-title: 每周一龙：第 51 期
+slug: these-weeks-in-loongarch-51
+title: 每周两龙：第 51 期
 authors: [xen0n]
-date: 2024-06-03T20:00:00+08:00
+date: 2024-06-10T22:00:00+08:00
 tags: [每周一龙]
-draft: true  # TODO
 ---
 
 每周（尽量）为大家报道 LoongArch 社区最前线的第一手新鲜资讯！
@@ -12,6 +11,8 @@ draft: true  # TODO
 详情点进来看！
 
 <!-- truncate -->
+
+因为笔者近期现实生活繁忙，以及需要跟进的工作量巨大，上周被跳过了，本期也改为更新前两周的内容，预计下期恢复每周更新。
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 

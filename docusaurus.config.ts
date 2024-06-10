@@ -140,6 +140,10 @@ const config: Config = {
             to: '/newsletter/these-weeks-in-loongarch-44',
             from: '/newsletter/this-week-in-loongarch-44',
           },
+          {
+            to: '/newsletter/these-weeks-in-loongarch-51',
+            from: '/newsletter/this-week-in-loongarch-51',
+          },
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
