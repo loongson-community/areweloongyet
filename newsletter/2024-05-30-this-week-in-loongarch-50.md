@@ -28,6 +28,10 @@ U-Boot 到 LoongArch，还顺带修复了 Linux 与 QEMU 的 FDT 引导流程问
 * QEMU 构造 FDT 时，[没传递](https://patchwork.ozlabs.org/project/qemu-devel/patch/20240520-loongarch-fdt-memnode-v1-1-5ea9be93911e@flygoat.com/)内存映射记录的高 32 位；
 * Linux 一侧也有[一坨低级失误](https://lore.kernel.org/loongarch/20240522-loongarch-booting-fixes-v3-0-25e77a8fc86e@flygoat.com/)。
 
+:::warning 更正声明
+我们发现下文的「小编评论」基于的部分论据缺乏考证。新一期周报对此[进行了](./2024-06-03-this-week-in-loongarch-51.md#linux)更正，并对名誉可能受到影响的原厂开发者表达了歉意。
+:::
+
 :::info 小编评论
 出问题的代码，显然没测过就提交了；当初审查代码的开发者显然信任了补丁作者会自测，因此也放松了神经。今后连原厂的内部质量保障都不能信任了吗……
 
