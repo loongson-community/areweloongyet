@@ -46,6 +46,14 @@ static key 机制用到。[Xi Ruoyao][xry111]
 遂[增加了](https://lore.kernel.org/loongarch/20240604150741.30252-1-xry111@xry111.site/)对汇编器是否支持
 `-mthin-add-sub` 选项的检查：只有汇编器支持此选项，才能避免产生 `objtool`
 不支持的用法，也只有满足该前提才适合开启 ORC stack unwinder。
+但是在补丁评审中，[Nathan Chancellor][nathanchance]
+[指出了](https://lore.kernel.org/loongarch/20240605054328.GA279426@thelio-3990X/)[另一个问题](https://github.com/ClangBuiltLinux/linux/issues/2024)：
+`objtool` 无法正确处理 LoongArch 机器代码中使用帧指针 (`$fp`)
+保存和恢复栈指针的操作，因此在编译器使用帧指针 (例如，Clang
+处理栈上对齐量大于 16 的变量) 时，`objtool` 仍会工作异常并产生警告。
+因此该补丁已被废弃，我们期待更好的解决方案。
+
+[nathanchance]:https://github.com/nathanchance
 
 Hui Li [修复了](https://lore.kernel.org/loongarch/20240529013019.15235-1-lihui@loongson.cn/)
 LoongArch 硬件断点的几个实现问题。
