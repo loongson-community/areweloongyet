@@ -21,36 +21,64 @@ draft: true  # TODO
 
 ### Linux {#linux}
 
-TODO
+TODO: amdgpu & LS7A drama [Icenowy]
+
+TODO: [xry111]'s fstat work
+
+[Icenowy]: https://github.com/Icenowy
+[xry111]: https://github.com/xry111
 
 ### 工具链 {#toolchain}
 
-#### ABI {#abi}
-
-TODO
-
 #### binutils {#binutils}
 
-TODO
+TODO: [xry111]'s `DT_RELR` work
+
+TODO: bad static reloc check & broken stack-based relocs [xry111]
 
 #### GCC {#gcc}
 
-TODO
+TODO: assorted [xry111] work
 
 #### LLVM {#llvm}
 
-TODO
+TODO: register pressure scheduler https://github.com/llvm/llvm-project/pull/95741 [heiher]
+
+TODO: lld TLSDESC https://github.com/llvm/llvm-project/pull/94451 [wangleiat]
+
+[heiher]: https://github.com/heiher
+[wangleiat]: https://github.com/wangleiat
+
+#### Rust {#rust}
+
+[heiher] `loongarch64-unknown-linux-musl` Tier 2 with Host Tools
+https://github.com/rust-lang/rust/pull/126298
 
 ## 杂闻播报 {#assorted-news}
 
-TODO
+TODO: memtest86+ [kilaterlee] [MarsDoge]
+
+TODO: edk2 [MarsDoge]
+
+TODO: zig [yxd-ym]
+
+TODO: grub2 case-sensitivity [MingcongBai]
+
+[kilaterlee]: https://github.com/kilaterlee
+[MarsDoge]: https://github.com/MarsDoge
+[MingcongBai]: https://github.com/MingcongBai
+[yxd-ym]: https://github.com/yxd-ym
 
 ## 社区整活:儿: {#grins}
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-TODO
+TODO: stable amdgpu on xa61200 with better cooling [LiarOnce]
+
+TODO: [xry111]'s abandoned LBT work
+
+[LiarOnce]: https://github.com/LiarOnce
 
 ## 张贴栏 {#bulletin}
 
