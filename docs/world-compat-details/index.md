@@ -186,10 +186,15 @@ LoongArch 是 Linux 内核最新引入的架构，因此决定不再提供一些
 
 系统调用名称 | 编号
 ------------|-----
-`newfstatat` | 79
-`fstat`      | 80
 `getrlimit`  | 163
 `setrlimit`  | 164
+
+另外在低于 6.11 版本的新世界内核中，缺失两个系统调用：
+
+系统调用名称 | 编号
+------------|-----
+`newfstatat` | 79
+`fstat`      | 80
 
 可以通过直接补充上述系统调用来实现这一部分的兼容。
 
@@ -652,15 +657,26 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 
 #### `fstat` 相关
 
-新世界的内核中，缺少 `fstat` 和 `newfstatat` 系统调用。这两个系统调用可以被用于获取文件的元数据。
+新世界的低于 (不含) 6.11 版本的内核中，缺少 `fstat` 和 `newfstatat` 系统调用。这两个系统调用可以被用于获取文件的元数据。
 其中，`fstat` 可以获取一个打开的文件描述符（file descriptor, fd）所对应的文件的元数据；
 而 `newfstatat` 则既可以获取一个打开的文件描述符所对应的文件的元数据，也可以获取一个路径所对应的文件的元数据。
 在操作对象上，`statx` 与 `newfstatat` 是一致的，但是可以按需返回更多的信息。因此，在功能上，
-`statx` 是 `fstat` 和 `newfstatat` 的超集，并取代了这两个系统调用。
+`statx` 是 `fstat` 和 `newfstatat` 的超集，并能够实现这两个系统调用。
+然而，Linus 强烈反对在 64 位平台这样做，因此在 6.11 版本内核中重新引入了
+`fstat` 和 `newfstatat` 系统调用。
 
 在 2.38 的 glibc 中，所有 `*stat*` 函数会在编译期通过宏指令检查内核是否提供了 `fstat` 或 `newfstatat` 的定义，
 如果没有，那么这些函数会调用 `statx`[^7] 并负责转换数据结构。这意味着，与旧世界相比，这些 `*stat*` 函数对外呈现的行为是不变的，
 新旧世界的函数是二进制兼容的。本节会着重讨论其向内核发出系统调用的行为区别。
+
+在 2.41 的 glibc 中，如果其在构建时被配置为仅兼容 6.11 或更新版本的内核
+(`--enable-kernel=6.11`)，则 `*stat*` 函数会使用 `fstat` 或 `newfstatat`；
+否则，仍然使用 `statx` 并转换数据结构，但在其返回 `ENOSYS` 时回落到 `fstat`
+或 `newfstatat` 再次尝试。
+
+在未来新的 32 位平台 (含 32 位 LoongArch) 中，为了避免 2037 年问题，
+所有 `*stat*` 函数仍将调用 `statx`，但将直接以 `struct statx` 作为
+`struct stat` 以避免数据结构转换。
 
 [^7]: 这些函数最终会调用 [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
 
@@ -669,10 +685,10 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 `ENOSYS` 错误，期待沙箱内的进程自行回落至 `fstat` 或 `newfstatat`。
 这是因为，seccomp [无法审查](https://lwn.net/Articles/799557/)系统调用的指针参数背后的内容。
 而 Chromium 的一种沙箱规则则要求程序只能操作已经打开的 fd，而不能访问任何系统路径，
-因此只能放行（在新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
+因此只能放行（在低版本新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
 
-为了能让这部分程序正常运行，需要调整上述函数的行为，当 `statx` 返回 `ENOSYS` 时，
-改为使用 `fstat` 或 `newfstatat`；同时，需要在新世界的内核中补充 `fstat` 和 `newfstatat` 的实现。
+为了能让这部分程序正常运行，如果 Glibc 版本低于 2.41，需要调整上述函数的行为，当 `statx` 返回 `ENOSYS` 时，
+改为使用 `fstat` 或 `newfstatat`；同时，如果新世界内核版本低于 6.11，则需要为其补充 `fstat` 和 `newfstatat` 的实现。
 
 glibc 中下列导出函数涉及 `fstat` 和 `newfstatat`，为兼容目前尚未适配 `statx` 的 Chromium 的沙箱机制，需要额外的兼容性处理：
 
