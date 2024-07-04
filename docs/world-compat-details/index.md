@@ -688,9 +688,9 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 因此只能放行（在低版本新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
 
 为了能让这部分程序正常运行，如果 Glibc 版本低于 2.41，或其被配置为与低于
-6.11 版本的内核相兼容，或程序没有通过 Glibc 的 `*stat*` 包装器，
-而是直接调用了 `statx`，则需要调整上述函数的行为，当 `statx` 返回 `ENOSYS`
-时，改为使用 `fstat` 或 `newfstatat`；
+6.11 版本的内核相兼容，或程序没有通过 Glibc 的（除了 `statx` 本身以外的）
+`*stat*` 包装器，而是直接调用了 `statx`，则需要调整上述函数的行为，当
+`statx` 返回 `ENOSYS` 时，改为使用 `fstat` 或 `newfstatat`；
 同时，如果新世界内核版本低于 6.11，则需要为其补充 `fstat` 和 `newfstatat`
 的实现。
 
