@@ -661,7 +661,8 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 其中，`fstat` 可以获取一个打开的文件描述符（file descriptor, fd）所对应的文件的元数据；
 而 `newfstatat` 则既可以获取一个打开的文件描述符所对应的文件的元数据，也可以获取一个路径所对应的文件的元数据。
 在操作对象上，`statx` 与 `newfstatat` 是一致的，但是可以按需返回更多的信息。因此，在功能上，
-`statx` 是 `fstat` 和 `newfstatat` 的超集，并能够实现这两个系统调用。
+`statx` 是 `fstat` 和 `newfstatat` 的超集，
+并在低于 6.11 版本的新世界内核中替代了这两个系统调用。
 然而，Linus 强烈反对在 64 位平台这样做，因此在 6.11 版本内核中重新引入了
 `fstat` 和 `newfstatat` 系统调用。
 
@@ -672,7 +673,9 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 在 2.41 的 glibc 中，如果其在构建时被配置为仅兼容 6.11 或更新版本的内核
 (`--enable-kernel=6.11`)，则 `*stat*` 函数会使用 `fstat` 或 `newfstatat`；
 否则，仍然使用 `statx` 并转换数据结构，并仍然不会回落到 `fstat` 或
-`newfstatat`。
+`newfstatat`（由于首个支持 LoongArch 的内核版本是 5.19，而 `statx`
+是在内核版本 4.11 中首次引入的，故 Glibc 认为 `statx` 必然存在，
+所以没有必要尝试回落）。
 
 在未来新的 32 位平台 (含 32 位 LoongArch) 中，为了避免 2037 年问题，
 所有 `*stat*` 函数仍将调用 `statx`，但将令 `struct stat` 和 `struct statx`
