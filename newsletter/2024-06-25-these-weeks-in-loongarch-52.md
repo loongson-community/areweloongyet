@@ -51,8 +51,27 @@ TODO: lld TLSDESC https://github.com/llvm/llvm-project/pull/94451 [wangleiat]
 
 #### Rust {#rust}
 
-[heiher] `loongarch64-unknown-linux-musl` Tier 2 with Host Tools
-https://github.com/rust-lang/rust/pull/126298
+
+第 50 期周报[提到的](./2024-05-30-this-week-in-loongarch-50.md#rust) LoongArch64
+musl target 工作已经完成：继提案于 6 月 12 日无异议[通过](https://github.com/rust-lang/compiler-team/issues/753#issuecomment-2162011200)之后，[heiher] 便将
+`loongarch64-unknown-linux-musl` target [提升到了](https://github.com/rust-lang/rust/pull/126298)
+Tier 2 with Host Tools 支持层级。自 2024-06-25 开始的 Nightly Rust 都已经包含此
+target 了。此功能将于 Rust 1.81 正式发布。
+
+[xen0n] [更新了](https://github.com/rust-lang/rust/pull/127053) Rust LoongArch
+targets 的文档内容：由于生态建设迅速，先前的许多信息已经与现实脱节了。
+
+[xen0n] 还为 Rust 官方构建的 LoongArch Linux 二进制包[启用了](https://github.com/rust-lang/rust/pull/127078)一系列功能：
+
+* 全套 LLVM 工具，含 LLD：与 x86、AArch64 等主流平台对齐。
+* Rust 的性能侧写机制（profiler）：已知至少 Chromium 必须启用此功能才能构建。
+
+[xen0n] 还[修复了](https://github.com/rust-lang/rust/pull/127150) Rust LoongArch
+裸机 targets 标准库中含有 x86 构建产物的[问题](https://github.com/rust-lang/rust/issues/125908)。
+
+此套变更不出意外也将在两三天内出现在 Nightly Rust，并于 Rust 1.81 正式发布。
+
+[xen0n]: https://github.com/xen0n
 
 ## 杂闻播报 {#assorted-news}
 
