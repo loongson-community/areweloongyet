@@ -47,7 +47,11 @@ TODO: [xry111]'s fstat work
 
 #### GCC {#gcc}
 
-TODO: assorted [xry111] work
+[xry111] [使得](https://gcc.gnu.org/r15-1674) GCC 估算 RTL 表达式成本时考虑使用 `bstrins.[wd]` 指令的情况，以在更多情况下使用 `bstrins.[wd]` 指令。
+
+[xry111] 参考 [RISC-V 实现](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656055.html)，使用 `fclass.[sd]` 指令[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656972.html) `__builtin_isinf`，`__builtin_isnormal`，以及 `__builtin_isfinite` 操作。和平台无关的默认实现相比，使用 `fclass.[sd]` 指令需要的指令数更少，且不需要从内存加载常量，还能够规避[在处理 signaling NaN 时触发 IEEE-754 标准不允许的浮点异常](https://gcc.gnu.org/PR66462)。但是目前 RISC-V 和 LoongArch 实现都会由于 value range 优化只能识别默认实现而触发测试失败，需要等待 [value range 支持](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/657883.html)到位后才能合并。
+
+在 Tiezhu Yang 的建议下，为使得 objtool 能够在启用跳转表优化时正常工作，[xry111] [增加了](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/657641.html)将跳转表 (jump table) 和跳转指令的对应关系写入一个专用的 ELF section 的功能。但是内核开发者对该技术路线有[不同意见](https://lore.kernel.org/loongarch/307bcd3e-f4fe-8cc0-c557-4069c97c6072@loongson.cn/)，尚不确定最终是否会采用该方案。
 
 #### LLVM {#llvm}
 
@@ -104,7 +108,7 @@ TODO: grub2 case-sensitivity [MingcongBai]
 
 TODO: stable amdgpu on xa61200 with better cooling [LiarOnce]
 
-TODO: [xry111]'s abandoned LBT work
+[xry111] [使用](https://gist.github.com/xry111/88fa001fa0ac0a2e78f2cbf3b9f0839a) LBT 指令实现 GCC 的 `__builtin_add_overflow`、`__builtin_addc` 等操作。实测表明这样做生成的代码虽然指令数相比默认实现少，但跑得反而更慢。尽管理论上仍可将其用于 `-Os`，但 [xry111] 认为这样做意义不大，放弃了该实现。
 
 [LiarOnce]: https://github.com/LiarOnce
 
