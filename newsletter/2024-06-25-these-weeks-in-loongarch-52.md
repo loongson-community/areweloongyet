@@ -23,7 +23,12 @@ draft: true  # TODO
 
 TODO: amdgpu & LS7A drama [Icenowy]
 
-TODO: [xry111]'s fstat work
+针对第 38 期周报提到的 LoongArch 不存在 `fstat` 和 `newfstatat` 系统调用，而是使用 `statx` 实现它们，从而导致性能损失和某些软件的 seccomp 沙箱无法正常工作的问题，在 [xry111] [抛砖引玉](https://lore.kernel.org/loongarch/20240622105621.7922-1-xry111@xry111.site/) (并被 Linus [批判一番](https://lore.kernel.org/loongarch/CAHk-=wgj6h97Ro6oQcOq5YTG0JcKRLN0CtXgYCW_Ci6OSzL5NA@mail.gmail.com/)) 后，Mateusz Guzik 和 Christian Brauner [允许了](https://git.kernel.org/torvalds/c/0ef625bba6fb)在使用 `AT_EMPTY_PATH` 时以空指针代替指向空串的指针，并在系统调用入口点特判了传入指向空串指针的情况。这样：
+
+- 即使不修改用户态，也已经做到几乎完全解决性能问题；如果修改用户态，使用空指针代替指向空串的指针，则可以完全解决性能问题。
+- 对于沙箱问题，沙箱可以在 `SIGSYS` 处理函数中将使用空串的 `statx` 调用重写为使用空指针，然后在 seccomp BPF 程序中放行使用空指针的 `statx` 调用。
+
+上述修改已合入 6.11 内核，至此可以认为该问题已被完全解决。然而，Huacai Chen 仍然[坚持](https://lore.kernel.org/loongarch/CAAhV-H7iKyQBvV+J9T1ekxh9OF8h=F9zp_QMyuhFBrFXGHHmTg@mail.gmail.com/)[重新引入](https://lore.kernel.org/loongarch/20240511100157.2334539-1-chenhuacai@loongson.cn/) `fstat` 和 `newfstatat` 系统调用。[xry111]，Arnd Bergmann，以及 Christian Brauner [反对](https://lore.kernel.org/loongarch/20240703-bergwacht-sitzung-ef4f2e63cd70@brauner/)这一提议，[但是 Linus 的决定权也是很重要的](https://lore.kernel.org/loongarch/CAHk-=wi0ejJ=PCZfCmMKvsFmzvVzAYYt1K9vtwke4=arfHiAdg@mail.gmail.com/)，因此预期 6.11 版本内核将为 LoongArch 重新引入这两个系统调用。我们不得不在下一个 Glibc 开发周期解决这一变化将导致的[兼容性问题](https://lore.kernel.org/loongarch/3fea167cad483484616e9bbf5ec6374475c4bcc4.camel@xry111.site/)，并[修订](https://github.com/loongson-community/areweloongyet/pull/195)本站的相关文档。
 
 [Icenowy]: https://github.com/Icenowy
 [xry111]: https://github.com/xry111
