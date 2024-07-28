@@ -49,11 +49,11 @@ sidebar_position: 4
 flowchart BT
     subgraph linux [Linux]
         OWLinuxELF(["旧世界 Linux (ELF)"])
-        OWLinuxStub["旧世界 Linux (EFI stub)"]
         NWLinuxStub["新世界 Linux (EFI stub)"]
     end
     subgraph bootloader [引导器]
         OWGrub2[旧世界 GRUB2]
+        OWGrub2N[旧世界 GRUB2]
         NWGrub2[新世界 GRUB2]
     end
     subgraph firmware [固件]
@@ -61,16 +61,16 @@ flowchart BT
         NWUEFI[[新世界 UEFI]]
     end
 
-    OWUEFI -->|UEFI 系统表（旧）| OWGrub2 -->|BPI| OWLinuxELF
-    NWUEFI -->|UEFI 系统表| NWGrub2 -->|UEFI 系统表| OWLinuxStub
+    OWUEFI -->|UEFI 系统表（含有 BPI）| OWGrub2 -->|BPI| OWLinuxELF
+    NWUEFI -->|UEFI 系统表| OWGrub2N -->|UEFI 系统表| OWLinuxELF
     NWUEFI -->|UEFI 系统表| NWGrub2 -->|UEFI 系统表| NWLinuxStub
     NWUEFI -->|UEFI 系统表| NWLinuxStub
 ```
 
-首先，新旧世界的 UEFI 固件，如 EDK2，虽然大部分行为都相同，但就传参而言，存在以下两点明显区别。
+旧世界 UEFI 固件分为两个版本，其标志性区别为，BPI 结构体中的签名标志不同，前者为 `BPI01000`，后者为 `BPI01001`。新旧世界的 UEFI 固件，如 EDK2，虽然大部分行为都相同，但存在以下几点明显区别。
 
-* 各类 UEFI 表格中的指针。
-    * 旧世界：都是形如 `0x9xxx_xxxx_xxxx_xxxx` 的虚拟地址。
+* 启动操作系统时 MMU 的状态不同
+    * 旧世界：启动操作系统时，已经启用了直接映射窗口（DMW），即将形如 `0x9xxx_xxxx_xxxx_xxxx` 的虚拟地址映射到了对应的物理内存空间 `0x0xxx_xxxx_xxxx_xxxx`，并且 PC 寄存器指向的是这样的虚拟地址。
 
       这「碰巧」是龙芯 Linux 在 MIPS 时代，由于架构规定而被迫使用的固定 1:1 映射窗口之一。
       快进到 LoongArch 时代，这「碰巧」仍然是旧世界内核，与未全面切换至 TLB
@@ -81,22 +81,54 @@ flowchart BT
 
       讽刺的是：虽然在内核拿到控制权之前，固件已经做了相同的 DMW 配置，但在旧世界内核入口点，仍然重复配了一遍……
       这显然意味着其中有一次是多余的！
+    * 新世界：启动操作系统时，未开启直接映射窗口，PC 寄存器指向的都是物理地址。
+
+    固件不应该，也确实没有替操作系统操心，甚至在某种意义上半强迫操作系统一定要采用某种特定的 DMW 配置。
+
+* 启动操作系统时，非启动核心的状态不同
+
+    无论新旧世界，在控制权移交给操作系统时，非启动的 CPU 核心均处于 idle 状态。即阻塞于执行 `idle 0` 指令，等待中断。当系统需要启动某一 CPU 核心时，需要向该核心的 IPI （Inter processor interrupt，跨核心中断）的 mailbox 寄存器写入其需要跳转到的地址，
+    并触发该核心的 IPI 中断。此时该核心被唤醒，退出 `idle 0` 指令，继续执行后续指令。
+    后续执行负责读取 mailbox 寄存器并跳转到其中所存储的位置。在新世界，由于系统启动时，
+    所有核心都未启用直接映射窗口，所以向 mailbox 寄存器中写入的地址应当为物理地址。
+    而在旧世界，由于系统启动时，所有核心都已经启用了直接映射窗口，所以向 mailbox
+    寄存器中写入的地址应当为 9 开头的虚拟地址。在 `BPI01001` 版本的固件中，
+    推测固件额外适配了从 mailbox 传入物理地址的情况，所以无论传入虚拟地址还是物理地址，
+    都能正常启动。
+
+* 各类 UEFI 表格中的指针。
+    * 旧世界：除 ACPI 表地址外，都是形如 `0x9xxx_xxxx_xxxx_xxxx` 的虚拟地址。
     * 新世界：都是物理地址。
 
-      固件不应该，也确实没有替操作系统操心，甚至在某种意义上半强迫操作系统一定要采用某种特定的 DMW 配置。
-* ACPI 数据结构。
-    * 旧世界：个别表格，包括但不限于 MADT，遵循的是 ACPI 6.5 定稿前的早期龙芯标准。
+* 内存排布的传递方式。
+    * 旧世界：总体上操作系统可以使用的内存在 BPI 数据结构中传递；被 UEFI
+      固件使用和保留的内存信息在 UEFI 系统表中传递。操作系统需要将二者结合起来方可得出全部内存可用信息。
+    * 新世界：全部内存可用信息都由 UEFI 系统表传递。
 
-      这些数据结构与 ACPI 6.5 不兼容：例如，新世界内核见到旧世界 MADT，便会认为此系统有 0 个 CPU，
-      而最终启动失败。
+* ACPI 数据结构。
+    * 旧世界：在 `BPI01000` 版本固件中的个别表格，遵循的是 ACPI 6.5 定稿前的早期龙芯标准。
+
+      - MADT 表格中，使用 `ACPI_MADT_TYPE_LOCAL_APIC` 描述 CPU 核心的中断控制器信息，使用 `ACPI_MADT_TYPE_IO_APIC` 描述 CPU socket 的中断控制器信息。
+      - DSDT 表格中，PCI 根控制器的 IO 资源描述符中，缺乏 LIO 控制器的 MMIO
+      所在内存偏移量信息，并且其覆盖的 IO 端口并未覆盖从 `0x0` 至 `0x4000` 这一段，
+      而是期待操作系统负责无条件设置这一段 IO 端口的地址映射。同时，
+      挂载在 LIO 控制器下的设备，如果其使用的 IO 端口位于这一段地址，也就因此未声明对
+      PCI 根控制器的依赖关系。
+      - 缺乏用于描述 PCI 根控制器信息的 MCFG 表格。
+
+      因此，这些数据结构与 ACPI 6.5 不兼容：例如，新世界内核见到旧世界 `BPI01000` 版本固件的 MADT，便会认为此系统有 0 个 CPU，而最终启动失败。
+
+      旧世界 `BPI01001` 版本固件中的 ACPI 表格与新世界相同，遵循 ACPI 6.5 或更新的版本。
+
     * 新世界：遵循 ACPI 6.5 或更新的版本。
 
-其次，新世界 Linux 期待直接解析 UEFI 系统表（system table）。
-旧世界 Linux 则与前代（MIPS）龙芯内核一样，
-期待接受龙芯自行定义的「BPI」结构体：`struct bootparamsinterface`（在 Loongnix 的 Linux 源码中，叫作 `struct boot_params`，本质相同）：
-在旧世界，将 UEFI system table 相关信息转换为 BPI 结构，是引导器的职责。
+新旧世界固件向操作系统传递启动必要信息的方式也存在不同。新世界固件直接向操作系统传递 UEFI 系统表（system table）。
+旧世界则与前代（MIPS）龙芯一样，额外传递了龙芯自行定义的「BPI」结构体：`struct bootparamsinterface`（在 Loongnix 的 Linux 源码中，叫作 `struct boot_params`，
+本质相同）：旧世界的 Grub 在引导时，先在 UEFI 系统表中查找是否存在 BPI 的数据结构，如果存在，
+意味着固件是旧世界的，此时将 BPI 结构传递给旧世界内核；否则如果不存在，
+意味着固件是新世界的，此时将 UEFI 系统表传递给旧世界内核。
 
-再具体一些，控制权交接至 Linux 之后，早期引导流程的差异见以下示意图。
+再具体一些，控制权从固件交出之后，早期引导流程的差异见以下示意图。
 
 :::info 图例
 实线的边表示过程调用。有文字注解的虚线边表示数据流动，无文字注解的虚线边则表示有所简化的过程调用。
@@ -104,15 +136,21 @@ flowchart BT
 
 ```mermaid
 flowchart TB
+    subgraph owgrub [旧世界 Grub]
+      OWGrub[旧世界 Grub]
+      OWGrubCheckBPI{{ UEFI 系统表中是否存在 BPI }}
+      OWGrub -->|将 ELF 内核读入内存<br />ExitBootService<br />SetupDMW| OWGrubCheckBPI
+    end
+    subgraph nwgrub [新世界 Grub]
+        NWGrub[新世界 Grub]
+    end
     subgraph ow [旧世界 Linux]
         OWKernelEntry[kernel_entry]
-        OWEfiEntry[efi_entry]
         OWStartKernel[start_kernel]
         OWFwInitEnv[fw_init_env]
 
         OWKernelEntry -.->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| OWFwInitEnv
         OWKernelEntry --> OWStartKernel -.-> OWFwInitEnv
-        OWEfiEntry -->|同新世界处理| OWKernelEntry
 
         OWCheckArg0{{fw_arg0 > 1}}
         OWCheckArg2{{fw_arg2 == 0}}
@@ -131,21 +169,23 @@ flowchart TB
         NWEfiEntry[efi_entry]
         NWStartKernel[start_kernel]
         NWInitEnviron[init_environ]
-        NWUEFI([UEFI 流程])
+        NWUEFI([后续流程])
 
         NWKernelEntry -.->|*fw_arg0 = a0<br />*fw_arg1 = a1<br />*fw_arg2 = a2| NWInitEnviron
         NWKernelEntry --> NWStartKernel -.-> NWInitEnviron -.-> NWUEFI
-        NWEfiEntry -->|a0 = 1<br />a1 = cmdline_ptr<br />a2 = efi_system_table| NWKernelEntry
+        NWEfiEntry -->|ExitBootService<br />SetupDMW<br />a0 = 1<br />a1 = cmdline_ptr<br />a2 = efi_system_table| NWKernelEntry
     end
 
-    subgraph protocol [引导协议]
-        BPI[[旧世界 BPI]]
-        UEFI[[新世界 UEFI]]
+    subgraph protocol [固件]
+        BPI[[旧世界引导]]
+        UEFI[[新世界引导]]
     end
 
-    BPI -->|a0 = argc<br />a1 = argv<br />a2 = &boot_params| OWKernelEntry
-    UEFI --> OWEfiEntry
-    UEFI --> NWEfiEntry
+    OWGrubCheckBPI -->|是<br />将系统表中的内存信息拼合入 BPI<br />a0 = argc<br />a1 = argv<br />a2 = &boot_params| OWKernelEntry
+    OWGrubCheckBPI -->|否<br />a0 = 1<br />a1 = cmdline_ptr<br />a2 = efi_system_table| OWKernelEntry
+    BPI --> |UEFI 系统表中提供 BPI 数据| OWGrub
+    UEFI -->|UEFI 系统表中不提供 BPI 数据| OWGrub
+    UEFI --> NWGrub -->|直接调用| NWEfiEntry
 ```
 
 图中未包含新世界 FDT 流程的详细介绍，因为它的真实逻辑比较复杂，您可以先自行查阅代码。
@@ -154,17 +194,16 @@ flowchart TB
 因此，新世界 Linux 无论是以 ACPI 还是 FDT 方式启动，其传参方式都遵循 UEFI 约定：奇妙的统一！
 同时也可发现旧世界不具备这种统一性质了。
 
-新旧世界 Linux 对三个固件参数的解释也有如下不同：
+新旧世界固件的引导协议下，旧世界 Linux 对三个固件参数的解释也有如下不同：
 
-|固件参数|旧世界解释|新世界解释|
+|固件参数|旧世界引导协议解释|新世界引导协议解释|
 |-----|--------|--------|
 |`fw_arg0`|`int argc`<br />内核命令行的参数个数|`int efi_boot`<br />EFI 引导标志，0 代表 EFI 运行时服务不可用，反之可用|
 |`fw_arg1`|`const char *argv[]`<br />内核命令行参数列表的虚拟地址，如同用户态的 C `main` 函数一般使用|`const char *argv`<br />内核命令行的物理地址，单个字符串|
 |`fw_arg2`|`struct boot_params *efi_bp`<br />BPI 表的虚拟地址|`u64 efi_system_table`<br />UEFI 系统表的物理地址|
 
-最后，在 2023 年，龙芯为其旧世界 Linux fork 添加了新世界引导协议的兼容支持，
+龙芯为其旧世界 Linux fork 添加新世界引导协议的兼容支持，是在 3A6000 发布前初完成的。
 并已经将此支持全面推送至下游商业发行版如 UOS、麒麟等。
-这种内核的 EFI stub 形态就支持了新世界方式的引导。
 如图所示，此时在内核中走到的代码路径都与新世界本质相同了：基于对 `fw_arg0`
 参数的灵活解释——假定所有「正常的」内核引导，其内核命令行参数个数都超过 1——而得以在实践中无歧义地区分两种引导协议。
 
