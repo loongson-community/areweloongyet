@@ -1,0 +1,11 @@
+name: 'T2 SDE'
+homepageURL: 'https://t2sde.org/'
+repoURL: 'https://github.com/rxrbln/t2sde'
+portingEfforts:
+  - authors: ['René Rebe']
+    desc: '一款致力于提供多架构长期支持的 Linux 发行版'
+    link: 'https://t2sde.org/'
+    supportStatus: Released
+    releasedSinceVersion: '24.5'
+    goodSinceVersion: '24.5'
+    quality: OnPar
