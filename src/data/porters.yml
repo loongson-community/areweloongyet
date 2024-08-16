@@ -1,6 +1,12 @@
 # 请保持 key 按字母顺序排列。
 # Please keep the keys alphabetically sorted.
 
+alexrp:
+  name:
+  kind: Community
+  url: ''
+  githubUsername: alexrp
+  giteeUsername: ''
 factfinding:
   name: Haichen Wu
   kind: Community
