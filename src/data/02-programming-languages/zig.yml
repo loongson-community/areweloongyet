@@ -2,7 +2,7 @@ name: 'zig'
 homepageURL: 'https://ziglang.org/'
 repoURL: 'https://github.com/ziglang/zig'
 portingEfforts:
-  - authors: ['yxd']
+  - authors: ['yxd', 'alexrp']
     desc: |
       主要的 loongarch64 支持已经基本就绪，等待 zig 合入 LLVM 19 解决 LLVM 已知问题
     link: |
