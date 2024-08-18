@@ -56,7 +56,11 @@ TODO: amdgpu & LS7A drama [Icenowy]
 
 [xry111] [使得](https://gcc.gnu.org/r15-1674) GCC 估算 RTL 表达式成本时考虑使用 `bstrins.[wd]` 指令的情况，以在更多情况下使用 `bstrins.[wd]` 指令。
 
-[xry111] 参考 [RISC-V 实现](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656055.html)，使用 `fclass.[sd]` 指令[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656972.html) `__builtin_isinf`，`__builtin_isnormal`，以及 `__builtin_isfinite` 操作。和平台无关的默认实现相比，使用 `fclass.[sd]` 指令需要的指令数更少，且不需要从内存加载常量，还能够规避[在处理 signaling NaN 时触发 IEEE-754 标准不允许的浮点异常](https://gcc.gnu.org/PR66462)。但是目前 RISC-V 和 LoongArch 实现都会由于 value range 优化只能识别默认实现而触发测试失败，需要等待 [value range 支持](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/657883.html)到位后才能合并。
+[xry111] 参考 [RISC-V 实现](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656055.html)，使用 `fclass.[sd]` 指令[实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/656972.html) `__builtin_isinf`，`__builtin_isnormal`，以及 `__builtin_isfinite` 操作。和平台无关的默认实现相比，使用 `fclass.[sd]` 指令需要的指令数更少，且不需要从内存加载常量，还能够规避[在处理 signaling NaN 时触发 IEEE-754 标准不允许的浮点异常](https://gcc.gnu.org/PR66462)。该实现依赖于 [value range 支持](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/657883.html) (否则会在一些情况下劣化代码并引发测试失败)。目前该实现已在 value range 支持[合并](https://gcc.gnu.org/r15-2924)后被[合并](https://gcc.gnu.org/r15-2931)。
+
+在测试上述 `fclass.[sd]` 支持时，[xry111] 注意到在一些情况下 GCC 生成的 LoongArch 代码中有冗余的符号扩展操作，而其生成的 RISC-V 代码却没有这一问题。经排查，这是由于 GCC 会将符号扩展操作提到按位操作之外：这通常能将 3 次操作降为 2 次，但对于 LoongArch 或 RISC-V 这样的架构来说，却会阻碍后续优化工序将加法 (或类似运算) 和符号扩展 (或类似操作) 组合为一条 `add.w` 指令。于是 [xry111] [抄了](https://gcc.gnu.org/r15-2426) RISC-V 对该问题的解法。
+
+[xry111] [优化了](https://gcc.gnu.org/r15-2433) GCC 对 `__builtin_bswap32` 和 `__builtin_bswap64` 的代码生成，使之使用一条 `revb.2w` 或 `revb.d` 指令，而非毫无必要地组合使用 `revb.2h` + `rotri.w` 或 `revb.4h` + `revh.d`。
 
 在 Tiezhu Yang 的建议下，为使得 objtool 能够在启用跳转表优化时正常工作，[xry111] [增加了](https://gcc.gnu.org/pipermail/gcc-patches/2024-July/657641.html)将跳转表 (jump table) 和跳转指令的对应关系写入一个专用的 ELF section 的功能。但是内核开发者对该技术路线有[不同意见](https://lore.kernel.org/loongarch/307bcd3e-f4fe-8cc0-c557-4069c97c6072@loongson.cn/)，尚不确定最终是否会采用该方案。
 
