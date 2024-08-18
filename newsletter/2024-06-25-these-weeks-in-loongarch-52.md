@@ -30,6 +30,8 @@ TODO: amdgpu & LS7A drama [Icenowy]
 
 上述修改已合入 6.11 内核，至此可以认为该问题已被完全解决。然而，Huacai Chen 仍然[坚持](https://lore.kernel.org/loongarch/CAAhV-H7iKyQBvV+J9T1ekxh9OF8h=F9zp_QMyuhFBrFXGHHmTg@mail.gmail.com/)[重新引入](https://lore.kernel.org/loongarch/20240511100157.2334539-1-chenhuacai@loongson.cn/) `fstat` 和 `newfstatat` 系统调用。[xry111]，Arnd Bergmann，以及 Christian Brauner [反对](https://lore.kernel.org/loongarch/20240703-bergwacht-sitzung-ef4f2e63cd70@brauner/)这一提议，[但是 Linus 的决定权也是很重要的](https://lore.kernel.org/loongarch/CAHk-=wi0ejJ=PCZfCmMKvsFmzvVzAYYt1K9vtwke4=arfHiAdg@mail.gmail.com/)，因此 6.11 版本内核已经为 LoongArch [重新引入](https://git.kernel.org/torvalds/c/7697a0fe0154)这两个系统调用。我们将需要在下一个 Glibc 开发周期解决这一变化将导致的[兼容性问题](https://lore.kernel.org/loongarch/3fea167cad483484616e9bbf5ec6374475c4bcc4.camel@xry111.site/)，并[修订](https://github.com/loongson-community/areweloongyet/pull/195)本站的相关文档。
 
+为了提高 `getrandom` 的效率 (这样应用程序就可以直接使用它，而不再需要自行维护一个伪随机数生成器)，Jason A. Donenfeld 为 Linux 内核[增加了](https://lwn.net/Articles/983186/)在 vDSO 中实现 `getrandom` 的功能。为了保证安全性，vDSO `getrandom` 实现使用的 ChaCha20 子程序不能将敏感信息保存到栈上，显然必须使用汇编语言实现才能确保子程序满足这一条件。Jason 本人只为 x86-64 用 SSE2 汇编实现了 ChaCha20 子程序，因此目前只有 x86-64 的 vDSO 提供了 `getrandom` 实现。[xry111] 用 LoongArch 汇编[编写了](https://lore.kernel.org/all/20240816110717.10249-1-xry111@xry111.site/)满足条件的 ChaCha20 子程序，正在接受评审。
+
 [Icenowy]: https://github.com/Icenowy
 [xry111]: https://github.com/xry111
 
