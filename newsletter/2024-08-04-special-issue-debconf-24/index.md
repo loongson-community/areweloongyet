@@ -27,7 +27,7 @@ DebConf 24 期间发生的与 LoongArch 生态相关的新闻动态。
 [debconf-stats]: https://debconf24.debconf.org/register/statistics/
 
 LoongArch 的相关人士中，笔者以 Gentoo 开发者、LoongArch 生态的第三方利益无关贡献者、Debian
-loong64 port 的协助者身份参加了 DebConf 正式议程。龙芯公司推进 Debian loong64
+`loong64` port 的协助者身份参加了 DebConf 正式议程。龙芯公司推进 Debian `loong64`
 移植的成员之一张丹丹也参加了会议。
 
 ## 议程
@@ -52,7 +52,7 @@ libLoL 即可使用 WPS 这个冲击性事实，毕竟这家伙在新世界住�
 xen0n 出示至少一个购买页面。xen0n 遂展示了 AliExpress 上的一种 3A6000
 开发板商品，提请群众小心个别型号主板的主线内核支持状况，并借机推介了未来将上市的、更高性能的 3B6600、3C6000 等新型号。
 
-[![xen0n 在主持 loong64 port BoF](./loong64-port-bof.jpg)](./loong64-port-bof.jpg)
+[![xen0n 在主持 `loong64` port BoF](./loong64-port-bof.jpg)](./loong64-port-bof.jpg)
 
 8 月 1 日 17:00，xen0n 在釜庆大学未来馆 2 楼「CEO」教室[主持了](https://salsa.debian.org/debconf-team/public/data/dc24/-/blob/main/etherpad/txt/161-loong64-port-bof.txt)关于
 `loong64` 移植的[专题讨论](https://debconf24.debconf.org/talks/161-loong64-port-bof/)（Birds-of-a-Feather，BoF）。现场也有各国观众十数人。xen0n
