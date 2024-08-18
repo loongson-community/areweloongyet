@@ -37,7 +37,9 @@ TODO: amdgpu & LS7A drama [Icenowy]
 
 #### binutils {#binutils}
 
-[xry111] 参考 [AArch64 实现](https://sourceware.org/pipermail/binutils/2024-May/134367.html)，为 Binutils 的 BFD 链接器[增加了](https://sourceware.org/pipermail/binutils/2024-June/135261.html)在 LoongArch ELF 中使用 RELR 格式编码相对重定位 (relative relocation) 记录的功能。随后 Alan Modra [修复了](https://sourceware.org/pipermail/binutils/2024-July/135464.html) [xry111] 写错的一处测试。使用 RELR 格式编码相对重定位能有效缩减一些位置无关可执行文件 (PIE) 和动态链接库的大小，详见 [Maskray 的文章](https://maskray.me/blog/2021-10-31-relative-relocations-and-relr)。该功能将随 Binutils-2.43 发布，届时发行版维护者和其他打包者在构建软件包时可以在 LDFLAGS 中加入 `-Wl,-z,pack-relative-relocs` 以启用它。
+[xry111] 参考 [AArch64 实现](https://sourceware.org/pipermail/binutils/2024-May/134367.html)，为 Binutils 的 BFD 链接器[增加了](https://sourceware.org/pipermail/binutils/2024-June/135261.html)在 LoongArch ELF 中使用 RELR 格式编码相对重定位 (relative relocation) 记录的功能。随后 Alan Modra [修复了](https://sourceware.org/pipermail/binutils/2024-July/135464.html) [xry111] 写错的一处测试。使用 RELR 格式编码相对重定位能有效缩减一些位置无关可执行文件 (PIE) 和动态链接库的大小，详见 [Maskray 的文章](https://maskray.me/blog/2021-10-31-relative-relocations-and-relr)。
+
+该功能已随 Binutils-2.43 发布，发行版维护者和其他打包者在构建软件包时可以在 LDFLAGS 中加入 `-Wl,-z,pack-relative-relocs` 以启用它。但是 [xry111] 后续发现并[修复了](https://sourceware.org/pipermail/binutils/2024-August/136147.html)其中的两处 bug，它们可能导致一些软件包在启用 RELR 时构建失败，而这两处修复并未赶上 Binutils-2.43 的发布。所幸，上游为处理一些更严重的 bug 发布了 Binutils-2.43.1，也顺便包含了这两处修复。
 
 在编写和测试 RELR 支持的过程中，[xry111] 注意到了 BFD 链接器存在的一些问题：
 
