@@ -25,8 +25,8 @@ DebConf 24 期间发生的与 LoongArch 生态相关的新闻动态。
 [debconf-stats]: https://debconf24.debconf.org/register/statistics/
 
 LoongArch 的相关人士中，笔者以 Gentoo 开发者、LoongArch 生态的第三方利益无关贡献者、Debian
-loong64 port 的协助者身份参加了 DebConf 正式议程。任职于龙芯公司系统研发部，负责
-Debian loong64 port 上游工作的张丹丹同学也以公司身份参会。
+loong64 port 的协助者身份参加了 DebConf 正式议程。龙芯公司推进 Debian loong64
+移植的成员之一张丹丹也参加了会议。
 
 ## 议程
 
