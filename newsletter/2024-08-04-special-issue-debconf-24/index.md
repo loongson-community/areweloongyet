@@ -18,6 +18,8 @@ DebConf 24 期间发生的与 LoongArch 生态相关的新闻动态。
 
 [![DebConf24 官方合照](./debconf24_group@1200px.webp)](./debconf24_group.jpg)
 
+（转载自 DebConf24 的[权威版本](https://salsa.debian.org/debconf-team/public/share/debconf24/-/blob/main/photos/aigarius/group/debconf24_group.jpg)。）
+
 按照 DebConf 24 闭幕式幻灯片的统计数字，共有 339 位与会者实际参会，其中
 19 位来自中国大陆。您可在
 [DebConf 官网的统计数字页面][debconf-stats]查阅更多详细信息。
