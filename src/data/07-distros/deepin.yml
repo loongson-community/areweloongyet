@@ -5,7 +5,7 @@ portingEfforts:
   - authors: []
     desc: ''
     link: ''
-    supportStatus: WaitingRelease
+    supportStatus: Released
     releasedSinceVersion: '23'
     goodSinceVersion: '23'
     quality: OnPar
