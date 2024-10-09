@@ -16,7 +16,7 @@
     "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
-    "@ant-design/icons": "^5.4.0",
+    "@ant-design/icons": "^5.5.1",
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/plugin-client-redirects": "^3.5.2",
     "@docusaurus/plugin-content-blog": "^3.5.2",
@@ -24,33 +24,33 @@
     "@docusaurus/preset-classic": "^3.5.2",
     "@docusaurus/theme-common": "^3.5.2",
     "@docusaurus/theme-mermaid": "^3.5.2",
-    "@easyops-cn/docusaurus-search-local": "^0.44.5",
+    "@easyops-cn/docusaurus-search-local": "^0.44.6",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.0.1",
-    "antd": "^5.20.2",
-    "browserslist": "^4.23.3",
+    "antd": "^5.21.2",
+    "browserslist": "^4.24.0",
     "clsx": "^2.1.1",
     "glob": "^11.0.0",
     "lodash": "^4.17.21",
     "mdast-util-find-and-replace": "^3.0.1",
-    "prism-react-renderer": "^2.3.1",
+    "prism-react-renderer": "^2.4.0",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "utility-types": "^3.11.0",
-    "yaml": "^2.5.0"
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.5.2",
     "@docusaurus/tsconfig": "^3.5.2",
     "@types/glob": "^8.1.0",
     "@types/js-yaml": "^4.0.9",
-    "@types/lodash": "^4.17.7",
-    "@types/node": "^22.4.1",
+    "@types/lodash": "^4.17.10",
+    "@types/node": "^22.7.5",
     "@types/prismjs": "^1.26.4",
-    "@types/react": "^18.3.3",
-    "typescript": "^5.5.4",
-    "update-browserslist-db": "^1.1.0"
+    "@types/react": "^18.3.11",
+    "typescript": "^5.6.3",
+    "update-browserslist-db": "^1.1.1"
   },
   "browserslist": {
     "production": [
@@ -67,5 +67,5 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.5.0"
 }
