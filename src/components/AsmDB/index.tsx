@@ -8,12 +8,14 @@ import EncodingSpaceOverviewPage from './encodingSpaceOverviewPage'
 import InsnExplainerPage from './insnExplainerPage'
 import InsnListPage from './insnListPage'
 import type { AsmDBData } from './types'
+import VldiHelperPage from './vldiHelperPage'
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const panes = [
     <EncodingSpaceOverviewPage data={data} />,
     <InsnListPage data={data} />,
     <InsnExplainerPage data={data} />,
+    <VldiHelperPage />,
   ]
   const [paneIdx, setPaneIdx] = useState(0)
 
@@ -21,6 +23,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
     { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(0) },
     { key: 'insnList', disabled: true, label: '指令列表（开发中）', onClick: () => setPaneIdx(1) },
     { key: 'insnExplainer', disabled: true, label: '解读指令字（开发中）', onClick: () => setPaneIdx(2) },
+    { key: 'vldiHelper', label: 'VLDI 辅助', onClick: () => setPaneIdx(3) },
   ]
 
   return (
