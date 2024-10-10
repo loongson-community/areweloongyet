@@ -86,7 +86,7 @@ const availableVldiFunctionsByElemTy = [
       { f: VldiFunction.BroadcastU8To32, desc: "零扩展 8 位整数到 32 位，广播" },
       { f: VldiFunction.BroadcastU8Shl8To32, desc: "零扩展 8 位整数到 32 位，左移 8 位，广播" },
       { f: VldiFunction.BroadcastU8Shl16To32, desc: "零扩展 8 位整数到 32 位，左移 16 位，广播" },
-      { f: VldiFunction.BroadcastU8Shl24To32, desc: "零扩展 8 位整数到 32 位，左移 32 位，广播" },
+      { f: VldiFunction.BroadcastU8Shl24To32, desc: "零扩展 8 位整数到 32 位，左移 24 位，广播" },
       { f: VldiFunction.BroadcastU8FFTo32, desc: "零扩展 8 位整数到 32 位，左移 8 位，低位以全 1 填充，广播" },
       { f: VldiFunction.BroadcastU8FFFFTo32, desc: "零扩展 8 位整数到 32 位，左移 16 位，低位以全 1 填充，广播" },
     ],

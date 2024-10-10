@@ -119,7 +119,7 @@ function performVldi(vlen: Vlen, f: VldiFunction, param: number): number[] | big
       return Array(numElems).fill(param << 16)
 
     case VldiFunction.BroadcastU8Shl24To32:
-      return Array(numElems).fill(param << 24)
+      return Array(numElems).fill(BigInt(param) << 24n)
 
     case VldiFunction.BroadcastU8FFTo32:
       return Array(numElems).fill((param << 8) | 0xff)
