@@ -250,15 +250,19 @@ export default function VldiHelperPage(): JSX.Element {
     setUseSignedElems(!useSignedElems)
   }
 
-  const makeInputPane = (ux: VldiDataInputUX) => {
+  const makeInputPane = (ux: VldiDataInputUX, key: string) => {
+    const elemKey = `vldiHelperPage-inputPane-${key}`
+
     if (ux.isMinifloat) {
       return <InputMinifloat
+        key={elemKey}
         fmt={VldiMinifloatFormat}
         onMinifloatValueChange={setMinifloatVal}
       />
     }
 
     return <InputImm
+      key={elemKey}
       signed={ux.isSigned}
       bitWidth={ux.width}
       imm={immState.input}
@@ -268,7 +272,7 @@ export default function VldiHelperPage(): JSX.Element {
 
   const dataInputPanes: {[key in VldiFunction]?: JSX.Element} = {}
   _.forEach(dataInputUXByVldiFunction, (ux, key) => {
-    dataInputPanes[key] = makeInputPane(ux)
+    dataInputPanes[key] = makeInputPane(ux, key)
   })
 
   const isMinifloat = dataInputUXByVldiFunction[vldiFunction].isMinifloat
@@ -333,7 +337,7 @@ export default function VldiHelperPage(): JSX.Element {
                 #include &lt;{intrinsicHeader}&gt;<br />
                 <br />
                 {resultCType} val = ({resultCType}){intrinsicName}({vldiSImmHex});<br />
-                {resultDemoCodeLines.map((line) => <>{line}<br /></>)}
+                {resultDemoCodeLines.map((line, i) => <span key={`vldiHelperPage-demo-code-l${i}`}>{line}<br /></span>)}
               </pre>
             </Col>
           </Row>
