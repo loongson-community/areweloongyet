@@ -23,3 +23,11 @@ export function toUImm(simm: number | bigint, width: number): bigint {
 export function toCHexLiteral(x: number | bigint): string {
   return x >= 0 ? `0x${x.toString(16)}` : `-0x${(-x).toString(16)}`
 }
+
+export function reprFloatDetailingZeroStatus(n: number): string {
+  if (Object.is(n, -0.0))
+    return "-0"
+  if (Object.is(n, 0.0))
+    return "0"
+  return n.toString()
+}

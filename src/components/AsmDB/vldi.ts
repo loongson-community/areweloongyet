@@ -1,5 +1,8 @@
-import { toCHexLiteral, toSImm, toUImm } from "./insn"
+import { reprFloatDetailingZeroStatus, toCHexLiteral, toSImm, toUImm } from "./insn"
+import { MinifloatFormat } from "./minifloat"
 import { isFloatElemTy, VecElemType, vecElemWidthBits, Vlen } from "./simd"
+
+export const VldiMinifloatFormat = new MinifloatFormat(3, 2, 4, false)
 
 export enum VldiFunction {
   BroadcastU8To8 = 0b000_00,
@@ -54,7 +57,14 @@ export const elemTypesByVldiFunction: { [key in VldiFunction]: VecElemType } = {
 
 const vldiImmWidth = 13  // {v,xv}ldi imm is Sj13
 
-export function makeVldiSImm(f: VldiFunction, dataUImm: number): number {
+export function makeVldiSImm(
+  f: VldiFunction,
+  dataUImm: number,
+  minifloatBitRepr: number,
+): number {
+  if (isFloatElemTy(elemTypesByVldiFunction[f]))
+    dataUImm = minifloatBitRepr
+
   const uimm = (f << 8) | dataUImm
   return toSImm(uimm, vldiImmWidth)
 }
@@ -69,6 +79,9 @@ export function decomposeVldiSimm(simm: number): [VldiFunction, number] {
     return [imm12_10 << 2, toSImm(uimm & 0x3ff, 10)]
 
   const imm12_8 = (uimm >> 8) & 0b11111
+  if (isFloatElemTy(elemTypesByVldiFunction[imm12_8]))
+    return [imm12_8, VldiMinifloatFormat.asNumber(uimm & 0xff)]
+
   return [imm12_8, uimm & 0xff]
 }
 
@@ -94,6 +107,8 @@ function performVldi(vlen: Vlen, f: VldiFunction, param: number): number[] | big
     case VldiFunction.BroadcastU8To32:
     case VldiFunction.BroadcastU8To16:
     case VldiFunction.BroadcastU8To8Alternate:
+    case VldiFunction.BroadcastVldiMinifloatToF32:
+    case VldiFunction.BroadcastVldiMinifloatToF64:
       return Array(numElems).fill(param)
 
     case VldiFunction.BroadcastU8Shl8To32:
@@ -115,15 +130,10 @@ function performVldi(vlen: Vlen, f: VldiFunction, param: number): number[] | big
     case VldiFunction.BroadcastBitExpandedU8To64:
       return Array(numElems).fill(expandU8BitsToU64(param))
 
-    case VldiFunction.BroadcastVldiMinifloatToF32:
-    case VldiFunction.BroadcastVldiMinifloatToF64:
-      return Array(numElems).fill(123.45)  // TODO
-
     case VldiFunction.BroadcastVldiMinifloatToEvenF32:
-      const v = 123.45  // TODO
       const result = Array(numElems).fill(0.0)
       for (let i = 0; i < numElems; i += 2)
-        result[i] = v
+        result[i] = param
       return result
   }
 }
@@ -155,7 +165,7 @@ export function demonstrateVldiEffectInC(
 
   const repr = (x: number | bigint): string => {
     if (isFloatElemTy(elemTy))
-      return x.toString()
+      return reprFloatDetailingZeroStatus(x as number)
     return toCHexLiteral(x)
   }
 

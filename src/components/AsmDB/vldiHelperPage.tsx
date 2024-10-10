@@ -5,8 +5,15 @@ import _ from "lodash"
 import { InputImm, SImmAndUImm } from './inputImm'
 import { toCHexLiteral } from './insn'
 import { VecElemType, Vlen, makeVectorTypeForC } from "./simd"
-import { VldiFunction, demonstrateVldiEffectInC, elemTypesByVldiFunction, makeVldiSImm } from './vldi'
+import {
+  VldiFunction,
+  VldiMinifloatFormat,
+  demonstrateVldiEffectInC,
+  elemTypesByVldiFunction,
+  makeVldiSImm,
+} from './vldi'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import { InputMinifloat, MinifloatValueEvent } from './inputMinifloat'
 
 type VlenSelectProps = {
   vlen: Vlen
@@ -226,11 +233,11 @@ export default function VldiHelperPage(): JSX.Element {
   const [vldiFunction, setVldiFunction] = useState(VldiFunction.BroadcastU8To8)
   const [immState, setImmState] = useState({input: 0, uimm: 0})
   const [useSignedElems, setUseSignedElems] = useState(false)
-  // TODO: minifloat
+  const [minifloatVal, setMinifloatVal] = useState({value: 0.0, bitRepr: 0})
 
   const intrinsicHeader = vlen == 128 ? "lsxintrin.h" : "lasxintrin.h"
   const intrinsicName = vlen == 128 ? "__lsx_vldi" : "__lasx_xvldi"
-  const vldiSImm = makeVldiSImm(vldiFunction, immState.uimm)
+  const vldiSImm = makeVldiSImm(vldiFunction, immState.uimm, minifloatVal.bitRepr)
   const vldiSImmHex = toCHexLiteral(vldiSImm)
   const resultCType = makeVectorTypeForC(vlen, elemTy, useSignedElems)
   const resultDemoCodeLines = demonstrateVldiEffectInC(vlen, vldiSImm, useSignedElems)
@@ -245,7 +252,10 @@ export default function VldiHelperPage(): JSX.Element {
 
   const makeInputPane = (ux: VldiDataInputUX) => {
     if (ux.isMinifloat) {
-      return <p>TODO</p>
+      return <InputMinifloat
+        fmt={VldiMinifloatFormat}
+        onMinifloatValueChange={setMinifloatVal}
+      />
     }
 
     return <InputImm
