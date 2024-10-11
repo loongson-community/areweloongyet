@@ -2965,7 +2965,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.5.2":
+"@docusaurus/types@npm:3.5.2, @docusaurus/types@npm:^3.5.2":
   version: 3.5.2
   resolution: "@docusaurus/types@npm:3.5.2"
   dependencies:
@@ -5102,6 +5102,7 @@ __metadata:
     "@docusaurus/theme-common": "npm:^3.5.2"
     "@docusaurus/theme-mermaid": "npm:^3.5.2"
     "@docusaurus/tsconfig": "npm:^3.5.2"
+    "@docusaurus/types": "npm:^3.5.2"
     "@easyops-cn/docusaurus-search-local": "npm:^0.44.6"
     "@jsdevtools/rehype-url-inspector": "npm:^2.0.2"
     "@mdx-js/react": "npm:^3.0.1"
