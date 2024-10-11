@@ -209,6 +209,10 @@ const config: Config = {
   ],
 
   themeConfig: {
+    colorMode: {
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: '',
       logo: {
