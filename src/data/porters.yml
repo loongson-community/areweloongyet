@@ -7,6 +7,12 @@ alexrp:
   url: ''
   githubUsername: alexrp
   giteeUsername: ''
+cheese:
+  name: Robin Lee
+  kind: Community
+  url: ''
+  githubUsername: cheese
+  giteeUsername: 'robin-cheese-lee'
 factfinding:
   name: Haichen Wu
   kind: Community

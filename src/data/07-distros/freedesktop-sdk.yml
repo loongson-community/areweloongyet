@@ -1,0 +1,11 @@
+name: 'Freedesktop SDK'
+homepageURL: 'https://freedesktop-sdk.io/'
+repoURL: 'https://gitlab.com/freedesktop-sdk/freedesktop-sdk'
+portingEfforts:
+  - authors: ['cheese']
+    desc: '代码基本合并完成，需要 native builder 以便能集成到上游 CI，再能推进 FlatHub 集成'
+    link: 'https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/issues/1673'
+    supportStatus: WIP
+    releasedSinceVersion: '24.08'
+    goodSinceVersion: ''
+    quality: OnPar
