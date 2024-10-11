@@ -158,6 +158,7 @@ const config: Config = {
         editUrl: 'https://github.com/loongson-community/areweloongyet/edit/main',
         beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
         rehypePlugins: commonRehypePlugins,
+	onUntruncatedBlogPosts: 'throw',
       } satisfies BlogOptions,
     ],
   ],
@@ -185,6 +186,7 @@ const config: Config = {
             'https://github.com/loongson-community/areweloongyet',
           beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
           rehypePlugins: commonRehypePlugins,
+	  onUntruncatedBlogPosts: 'throw',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -207,6 +209,10 @@ const config: Config = {
   ],
 
   themeConfig: {
+    colorMode: {
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: '',
       logo: {
