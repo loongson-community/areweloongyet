@@ -3118,9 +3118,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@easyops-cn/docusaurus-search-local@npm:^0.44.6":
-  version: 0.44.6
-  resolution: "@easyops-cn/docusaurus-search-local@npm:0.44.6"
+"@easyops-cn/docusaurus-search-local@npm:^0.45.0":
+  version: 0.45.0
+  resolution: "@easyops-cn/docusaurus-search-local@npm:0.45.0"
   dependencies:
     "@docusaurus/plugin-content-docs": "npm:^2 || ^3"
     "@docusaurus/theme-translations": "npm:^2 || ^3"
@@ -3142,7 +3142,7 @@ __metadata:
     "@docusaurus/theme-common": ^2 || ^3
     react: ^16.14.0 || ^17 || ^18
     react-dom: ^16.14.0 || 17 || ^18
-  checksum: 10c0/7b03e2059786b2148ead82e8c1a9b7ac299a56756289aab46297101244536560123498b549a417696015ea2fb53d922d365a2120f0c15369e8b6aaf1f8451bea
+  checksum: 10c0/a85d5c15e917df7d954c79beb069462d6af440b4cd2b1108144e2fc1dd8ac0311539d5bdcc545755eeb7e4f182bef7606ab393cc31a6c08f09d566b9731f9372
   languageName: node
   linkType: hard
 
@@ -5028,9 +5028,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.21.2":
-  version: 5.21.2
-  resolution: "antd@npm:5.21.2"
+"antd@npm:^5.21.3":
+  version: 5.21.3
+  resolution: "antd@npm:5.21.3"
   dependencies:
     "@ant-design/colors": "npm:^7.1.0"
     "@ant-design/cssinjs": "npm:^1.21.1"
@@ -5068,7 +5068,7 @@ __metadata:
     rc-resize-observer: "npm:^1.4.0"
     rc-segmented: "npm:~2.5.0"
     rc-select: "npm:~14.15.2"
-    rc-slider: "npm:~11.1.6"
+    rc-slider: "npm:~11.1.7"
     rc-steps: "npm:~6.0.1"
     rc-switch: "npm:~4.1.0"
     rc-table: "npm:~7.47.5"
@@ -5081,7 +5081,10 @@ __metadata:
     rc-util: "npm:^5.43.0"
     scroll-into-view-if-needed: "npm:^3.1.0"
     throttle-debounce: "npm:^5.0.2"
-  checksum: 10c0/3052f247f7bd0717f3f37197d9536dfcdbc848040613054b29a2de2ca5e453e44a07fdbda9b6109a1713768d4362e36b08dd5c7a0f6227549740364ef0cb8aa6
+  peerDependencies:
+    react: ">=16.9.0"
+    react-dom: ">=16.9.0"
+  checksum: 10c0/780cd753a501b1e123e916359be84db22214a1dd1ce575e29c586eb7d162d39db51ee65270aec675029ed4a40e4e02dd8e360368361af1692932737b7756e362
   languageName: node
   linkType: hard
 
@@ -5111,7 +5114,7 @@ __metadata:
     "@docusaurus/theme-mermaid": "npm:^3.5.2"
     "@docusaurus/tsconfig": "npm:^3.5.2"
     "@docusaurus/types": "npm:^3.5.2"
-    "@easyops-cn/docusaurus-search-local": "npm:^0.44.6"
+    "@easyops-cn/docusaurus-search-local": "npm:^0.45.0"
     "@jsdevtools/rehype-url-inspector": "npm:^2.0.2"
     "@mdx-js/react": "npm:^3.0.1"
     "@types/glob": "npm:^8.1.0"
@@ -5120,7 +5123,7 @@ __metadata:
     "@types/node": "npm:^22.7.5"
     "@types/prismjs": "npm:^1.26.4"
     "@types/react": "npm:^18.3.11"
-    antd: "npm:^5.21.2"
+    antd: "npm:^5.21.3"
     browserslist: "npm:^4.24.0"
     clsx: "npm:^2.1.1"
     glob: "npm:^11.0.0"
@@ -13102,7 +13105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-slider@npm:~11.1.6":
+"rc-slider@npm:~11.1.7":
   version: 11.1.7
   resolution: "rc-slider@npm:11.1.7"
   dependencies:
