@@ -4055,6 +4055,7 @@ __metadata:
     prismjs: "npm:^1.29.0"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
+    react-router-dom: "npm:^5.3.4"
     typescript: "npm:^5.6.3"
     update-browserslist-db: "npm:^1.1.1"
     utility-types: "npm:^3.11.0"
