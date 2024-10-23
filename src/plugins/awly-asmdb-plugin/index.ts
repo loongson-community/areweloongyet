@@ -57,6 +57,38 @@ export default async function awlyAsmdbPlugin(
         },
         exact: true,
       })
+      actions.addRoute({
+        path: `/asmdb/encodingSpaceOverview`,
+        component: '@site/src/components/AsmDB',
+        modules: {
+          data: dataPath,
+        },
+        exact: true,
+      })
+      actions.addRoute({
+        path: `/asmdb/insnList`,
+        component: '@site/src/components/AsmDB',
+        modules: {
+          data: dataPath,
+        },
+        exact: true,
+      })
+      actions.addRoute({
+        path: `/asmdb/insnExplainer`,
+        component: '@site/src/components/AsmDB',
+        modules: {
+          data: dataPath,
+        },
+        exact: true,
+      })
+      actions.addRoute({
+        path: `/asmdb/vldiHelper`,
+        component: '@site/src/components/AsmDB',
+        modules: {
+          data: dataPath,
+        },
+        exact: true,
+      })
     },
     getPathsToWatch() {
       return [
