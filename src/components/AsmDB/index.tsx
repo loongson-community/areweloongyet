@@ -1,6 +1,6 @@
 import { Layout as AntdLayout, Menu } from 'antd'
-import type { MenuProps } from 'antd'
-import { useState } from 'react'
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Redirect } from '@docusaurus/router'
 
 import Layout from '@theme/Layout'
 import ThemeAwareAntdContainer from '@site/src/components/ThemeAwareAntdContainer'
@@ -11,20 +11,7 @@ import type { AsmDBData } from './types'
 import VldiHelperPage from './vldiHelperPage'
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
-  const panes = [
-    <EncodingSpaceOverviewPage data={data} />,
-    <InsnListPage data={data} />,
-    <InsnExplainerPage data={data} />,
-    <VldiHelperPage />,
-  ]
-  const [paneIdx, setPaneIdx] = useState(0)
-
-  const sideNavItems: MenuProps['items'] = [
-    { key: 'encodingSpaceOverview', label: '编码空间总览', onClick: () => setPaneIdx(0) },
-    { key: 'insnList', disabled: true, label: '指令列表（开发中）', onClick: () => setPaneIdx(1) },
-    { key: 'insnExplainer', disabled: true, label: '解读指令字（开发中）', onClick: () => setPaneIdx(2) },
-    { key: 'vldiHelper', label: 'VLDI 辅助', onClick: () => setPaneIdx(3) },
-  ]
+  let { path, url } = useRouteMatch()
 
   return (
     <Layout title={'LoongArch 汇编指令速查'}>
@@ -36,11 +23,39 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
               mode="inline"
               defaultSelectedKeys={['encodingSpaceOverview']}
               style={{ height: '100%' }}
-              items={sideNavItems}
-            />
+            >
+              <Menu.Item key="encodingSpaceOverview">
+                <Link to={`${url}/encodingSpaceOverview`}>编码空间总览</Link>
+              </Menu.Item>
+              <Menu.Item key="insnList" disabled>
+                指令列表（开发中）
+              </Menu.Item>
+              <Menu.Item key="insnExplainer" disabled>
+                解读指令字（开发中）
+              </Menu.Item>
+              <Menu.Item key="vldiHelper">
+                <Link to={`${url}/vldiHelper`}>VLDI 辅助</Link>
+              </Menu.Item>
+            </Menu>
           </AntdLayout.Sider>
           <AntdLayout.Content style={{ padding: '1rem' }}>
-            {panes[paneIdx]}
+            <Switch>
+              <Route exact path={`${path}/encodingSpaceOverview`}>
+                <EncodingSpaceOverviewPage data={data} />
+              </Route>
+              <Route exact path={`${path}/insnList`}>
+                <InsnListPage data={data} />
+              </Route>
+              <Route exact path={`${path}/insnExplainer`}>
+                <InsnExplainerPage data={data} />
+              </Route>
+              <Route exact path={`${path}/vldiHelper`}>
+                <VldiHelperPage />
+              </Route>
+              <Route>
+                <Redirect to={`${url}/encodingSpaceOverview`} />
+              </Route>
+            </Switch>
           </AntdLayout.Content>
         </AntdLayout>
       </ThemeAwareAntdContainer>
