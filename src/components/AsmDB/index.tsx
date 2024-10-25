@@ -1,4 +1,4 @@
-import { Layout as AntdLayout, Menu } from 'antd'
+import { Layout as AntdLayout, Menu, MenuProps } from 'antd'
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import { Redirect } from '@docusaurus/router'
 
@@ -11,7 +11,27 @@ import type { AsmDBData } from './types'
 import VldiHelperPage from './vldiHelperPage'
 
 export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
-  let { path, url } = useRouteMatch()
+  const { path, url } = useRouteMatch()
+  const sideNavItems: MenuProps['items'] = [
+    {
+      key: "encodingSpaceOverview",
+      label: <Link to={`${url}/encodingSpaceOverview`}>编码空间总览</Link>,
+    },
+    {
+      key: "insnList",
+      disabled: true,
+      label: '指令列表（开发中）',
+    },
+    {
+      key: "insnExplainer",
+      disabled: true,
+      label: '解读指令字（开发中）',
+    },
+    {
+      key: "vldiHelper",
+      label: <Link to={`${url}/vldiHelper`}>VLDI 辅助</Link>,
+    },
+  ]
 
   return (
     <Layout title={'LoongArch 汇编指令速查'}>
@@ -23,20 +43,8 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
               mode="inline"
               defaultSelectedKeys={['encodingSpaceOverview']}
               style={{ height: '100%' }}
-            >
-              <Menu.Item key="encodingSpaceOverview">
-                <Link to={`${url}/encodingSpaceOverview`}>编码空间总览</Link>
-              </Menu.Item>
-              <Menu.Item key="insnList" disabled>
-                指令列表（开发中）
-              </Menu.Item>
-              <Menu.Item key="insnExplainer" disabled>
-                解读指令字（开发中）
-              </Menu.Item>
-              <Menu.Item key="vldiHelper">
-                <Link to={`${url}/vldiHelper`}>VLDI 辅助</Link>
-              </Menu.Item>
-            </Menu>
+              items={sideNavItems}
+            />
           </AntdLayout.Sider>
           <AntdLayout.Content style={{ padding: '1rem' }}>
             <Switch>
