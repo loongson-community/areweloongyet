@@ -55,39 +55,33 @@ export default async function awlyAsmdbPlugin(
         modules: {
           data: dataPath,
         },
-        exact: true,
-      })
-      actions.addRoute({
-        path: `/asmdb/encodingSpaceOverview`,
-        component: '@site/src/components/AsmDB',
-        modules: {
-          data: dataPath,
-        },
-        exact: true,
-      })
-      actions.addRoute({
-        path: `/asmdb/insnList`,
-        component: '@site/src/components/AsmDB',
-        modules: {
-          data: dataPath,
-        },
-        exact: true,
-      })
-      actions.addRoute({
-        path: `/asmdb/insnExplainer`,
-        component: '@site/src/components/AsmDB',
-        modules: {
-          data: dataPath,
-        },
-        exact: true,
-      })
-      actions.addRoute({
-        path: `/asmdb/vldiHelper`,
-        component: '@site/src/components/AsmDB',
-        modules: {
-          data: dataPath,
-        },
-        exact: true,
+        routes: [
+          {
+            path: '/asmdb',
+            component: '@site/src/components/AsmDB',
+            exact: true,
+          },
+          {
+            path: '/asmdb/encodingSpaceOverview',
+            component: '@site/src/components/AsmDB',
+            exact: true,
+          },
+          {
+            path: '/asmdb/insnExplainer',
+            component: '@site/src/components/AsmDB',
+            exact: true,
+          },
+          {
+            path: '/asmdb/insnList',
+            component: '@site/src/components/AsmDB',
+            exact: true,
+          },
+          {
+            path: '/asmdb/vldiHelper',
+            component: '@site/src/components/AsmDB',
+            exact: true,
+          },
+        ],
       })
     },
     getPathsToWatch() {
