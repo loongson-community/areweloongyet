@@ -17,7 +17,7 @@ function Project({val}: {val: IProject}) {
 
   return (
     <li>
-      <span>{statusesToShow.map((x) => (<SupportStatusIcon val={x} />))}</span>
+      <span>{statusesToShow.map((x, idx) => (<SupportStatusIcon key={idx} val={x} />))}</span>
       <Link to={`/project/${val.code}`} className={styles.project__name}>{val.name}</Link>
       {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
     </li>
@@ -29,7 +29,7 @@ function ProjectList({projects}: {projects: IProject[]}) {
   sortedProjects.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase())
   return (
     <ul className={styles.projects}>
-      {sortedProjects.map((x) => (<Project val={x} />))}
+      {sortedProjects.map((x, idx) => (<Project key={idx} val={x} />))}
     </ul>
   )
 }
