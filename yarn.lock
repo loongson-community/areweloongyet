@@ -225,9 +225,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design/cssinjs-utils@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@ant-design/cssinjs-utils@npm:1.1.0"
+"@ant-design/cssinjs-utils@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@ant-design/cssinjs-utils@npm:1.1.1"
   dependencies:
     "@ant-design/cssinjs": "npm:^1.21.0"
     "@babel/runtime": "npm:^7.23.2"
@@ -235,7 +235,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/aaa58f59ed7e56ac3bda76786ff159f328757a4ec8e1881a9f643e8f384aab7de77f32a5ac42b880ebd597579ae0fc0cb7465c5f69134ca4c4e7c480cbff7244
+  checksum: 10c0/f620fd08aadd5cc56be297a1acc50a65d300a468f7784a3deb459e134603584415a89294f203fa41b7b70e0e02158f8ad7d111bc2d6689cf6dcc95743392a6c0
   languageName: node
   linkType: hard
 
@@ -4202,13 +4202,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.21.3":
-  version: 5.21.3
-  resolution: "antd@npm:5.21.3"
+"antd@npm:^5.21.5":
+  version: 5.21.5
+  resolution: "antd@npm:5.21.5"
   dependencies:
     "@ant-design/colors": "npm:^7.1.0"
     "@ant-design/cssinjs": "npm:^1.21.1"
-    "@ant-design/cssinjs-utils": "npm:^1.1.0"
+    "@ant-design/cssinjs-utils": "npm:^1.1.1"
     "@ant-design/icons": "npm:^5.5.1"
     "@ant-design/react-slick": "npm:~1.1.2"
     "@babel/runtime": "npm:^7.25.6"
@@ -4221,7 +4221,7 @@ __metadata:
     classnames: "npm:^2.5.1"
     copy-to-clipboard: "npm:^3.3.3"
     dayjs: "npm:^1.11.11"
-    rc-cascader: "npm:~3.28.1"
+    rc-cascader: "npm:~3.28.2"
     rc-checkbox: "npm:~3.3.0"
     rc-collapse: "npm:~3.8.0"
     rc-dialog: "npm:~9.6.0"
@@ -4258,7 +4258,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/780cd753a501b1e123e916359be84db22214a1dd1ce575e29c586eb7d162d39db51ee65270aec675029ed4a40e4e02dd8e360368361af1692932737b7756e362
+  checksum: 10c0/97cca68b43542a49c910b9e172fb2b2c96f8998a117bbe6a048c4bb084c35113022b71e5b7db9b36bbadc28c4b29a3b2b66ca931f108d83a526e2a883b080e8a
   languageName: node
   linkType: hard
 
@@ -4301,7 +4301,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.4"
     "@types/react": "npm:^18.3.12"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.21.3"
+    antd: "npm:^5.21.5"
     browserslist: "npm:^4.24.2"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.13.0"
@@ -11517,9 +11517,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-cascader@npm:~3.28.1":
-  version: 3.28.1
-  resolution: "rc-cascader@npm:3.28.1"
+"rc-cascader@npm:~3.28.2":
+  version: 3.28.2
+  resolution: "rc-cascader@npm:3.28.2"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     array-tree-filter: "npm:^2.1.0"
@@ -11530,7 +11530,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/ffa13db0728d7021e3d0b6586e681c029ca1f112e78f4c2c0b1becd66386ef2e3201d02880e06867dfbc77b75bee624766d7fad95e0a26d204451657fb7d2d76
+  checksum: 10c0/0d2bf1710242b553a69c9391563113b66c3cb333f351f527b2df2445ceb0937039b0fbe458b9c12889139474e03b3070547f6c2bc9a12a03de3233597852f3cb
   languageName: node
   linkType: hard
 
