@@ -7,8 +7,7 @@ function representBitfield(bf: Bitfield): string {
 }
 
 export function representBitfields(bfs: Bitfield[]): string {
-  if (bfs.length == 1)
-    return representBitfield(bfs[0])
+  if (bfs.length == 1) return representBitfield(bfs[0])
   return _.map(_.reverse(_.cloneDeep(bfs)), representBitfield).join(',')
 }
 
@@ -18,8 +17,7 @@ export function bitfieldWidth(bfs: Bitfield[]): number {
 
 export function mergeBitfields(a: Bitfield[], b: Bitfield[]): Bitfield[] {
   const tmp = _.sortBy(_.concat(_.cloneDeep(a), ..._.cloneDeep(b)), 'lsb')
-  if (tmp.length < 2)
-    return tmp
+  if (tmp.length < 2) return tmp
 
   for (let i = 1; i < tmp.length; i++) {
     if (tmp[i].lsb == tmp[i - 1].lsb + tmp[i - 1].len) {
@@ -45,6 +43,6 @@ export function restoreIntoBitfields(num: number, bfs: Bitfield[]): number {
 export function bitfieldsToMask(bfs: Bitfield[]): number {
   let mask = 0
   for (const bf of bfs)
-    mask |= (bf.len == 32 ? 0xffffffff : ((1 << bf.len) - 1)) << bf.lsb
+    mask |= (bf.len == 32 ? 0xffffffff : (1 << bf.len) - 1) << bf.lsb
   return mask
 }

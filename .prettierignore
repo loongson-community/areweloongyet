@@ -1,0 +1,11 @@
+/.github
+/.vscode
+/.yarn
+/3rdparty
+/build
+/node_modules
+/scripts
+/static
+/yarn.lock
+*.md
+*.mdx

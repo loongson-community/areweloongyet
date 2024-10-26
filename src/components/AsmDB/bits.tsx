@@ -27,21 +27,24 @@ type BitProps = {
 function littleEndianBitsFromU32(x: number): (0 | 1)[] {
   const y = new Array<0 | 1>(32)
   for (let i = 0; i < 32; i++) {
-    y[i] = (x & (1 << i)) ? 1 : 0
+    y[i] = x & (1 << i) ? 1 : 0
   }
   return y
 }
 
-const Bit: React.FC<BitProps & React.HTMLAttributes<HTMLSpanElement>> = (props) => {
+const Bit: React.FC<BitProps & React.HTMLAttributes<HTMLSpanElement>> = (
+  props,
+) => {
   const classNames = [props.className, styles.bit]
-  if (props.isEmphasized)
-    classNames.push(styles.bitEmph)
-  return <span
-    className={clsx(...classNames)}
-    style={styleFromBitPalette(props.palette, props.alpha, props.isUndecided)}
-  >{
-      props.isFixed ? props.value : props.placeholder
-    }</span>
+  if (props.isEmphasized) classNames.push(styles.bitEmph)
+  return (
+    <span
+      className={clsx(...classNames)}
+      style={styleFromBitPalette(props.palette, props.alpha, props.isUndecided)}
+    >
+      {props.isFixed ? props.value : props.placeholder}
+    </span>
+  )
 }
 
 function placeholderForBit(
@@ -49,10 +52,8 @@ function placeholderForBit(
   isFixed: boolean,
   isBeingChecked: boolean,
 ): string | JSX.Element {
-  if (isFixed)
-    return null
-  if (hasFmt)
-    return ''
+  if (isFixed) return null
+  if (hasFmt) return ''
   return isBeingChecked ? <EyeOutlined /> : 'x'
 }
 
@@ -148,7 +149,9 @@ export type BitsReprProps = {
   fmt?: InsnFormat
 }
 
-export const BitsRepr: React.FC<BitsReprProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
+export const BitsRepr: React.FC<
+  BitsReprProps & React.HTMLAttributes<HTMLDivElement>
+> = (props) => {
   const cookedBits = cookBits(
     props.word,
     props.mask,
@@ -156,9 +159,13 @@ export const BitsRepr: React.FC<BitsReprProps & React.HTMLAttributes<HTMLDivElem
     props.maskToEmph || 0,
     props.fmt,
   )
-  return <div className={clsx(styles.bitsContainer, props.className)}>
-    {cookedBits.map((b, i) => (<Bit key={i} {...b} />))}
-  </div>
+  return (
+    <div className={clsx(styles.bitsContainer, props.className)}>
+      {cookedBits.map((b, i) => (
+        <Bit key={i} {...b} />
+      ))}
+    </div>
+  )
 }
 
 export function InsnBitsRepr(props: BitsOptions): JSX.Element {
@@ -166,29 +173,50 @@ export function InsnBitsRepr(props: BitsOptions): JSX.Element {
   if (props.useManualSyntax) {
     const mfn = getManualInsnFormatName(props.insn)
     if (mfn == '') {
-      insnFormatDesc = <InsnFormatName className={styles.showFormatPrefix} overrideStr='非典型' />
+      insnFormatDesc = (
+        <InsnFormatName
+          className={styles.showFormatPrefix}
+          overrideStr="非典型"
+        />
+      )
     } else {
-      insnFormatDesc = <InsnFormatName className={styles.showFormatPrefix} overrideStr={mfn} />
+      insnFormatDesc = (
+        <InsnFormatName className={styles.showFormatPrefix} overrideStr={mfn} />
+      )
     }
   } else {
     let mfnDesc = <></>
     if (props.insn.manual_format && props.insn.manual_format.repr != '') {
-      mfnDesc = <InsnFormatName fmt={props.insn.manual_format} className={styles.showManualFormatPrefix} />
+      mfnDesc = (
+        <InsnFormatName
+          fmt={props.insn.manual_format}
+          className={styles.showManualFormatPrefix}
+        />
+      )
     }
 
-    insnFormatDesc = <>
-      <InsnFormatName fmt={props.insn.format} className={styles.showFormatPrefix} />
-      {mfnDesc}
-    </>
+    insnFormatDesc = (
+      <>
+        <InsnFormatName
+          fmt={props.insn.format}
+          className={styles.showFormatPrefix}
+        />
+        {mfnDesc}
+      </>
+    )
   }
 
   return (
     <div className={styles.widget}>
-      <BitsRepr word={props.insn.word} mask={props.insn.mask} fmt={props.insn.format} />
+      <BitsRepr
+        word={props.insn.word}
+        mask={props.insn.mask}
+        fmt={props.insn.format}
+      />
       {insnFormatDesc}
       <div className={styles.hex}>
         = 0x{props.insn.word.toString(16).padStart(8, '0')}
       </div>
     </div>
-  );
+  )
 }

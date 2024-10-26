@@ -18,15 +18,18 @@ export const vecElemWidthBits: { [key in VecElemType]: number } = {
   [VecElemType.F64]: 64,
 }
 
-
 export function isFloatElemTy(x: VecElemType): boolean {
   return x == VecElemType.F32 || x == VecElemType.F64
 }
 
-export function makeVectorTypeForC(vlen: Vlen, elemTy: VecElemType, signed: boolean): string {
+export function makeVectorTypeForC(
+  vlen: Vlen,
+  elemTy: VecElemType,
+  signed: boolean,
+): string {
   // "vXiXX", "vXuXX" or "vXfXX"
   const elemWidthBits = vecElemWidthBits[elemTy]
   const numElems = vlen / elemWidthBits
-  const kind = isFloatElemTy(elemTy) ? "f" : signed ? "i" : "u"
+  const kind = isFloatElemTy(elemTy) ? 'f' : signed ? 'i' : 'u'
   return `v${numElems}${kind}${elemWidthBits}`
 }

@@ -46,14 +46,20 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.5.2",
     "@docusaurus/tsconfig": "3.5.2",
+    "@eslint/js": "^9.13.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/glob": "^8.1.0",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.10",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^22.7.5",
     "@types/prismjs": "^1.26.4",
     "@types/react": "^18.3.11",
     "@types/react-router-dom": "^5.3.3",
+    "eslint": "^9.13.0",
+    "prettier": "^3.3.3",
     "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0",
     "update-browserslist-db": "^1.1.1"
   },
   "resolutions": {
@@ -77,5 +83,5 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1"
 }

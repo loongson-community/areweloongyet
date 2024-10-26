@@ -8,41 +8,60 @@ import { IProject, IProjectCategory, SupportStatus } from '@site/src/types'
 import SupportStatusIcon from '../SupportStatusIcon'
 import styles from './styles.module.css'
 
-function Project({val}: {val: IProject}) {
-  const distinctSupportStatuses = _.uniq(val.portingEfforts.map((x) => x.supportStatus))
-  const statusesToShow = distinctSupportStatuses.length > 0 ? distinctSupportStatuses : [SupportStatus.UpForGrabs]
+function Project({ val }: { val: IProject }) {
+  const distinctSupportStatuses = _.uniq(
+    val.portingEfforts.map((x) => x.supportStatus),
+  )
+  const statusesToShow =
+    distinctSupportStatuses.length > 0
+      ? distinctSupportStatuses
+      : [SupportStatus.UpForGrabs]
   const lowestGoodVersion = val.portingEfforts.reduce((prev, x) => {
     return x.goodSinceVersion != '' ? x.goodSinceVersion : prev
   }, '')
 
   return (
     <li>
-      <span>{statusesToShow.map((x, idx) => (<SupportStatusIcon key={idx} val={x} />))}</span>
-      <Link to={`/project/${val.code}`} className={styles.project__name}>{val.name}</Link>
-      {lowestGoodVersion != '' ? <span className={styles.project__goodSince}> ≥ {lowestGoodVersion}</span> : ''}
+      <span>
+        {statusesToShow.map((x, idx) => (
+          <SupportStatusIcon key={idx} val={x} />
+        ))}
+      </span>
+      <Link to={`/project/${val.code}`} className={styles.project__name}>
+        {val.name}
+      </Link>
+      {lowestGoodVersion != '' ? (
+        <span className={styles.project__goodSince}>
+          {' '}
+          ≥ {lowestGoodVersion}
+        </span>
+      ) : (
+        ''
+      )}
     </li>
   )
 }
 
-function ProjectList({projects}: {projects: IProject[]}) {
-  const sortedProjects = _.clone(projects)
-  sortedProjects.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase())
+function ProjectList({ projects }: { projects: IProject[] }) {
+  const sortedProjects = _.sortBy(projects, (x) => x.name.toLowerCase())
   return (
     <ul className={styles.projects}>
-      {sortedProjects.map((x, idx) => (<Project key={idx} val={x} />))}
+      {sortedProjects.map((x, idx) => (
+        <Project key={idx} val={x} />
+      ))}
     </ul>
   )
 }
 
-function ProjectCategory({val}: {val: IProjectCategory}) {
+function ProjectCategory({ val }: { val: IProjectCategory }) {
   return (
     <div className={clsx('col col--4')}>
-      <div className={styles.category + " padding-horiz--md"}>
+      <div className={styles.category + ' padding-horiz--md'}>
         <h2 className={styles.category__title}>{val.name}</h2>
         <ProjectList projects={val.projects} />
       </div>
     </div>
-  );
+  )
 }
 
 export default function HomepageFeatures(): JSX.Element {
@@ -57,5 +76,5 @@ export default function HomepageFeatures(): JSX.Element {
         </div>
       </div>
     </section>
-  );
+  )
 }

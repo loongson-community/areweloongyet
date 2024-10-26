@@ -154,11 +154,13 @@ const config: Config = {
         routeBasePath: 'newsletter',
         path: './newsletter',
         blogTitle: '每周一龙',
-        blogDescription: '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
-        editUrl: 'https://github.com/loongson-community/areweloongyet/edit/main',
+        blogDescription:
+          '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
+        editUrl:
+          'https://github.com/loongson-community/areweloongyet/edit/main',
         beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
         rehypePlugins: commonRehypePlugins,
-	onUntruncatedBlogPosts: 'throw',
+        onUntruncatedBlogPosts: 'throw',
       } satisfies BlogOptions,
     ],
   ],
@@ -171,8 +173,7 @@ const config: Config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/loongson-community/areweloongyet',
+          editUrl: 'https://github.com/loongson-community/areweloongyet',
           beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
           rehypePlugins: commonRehypePlugins,
         },
@@ -182,11 +183,10 @@ const config: Config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/loongson-community/areweloongyet',
+          editUrl: 'https://github.com/loongson-community/areweloongyet',
           beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
           rehypePlugins: commonRehypePlugins,
-	  onUntruncatedBlogPosts: 'throw',
+          onUntruncatedBlogPosts: 'throw',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -199,7 +199,7 @@ const config: Config = {
     [
       '@easyops-cn/docusaurus-search-local',
       {
-        hashed: "filename",
+        hashed: 'filename',
         language: ['en', 'zh'],
         blogDir: ['blog', 'newsletter'],
         blogRouteBasePath: ['/blog', '/newsletter'],

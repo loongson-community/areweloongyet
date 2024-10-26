@@ -1,13 +1,13 @@
-import { toSImm, toUImm } from "./insn"
+import { toSImm, toUImm } from './insn'
 
 export type MinifloatComponents = {
-  neg: boolean,
-  isZero: boolean,
-  biasedExp: number,
-  unbiasedExp: number,
-  apparentExp: number,
-  mantissa: number,
-  apparentMantissa: number,
+  neg: boolean
+  isZero: boolean
+  biasedExp: number
+  unbiasedExp: number
+  apparentExp: number
+  mantissa: number
+  apparentMantissa: number
 }
 
 export class MinifloatFormat {
@@ -68,12 +68,14 @@ export class MinifloatFormat {
   }
 
   asNumber(bitRepr: number): number {
-    const {mantissa, biasedExp, unbiasedExp, neg} = this.decompose(bitRepr)
+    const { mantissa, biasedExp, unbiasedExp, neg } = this.decompose(bitRepr)
     if (this.supportsZero && unbiasedExp == 0 && mantissa == 0) {
       return neg ? -0.0 : 0.0
     }
 
-    const n = (this.implicitMantissaOffset | mantissa) * (2 ** (biasedExp + this.apparentExpBiasDelta))
+    const n =
+      (this.implicitMantissaOffset | mantissa) *
+      2 ** (biasedExp + this.apparentExpBiasDelta)
     return neg ? -n : n
   }
 
@@ -85,20 +87,28 @@ export class MinifloatFormat {
   composeUnbiased(neg: boolean, unbiasedExp: number, mantissa: number): number {
     let x = mantissa & ((1 << this.mantissaWidth) - 1)
     x |= Number(toUImm(unbiasedExp, this.expWidth)) << this.mantissaWidth
-    if (neg)
-      x |= 1 << (this.mantissaWidth + this.expWidth)
+    if (neg) x |= 1 << (this.mantissaWidth + this.expWidth)
     return x
   }
 
   decompose(bitExpr: number): MinifloatComponents {
     const neg = (bitExpr & (1 << (this.mantissaWidth + this.expWidth))) != 0
     const mantissa = bitExpr & ((1 << this.mantissaWidth) - 1)
-    const unbiasedExpUImm = (bitExpr >> this.mantissaWidth) & ((1 << this.expWidth) - 1)
+    const unbiasedExpUImm =
+      (bitExpr >> this.mantissaWidth) & ((1 << this.expWidth) - 1)
     const isZero = this.supportsZero && mantissa == 0 && unbiasedExpUImm == 0
     const unbiasedExp = toSImm(unbiasedExpUImm, this.expWidth)
     const biasedExp = this.biasExp(unbiasedExp)
     const apparentExp = biasedExp + this.apparentExpBiasDelta
     const apparentMantissa = this.implicitMantissaOffset | mantissa
-    return {neg, isZero, biasedExp, unbiasedExp, apparentExp, mantissa, apparentMantissa}
+    return {
+      neg,
+      isZero,
+      biasedExp,
+      unbiasedExp,
+      apparentExp,
+      mantissa,
+      apparentMantissa,
+    }
   }
 }

@@ -12,5 +12,5 @@ export default function ColumnedList(props: Props): JSX.Element {
     <div className={styles.columnedList} style={{ columns: props.columns }}>
       {props.children}
     </div>
-  );
+  )
 }

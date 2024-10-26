@@ -10,12 +10,18 @@ type InsnFormatNameOptions = {
   className?: string
 }
 
-export default function InsnFormatName(props: InsnFormatNameOptions): JSX.Element {
+export default function InsnFormatName(
+  props: InsnFormatNameOptions,
+): JSX.Element {
   return (
     <span className={clsx(styles.insnFormatTag, props.className)}>
-      {props.overrideStr !== undefined ? props.overrideStr : props.fmt.args.map((x, argIdx) => (
-        <span key={argIdx} style={styleFromBitPalette(argIdx + 1)}>{x.repr}</span>
-      ))}
+      {props.overrideStr !== undefined
+        ? props.overrideStr
+        : props.fmt.args.map((x, argIdx) => (
+            <span key={argIdx} style={styleFromBitPalette(argIdx + 1)}>
+              {x.repr}
+            </span>
+          ))}
     </span>
   )
 }
