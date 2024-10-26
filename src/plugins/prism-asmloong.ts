@@ -22,7 +22,7 @@ Prism.languages.asmloong = {
     alias: 'keyword',
   },
   reloc: {
-    pattern: /\%(?:le_hi20|le_lo12)\b/,
+    pattern: /%(?:le_hi20|le_lo12)\b/,
     alias: 'function',
   },
   punctuation: /[(),:]/,
