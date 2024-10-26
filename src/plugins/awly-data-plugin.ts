@@ -14,7 +14,7 @@ import {
   IProjectCategory,
   LoadedContent,
   SupportStatus,
-} from '../../types'
+} from '../types'
 
 export type PluginOptions = {
   sourcePath: string
