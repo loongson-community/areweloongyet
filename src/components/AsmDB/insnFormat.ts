@@ -34,7 +34,7 @@ function parseInsnArg(s: string): { remaining: string; arg: InsnArg } {
     return fail
 
   const prefix = s[0]
-  if (!prefixKindMap.hasOwnProperty(prefix))
+  if (!Object.hasOwn(prefixKindMap, prefix))
     // malformed input
     return fail
 
@@ -144,8 +144,8 @@ function parseArgSlot(s: string): {
     return fail
 
   const lsbChar = s[0]
-  if (!lsbMap.hasOwnProperty(lsbChar)) {
-    if (prefixKindMap.hasOwnProperty(lsbChar))
+  if (!Object.hasOwn(lsbMap, lsbChar)) {
+    if (Object.hasOwn(prefixKindMap, lsbChar))
       // we've finished
       return { remaining: s, finish: true, slot: null }
 

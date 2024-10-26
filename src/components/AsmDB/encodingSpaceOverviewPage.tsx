@@ -56,7 +56,7 @@ type DecodeTreeNodeDetailProps = {
 const DecodeTreeNodeDetail: React.FC<
   DecodeTreeNodeDetailProps & React.HTMLAttributes<HTMLDivElement>
 > = (props) => {
-  if (!props.data.hasOwnProperty(props.selectedKey))
+  if (!Object.hasOwn(props.data, props.selectedKey))
     return (
       <>
         <h2>编码空间明细</h2>

@@ -37,7 +37,7 @@ const wellKnownMatchPatterns = {
 }
 
 function getWellKnownAlias(pat: string): string {
-  if (wellKnownMatchPatterns.hasOwnProperty(pat))
+  if (Object.hasOwn(wellKnownMatchPatterns, pat))
     return wellKnownMatchPatterns[pat]
   return ''
 }

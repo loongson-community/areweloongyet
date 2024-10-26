@@ -32,7 +32,7 @@ export default function doAnnotateOverseasLinks({ url, node }: UrlMatch) {
   if (isHostLikelyCNDomestic(hostname)) return
 
   // console.log('annotating', url)
-  if (node.properties.hasOwnProperty('class'))
+  if (Object.hasOwn(node.properties, 'class'))
     node.properties.class += ' link--overseas'
   else node.properties.class = 'link--overseas'
 }
