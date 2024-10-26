@@ -136,10 +136,11 @@ function performVldi(
     case VldiFunction.BroadcastBitExpandedU8To64:
       return Array(numElems).fill(expandU8BitsToU64(param))
 
-    case VldiFunction.BroadcastVldiMinifloatToEvenF32:
+    case VldiFunction.BroadcastVldiMinifloatToEvenF32: {
       const result = Array(numElems).fill(0.0)
       for (let i = 0; i < numElems; i += 2) result[i] = param
       return result
+    }
   }
 }
 
