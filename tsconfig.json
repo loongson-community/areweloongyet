@@ -1,12 +1,13 @@
 {
   // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@docusaurus/tsconfig",
+  "extends": ["@docusaurus/tsconfig"],
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
     "useDefineForClassFields": true
   }
 }
