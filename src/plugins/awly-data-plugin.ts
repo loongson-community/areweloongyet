@@ -133,11 +133,10 @@ function parsePortingEffort(x: InputPortingEffort): IPortingEffort {
 }
 
 async function readAuthors(path: string): Promise<Map<string, IAuthor>> {
-  const content: any = await readUTF8YAML(path)
+  const content: { [key: string]: InputAuthor } = await readUTF8YAML(path)
 
   const result = new Map<string, IAuthor>()
-  for (const [k, vv] of Object.entries(content)) {
-    const v = vv as InputAuthor
+  for (const [k, v] of Object.entries(content)) {
     result.set(k, {
       name: v.name,
       kind: parseEntityKind(v.kind),

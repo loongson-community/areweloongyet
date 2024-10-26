@@ -1,4 +1,4 @@
-import Copyright from '@theme-original/Footer/Copyright'
+import Copyright, { type Props } from '@theme-original/Footer/Copyright'
 import IconExternalLink from '@theme-original/Icon/ExternalLink'
 
 import styles from './styles.module.css'
@@ -41,7 +41,7 @@ function MPSBeianLink({
   )
 }
 
-export default function CopyrightWrapper(props: any): JSX.Element {
+export default function CopyrightWrapper(props: typeof Props): JSX.Element {
   return (
     <>
       <p>
