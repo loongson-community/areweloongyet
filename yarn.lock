@@ -3317,7 +3317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mdast@npm:^4.0.0, @types/mdast@npm:^4.0.2":
+"@types/mdast@npm:^4.0.0, @types/mdast@npm:^4.0.2, @types/mdast@npm:^4.0.4":
   version: 4.0.4
   resolution: "@types/mdast@npm:4.0.4"
   dependencies:
@@ -4042,6 +4042,7 @@ __metadata:
     "@types/glob": "npm:^8.1.0"
     "@types/js-yaml": "npm:^4.0.9"
     "@types/lodash": "npm:^4.17.10"
+    "@types/mdast": "npm:^4.0.4"
     "@types/node": "npm:^22.7.5"
     "@types/prismjs": "npm:^1.26.4"
     "@types/react": "npm:^18.3.11"
