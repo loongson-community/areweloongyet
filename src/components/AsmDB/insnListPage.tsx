@@ -107,7 +107,7 @@ export default function InsnListPage({
   })
   const alterSS = (modifier: (origSS: SubsetFlags, x: boolean) => void) => {
     return (x: boolean) => {
-      let newSS: SubsetFlags = {
+      const newSS: SubsetFlags = {
         primary: ss.primary,
         la32: ss.la32,
         la64: ss.la64,

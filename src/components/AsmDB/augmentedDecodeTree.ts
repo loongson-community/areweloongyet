@@ -43,9 +43,9 @@ function getWellKnownAlias(pat: string): string {
 }
 
 function makeMatchPatternKey(match: number, bfs: Bitfield[]): string {
-  let s = match.toString(2).padStart(32, '0').split('')
+  const s = match.toString(2).padStart(32, '0').split('')
   s.reverse()
-  let y = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.split('')
+  const y = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.split('')
   for (const bf of bfs)
     for (let i = bf.lsb; i < bf.lsb + bf.len; i++) y[i] = s[i]
   y.reverse()
@@ -79,7 +79,7 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
 export function augmentDecodeTree(
   node: DecodeTreeNode,
 ): AugmentedDecodeTreeNode {
-  let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
+  const x = _.cloneDeep(node) as AugmentedDecodeTreeNode
   augmentDecodeTreeInplace(x, null, 0, [])
   return x
 }
