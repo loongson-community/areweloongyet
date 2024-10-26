@@ -1,11 +1,14 @@
-import { Tag, type TreeDataNode } from "antd"
+import { Tag, type TreeDataNode } from 'antd'
 import { CheckOutlined, EyeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
 import styles from './index.module.css'
-import { type AugmentedDecodeTreeMatch, type AugmentedDecodeTreeNode } from "./augmentedDecodeTree"
-import { bitfieldWidth, representBitfields } from "./bitfield"
-import type { Bitfield } from "./types"
+import {
+  type AugmentedDecodeTreeMatch,
+  type AugmentedDecodeTreeNode,
+} from './augmentedDecodeTree'
+import { bitfieldWidth, representBitfields } from './bitfield'
+import type { Bitfield } from './types'
 
 function representMatchValue(val: number, bfs: Bitfield[]): string {
   const sortedBFs = _.sortBy(_.clone(bfs), 'lsb')
@@ -24,10 +27,8 @@ type NodeTitleProps = {
   node?: AugmentedDecodeTreeNode
 }
 
-
 function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
-  if (!match)
-    match = node.parentMatch
+  if (!match) match = node.parentMatch
 
   const matchNumber = match ? match.match : 0
   const matchPattern = node ? node.key : match.key
@@ -40,57 +41,109 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
   const postAttribs: JSX.Element[] = []
   if (match?.fmt)
     if (node)
-      postAttribs.push(<span className={styles.contentAttrib} key={`${matchPattern}-fmt`}>并确定格式为 {match.fmt}</span>)
+      postAttribs.push(
+        <span className={styles.contentAttrib} key={`${matchPattern}-fmt`}>
+          并确定格式为 {match.fmt}
+        </span>,
+      )
     else
-      postAttribs.push(<Tag className={styles.insnFmtTagAttrib} key={`${matchPattern}-fmt`}>{match.fmt}</Tag>)
+      postAttribs.push(
+        <Tag className={styles.insnFmtTagAttrib} key={`${matchPattern}-fmt`}>
+          {match.fmt}
+        </Tag>,
+      )
   if (alias)
-    preAttribs.push(<Tag className={styles.aliasTagAttrib} key={`${matchPattern}-alias`}>{alias}</Tag>)
+    preAttribs.push(
+      <Tag className={styles.aliasTagAttrib} key={`${matchPattern}-alias`}>
+        {alias}
+      </Tag>,
+    )
 
   if (insn) {
-    return <>
-      <span>{representMatchValue(matchNumber, lookAt)}: {preAttribs}{insn}</span>
-      {postAttribs}
-    </>
+    return (
+      <>
+        <span>
+          {representMatchValue(matchNumber, lookAt)}: {preAttribs}
+          {insn}
+        </span>
+        {postAttribs}
+      </>
+    )
   }
 
   const root = matchPattern == 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   if (root)
-    postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-major`}>主操作码</span>)
+    postAttribs.push(
+      <span className={styles.attrib} key={`${matchPattern}-major`}>
+        主操作码
+      </span>,
+    )
   if (node) {
     const numAllocatedPrefixes = node.matches.length
     const numTotalPrefixes = 1 << bitfieldWidth(node.look_at)
-    if (numAllocatedPrefixes == numTotalPrefixes && node.numUsedInsnWords == node.numTotalInsnWords) {
-      postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子空间已满</span>)
+    if (
+      numAllocatedPrefixes == numTotalPrefixes &&
+      node.numUsedInsnWords == node.numTotalInsnWords
+    ) {
+      postAttribs.push(
+        <span className={styles.attrib} key={`${matchPattern}-subspace`}>
+          子空间已满
+        </span>,
+      )
     } else {
       if (numAllocatedPrefixes == numTotalPrefixes)
-        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>子前缀空间已满</span>)
+        postAttribs.push(
+          <span className={styles.attrib} key={`${matchPattern}-fanout`}>
+            子前缀空间已满
+          </span>,
+        )
       else
-        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-fanout`}>子前缀空间 {numAllocatedPrefixes}/{numTotalPrefixes}</span>)
+        postAttribs.push(
+          <span className={styles.attrib} key={`${matchPattern}-fanout`}>
+            子前缀空间 {numAllocatedPrefixes}/{numTotalPrefixes}
+          </span>,
+        )
 
       if (node.numUsedInsnWords == node.numTotalInsnWords)
-        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间已满</span>)
+        postAttribs.push(
+          <span className={styles.attrib} key={`${matchPattern}-subspace`}>
+            子编码空间已满
+          </span>,
+        )
       else
-        postAttribs.push(<span className={styles.attrib} key={`${matchPattern}-subspace`}>子编码空间已用 {(node.numUsedInsnWords / node.numTotalInsnWords * 100).toFixed(2)}%</span>)
+        postAttribs.push(
+          <span className={styles.attrib} key={`${matchPattern}-subspace`}>
+            子编码空间已用{' '}
+            {((node.numUsedInsnWords / node.numTotalInsnWords) * 100).toFixed(
+              2,
+            )}
+            %
+          </span>,
+        )
     }
   }
 
   if (root)
-    return <>
-      <span>检查 [{representBitfields(lookAt)}] 位</span>
+    return (
+      <>
+        <span>检查 [{representBitfields(lookAt)}] 位</span>
+        {postAttribs}
+      </>
+    )
+
+  return (
+    <>
+      <span>
+        {representMatchValue(matchNumber, parentLookAt)}: {preAttribs}检查 [
+        {representBitfields(lookAt)}] 位
+      </span>
       {postAttribs}
     </>
-
-  return <>
-    <span>{representMatchValue(matchNumber, parentLookAt)}: {preAttribs}检查 [{representBitfields(lookAt)}] 位</span>
-    {postAttribs}
-  </>
+  )
 }
 
-function makeMatchNode(
-  m: AugmentedDecodeTreeMatch,
-): TreeDataNode {
-  if (m.next)
-    return transformDecodeTreeForAntd(m.next)
+function makeMatchNode(m: AugmentedDecodeTreeMatch): TreeDataNode {
+  if (m.next) return transformDecodeTreeForAntd(m.next)
 
   return {
     title: <NodeTitle match={m} />,

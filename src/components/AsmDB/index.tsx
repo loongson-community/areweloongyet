@@ -14,21 +14,21 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
   const { path, url } = useRouteMatch()
   const sideNavItems: MenuProps['items'] = [
     {
-      key: "encodingSpaceOverview",
+      key: 'encodingSpaceOverview',
       label: <Link to={`${url}/encodingSpaceOverview`}>编码空间总览</Link>,
     },
     {
-      key: "insnList",
+      key: 'insnList',
       disabled: true,
       label: '指令列表（开发中）',
     },
     {
-      key: "insnExplainer",
+      key: 'insnExplainer',
       disabled: true,
       label: '解读指令字（开发中）',
     },
     {
-      key: "vldiHelper",
+      key: 'vldiHelper',
       label: <Link to={`${url}/vldiHelper`}>VLDI 辅助</Link>,
     },
   ]
@@ -38,7 +38,7 @@ export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
       <ThemeAwareAntdContainer>
         <AntdLayout>
           {/* TODO: fixed sidebar */}
-          <AntdLayout.Sider breakpoint='lg' collapsedWidth={0}>
+          <AntdLayout.Sider breakpoint="lg" collapsedWidth={0}>
             <Menu
               mode="inline"
               defaultSelectedKeys={['encodingSpaceOverview']}

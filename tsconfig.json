@@ -7,6 +7,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ESNext",
-    "useDefineForClassFields": true,
+    "useDefineForClassFields": true
   }
 }

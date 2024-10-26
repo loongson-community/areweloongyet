@@ -1,14 +1,13 @@
-import _ from "lodash"
+import _ from 'lodash'
 
-import { ArgKind, type ArgSlot, type InsnArg, type InsnFormat } from "./types"
+import { ArgKind, type ArgSlot, type InsnArg, type InsnFormat } from './types'
 
 export function isImmArg(a: InsnArg): boolean {
   return a.kind == ArgKind.SignedImm || a.kind == ArgKind.UnsignedImm
 }
 
 export function parseInsnFormat(s: string): InsnFormat {
-  if (s == 'EMPTY')
-    return { repr: s, args: [] }
+  if (s == 'EMPTY') return { repr: s, args: [] }
 
   const origInput = s
   const args: InsnArg[] = []
@@ -28,7 +27,7 @@ export function parseInsnFormat(s: string): InsnFormat {
   }
 }
 
-function parseInsnArg(s: string): { remaining: string, arg: InsnArg } {
+function parseInsnArg(s: string): { remaining: string; arg: InsnArg } {
   const fail = { remaining: s, arg: null }
   if (s.length == 0)
     // malformed input
@@ -83,37 +82,37 @@ function parseInsnArg(s: string): { remaining: string, arg: InsnArg } {
 }
 
 const prefixKindMap = {
-  'D': ArgKind.IntReg,
-  'J': ArgKind.IntReg,
-  'K': ArgKind.IntReg,
-  'A': ArgKind.IntReg,
-  'C': ArgKind.FCCReg,
-  'F': ArgKind.FPReg,
-  'T': ArgKind.ScratchReg,
-  'V': ArgKind.VReg,
-  'X': ArgKind.XReg,
-  'S': ArgKind.SignedImm,
-  'U': ArgKind.UnsignedImm,
+  D: ArgKind.IntReg,
+  J: ArgKind.IntReg,
+  K: ArgKind.IntReg,
+  A: ArgKind.IntReg,
+  C: ArgKind.FCCReg,
+  F: ArgKind.FPReg,
+  T: ArgKind.ScratchReg,
+  V: ArgKind.VReg,
+  X: ArgKind.XReg,
+  S: ArgKind.SignedImm,
+  U: ArgKind.UnsignedImm,
 }
 
 const regWidthMap = {
-  'C': 3,
-  'F': 5,
-  'T': 2,
-  'V': 5,
-  'X': 5,
+  C: 3,
+  F: 5,
+  T: 2,
+  V: 5,
+  X: 5,
 }
 
 const lsbMap = {
-  'd': 0,
-  'j': 5,
-  'k': 10,
-  'a': 15,
-  'm': 16,
-  'n': 18,
+  d: 0,
+  j: 5,
+  k: 10,
+  a: 15,
+  m: 16,
+  n: 18,
 }
 
-function parseArgSlots(s: string): { remaining: string, slots: ArgSlot[] } {
+function parseArgSlots(s: string): { remaining: string; slots: ArgSlot[] } {
   const fail = { remaining: s, slots: null }
   if (s.length == 0)
     // malformed input
@@ -121,11 +120,9 @@ function parseArgSlots(s: string): { remaining: string, slots: ArgSlot[] } {
 
   const slots: ArgSlot[] = []
   while (s) {
-    const {remaining, finish, slot} = parseArgSlot(s)
-    if (finish)
-      break
-    if (!slot)
-      return fail
+    const { remaining, finish, slot } = parseArgSlot(s)
+    if (finish) break
+    if (!slot) return fail
     slots.push(slot)
     s = remaining
   }
@@ -136,7 +133,11 @@ function parseArgSlots(s: string): { remaining: string, slots: ArgSlot[] } {
   }
 }
 
-function parseArgSlot(s: string): { remaining: string, finish: boolean, slot?: ArgSlot } {
+function parseArgSlot(s: string): {
+  remaining: string
+  finish: boolean
+  slot?: ArgSlot
+} {
   const fail = { remaining: s, finish: false, slot: null }
   if (s.length == 0)
     // malformed input
@@ -171,6 +172,6 @@ function parseArgSlot(s: string): { remaining: string, finish: boolean, slot?: A
       repr: s.slice(0, totalConsumed),
       offset: lsb,
       width,
-    }
+    },
   }
 }

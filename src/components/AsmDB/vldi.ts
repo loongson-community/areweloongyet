@@ -1,6 +1,11 @@
-import { reprFloatDetailingZeroStatus, toCHexLiteral, toSImm, toUImm } from "./insn"
-import { MinifloatFormat } from "./minifloat"
-import { isFloatElemTy, VecElemType, vecElemWidthBits, Vlen } from "./simd"
+import {
+  reprFloatDetailingZeroStatus,
+  toCHexLiteral,
+  toSImm,
+  toUImm,
+} from './insn'
+import { MinifloatFormat } from './minifloat'
+import { isFloatElemTy, VecElemType, vecElemWidthBits, Vlen } from './simd'
 
 export const VldiMinifloatFormat = new MinifloatFormat(3, 2, 4, false)
 
@@ -55,15 +60,14 @@ export const elemTypesByVldiFunction: { [key in VldiFunction]: VecElemType } = {
   [VldiFunction.BroadcastVldiMinifloatToF64]: VecElemType.F64,
 }
 
-const vldiImmWidth = 13  // {v,xv}ldi imm is Sj13
+const vldiImmWidth = 13 // {v,xv}ldi imm is Sj13
 
 export function makeVldiSImm(
   f: VldiFunction,
   dataUImm: number,
   minifloatBitRepr: number,
 ): number {
-  if (isFloatElemTy(elemTypesByVldiFunction[f]))
-    dataUImm = minifloatBitRepr
+  if (isFloatElemTy(elemTypesByVldiFunction[f])) dataUImm = minifloatBitRepr
 
   const uimm = (f << 8) | dataUImm
   return toSImm(uimm, vldiImmWidth)
@@ -73,8 +77,7 @@ export function decomposeVldiSimm(simm: number): [VldiFunction, number] {
   const uimm = Number(toUImm(simm, vldiImmWidth))
 
   const imm12_10 = (uimm >> 10) & 0b111
-  if (imm12_10 == 0b000)
-    return [VldiFunction.BroadcastU8To8, uimm & 0xff]
+  if (imm12_10 == 0b000) return [VldiFunction.BroadcastU8To8, uimm & 0xff]
   else if (imm12_10 == 0b001 || imm12_10 == 0b010 || imm12_10 == 0b011)
     return [imm12_10 << 2, toSImm(uimm & 0x3ff, 10)]
 
@@ -88,14 +91,17 @@ export function decomposeVldiSimm(simm: number): [VldiFunction, number] {
 function expandU8BitsToU64(uimm: number): bigint {
   let result = 0n
   for (let i = 0n; i < 8; i++) {
-    if (uimm & 1)
-      result |= 0xffn << (i * 8n)
+    if (uimm & 1) result |= 0xffn << (i * 8n)
     uimm >>= 1
   }
   return result
 }
 
-function performVldi(vlen: Vlen, f: VldiFunction, param: number): number[] | bigint[] {
+function performVldi(
+  vlen: Vlen,
+  f: VldiFunction,
+  param: number,
+): number[] | bigint[] {
   const elemTy = elemTypesByVldiFunction[f]
   const numElems = vlen / vecElemWidthBits[elemTy]
 
@@ -132,8 +138,7 @@ function performVldi(vlen: Vlen, f: VldiFunction, param: number): number[] | big
 
     case VldiFunction.BroadcastVldiMinifloatToEvenF32:
       const result = Array(numElems).fill(0.0)
-      for (let i = 0; i < numElems; i += 2)
-        result[i] = param
+      for (let i = 0; i < numElems; i += 2) result[i] = param
       return result
   }
 }
@@ -148,24 +153,17 @@ export function demonstrateVldiEffectInC(
   let elems = performVldi(vlen, f, param)
 
   const isElemsSigned = isOutputElemsSigned(f)
-  const shouldConvertElemsToSImm = (
-    !isFloatElemTy(elemTy) &&
-    !isElemsSigned &&
-    treatElemsAsSigned
-  )
-  const shouldConvertElemsToUImm = (
-    !isFloatElemTy(elemTy) &&
-    isElemsSigned &&
-    !treatElemsAsSigned
-  )
+  const shouldConvertElemsToSImm =
+    !isFloatElemTy(elemTy) && !isElemsSigned && treatElemsAsSigned
+  const shouldConvertElemsToUImm =
+    !isFloatElemTy(elemTy) && isElemsSigned && !treatElemsAsSigned
   if (shouldConvertElemsToSImm)
     elems = elems.map((x) => toSImm(x, vecElemWidthBits[elemTy]))
   else if (shouldConvertElemsToUImm)
     elems = elems.map((x) => toUImm(x, vecElemWidthBits[elemTy]))
 
   const repr = (x: number | bigint): string => {
-    if (isFloatElemTy(elemTy))
-      return reprFloatDetailingZeroStatus(x as number)
+    if (isFloatElemTy(elemTy)) return reprFloatDetailingZeroStatus(x as number)
     return toCHexLiteral(x)
   }
 

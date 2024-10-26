@@ -12,13 +12,16 @@ export type PluginOptions = {
 
 type LoadedContent = string
 
-function runGenerationScript(asmdbHelperPath: string, inputPaths: string[]): Promise<LoadedContent> {
+function runGenerationScript(
+  asmdbHelperPath: string,
+  inputPaths: string[],
+): Promise<LoadedContent> {
   return new Promise((resolve, reject) => {
     const subp = spawn(asmdbHelperPath, inputPaths)
     let stdout = ''
     let stderr = ''
-    subp.stdout.on('data', (data) => stdout += data)
-    subp.stderr.on('data', (data) => stderr += data)
+    subp.stdout.on('data', (data) => (stdout += data))
+    subp.stderr.on('data', (data) => (stderr += data))
     subp.on('close', (code) => {
       if (code == 0) {
         resolve(stdout)
@@ -43,8 +46,12 @@ export default async function awlyAsmdbPlugin(
   return {
     name: 'awly-asmdb-plugin',
     async loadContent() {
-      const opcodeFiles = await glob('*.txt', { cwd: options.loongarchOpcodesPath })
-      const inputPaths = opcodeFiles.map((x) => path.join(options.loongarchOpcodesPath, x))
+      const opcodeFiles = await glob('*.txt', {
+        cwd: options.loongarchOpcodesPath,
+      })
+      const inputPaths = opcodeFiles.map((x) =>
+        path.join(options.loongarchOpcodesPath, x),
+      )
       return await runGenerationScript(options.genAsmdbDataPath, inputPaths)
     },
     async contentLoaded({ content, actions }) {

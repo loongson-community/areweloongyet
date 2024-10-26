@@ -1,27 +1,27 @@
 Prism.languages.asmloong = {
-  'comment': {
+  comment: {
     pattern: /\/\/.*/,
-    greedy: true
+    greedy: true,
   },
-  'string': {
+  string: {
     pattern: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-    greedy: true
+    greedy: true,
   },
-  'directive': {
+  directive: {
     pattern: /\.(?:text|option)\b/,
-    alias: 'property'
+    alias: 'property',
   },
-  'register': {
+  register: {
     pattern: /\$(?:zero|ra|tp|sp|a[0-7]|t[0-8]|fp|s[0-9]|r\d|r[12]\d|r3[01])\b/,
-    alias: 'variable'
+    alias: 'variable',
   },
-  'opcode': {
+  opcode: {
     pattern: /\b(?:lu12i\.w|addi\.d)\b/,
-    alias: 'keyword'
+    alias: 'keyword',
   },
-  'reloc': {
+  reloc: {
     pattern: /\%(?:le_hi20|le_lo12)\b/,
-    alias: 'function'
+    alias: 'function',
   },
-  'punctuation': /[(),:]/,
+  punctuation: /[(),:]/,
 }

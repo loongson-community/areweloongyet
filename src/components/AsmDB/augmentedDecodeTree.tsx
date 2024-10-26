@@ -1,6 +1,11 @@
 import _ from 'lodash'
 
-import { bitfieldWidth, bitfieldsToMask, mergeBitfields, restoreIntoBitfields } from './bitfield'
+import {
+  bitfieldWidth,
+  bitfieldsToMask,
+  mergeBitfields,
+  restoreIntoBitfields,
+} from './bitfield'
 import type { Bitfield, DecodeTreeMatch, DecodeTreeNode } from './types'
 
 const wellKnownMatchPatterns = {
@@ -42,8 +47,7 @@ function makeMatchPatternKey(match: number, bfs: Bitfield[]): string {
   s.reverse()
   let y = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.split('')
   for (const bf of bfs)
-    for (let i = bf.lsb; i < bf.lsb + bf.len; i++)
-      y[i] = s[i]
+    for (let i = bf.lsb; i < bf.lsb + bf.len; i++) y[i] = s[i]
   y.reverse()
   return y.join('')
 }
@@ -72,7 +76,9 @@ export type AugmentedDecodeTreeNode = DecodeTreeNode & {
   possibleFmts: string[]
 }
 
-export function augmentDecodeTree(node: DecodeTreeNode): AugmentedDecodeTreeNode {
+export function augmentDecodeTree(
+  node: DecodeTreeNode,
+): AugmentedDecodeTreeNode {
   let x = _.cloneDeep(node) as AugmentedDecodeTreeNode
   augmentDecodeTreeInplace(x, null, 0, [])
   return x
@@ -89,8 +95,7 @@ function augmentDecodeTreeInplace(
   if (matchBitfieldsSoFar.length == 0)
     // 1 << 32 = 1...
     node.numTotalInsnWords = 0x100000000
-  else
-    node.numTotalInsnWords = 1 << (32 - bitfieldWidth(matchBitfieldsSoFar))
+  else node.numTotalInsnWords = 1 << (32 - bitfieldWidth(matchBitfieldsSoFar))
 
   node.numUsedInsnWords = 0
 
@@ -145,20 +150,28 @@ function makeFlattenedAugmentedNode(
   }
 }
 
-function flattenAugmentedDecodeTreeInto(node: AugmentedDecodeTreeNode, result: FlattenedAugmentedNode[]): void {
+function flattenAugmentedDecodeTreeInto(
+  node: AugmentedDecodeTreeNode,
+  result: FlattenedAugmentedNode[],
+): void {
   result.push(makeFlattenedAugmentedNode(node, null))
-  result.push(...(_.map(node.matches, (x) => makeFlattenedAugmentedNode(null, x))))
+  result.push(
+    ..._.map(node.matches, (x) => makeFlattenedAugmentedNode(null, x)),
+  )
   for (const m of node.matches)
-    if (m.next)
-      flattenAugmentedDecodeTreeInto(m.next, result)
+    if (m.next) flattenAugmentedDecodeTreeInto(m.next, result)
 }
 
-function flattenAugmentedDecodeTree(node: AugmentedDecodeTreeNode): FlattenedAugmentedNode[] {
+function flattenAugmentedDecodeTree(
+  node: AugmentedDecodeTreeNode,
+): FlattenedAugmentedNode[] {
   const result = []
   flattenAugmentedDecodeTreeInto(node, result)
   return result
 }
 
-export function mapifyAugmentedDecodeTree(node: AugmentedDecodeTreeNode): AugmentedNodeMap {
+export function mapifyAugmentedDecodeTree(
+  node: AugmentedDecodeTreeNode,
+): AugmentedNodeMap {
   return _.keyBy(flattenAugmentedDecodeTree(node), 'key')
 }

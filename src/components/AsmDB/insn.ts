@@ -9,15 +9,14 @@ export function getInsnMnemonic(insn: Insn, useManualSyntax: boolean): string {
 export function toSImm(uimm: number, width: number): number
 export function toSImm(uimm: bigint, width: number): bigint
 export function toSImm(uimm: number | bigint, width: number): number | bigint {
-  if (typeof uimm == "bigint")
-    return BigInt.asIntN(width, uimm)
+  if (typeof uimm == 'bigint') return BigInt.asIntN(width, uimm)
   return Number(BigInt.asIntN(width, BigInt(uimm)))
 }
 
 export function toUImm(simm: number, width: number): bigint
 export function toUImm(simm: bigint, width: number): bigint
 export function toUImm(simm: number | bigint, width: number): bigint {
-  return BigInt.asUintN(width, typeof simm == "bigint" ? simm : BigInt(simm))
+  return BigInt.asUintN(width, typeof simm == 'bigint' ? simm : BigInt(simm))
 }
 
 export function toCHexLiteral(x: number | bigint): string {
@@ -25,9 +24,7 @@ export function toCHexLiteral(x: number | bigint): string {
 }
 
 export function reprFloatDetailingZeroStatus(n: number): string {
-  if (Object.is(n, -0.0))
-    return "-0"
-  if (Object.is(n, 0.0))
-    return "0"
+  if (Object.is(n, -0.0)) return '-0'
+  if (Object.is(n, 0.0)) return '0'
   return n.toString()
 }

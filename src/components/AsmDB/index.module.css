@@ -24,7 +24,7 @@
 
 .aliasTagAttrib,
 .insnFmtTagAttrib {
-  font-size: 14px;  /* should follow default style of tree node titles */
+  font-size: 14px; /* should follow default style of tree node titles */
   line-height: 20px;
 }
 

@@ -10,8 +10,8 @@ function produceErhuaMark(match: any): PhrasingContent {
     type: 'text',
     value: '',
     data: {
-        hName: 'small',
-        hChildren: [{ type: 'text', value: '儿' }],
+      hName: 'small',
+      hChildren: [{ type: 'text', value: '儿' }],
     },
   }
 }
@@ -19,8 +19,8 @@ function produceErhuaMark(match: any): PhrasingContent {
 export default function plugin(options: any) {
   return (tree: Nodes) => {
     findAndReplace(tree, [
-      [":儿:", produceErhuaMark],
-      [":ta:", "tā"],
+      [':儿:', produceErhuaMark],
+      [':ta:', 'tā'],
     ])
   }
 }
