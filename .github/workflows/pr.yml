@@ -1,0 +1,29 @@
+name: PR checks
+
+on:
+  pull_request:
+
+jobs:
+  lints:
+    name: Lints
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the source code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Enable Corepack for Yarn Modern
+        run: corepack enable
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Check code style with Prettier
+        run: yarn prettier --check .
+      - name: Lint with ESLint
+        run: yarn eslint
+      - name: Type-check with tsc
+        run: yarn tsc
