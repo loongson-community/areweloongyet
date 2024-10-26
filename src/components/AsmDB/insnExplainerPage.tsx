@@ -1,7 +1,7 @@
 import type { AsmDBData } from './types'
 
 export default function InsnExplainerPage({
-  data,
+  data: _,
 }: {
   data: AsmDBData
 }): JSX.Element {

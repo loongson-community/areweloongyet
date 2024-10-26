@@ -19,7 +19,7 @@ function ICPBeianLink({
   )
 }
 
-function MPSBeianLink({
+function _MPSBeianLink({
   province,
   recordNumber,
 }: {

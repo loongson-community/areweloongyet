@@ -40,7 +40,7 @@ function runGenerationScript(
 }
 
 export default async function awlyAsmdbPlugin(
-  ctx: LoadContext,
+  _ctx: LoadContext,
   options: PluginOptions,
 ): Promise<Plugin<LoadedContent>> {
   return {

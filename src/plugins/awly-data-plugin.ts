@@ -196,7 +196,7 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
 }
 
 export default async function awlyDataPlugin(
-  ctx: LoadContext,
+  _ctx: LoadContext,
   options: PluginOptions,
 ): Promise<Plugin<LoadedContent>> {
   return {

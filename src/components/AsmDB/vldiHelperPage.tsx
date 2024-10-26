@@ -13,7 +13,7 @@ import {
   makeVldiSImm,
 } from './vldi'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
-import { InputMinifloat, MinifloatValueEvent } from './inputMinifloat'
+import { InputMinifloat } from './inputMinifloat'
 
 type VlenSelectProps = {
   vlen: Vlen
@@ -328,7 +328,7 @@ export default function VldiHelperPage(): JSX.Element {
     setImmState({ input: newVal, uimm: interp.uimm })
   }
 
-  const onUseSignedElemsChange = (e: CheckboxChangeEvent) => {
+  const onUseSignedElemsChange = (_: CheckboxChangeEvent) => {
     setUseSignedElems(!useSignedElems)
   }
 
