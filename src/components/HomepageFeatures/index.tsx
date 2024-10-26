@@ -43,8 +43,7 @@ function Project({ val }: { val: IProject }) {
 }
 
 function ProjectList({ projects }: { projects: IProject[] }) {
-  const sortedProjects = _.clone(projects)
-  sortedProjects.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase())
+  const sortedProjects = _.sortBy(projects, (x) => x.name.toLowerCase())
   return (
     <ul className={styles.projects}>
       {sortedProjects.map((x, idx) => (
