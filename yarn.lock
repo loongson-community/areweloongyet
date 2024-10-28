@@ -3489,7 +3489,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.7.5":
+"@types/node@npm:*":
   version: 22.7.5
   resolution: "@types/node@npm:22.7.5"
   dependencies:
@@ -3502,6 +3502,15 @@ __metadata:
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
   checksum: 10c0/0db377133d709b33a47892581a21a41cd7958f22723a3cc6c71d55ac018121382de42fbfc7970d5ae3e7819dbe5f40e1c6a5174aedf7e7964e9cb8fa72b580b0
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.8.1":
+  version: 22.8.1
+  resolution: "@types/node@npm:22.8.1"
+  dependencies:
+    undici-types: "npm:~6.19.8"
+  checksum: 10c0/83550fdf72a7db5b55eceac3f4fb038844eaee20202bdd2297a8248370cfa08317bda1605b781a8043eda4f173b75e73632e652fc85509eb14dfef78fa17337f
   languageName: node
   linkType: hard
 
@@ -4297,7 +4306,7 @@ __metadata:
     "@types/js-yaml": "npm:^4.0.9"
     "@types/lodash": "npm:^4.17.10"
     "@types/mdast": "npm:^4.0.4"
-    "@types/node": "npm:^22.7.5"
+    "@types/node": "npm:^22.8.1"
     "@types/prismjs": "npm:^1.26.4"
     "@types/react": "npm:^18.3.12"
     "@types/react-router-dom": "npm:^5.3.3"
@@ -13701,7 +13710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
+"undici-types@npm:~6.19.2, undici-types@npm:~6.19.8":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
