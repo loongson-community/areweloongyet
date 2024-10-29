@@ -4211,9 +4211,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.21.5":
-  version: 5.21.5
-  resolution: "antd@npm:5.21.5"
+"antd@npm:^5.21.6":
+  version: 5.21.6
+  resolution: "antd@npm:5.21.6"
   dependencies:
     "@ant-design/colors": "npm:^7.1.0"
     "@ant-design/cssinjs": "npm:^1.21.1"
@@ -4267,7 +4267,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/97cca68b43542a49c910b9e172fb2b2c96f8998a117bbe6a048c4bb084c35113022b71e5b7db9b36bbadc28c4b29a3b2b66ca931f108d83a526e2a883b080e8a
+  checksum: 10c0/3fefc87f005497721324c46edf7b23d90d60fa6f5e93adf209b51ace376b2dcdf127e7b36db5273e43c33f9817628c5666b8ab143b29fb116203f3e302d0d9fd
   languageName: node
   linkType: hard
 
@@ -4310,7 +4310,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.4"
     "@types/react": "npm:^18.3.12"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.21.5"
+    antd: "npm:^5.21.6"
     browserslist: "npm:^4.24.2"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.13.0"
