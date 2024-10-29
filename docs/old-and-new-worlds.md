@@ -231,7 +231,7 @@ zsh: 没有那个文件或目录: ./foo
 |Go|`http://goproxy.loongnix.cn:3000`|[文档](https://docs.loongnix.cn/golang/goproxy.html)|
 |PyPI|`https://pypi.loongnix.cn/loongson/pypi`|[文档](https://docs.loongnix.cn/python/python.html)|
 |npm|`https://registry.loongnix.cn:4873`|[文档](http://docs.loongnix.cn/nodejs/doc/list/03.%E9%BE%99%E8%8A%AFnpm%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.html)|
-|NuGet|`http://nuget.loongnix.cn:5000`|[文档](https://docs.loongnix.cn/dotnet/support/list/01.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-FAQ.html)|
+|NuGet|`https://nuget.loongnix.cn`|[文档](https://docs.loongnix.cn/dotnet/support/list/01.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-FAQ.html)|
 |Rust<br />(crates.io)|`https://crates.loongnix.cn`|[文档](https://docs.loongnix.cn/rust/)|
 |Harbor<br />(容器镜像)|`https://cr.loongnix.cn`|[文档][loongson-cloud-community]|
 
