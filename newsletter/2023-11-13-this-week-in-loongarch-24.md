@@ -101,7 +101,7 @@ Phoronix 也[报道了](https://www.phoronix.com/news/Linux-6.7-rc1)此新版本
 * [优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/635278.html)
   `-mexplicit-relocs=auto` 配置下，仅单次使用的地址与 `fld` `fst` 搭配时的生成代码。
 * [移植了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/635304.html)
-  LLVM 的两组龙架构 LL/SC 代码片段优化：[第 20 期报道过的](./2023-10-16-this-week-in-loongarch-20.md#llvm)
+  LLVM 的两组龙架构 LL/SC 代码片段优化：[第 20 期报道过的](./2023-10-16-this-week-in-loongarch-20.mdx#llvm)
   heiher [做的优化](https://github.com/llvm/llvm-project/pull/6739)，以及
   SixWeining 随后[做的进一步完善](https://github.com/llvm/llvm-project/pull/69339)。
 
@@ -146,7 +146,7 @@ heiher [尝试这么做了](https://github.com/llvm/llvm-project/pull/71887)。
 北京时间 11 月 13 日清晨，由 Robin Lee 推动、实现，历时 9 个月，FreeDesktop SDK 的
 `loongarch64` 最小化虚拟机的构建支持[合入上游](https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/merge_requests/11510)：
 可以通过 `vm/minimal/efi.bst` 构建虚拟机系统镜像文件了。
-继[周报第 20 期](./2023-10-16-this-week-in-loongarch-20.md#freedesktop-sdk-initial-support-merged)之后，
+继[周报第 20 期](./2023-10-16-this-week-in-loongarch-20.mdx#freedesktop-sdk-initial-support-merged)之后，
 这是将 Flatpak 生态带入 LoongArch 的道路上的又一重要进展。
 感谢 :ta: 自己投递的新闻线索！
 
@@ -160,7 +160,7 @@ Phoronix 也[报道了](https://www.phoronix.com/news/systemd-255-rc1)此事。
 本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
 
-社区开发者 cl91 从[周报第 18 期](./2023-10-02-this-week-in-loongarch-18.md#gsgpu-for-mainline)开始憋的大招，
+社区开发者 cl91 从[周报第 18 期](./2023-10-02-this-week-in-loongarch-18.mdx#gsgpu-for-mainline)开始憋的大招，
 搞定了！
 龙芯 7A2000 中的独显[^what-does-discrete-mean]模块的内核驱动 GSGPU 已经移植到了最新的 Linux v6.6。
 

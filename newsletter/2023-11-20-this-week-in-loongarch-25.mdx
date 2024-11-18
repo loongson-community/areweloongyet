@@ -84,7 +84,9 @@ LA664 新增特性的 GCC 适配，可以用 `-march=la664` 了，
 也未去除那些在 LA664 上不再必要的 `DBAR 0x700` 指令；
 因此 Xi Ruoyao 以这一版龙芯代码为基础，又[改了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/637090.html)一版。
 
-<a name="CLZ_DEFINED_VALUE_AT_ZERO"></a>
+import Link from '@docusaurus/Link'
+
+<Link id="CLZ_DEFINED_VALUE_AT_ZERO" />
 
 同一天，Jiahao Xu [修了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636792.html)一些
 LSX、LASX 测试；Li Wei
@@ -111,7 +113,7 @@ LoongArch 的 `clz` `ctz` 指令可以正确处理输入为零的情况。
 11 月 13 日，Xi Ruoyao [抄了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/636379.html)个
 AArch64 的优化，能为形如 `copysign(x, -1)` 的操作产生高效的向量化代码；
 又[移植了](https://gcc.gnu.org/r14-5432) LLVM 的 `DBAR` 优化
-（周报第 20 期[有报道](./2023-10-16-this-week-in-loongarch-20.md#LLVM)）。
+（周报第 20 期[有报道](./2023-10-16-this-week-in-loongarch-20.mdx#llvm)）。
 
 以上新增的大块内容都赶上了 GCC 14 stage 1，在明年的 GCC 14.1 正式版就能用上了。
 等不及的同学也可以下载 GCC 14 快照自行编译，或使用 Gentoo（直接 unmask 相应版本即可）等滚动发行版，
@@ -139,7 +141,7 @@ LoongArch MC 增加类似 [GAS 的条件跳转范围扩展](https://sourceware.o
 
 11 月 17 日，heiher 为了让 rustup 1.27.0 发布时能包含龙架构二进制，
 临时给龙架构的 rustup [关掉了](https://github.com/rust-lang/rustup/pull/3536) OpenSSL。
-这还是第 10 期[讲过的](./2023-07-24-this-week-in-loongarch-10.md#openssl-asm-breakage)龙芯挖的坑的后续……
+这还是第 10 期[讲过的](./2023-07-24-this-week-in-loongarch-10.mdx#openssl-asm-breakage)龙芯挖的坑的后续……
 
 11 月 14 日，heiher 为 Rust 的 LoongArch musl 支持（`loongarch64-unknown-linux-musl` 构建目标）
 提前[建立了](https://github.com/loongson-community/discussions/issues/13)协调工单。

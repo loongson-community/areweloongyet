@@ -31,7 +31,7 @@ tags: [每周一龙]
 相关变更内容已在[周报第 7 期](./2023-07-03-this-week-in-loongarch-7.md)报道。
 
 7 月 29 日，LLVM 17.0.0-rc1 [发布](https://discourse.llvm.org/t/llvm-17-0-0-rc1-tagged/72404)。
-除了已在[周报第 10 期](./2023-07-24-this-week-in-loongarch-10.md)报道的变更之外，其中重要的龙架构相关变更还有：
+除了已在[周报第 10 期](./2023-07-24-this-week-in-loongarch-10.mdx)报道的变更之外，其中重要的龙架构相关变更还有：
 
 * LLD 现已支持龙架构（by xen0n）。
   在 LLVM、QEMU、Linux 等大型项目上测试可用，也测试过可以自举 Gentoo LLVM stage。
