@@ -59,6 +59,10 @@ const config: Config = {
     locales: ['zh-Hans'],
   },
 
+  future: {
+    experimental_faster: true,
+  },
+
   markdown: {
     mermaid: true,
   },
