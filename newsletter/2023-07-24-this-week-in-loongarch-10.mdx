@@ -48,7 +48,9 @@ tags: [每周一龙]
 
 ## 杂闻播报
 
-<a name="openssl-asm-breakage"></a>
+import Link from '@docusaurus/Link'
+
+<Link id="openssl-asm-breakage" />
 
 7 月 21 日，xry111 向 OpenSSL 项目提交了[运行时动态检测龙架构向量扩展支持](https://github.com/openssl/openssl/pull/21509)与[构建时正确检测龙架构](https://github.com/openssl/openssl/pull/21510)的补丁。这能修复 OpenSSL 3.1.x 的龙架构配置不能搭配没有向量支持的工具链使用的问题。（先前龙芯贡献的代码未考虑这一点，那些工程师大概率未在社区发行版的环境下进行测试。）
 

@@ -117,7 +117,7 @@ liwei 用 LoongArch SIMD 指令[优化了](https://gcc.gnu.org/pipermail/gcc-pat
 
 liwei 还[优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638385.html)取奇/偶元素的向量操作。
 
-liwei 还[清理了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638390.html)[上次优化后](../2023-11-20-this-week-in-loongarch-25.md#CLZ_DEFINED_VALUE_AT_ZERO)重复的
+liwei 还[清理了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638390.html)[上次优化后](../2023-11-20-this-week-in-loongarch-25.mdx#CLZ_DEFINED_VALUE_AT_ZERO)重复的
 `CLZ_DEFINED_VALUE_AT_ZERO` 定义。
 
 guojie 在 UBSan 的指导下[修复了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/637859.html)
