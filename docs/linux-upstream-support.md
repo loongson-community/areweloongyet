@@ -14,19 +14,19 @@ sidebar_position: 7
 
 ## CPU 支持情况
 
-| 功能     | 3A5000         | 3A6000         |
-|----------|----------------|----------------|
-| SMT      | N/A            | [6.5][smt]     |
-| LSX/LASX | [6.5][lsx]     | [6.5][lsx]     |
-| LBT      | [6.6][lbt]     | [6.6][lbt]     |
-| HWMon    | [WIP][hwmon]   | [WIP][hwmon]   |
-| CPUFreq  | [WIP][cpufreq] | [WIP][cpufreq] |
+| 功能     | 3A5000          | 3A6000          |
+|----------|-----------------|-----------------|
+| SMT      | N/A             | [6.5][smt]      |
+| LSX/LASX | [6.5][lsx]      | [6.5][lsx]      |
+| LBT      | [6.6][lbt]      | [6.6][lbt]      |
+| HWMon    | [WIP][hwmon]    | [WIP][hwmon]    |
+| CPUFreq  | [6.11][cpufreq] | [6.11][cpufreq] |
 
 [smt]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f6f0c9a74a48448583c3cb0f3f067bc3fe0f13c6
 [lsx]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=616500232e632dba8b03981eeccadacf2fbf1c30
 [lbt]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bd3c5798484aa9a08302a844d7a75a2ee3b53d05
 [hwmon]: https://github.com/loongarchlinux/linux/commit/fbc7e8f1e72f9efee68cfe7b70cc397adc325818
-[cpufreq]: https://github.com/loongarchlinux/linux/commit/9eed420e12431d09cbd87eb76ab3d1f77f9fafcd
+[cpufreq]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ccf51454145bffd98e31cdbe54a4262473c609e2
 
 ## 桥片支持情况
 
