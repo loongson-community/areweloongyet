@@ -2226,10 +2226,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/tsconfig@npm:3.6.1":
-  version: 3.6.1
-  resolution: "@docusaurus/tsconfig@npm:3.6.1"
-  checksum: 10c0/4f8f283c4e7896b327f3ffcf032f8ef1cfde43c28ab6d4c2ff107f4057e59d90486927429e948a274004d12f742165b88fc80fdc6352a9cf25e48cbca51d7f0f
+"@docusaurus/tsconfig@npm:3.6.3":
+  version: 3.6.3
+  resolution: "@docusaurus/tsconfig@npm:3.6.3"
+  checksum: 10c0/0ff7af6e0fe267d22c2e1c439d887aef1668b626731b07b4053c6fb5377f0faeec74d69f30d139522f6de74ba73d4462242400564024faa7ab0076c3af83d5d9
   languageName: node
   linkType: hard
 
@@ -5091,7 +5091,7 @@ __metadata:
     "@docusaurus/theme-classic": "npm:3.6.1"
     "@docusaurus/theme-common": "npm:3.6.1"
     "@docusaurus/theme-mermaid": "npm:3.6.1"
-    "@docusaurus/tsconfig": "npm:3.6.1"
+    "@docusaurus/tsconfig": "npm:3.6.3"
     "@docusaurus/types": "npm:3.6.1"
     "@easyops-cn/docusaurus-search-local": "npm:^0.45.0"
     "@eslint/js": "npm:^9.15.0"
