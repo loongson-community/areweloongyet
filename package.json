@@ -19,7 +19,7 @@
     "@ant-design/icons": "^5.5.1",
     "@docusaurus/core": "3.6.1",
     "@docusaurus/faster": "3.6.1",
-    "@docusaurus/plugin-client-redirects": "3.6.1",
+    "@docusaurus/plugin-client-redirects": "3.6.3",
     "@docusaurus/plugin-content-blog": "3.6.1",
     "@docusaurus/plugin-content-docs": "3.6.1",
     "@docusaurus/preset-classic": "3.6.1",
