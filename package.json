@@ -23,7 +23,7 @@
     "@docusaurus/plugin-content-blog": "3.6.1",
     "@docusaurus/plugin-content-docs": "3.6.1",
     "@docusaurus/preset-classic": "3.6.1",
-    "@docusaurus/theme-classic": "3.6.1",
+    "@docusaurus/theme-classic": "3.6.3",
     "@docusaurus/theme-common": "3.6.1",
     "@docusaurus/theme-mermaid": "3.6.1",
     "@docusaurus/types": "3.6.1",
