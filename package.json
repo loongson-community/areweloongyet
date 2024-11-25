@@ -25,7 +25,7 @@
     "@docusaurus/preset-classic": "3.6.1",
     "@docusaurus/theme-classic": "3.6.1",
     "@docusaurus/theme-common": "3.6.1",
-    "@docusaurus/theme-mermaid": "3.6.1",
+    "@docusaurus/theme-mermaid": "3.6.3",
     "@docusaurus/types": "3.6.1",
     "@easyops-cn/docusaurus-search-local": "^0.45.0",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
