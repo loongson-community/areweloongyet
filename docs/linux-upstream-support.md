@@ -14,13 +14,13 @@ sidebar_position: 7
 
 ## CPU 支持情况
 
-| 功能     | 3A5000          | 3A6000          |
-|----------|-----------------|-----------------|
-| SMT      | N/A             | [6.5][smt]      |
-| LSX/LASX | [6.5][lsx]      | [6.5][lsx]      |
-| LBT      | [6.6][lbt]      | [6.6][lbt]      |
-| HWMon    | [WIP][hwmon]    | [WIP][hwmon]    |
-| CPUFreq  | [6.11][cpufreq] | [6.11][cpufreq] |
+| 功能                   | 3A5000          | 3A6000          |
+|------------------------|-----------------|-----------------|
+| SMT                    | N/A             | [6.5][smt]      |
+| LSX/LASX               | [6.5][lsx]      | [6.5][lsx]      |
+| LBT                    | [6.6][lbt]      | [6.6][lbt]      |
+| HWMon                  | [WIP][hwmon]    | [WIP][hwmon]    |
+| CPUFreq[^cpufreq-abis] | [6.11][cpufreq] | [6.11][cpufreq] |
 
 [smt]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f6f0c9a74a48448583c3cb0f3f067bc3fe0f13c6
 [lsx]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=616500232e632dba8b03981eeccadacf2fbf1c30
@@ -28,12 +28,14 @@ sidebar_position: 7
 [hwmon]: https://github.com/loongarchlinux/linux/commit/fbc7e8f1e72f9efee68cfe7b70cc397adc325818
 [cpufreq]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ccf51454145bffd98e31cdbe54a4262473c609e2
 
+[^cpufreq-abis]: 龙芯平台的 cpufreq 操作在很大程度上依赖 CPU 上的管理核（一般是一颗 LA132 小核）协助执行。主核上的系统程序与管理核上的 RTOS 通讯，间接实现控制，因此管理核固件通讯协议是 ABI 边界，需要考虑兼容性。如同龙芯 Linux 生态的[新旧世界问题](./old-and-new-worlds.md)一般，CPUFreq 驱动也有两个版本，且主流货架硬件普遍搭载的管理核固件通讯协议与 Linux 上游驱动所实现的不兼容。一些国产 Linux 发行版的 Linux fork 集成了旧版的协议，如 [deepin](https://github.com/deepin-community/kernel/pull/143)、openEuler [甲](https://gitee.com/openeuler/kernel/issues/I6BWFP) [乙](https://gitee.com/openeuler/kernel/commit/6b4ebaa38760203e2e53878b8fa59bf2be84e760)、[openAnolis](https://gitee.com/anolis/cloud-kernel/blob/devel-6.6/drivers/cpufreq/loongson3-acpi-cpufreq.c)（提交历史与 openEuler 相仿），供参考。
+
 ## 桥片支持情况
 
 | 功能           | 7A1000                  | 7A2000              |
 |----------------|-------------------------|---------------------|
-| RTC（UEFI）[^注一]| OK                      | OK                  |
-| RTC（原生）[^注一]| [6.5][rtc-loongson]     | [6.5][rtc-loongson] |
+| RTC（UEFI）[^rtc-drivers] | OK                      | OK                  |
+| RTC（原生）[^rtc-drivers] | [6.5][rtc-loongson]     | [6.5][rtc-loongson] |
 | GPIO           | [6.4][gpio]             | [6.4][gpio]         |
 | I2C            | [6.3][i2c]              | [6.3][i2c]          |
 | 以太网         | [5.14][dwmac-2k-7a1000] | [WIP][dwmac-7a2000] |
@@ -62,4 +64,4 @@ sidebar_position: 7
 [spi]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=6c7a864007b66e60a3f64858a9555efed408b048
 [iommu]: https://github.com/loongarchlinux/linux/commit/1d26eae35f9a6f9d318112c33a177b3612179b26
 
-[^注一]: 在遵循 UEFI 规范的龙芯系统中，可以通过 UEFI 的标准接口操作 RTC，也可以绕过固件服务直接读写相关寄存器，但硬件资源实际只有一个。原生 RTC 驱动更多是用于非 EFI 的龙芯系统，如以 DT 方式启动的嵌入式设备等。
+[^rtc-drivers]: 在遵循 UEFI 规范的龙芯系统中，可以通过 UEFI 的标准接口操作 RTC，也可以绕过固件服务直接读写相关寄存器，但硬件资源实际只有一个。原生 RTC 驱动更多是用于非 EFI 的龙芯系统，如以 DT 方式启动的嵌入式设备等。
