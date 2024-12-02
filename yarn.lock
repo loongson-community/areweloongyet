@@ -2810,9 +2810,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@easyops-cn/docusaurus-search-local@npm:^0.45.0":
-  version: 0.45.0
-  resolution: "@easyops-cn/docusaurus-search-local@npm:0.45.0"
+"@easyops-cn/docusaurus-search-local@npm:^0.46.1":
+  version: 0.46.1
+  resolution: "@easyops-cn/docusaurus-search-local@npm:0.46.1"
   dependencies:
     "@docusaurus/plugin-content-docs": "npm:^2 || ^3"
     "@docusaurus/theme-translations": "npm:^2 || ^3"
@@ -2823,6 +2823,7 @@ __metadata:
     "@node-rs/jieba": "npm:^1.6.0"
     cheerio: "npm:^1.0.0"
     clsx: "npm:^1.1.1"
+    comlink: "npm:^4.4.2"
     debug: "npm:^4.2.0"
     fs-extra: "npm:^10.0.0"
     klaw-sync: "npm:^6.0.0"
@@ -2834,7 +2835,7 @@ __metadata:
     "@docusaurus/theme-common": ^2 || ^3
     react: ^16.14.0 || ^17 || ^18
     react-dom: ^16.14.0 || 17 || ^18
-  checksum: 10c0/a85d5c15e917df7d954c79beb069462d6af440b4cd2b1108144e2fc1dd8ac0311539d5bdcc545755eeb7e4f182bef7606ab393cc31a6c08f09d566b9731f9372
+  checksum: 10c0/6dc0fe64e53446b04591bf08fa4e7e16fa2c013d559244fded22a15ca687d222016fe20b79b80842850f1740d4fa3dd599f822cce37c1e393f94a464be0fa0c6
   languageName: node
   linkType: hard
 
@@ -5585,7 +5586,7 @@ __metadata:
     "@docusaurus/theme-mermaid": "npm:3.6.3"
     "@docusaurus/tsconfig": "npm:3.6.3"
     "@docusaurus/types": "npm:3.6.3"
-    "@easyops-cn/docusaurus-search-local": "npm:^0.45.0"
+    "@easyops-cn/docusaurus-search-local": "npm:^0.46.1"
     "@eslint/js": "npm:^9.15.0"
     "@jsdevtools/rehype-url-inspector": "npm:^2.0.2"
     "@mdx-js/react": "npm:^3.1.0"
@@ -6301,6 +6302,13 @@ __metadata:
   version: 1.2.0
   resolution: "combine-promises@npm:1.2.0"
   checksum: 10c0/906ebf056006eff93c11548df0415053b6756145dae1f5a89579e743cb15fceeb0604555791321db4fba5072aa39bb4de6547e9cdf14589fe949b33d1613422c
+  languageName: node
+  linkType: hard
+
+"comlink@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "comlink@npm:4.4.2"
+  checksum: 10c0/38aa1f455cf08e94aaa8fc494fd203cc0ef02ece6c21404b7931ce17567e8a72deacddab98aa5650cfd78332ff24c34610586f6fb27fd19dc77e753ed1980deb
   languageName: node
   linkType: hard
 

@@ -27,7 +27,7 @@
     "@docusaurus/theme-common": "3.6.3",
     "@docusaurus/theme-mermaid": "3.6.3",
     "@docusaurus/types": "3.6.3",
-    "@easyops-cn/docusaurus-search-local": "^0.45.0",
+    "@easyops-cn/docusaurus-search-local": "^0.46.1",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.1.0",
     "antd": "^5.22.1",
