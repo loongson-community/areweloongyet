@@ -16,7 +16,7 @@
     "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^5.5.2",
     "@docusaurus/core": "3.6.3",
     "@docusaurus/faster": "3.6.3",
     "@docusaurus/plugin-client-redirects": "3.6.3",
