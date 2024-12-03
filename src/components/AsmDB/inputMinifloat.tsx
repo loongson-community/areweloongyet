@@ -121,10 +121,8 @@ export const InputMinifloat: React.FC<
   const zeroNotes = props.fmt.supportsZero ? (
     <>
       <br />
-      注意：如此处显示的有效数字为 {
-        props.fmt.implicitMantissaOffset
-      } 且指数为 {props.fmt.expBias + props.fmt.apparentExpBiasDelta}，则表示
-      &plusmn;0。
+      注意：如此处显示的有效数字为 {props.fmt.implicitMantissaOffset} 且指数为{' '}
+      {props.fmt.expBias + props.fmt.apparentExpBiasDelta}，则表示 &plusmn;0。
     </>
   ) : (
     <></>
