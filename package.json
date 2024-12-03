@@ -16,7 +16,7 @@
     "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^5.5.2",
     "@docusaurus/core": "3.6.3",
     "@docusaurus/faster": "3.6.3",
     "@docusaurus/plugin-client-redirects": "3.6.3",
@@ -27,10 +27,10 @@
     "@docusaurus/theme-common": "3.6.3",
     "@docusaurus/theme-mermaid": "3.6.3",
     "@docusaurus/types": "3.6.3",
-    "@easyops-cn/docusaurus-search-local": "^0.45.0",
+    "@easyops-cn/docusaurus-search-local": "^0.46.1",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.1.0",
-    "antd": "^5.22.1",
+    "antd": "^5.22.3",
     "browserslist": "^4.24.2",
     "clsx": "^2.1.1",
     "glob": "^11.0.0",
@@ -42,25 +42,25 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^5.3.4",
     "utility-types": "^3.11.0",
-    "yaml": "^2.6.0"
+    "yaml": "^2.6.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.6.3",
     "@docusaurus/tsconfig": "3.6.3",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.16.0",
     "@types/eslint__js": "^8.42.3",
     "@types/glob": "^8.1.0",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.13",
     "@types/mdast": "^4.0.4",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.10.1",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^18.3.12",
     "@types/react-router-dom": "^5.3.3",
-    "eslint": "^9.15.0",
-    "prettier": "^3.3.3",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.1",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.15.0",
+    "typescript-eslint": "^8.17.0",
     "update-browserslist-db": "^1.1.1"
   },
   "resolutions": {
