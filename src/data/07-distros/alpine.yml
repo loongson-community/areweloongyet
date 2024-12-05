@@ -1,0 +1,11 @@
+name: 'Alpine Linux'
+homepageURL: 'https://alpinelinux.org'
+repoURL: 'https://github.com/alpinelinux'
+portingEfforts:
+  - authors: ['Alpine Linux']
+    desc: ''
+    link: 'https://alpinelinux.org/downloads'
+    supportStatus: Released
+    releasedSinceVersion: '3.21.0'
+    goodSinceVersion: '3.21.0'
+    quality: OnPar
