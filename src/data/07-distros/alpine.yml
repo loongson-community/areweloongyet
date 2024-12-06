@@ -4,7 +4,7 @@ repoURL: 'https://github.com/alpinelinux'
 portingEfforts:
   - authors: ['Alpine Linux']
     desc: ''
-    link: 'https://alpinelinux.org/downloads'
+    link: 'https://gitlab.alpinelinux.org/alpine/tsc/-/issues/72'
     supportStatus: Released
     releasedSinceVersion: '3.21.0'
     goodSinceVersion: '3.21.0'
