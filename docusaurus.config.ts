@@ -265,8 +265,12 @@ const config: Config = {
           ],
         },
         {
-          title: '社区资源',
+          title: '第三方维护资源',
           items: [
+            {
+              label: '跨社区协同 issue 页',
+              href: 'https://github.com/loongson-community/discussions/issues',
+            },
             {
               label: '龙芯社区 GitHub',
               href: 'https://github.com/loongson-community',
@@ -287,10 +291,14 @@ const config: Config = {
               label: '百度贴吧龙芯吧',
               href: 'https://tieba.baidu.com/f?kw=%E9%BE%99%E8%8A%AF&ie=utf-8',
             },
+            {
+              label: '龙友会（筹备中）',
+              href: 'https://github.com/loongson-community/meetups',
+            },
           ],
         },
         {
-          title: '企业资源',
+          title: '官方维护资源',
           items: [
             {
               label: '龙芯公司官网',
@@ -299,6 +307,10 @@ const config: Config = {
             {
               label: '龙芯公司官方 GitHub',
               href: 'https://github.com/loongson',
+            },
+            {
+              label: '龙芯爱好者社区',
+              href: 'https://www.loongbbs.cn',
             },
           ],
         },
