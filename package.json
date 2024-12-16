@@ -60,7 +60,7 @@
     "eslint": "^9.16.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.17.0",
+    "typescript-eslint": "^8.18.0",
     "update-browserslist-db": "^1.1.1"
   },
   "resolutions": {
