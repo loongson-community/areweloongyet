@@ -1,5 +1,5 @@
 import { Nodes, PhrasingContent } from 'mdast'
-// import { findAndReplace } from 'mdast-util-find-and-replace'
+import { findAndReplace } from 'mdast-util-find-and-replace'
 
 function produceErhuaMark(): PhrasingContent {
   // this won't work
@@ -16,8 +16,7 @@ function produceErhuaMark(): PhrasingContent {
   }
 }
 
-export default async function plugin() {
-  const { findAndReplace } = await import('mdast-util-find-and-replace')
+export default function plugin() {
   return (tree: Nodes) => {
     findAndReplace(tree, [
       [':儿:', produceErhuaMark],
