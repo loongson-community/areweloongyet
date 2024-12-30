@@ -30,7 +30,7 @@
     "@easyops-cn/docusaurus-search-local": "^0.46.1",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.1.0",
-    "antd": "^5.22.5",
+    "antd": "^5.22.7",
     "browserslist": "^4.24.3",
     "clsx": "^2.1.1",
     "glob": "^11.0.0",
