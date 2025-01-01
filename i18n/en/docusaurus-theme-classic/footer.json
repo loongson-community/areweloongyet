@@ -12,7 +12,7 @@
     "description": "The title of the footer links column with title=企业资源 in the footer"
   },
   "link.item.label.每周一龙": {
-    "message": "This Week in LoongArch",
+    "message": "TWiL newsletter",
     "description": "The label of footer link with label=每周一龙 linking to /newsletter"
   },
   "link.item.label.本站动态": {
@@ -32,7 +32,7 @@
     "description": "The label of footer link with label=Telegram Loongson Group linking to https://t.me/loongson_users"
   },
   "link.item.label.龙芯用户闲聊 Matrix 群": {
-    "message": "Matrix Loongson offtopic room",
+    "message": "Matrix Loongson off-topic room",
     "description": "The label of footer link with label=龙芯用户闲聊 Matrix 群 linking to https://matrix.to/#/%23loongson-users-ot:matrix.org"
   },
   "link.item.label.百度贴吧龙芯吧": {
@@ -52,31 +52,31 @@
     "description": "The footer copyright"
   },
   "link.title.第三方维护资源": {
-    "message": "第三方维护资源",
+    "message": "Third-party resources",
     "description": "The title of the footer links column with title=第三方维护资源 in the footer"
   },
   "link.title.官方维护资源": {
-    "message": "官方维护资源",
+    "message": "Official resources",
     "description": "The title of the footer links column with title=官方维护资源 in the footer"
   },
   "link.item.label.阅读材料": {
-    "message": "阅读材料",
+    "message": "Reads",
     "description": "The label of footer link with label=阅读材料 linking to /docs/intro"
   },
   "link.item.label.汇编速查": {
-    "message": "汇编速查",
+    "message": "AsmDB",
     "description": "The label of footer link with label=汇编速查 linking to /asmdb"
   },
   "link.item.label.跨社区协同 issue 页": {
-    "message": "跨社区协同 issue 页",
+    "message": "Inter-community issue tracker",
     "description": "The label of footer link with label=跨社区协同 issue 页 linking to https://github.com/loongson-community/discussions/issues"
   },
   "link.item.label.龙友会（筹备中）": {
-    "message": "龙友会（筹备中）",
+    "message": "Loong Meetups (WIP)",
     "description": "The label of footer link with label=龙友会（筹备中） linking to https://github.com/loongson-community/meetups"
   },
   "link.item.label.龙芯爱好者社区": {
-    "message": "龙芯爱好者社区",
+    "message": "Loongson Amateurs Community",
     "description": "The label of footer link with label=龙芯爱好者社区 linking to https://www.loongbbs.cn"
   }
 }

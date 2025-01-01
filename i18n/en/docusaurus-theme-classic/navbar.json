@@ -1,6 +1,6 @@
 {
   "logo.alt": {
-    "message": "My Site Logo",
+    "message": "Logo of AREWELOONGYET?",
     "description": "The alt text of navbar logo"
   },
   "item.label.阅读材料": {
@@ -20,7 +20,7 @@
     "description": "Navbar item with label GitHub"
   },
   "item.label.汇编速查": {
-    "message": "汇编速查",
+    "message": "AsmDB",
     "description": "Navbar item with label 汇编速查"
   }
 }

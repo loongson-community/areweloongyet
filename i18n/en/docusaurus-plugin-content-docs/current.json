@@ -4,7 +4,7 @@
     "description": "The label for version current"
   },
   "sidebar.main.category.参与本站开发": {
-    "message": "参与本站开发",
+    "message": "Contributing",
     "description": "The label for category 参与本站开发 in sidebar main"
   }
 }
