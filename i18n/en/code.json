@@ -375,5 +375,27 @@
   "awly.homepage.description": {
     "message": "Your one-stop portal for following LoongArch upstream work",
     "description": "Description of the homepage"
+  },
+  "awly.homepage.slogan": {
+    "message": "ONTHEWAY!",
+    "description": "Slogan of the homepage"
+  },
+  "Linux 开源生态的多数基础组件，其最新版本都已包含 LoongArch 支持了。": {
+    "message": "LoongArch support has entered most parts of the open-source Linux infrastructure."
+  },
+  "尽管龙芯公司仍未公开 LoongArch 手册的其余部分，但大量公开信息如 QEMU、内核适配已将相关指令编码与具体行为尽数披露，手册的缺失已不再能阻碍优化的脚步。": {
+    "message": "Even though the Loongson Corporation has yet to release the remaining volumes of the LoongArch manual, thanks to a wealth of public information such as publicly available QEMU and Linux changes, \"undisclosed\" information such as instruction encoding and behaviors is, in effect, already public. The absence of manuals can no longer hinder people's optimization efforts."
+  },
+  "我们预计将在 2023~2024 看到 LoongArch 新世界生态的突飞猛进，有您的参与会更快些。": {
+    "message": "We expect to see the LoongArch new-world ecosystem evolve rapidly in the 2023-2024 period; it will be even faster with YOU."
+  },
+  "本站由社区建设维护，": {
+    "message": "This site is community-maintained. "
+  },
+  "欢迎来坐坐": {
+    "message": "Welcome aboard"
+  },
+  "！": {
+    "message": "!"
   }
 }
