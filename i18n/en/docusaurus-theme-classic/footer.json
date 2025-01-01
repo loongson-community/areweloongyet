@@ -1,0 +1,82 @@
+{
+  "link.title.站内导航": {
+    "message": "Quick links",
+    "description": "The title of the footer links column with title=站内导航 in the footer"
+  },
+  "link.title.社区资源": {
+    "message": "Community resources",
+    "description": "The title of the footer links column with title=社区资源 in the footer"
+  },
+  "link.title.企业资源": {
+    "message": "Enterprise resources",
+    "description": "The title of the footer links column with title=企业资源 in the footer"
+  },
+  "link.item.label.每周一龙": {
+    "message": "TWiL newsletter",
+    "description": "The label of footer link with label=每周一龙 linking to /newsletter"
+  },
+  "link.item.label.本站动态": {
+    "message": "Site news",
+    "description": "The label of footer link with label=本站动态 linking to /blog"
+  },
+  "link.item.label.龙芯社区 GitHub": {
+    "message": "Loongson Community GitHub",
+    "description": "The label of footer link with label=龙芯社区 GitHub linking to https://github.com/loongson-community"
+  },
+  "link.item.label.LoongArch 非官方论坛": {
+    "message": "LoongArch unofficial forum",
+    "description": "The label of footer link with label=LoongArch 非官方论坛 linking to https://bbs.loongarch.org"
+  },
+  "link.item.label.Telegram Loongson Group": {
+    "message": "Telegram Loongson Group",
+    "description": "The label of footer link with label=Telegram Loongson Group linking to https://t.me/loongson_users"
+  },
+  "link.item.label.龙芯用户闲聊 Matrix 群": {
+    "message": "Matrix Loongson off-topic room",
+    "description": "The label of footer link with label=龙芯用户闲聊 Matrix 群 linking to https://matrix.to/#/%23loongson-users-ot:matrix.org"
+  },
+  "link.item.label.百度贴吧龙芯吧": {
+    "message": "Baidu Tieba",
+    "description": "The label of footer link with label=百度贴吧龙芯吧 linking to https://tieba.baidu.com/f?kw=%E9%BE%99%E8%8A%AF&ie=utf-8"
+  },
+  "link.item.label.龙芯公司官网": {
+    "message": "Loongson Corp. official site",
+    "description": "The label of footer link with label=龙芯公司官网 linking to https://loongson.cn"
+  },
+  "link.item.label.龙芯公司官方 GitHub": {
+    "message": "Loongson official GitHub",
+    "description": "The label of footer link with label=龙芯公司官方 GitHub linking to https://github.com/loongson"
+  },
+  "copyright": {
+    "message": "© 2022-2025 Project contributors. This project is unaffiliated with any for-profit entity.<br />All trademarks referenced herein are property of their respective holders.",
+    "description": "The footer copyright"
+  },
+  "link.title.第三方维护资源": {
+    "message": "Third-party resources",
+    "description": "The title of the footer links column with title=第三方维护资源 in the footer"
+  },
+  "link.title.官方维护资源": {
+    "message": "Official resources",
+    "description": "The title of the footer links column with title=官方维护资源 in the footer"
+  },
+  "link.item.label.阅读材料": {
+    "message": "Reads",
+    "description": "The label of footer link with label=阅读材料 linking to /docs/intro"
+  },
+  "link.item.label.汇编速查": {
+    "message": "AsmDB",
+    "description": "The label of footer link with label=汇编速查 linking to /asmdb"
+  },
+  "link.item.label.跨社区协同 issue 页": {
+    "message": "Inter-community issue tracker",
+    "description": "The label of footer link with label=跨社区协同 issue 页 linking to https://github.com/loongson-community/discussions/issues"
+  },
+  "link.item.label.龙友会（筹备中）": {
+    "message": "Loong Meetups (WIP)",
+    "description": "The label of footer link with label=龙友会（筹备中） linking to https://github.com/loongson-community/meetups"
+  },
+  "link.item.label.龙芯爱好者社区": {
+    "message": "Loongson Amateurs Community",
+    "description": "The label of footer link with label=龙芯爱好者社区 linking to https://www.loongbbs.cn"
+  }
+}

@@ -40,9 +40,12 @@ function runGenerationScript(
 }
 
 export default async function awlyAsmdbPlugin(
-  _ctx: LoadContext,
+  ctx: LoadContext,
   options: PluginOptions,
 ): Promise<Plugin<LoadedContent>> {
+  const lang = ctx.i18n.currentLocale
+  const localePrefix = lang == ctx.i18n.defaultLocale ? '' : `/${lang}`
+
   return {
     name: 'awly-asmdb-plugin',
     async loadContent() {
@@ -57,34 +60,34 @@ export default async function awlyAsmdbPlugin(
     async contentLoaded({ content, actions }) {
       const dataPath = await actions.createData('asmdb.json', content)
       actions.addRoute({
-        path: `/asmdb`,
+        path: `${localePrefix}/asmdb`,
         component: '@site/src/components/AsmDB',
         modules: {
           data: dataPath,
         },
         routes: [
           {
-            path: '/asmdb',
+            path: `${localePrefix}/asmdb`,
             component: '@site/src/components/AsmDB',
             exact: true,
           },
           {
-            path: '/asmdb/encodingSpaceOverview',
+            path: `${localePrefix}/asmdb/encodingSpaceOverview`,
             component: '@site/src/components/AsmDB',
             exact: true,
           },
           {
-            path: '/asmdb/insnExplainer',
+            path: `${localePrefix}/asmdb/insnExplainer`,
             component: '@site/src/components/AsmDB',
             exact: true,
           },
           {
-            path: '/asmdb/insnList',
+            path: `${localePrefix}/asmdb/insnList`,
             component: '@site/src/components/AsmDB',
             exact: true,
           },
           {
-            path: '/asmdb/vldiHelper',
+            path: `${localePrefix}/asmdb/vldiHelper`,
             component: '@site/src/components/AsmDB',
             exact: true,
           },
