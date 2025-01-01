@@ -48,7 +48,7 @@
     "description": "The label of footer link with label=龙芯公司官方 GitHub linking to https://github.com/loongson"
   },
   "copyright": {
-    "message": "© 2022-2023 Project contributors. This project is unaffiliated with Loongson.<br />龙芯®, 龙芯中科®, 龙芯架构®, 龙架构®, Loongson®, LoongArch® etc. are registered trademarks of Loongson Corporation (688047.SH).",
+    "message": "© 2022-2025 Project contributors. This project is unaffiliated with any for-profit entity.<br />All trademarks referenced herein are property of their respective holders.",
     "description": "The footer copyright"
   },
   "link.title.第三方维护资源": {
