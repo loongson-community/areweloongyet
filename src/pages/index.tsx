@@ -9,7 +9,7 @@ import styles from './index.module.css'
 function HomepageHeader() {
   const slogan = translate({
     id: 'awly.homepage.slogan',
-    message: '行则将至！',
+    message: '夕惕若厉！',
     description: 'Slogan of the homepage',
   })
 
@@ -19,17 +19,17 @@ function HomepageHeader() {
         <h1 className="hero__title">{slogan}</h1>
         <p className="hero__subtitle">
           <Translate>
-            Linux 开源生态的多数基础组件，其最新版本都已包含 LoongArch 支持了。
+            不出意外地，2023-2024
+            是龙架构基础生态建设风生水起的两年。在多数的基础设施项目，龙架构支持都已成功并入主线、受到持续维护。
           </Translate>
           <br />
           <Translate>
-            尽管龙芯公司仍未公开 LoongArch 手册的其余部分，但大量公开信息如
-            QEMU、内核适配已将相关指令编码与具体行为尽数披露，手册的缺失已不再能阻碍优化的脚步。
+            然而，外部形势波诡云谲，我们的事业面对着，并且仍将面对更多技术的、非技术的挑战乃至风险：更广阔的使用场景、更多元的用户人群，我们的工作量与困难前无古人。
           </Translate>
           <br />
           <Translate>
-            我们预计将在 2023~2024 看到 LoongArch
-            新世界生态的突飞猛进，有您的参与会更快些。
+            我们认为 2025-2026
+            是关键的转折点。世界瞬息万变，唯有终日乾乾、夕惕若厉；动心忍性，枕戈待旦。与君共勉！
           </Translate>
           <br />
           <Translate>本站由社区建设维护，</Translate>
