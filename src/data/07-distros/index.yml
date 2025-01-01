@@ -1,1 +1,3 @@
-name: '发行版'
+name:
+  en: 'Distributions'
+  zh-Hans: '发行版'
