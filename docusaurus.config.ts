@@ -35,9 +35,48 @@ const commonRehypePlugins = [
   ],
 ]
 
+// i18n workarounds
+// see https://github.com/facebook/docusaurus/issues/4542
+// and https://github.com/facebook/docusaurus/pull/8677
+const defaultLocale = 'zh-Hans'
+process.env.DOCUSAURUS_CURRENT_LOCALE ??= defaultLocale
+if (process.env.DOCUSAURUS_CURRENT_LOCALE == 'undefined') {
+  // this is also happening for some reason...
+  process.env.DOCUSAURUS_CURRENT_LOCALE = defaultLocale
+}
+
+const configStringsTranslations = {
+  en: {
+    title: 'AREWELOONGYET?',
+    tagline: 'Your one-stop portal for following LoongArch upstream work.',
+    logoPath: 'img/logo-en.svg',
+    twilTitle: 'This Week in LoongArch',
+    twilDescription:
+      'This Week in LoongArch (TWiL) is a weekly newsletter covering the latest developments in the LoongArch community, publishing every Monday.',
+    siteNewsTitle: 'Site news',
+    siteNewsDescription:
+      'News on the development and operations of the AREWELOONGYET? site.',
+  },
+  'zh-Hans': {
+    title: '咱龙了吗？',
+    tagline: '一站式了解 LoongArch 的上游生态建设。',
+    logoPath: 'img/logo.svg',
+    twilTitle: '每周一龙',
+    twilDescription:
+      '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
+    siteNewsTitle: '本站动态',
+    siteNewsDescription: '《咱龙了吗？》网站本身的开发、运营动态。',
+  },
+}
+
+const localizeConfigString = (key: string) => {
+  const locale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? defaultLocale
+  return configStringsTranslations[locale][key]
+}
+
 const config: Config = {
-  title: '咱龙了吗？',
-  tagline: '一站式了解 LoongArch 的上游生态建设。',
+  title: localizeConfigString('title'),
+  tagline: localizeConfigString('tagline'),
   url: 'https://areweloongyet.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -55,8 +94,8 @@ const config: Config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans', 'en'],
+    defaultLocale: defaultLocale,
+    locales: [defaultLocale, 'en'],
   },
 
   future: {
@@ -157,9 +196,8 @@ const config: Config = {
         id: 'blog-newsletter',
         routeBasePath: 'newsletter',
         path: './newsletter',
-        blogTitle: '每周一龙',
-        blogDescription:
-          '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
+        blogTitle: localizeConfigString('twilTitle'),
+        blogDescription: localizeConfigString('twilDescription'),
         editUrl:
           'https://github.com/loongson-community/areweloongyet/edit/main',
         beforeDefaultRemarkPlugins: commonBeforeDefaultRemarkPlugins,
@@ -182,8 +220,8 @@ const config: Config = {
           rehypePlugins: commonRehypePlugins,
         },
         blog: {
-          blogTitle: '本站动态',
-          blogDescription: '《咱龙了吗？》网站本身的开发、运营动态。',
+          blogTitle: localizeConfigString('siteNewsTitle'),
+          blogDescription: localizeConfigString('siteNewsDescription'),
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -221,7 +259,7 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: localizeConfigString('logoPath'),
       },
       items: [
         {
