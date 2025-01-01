@@ -20,8 +20,18 @@ export type PluginOptions = {
   sourcePath: string
 }
 
+// looks like { en: 'xxx', 'zh-Hans': 'xxx', ... }
+type I18nString = { [key: string]: string }
+
+type MaybeTranslated = I18nString | string
+
+function localize(x: MaybeTranslated, lang: string): string {
+  if (typeof x === 'string') return x
+  return x[lang]
+}
+
 type CategoryMetadata = {
-  name: string
+  name: MaybeTranslated
 }
 
 type InputAuthor = {
@@ -160,7 +170,10 @@ async function readProjectDef(p: string): Promise<IProject> {
   }
 }
 
-async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
+async function readCategories(
+  sourcePath: string,
+  lang: string,
+): Promise<IProjectCategory[]> {
   const categories: { code: string; name: string; projects: IProject[] }[] = []
   const srcDir = await opendir(sourcePath)
   for await (const dirent of srcDir) {
@@ -182,7 +195,7 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
     const projectDefs = await Promise.all(projectDefPaths.map(readProjectDef))
     categories.push({
       code: dirent.name,
-      name: categoryMetadata.name,
+      name: localize(categoryMetadata.name, lang),
       projects: projectDefs,
     })
   }
@@ -196,15 +209,17 @@ async function readCategories(sourcePath: string): Promise<IProjectCategory[]> {
 }
 
 export default async function awlyDataPlugin(
-  _ctx: LoadContext,
+  ctx: LoadContext,
   options: PluginOptions,
 ): Promise<Plugin<LoadedContent>> {
+  const lang = ctx.i18n.currentLocale
+
   return {
     name: 'awly-data-plugin',
     async loadContent() {
       const [authors, categories] = await Promise.all([
         readAuthors(path.join(options.sourcePath, authorsFilename)),
-        readCategories(options.sourcePath),
+        readCategories(options.sourcePath, lang),
       ])
 
       return {
