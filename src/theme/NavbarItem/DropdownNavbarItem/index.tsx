@@ -1,40 +1,40 @@
-import React, {useState, useRef, useEffect} from 'react';
-import clsx from 'clsx';
+import React, { useState, useRef, useEffect } from 'react'
+import clsx from 'clsx'
 import {
   isRegexpStringMatch,
   useCollapsible,
   Collapsible,
-} from '@docusaurus/theme-common';
-import {isSamePath, useLocalPathname} from '@docusaurus/theme-common/internal';
-import NavbarNavLink from '@theme/NavbarItem/NavbarNavLink';
-import NavbarItem, {type LinkLikeNavbarItemProps} from '@theme/NavbarItem';
+} from '@docusaurus/theme-common'
+import { isSamePath, useLocalPathname } from '@docusaurus/theme-common/internal'
+import NavbarNavLink from '@theme/NavbarItem/NavbarNavLink'
+import NavbarItem, { type LinkLikeNavbarItemProps } from '@theme/NavbarItem'
 import type {
   DesktopOrMobileNavBarItemProps,
   Props,
-} from '@theme/NavbarItem/DropdownNavbarItem';
-import styles from './styles.module.css';
+} from '@theme/NavbarItem/DropdownNavbarItem'
+import styles from './styles.module.css'
 
 function isItemActive(
   item: LinkLikeNavbarItemProps,
   localPathname: string,
 ): boolean {
   if (isSamePath(item.to, localPathname)) {
-    return true;
+    return true
   }
   if (isRegexpStringMatch(item.activeBaseRegex, localPathname)) {
-    return true;
+    return true
   }
   if (item.activeBasePath && localPathname.startsWith(item.activeBasePath)) {
-    return true;
+    return true
   }
-  return false;
+  return false
 }
 
 function containsActiveItems(
   items: readonly LinkLikeNavbarItemProps[],
   localPathname: string,
 ): boolean {
-  return items.some((item) => isItemActive(item, localPathname));
+  return items.some((item) => isItemActive(item, localPathname))
 }
 
 function DropdownNavbarItemDesktop({
@@ -44,8 +44,8 @@ function DropdownNavbarItemDesktop({
   onClick,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [showDropdown, setShowDropdown] = useState(false)
 
   useEffect(() => {
     const handleClickOutside = (
@@ -55,21 +55,21 @@ function DropdownNavbarItemDesktop({
         !dropdownRef.current ||
         dropdownRef.current.contains(event.target as Node)
       ) {
-        return;
+        return
       }
-      setShowDropdown(false);
-    };
+      setShowDropdown(false)
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
-    document.addEventListener('focusin', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    document.addEventListener('focusin', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
-      document.removeEventListener('focusin', handleClickOutside);
-    };
-  }, [dropdownRef]);
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+      document.removeEventListener('focusin', handleClickOutside)
+    }
+  }, [dropdownRef])
 
   return (
     <div
@@ -77,7 +77,8 @@ function DropdownNavbarItemDesktop({
       className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
         'dropdown--right': position === 'right',
         'dropdown--show': showDropdown,
-      })}>
+      })}
+    >
       <NavbarNavLink
         aria-haspopup="true"
         aria-expanded={showDropdown}
@@ -91,10 +92,11 @@ function DropdownNavbarItemDesktop({
         onClick={props.to ? undefined : (e) => e.preventDefault()}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            e.preventDefault();
-            setShowDropdown(!showDropdown);
+            e.preventDefault()
+            setShowDropdown(!showDropdown)
           }
-        }}>
+        }}
+      >
         {props.children ?? props.label}
       </NavbarNavLink>
       <ul className="dropdown__menu">
@@ -108,7 +110,7 @@ function DropdownNavbarItemDesktop({
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
 function DropdownNavbarItemMobile({
@@ -118,25 +120,26 @@ function DropdownNavbarItemMobile({
   onClick,
   ...props
 }: DesktopOrMobileNavBarItemProps) {
-  const localPathname = useLocalPathname();
-  const containsActive = containsActiveItems(items, localPathname);
+  const localPathname = useLocalPathname()
+  const containsActive = containsActiveItems(items, localPathname)
 
-  const {collapsed, toggleCollapsed, setCollapsed} = useCollapsible({
+  const { collapsed, toggleCollapsed, setCollapsed } = useCollapsible({
     initialState: () => !containsActive,
-  });
+  })
 
   // Expand/collapse if any item active after a navigation
   useEffect(() => {
     if (containsActive) {
-      setCollapsed(!containsActive);
+      setCollapsed(!containsActive)
     }
-  }, [localPathname, containsActive, setCollapsed]);
+  }, [localPathname, containsActive, setCollapsed])
 
   return (
     <li
       className={clsx('menu__list-item', {
         'menu__list-item--collapsed': collapsed,
-      })}>
+      })}
+    >
       <NavbarNavLink
         role="button"
         className={clsx(
@@ -146,9 +149,10 @@ function DropdownNavbarItemMobile({
         )}
         {...props}
         onClick={(e) => {
-          e.preventDefault();
-          toggleCollapsed();
-        }}>
+          e.preventDefault()
+          toggleCollapsed()
+        }}
+      >
         {props.children ?? props.label}
       </NavbarNavLink>
       <Collapsible lazy as="ul" className="menu__list" collapsed={collapsed}>
@@ -164,13 +168,13 @@ function DropdownNavbarItemMobile({
         ))}
       </Collapsible>
     </li>
-  );
+  )
 }
 
 export default function DropdownNavbarItem({
   mobile = false,
   ...props
 }: Props): JSX.Element {
-  const Comp = mobile ? DropdownNavbarItemMobile : DropdownNavbarItemDesktop;
-  return <Comp {...props} />;
+  const Comp = mobile ? DropdownNavbarItemMobile : DropdownNavbarItemDesktop
+  return <Comp {...props} />
 }
