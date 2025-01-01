@@ -37,7 +37,7 @@ function containsActiveItems(
   return items.some((item) => isItemActive(item, localPathname))
 }
 
-function DropdownNavbarItemDesktop({
+function ToggleLikeDropdownNavbarItemDesktop({
   items,
   position,
   className,
@@ -113,7 +113,7 @@ function DropdownNavbarItemDesktop({
   )
 }
 
-function DropdownNavbarItemMobile({
+function ToggleLikeDropdownNavbarItemMobile({
   items,
   className,
   position, // Need to destructure position from props so that it doesn't get passed on.
@@ -171,10 +171,12 @@ function DropdownNavbarItemMobile({
   )
 }
 
-export default function DropdownNavbarItem({
+export default function ToggleLikeDropdownNavbarItem({
   mobile = false,
   ...props
 }: Props): JSX.Element {
-  const Comp = mobile ? DropdownNavbarItemMobile : DropdownNavbarItemDesktop
+  const Comp = mobile
+    ? ToggleLikeDropdownNavbarItemMobile
+    : ToggleLikeDropdownNavbarItemDesktop
   return <Comp {...props} />
 }
