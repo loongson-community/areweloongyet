@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 
+import { translate } from '@docusaurus/Translate'
 import Layout from '@theme/Layout'
 import HomepageFeatures from '@site/src/components/HomepageFeatures'
 
@@ -31,8 +32,20 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
+  const homepageTitle = translate({
+    id: 'awly.homepage.title',
+    message: '首页',
+    description: 'Title of the homepage',
+  })
+
+  const homepageDescription = translate({
+    id: 'awly.homepage.description',
+    message: '一站式了解 LoongArch 的上游生态建设',
+    description: 'Description of the homepage',
+  })
+
   return (
-    <Layout title={'首页'} description="一站式了解 LoongArch 的上游生态建设">
+    <Layout title={homepageTitle} description={homepageDescription}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />

@@ -367,5 +367,13 @@
   },
   "如需跟进阅读却无法访问，请自行寻找解决方案。": {
     "message": " You are on your own in case of connectivity problems."
+  },
+  "awly.homepage.title": {
+    "message": "Main page",
+    "description": "Title of the homepage"
+  },
+  "awly.homepage.description": {
+    "message": "Your one-stop portal for following LoongArch upstream work",
+    "description": "Description of the homepage"
   }
 }
