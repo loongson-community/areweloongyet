@@ -273,8 +273,12 @@ const config: Config = {
         { to: '/blog', label: '本站动态', position: 'left' },
         {
           href: 'https://github.com/loongson-community/areweloongyet',
-          label: 'GitHub',
           position: 'right',
+          // use the GitHub icon instead of text for the link (for desktop
+          // displays), to conserve horizontal space
+          // https://github.com/facebook/docusaurus/issues/2634
+          className: 'header--github-link',
+          'aria-label': 'GitHub repository of the website',
         },
         { type: 'localeDropdown', position: 'right' },
       ],
