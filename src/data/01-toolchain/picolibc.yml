@@ -1,0 +1,9 @@
+name: 'picolibc'
+homepageURL: 'https://keithp.com/picolibc/'
+repoURL: 'https://github.com/picolibc/picolibc/'
+portingEfforts:
+  - authors: ['flygoat']
+    desc: ''
+    link: 'https://github.com/picolibc/picolibc/pull/898'
+    supportStatus: WaitingRelease
+    quality: OnPar
