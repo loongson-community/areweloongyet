@@ -213,6 +213,7 @@ export default async function awlyDataPlugin(
   options: PluginOptions,
 ): Promise<Plugin<LoadedContent>> {
   const lang = ctx.i18n.currentLocale
+  const localePrefix = lang == ctx.i18n.defaultLocale ? '' : `/${lang}`
 
   return {
     name: 'awly-data-plugin',
@@ -240,7 +241,7 @@ export default async function awlyDataPlugin(
           JSON.stringify(a),
         )
         addRoute({
-          path: `/porter/${code}`,
+          path: `${localePrefix}/porter/${code}`,
           component: '@site/src/components/AuthorPage',
           modules: {
             data: dataPath,
@@ -257,7 +258,7 @@ export default async function awlyDataPlugin(
             JSON.stringify(proj),
           )
           addRoute({
-            path: `/project/${proj.code}`,
+            path: `${localePrefix}/project/${proj.code}`,
             component: '@site/src/components/ProjectPage',
             modules: {
               data: dataPath,
