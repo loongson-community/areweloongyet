@@ -10,7 +10,7 @@ import NavbarNavLink from '@theme/NavbarItem/NavbarNavLink'
 import NavbarItem, { type LinkLikeNavbarItemProps } from '@theme/NavbarItem'
 import type {
   DesktopOrMobileNavBarItemProps,
-  Props,
+  Props as DropdownNavbarItemProps,
 } from '@theme/NavbarItem/DropdownNavbarItem'
 import styles from './styles.module.css'
 
@@ -37,13 +37,23 @@ function containsActiveItems(
   return items.some((item) => isItemActive(item, localPathname))
 }
 
+interface DesktopOrMobileNavBarItemPropsWithIcon
+  extends DesktopOrMobileNavBarItemProps {
+  icon?: JSX.Element
+}
+
+interface Props extends DropdownNavbarItemProps {
+  icon?: JSX.Element
+}
+
 function ToggleLikeDropdownNavbarItemDesktop({
   items,
+  icon,
   position,
   className,
   onClick,
   ...props
-}: DesktopOrMobileNavBarItemProps) {
+}: DesktopOrMobileNavBarItemPropsWithIcon) {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [showDropdown, setShowDropdown] = useState(false)
 
@@ -74,10 +84,16 @@ function ToggleLikeDropdownNavbarItemDesktop({
   return (
     <div
       ref={dropdownRef}
-      className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
-        'dropdown--right': position === 'right',
-        'dropdown--show': showDropdown,
-      })}
+      className={clsx(
+        'navbar__item',
+        'dropdown',
+        'dropdown--hoverable',
+        'toggleLikeDropdown',
+        {
+          'dropdown--right': position === 'right',
+          'dropdown--show': showDropdown,
+        },
+      )}
     >
       <NavbarNavLink
         aria-haspopup="true"
@@ -89,6 +105,7 @@ function ToggleLikeDropdownNavbarItemDesktop({
         href={props.to ? undefined : '#'}
         className={clsx('navbar__link', className)}
         {...props}
+        label={icon}
         onClick={props.to ? undefined : (e) => e.preventDefault()}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -115,11 +132,12 @@ function ToggleLikeDropdownNavbarItemDesktop({
 
 function ToggleLikeDropdownNavbarItemMobile({
   items,
+  icon,
   className,
   position, // Need to destructure position from props so that it doesn't get passed on.
   onClick,
   ...props
-}: DesktopOrMobileNavBarItemProps) {
+}: DesktopOrMobileNavBarItemPropsWithIcon) {
   const localPathname = useLocalPathname()
   const containsActive = containsActiveItems(items, localPathname)
 
@@ -148,6 +166,12 @@ function ToggleLikeDropdownNavbarItemMobile({
           className,
         )}
         {...props}
+        label={
+          <>
+            {icon}
+            {props.label}
+          </>
+        }
         onClick={(e) => {
           e.preventDefault()
           toggleCollapsed()

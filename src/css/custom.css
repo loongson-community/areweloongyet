@@ -184,3 +184,34 @@ em.cjk {
     background-color: var(--ifm-navbar-link-color);
   }
 }
+
+/* for ToggleLikeDropdownNavbarItem */
+/* dropdown, but looking like a toggle when non-mobile */
+
+@media screen and (min-width: 996px) {
+  .toggleLikeDropdown {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    margin-right: 4px;
+    border-radius: 50%;
+    transition: background var(--ifm-transition-fast);
+  }
+
+  .toggleLikeDropdown:hover {
+    background: var(--ifm-color-emphasis-200);
+  }
+
+  /* no dropdown arrow for the child <a> for less horizontal space */
+  .toggleLikeDropdown > .navbar__link::after {
+    display: none;
+  }
+
+  .toggleLikeDropdown > .navbar__link:hover {
+    color: inherit;
+  }
+}

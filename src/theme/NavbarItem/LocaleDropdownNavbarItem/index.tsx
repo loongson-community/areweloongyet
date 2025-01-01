@@ -2,12 +2,13 @@ import React from 'react'
 import clsx from 'clsx'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import { useAlternatePageUtils } from '@docusaurus/theme-common/internal'
+import { translate } from '@docusaurus/Translate'
 import { useLocation } from '@docusaurus/router'
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem'
 import IconLanguage from '@theme/Icon/Language'
 import type { LinkLikeNavbarItemProps } from '@theme/NavbarItem'
 import type { Props } from '@theme/NavbarItem/LocaleDropdownNavbarItem'
 
+import ToggleLikeDropdownNavbarItem from '../ToggleLikeDropdownNavbarItem'
 import styles from './styles.module.css'
 
 export default function LocaleDropdownNavbarItem({
@@ -51,18 +52,22 @@ export default function LocaleDropdownNavbarItem({
 
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter]
 
-  // swizzle modification: the label is removed for the item to take less
-  // horizontal space
+  // Mobile is handled a bit differently
+  const dropdownLabel = mobile
+    ? translate({
+        message: 'Languages',
+        id: 'theme.navbar.mobileLanguageDropdown.label',
+        description: 'The label for the mobile language switcher dropdown',
+      })
+    : localeConfigs[currentLocale]!.label
 
   return (
-    <DropdownNavbarItem
+    <ToggleLikeDropdownNavbarItem
       {...props}
       mobile={mobile}
       className={clsx(styles.awlyLocaleDropdown, props.className)}
-      label={
-        <IconLanguage className={styles.iconLanguage} />
-        // swizzle modification: removed label
-      }
+      icon={<IconLanguage className={styles.iconLanguage} />}
+      label={dropdownLabel}
       items={items}
     />
   )
