@@ -100,6 +100,9 @@ h6 {
   font-family: var(--ifm-font-family-base);
   font-style: normal;
   font-size: 1rem;
+  /* conserve horizontal space */
+  /* some padding is already reserved by the navbarSearchContainer */
+  margin-left: 0 !important;
 }
 
 .navbar__link {
