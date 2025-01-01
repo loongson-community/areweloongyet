@@ -1,4 +1,10 @@
+/* swizzle modification: make it look much like a toggle button */
 .iconLanguage {
-  vertical-align: text-bottom;
-  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+}
+
+/* swizzle modification: no dropdown arrow for less horizontal space */
+.awlyLocaleDropdown::after {
+  display: none !important;
 }
