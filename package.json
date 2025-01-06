@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
-    "@docusaurus/core": "3.6.3",
+    "@docusaurus/core": "3.7.0",
     "@docusaurus/faster": "3.6.3",
     "@docusaurus/plugin-client-redirects": "3.6.3",
     "@docusaurus/plugin-content-blog": "3.6.3",
