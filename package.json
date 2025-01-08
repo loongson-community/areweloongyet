@@ -17,17 +17,17 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
-    "@docusaurus/core": "3.6.3",
-    "@docusaurus/faster": "3.6.3",
-    "@docusaurus/plugin-client-redirects": "3.6.3",
-    "@docusaurus/plugin-content-blog": "3.6.3",
-    "@docusaurus/plugin-content-docs": "3.6.3",
-    "@docusaurus/preset-classic": "3.6.3",
-    "@docusaurus/theme-classic": "3.6.3",
-    "@docusaurus/theme-common": "3.6.3",
-    "@docusaurus/theme-mermaid": "3.6.3",
-    "@docusaurus/types": "3.6.3",
-    "@easyops-cn/docusaurus-search-local": "^0.46.1",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/faster": "3.7.0",
+    "@docusaurus/plugin-client-redirects": "3.7.0",
+    "@docusaurus/plugin-content-blog": "3.7.0",
+    "@docusaurus/plugin-content-docs": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/theme-classic": "3.7.0",
+    "@docusaurus/theme-common": "3.7.0",
+    "@docusaurus/theme-mermaid": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "@easyops-cn/docusaurus-search-local": "^0.47.0",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.1.0",
     "antd": "^5.22.7",
@@ -45,8 +45,8 @@
     "yaml": "^2.6.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.6.3",
-    "@docusaurus/tsconfig": "3.6.3",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
     "@eslint/js": "^9.17.0",
     "@types/eslint__js": "^8.42.3",
     "@types/glob": "^8.1.0",
@@ -64,10 +64,10 @@
     "update-browserslist-db": "^1.1.1"
   },
   "resolutions": {
-    "@docusaurus/plugin-content-docs": "3.6.3",
-    "@docusaurus/theme-translations": "3.6.3",
-    "@docusaurus/utils-common": "3.6.3",
-    "@docusaurus/utils-validation": "3.6.3"
+    "@docusaurus/plugin-content-docs": "3.7.0",
+    "@docusaurus/theme-translations": "3.7.0",
+    "@docusaurus/utils-common": "3.7.0",
+    "@docusaurus/utils-validation": "3.7.0"
   },
   "browserslist": {
     "production": [
