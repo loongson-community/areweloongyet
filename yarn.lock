@@ -4759,10 +4759,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.17.13":
-  version: 4.17.13
-  resolution: "@types/lodash@npm:4.17.13"
-  checksum: 10c0/c3d0b7efe7933ac0369b99f2f7bff9240d960680fdb74b41ed4bd1b3ca60cca1e31fe4046d9abbde778f941a41bc2a75eb629abf8659fa6c27b66efbbb0802a9
+"@types/lodash@npm:^4.17.14":
+  version: 4.17.14
+  resolution: "@types/lodash@npm:4.17.14"
+  checksum: 10c0/343c6f722e0b39969036a885ad5aad6578479ead83987128c9b994e6b7f2fb9808244d802d4d332396bb09096f720a6c7060de16a492f5460e06a44560360322
   languageName: node
   linkType: hard
 
@@ -5601,7 +5601,7 @@ __metadata:
     "@types/eslint__js": "npm:^8.42.3"
     "@types/glob": "npm:^8.1.0"
     "@types/js-yaml": "npm:^4.0.9"
-    "@types/lodash": "npm:^4.17.13"
+    "@types/lodash": "npm:^4.17.14"
     "@types/mdast": "npm:^4.0.4"
     "@types/node": "npm:^22.10.2"
     "@types/prismjs": "npm:^1.26.5"
@@ -5624,7 +5624,7 @@ __metadata:
     typescript-eslint: "npm:^8.18.2"
     update-browserslist-db: "npm:^1.1.1"
     utility-types: "npm:^3.11.0"
-    yaml: "npm:^2.6.1"
+    yaml: "npm:^2.7.0"
   languageName: unknown
   linkType: soft
 
@@ -16223,12 +16223,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "yaml@npm:2.6.1"
+"yaml@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "yaml@npm:2.7.0"
   bin:
     yaml: bin.mjs
-  checksum: 10c0/aebf07f61c72b38c74d2b60c3a3ccf89ee4da45bcd94b2bfb7899ba07a5257625a7c9f717c65a6fc511563d48001e01deb1d9e55f0133f3e2edf86039c8c1be7
+  checksum: 10c0/886a7d2abbd70704b79f1d2d05fe9fb0aa63aefb86e1cb9991837dced65193d300f5554747a872b4b10ae9a12bc5d5327e4d04205f70336e863e35e89d8f4ea9
   languageName: node
   linkType: hard
 
