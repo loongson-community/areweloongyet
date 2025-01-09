@@ -200,10 +200,17 @@ As LoongArch is the most recently introduced architecture in the Linux kernel, a
 
 System Call Name | Number
 ------------|-----
-`newfstatat` | 79
-`fstat`      | 80
 `getrlimit`  | 163
 `setrlimit`  | 164
+
+And, two system calls didn't exist in early NW kernel versions, but they
+have been reintroduced in 6.11 or newer, 6.10.6 or newer 6.10 ve-rsions,
+6.6.47 or newer 6.6 versions, and 6.1.106 or newer 6.10 versions:
+
+System Call Name | Number
+------------|-----
+`newfstatat` | 79
+`fstat`      | 80
 
 These compatibility issues can be resolved by directly implementing the deprecated system calls in the new-world kernel.
 
@@ -534,7 +541,7 @@ In glibc 2.38, all `*stat*` functions check at compile time whether the kernel p
 
 For Chromium-based browsers and Electron-based applications in the OW, Chromium's seccomp sandbox mechanism [returns](https://chromium.googlesource.com/chromium/src/sandbox/+/7462a4fd179376882292be2381a22df6819041c7%5E%21) an `ENOSYS` error for `statx`, expecting the process to fall back to `fstat` or `newfstatat`. This is because [seccomp](https://lwn.net/Articles/799557/) cannot inspect the contents behind system call pointer parameters. Chromium's sandbox rule requires programs to operate only on already opened fds and not access any system paths. Therefore, it only allows `fstat` (which doesn't exist in the NW kernel) and uses a `SIGSYS` hook to [intercept](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` and rewrite it as `fstat`.
 
-To ensure these programs run correctly, the behavior of the aforementioned functions needs to be adjusted to use `fstat` or `newfstatat` when `statx` returns `ENOSYS`. Additionally, the NW kernel needs to implement `fstat` and `newfstatat`.
+To ensure these programs run correctly, the behavior of the aforementioned functions needs to be adjusted to use `fstat` or `newfstatat` when `statx` returns `ENOSYS`. Additionally, `fstat` and `newfstatat` need to be implemented for the NW kernel unless it's already recent enough to support them out of the box.
 
 The following exported functions in glibc involve `fstat` and `newfstatat`, requiring additional compatibility handling for Chromium's sandbox mechanism, which has not yet adapted to `statx`:
 

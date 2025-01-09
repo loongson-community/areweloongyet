@@ -225,10 +225,17 @@ LoongArch 是 Linux 内核最新引入的架构，因此决定不再提供一些
 
 系统调用名称 | 编号
 ------------|-----
-`newfstatat` | 79
-`fstat`      | 80
 `getrlimit`  | 163
 `setrlimit`  | 164
+
+另有两个系统调用在早期的新世界内核不存在，而在 6.11 及更新版本，
+6.10.6 及更新的 6.10 版本，6.6.47 及更新的 6.6 版本，
+以及 6.1.106 及更新的 6.1 版本中重新加入：
+
+系统调用名称 | 编号
+------------|-----
+`newfstatat` | 79
+`fstat`      | 80
 
 可以通过直接补充上述系统调用来实现这一部分的兼容。
 
@@ -711,7 +718,7 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 因此只能放行（在新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
 
 为了能让这部分程序正常运行，需要调整上述函数的行为，当 `statx` 返回 `ENOSYS` 时，
-改为使用 `fstat` 或 `newfstatat`；同时，需要在新世界的内核中补充 `fstat` 和 `newfstatat` 的实现。
+改为使用 `fstat` 或 `newfstatat`；同时，如果新世界的内核版本较低，还需要在新世界的内核中补充 `fstat` 和 `newfstatat` 的实现。
 
 glibc 中下列导出函数涉及 `fstat` 和 `newfstatat`，为兼容目前尚未适配 `statx` 的 Chromium 的沙箱机制，需要额外的兼容性处理：
 
