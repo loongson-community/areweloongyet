@@ -562,6 +562,9 @@ Additionally, the following compatibility symbols provided for glibc versions pr
 - `___lxstat64`
 - `___xstat64`
 
+For glibc 2.41, the latest kernel release at the time of the freeze is 6.12 for which the `fstat` and `newfstatat` system calls have been already reintroduced.  But the developers have deliberately removed them from the shipped system call list in order to make the glibc build compatible with older kernels.  In theory, the system calls only need to be removed from the list if the value of the `--enable-kernel` option, i.e. the smallest version of the
+Linux kernel the generated library is expected to support, is lower than 6.11.  But the developers failed to build a consensus to do so.  Thus it still emits system calls like glibc 2.38, and the same compatibility handling is needed.
+
 #### Miscellaneous
 
 The new-world system provides both `clone3` and `clone`, while the old-world system only provides `clone`.
