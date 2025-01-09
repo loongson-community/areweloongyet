@@ -704,11 +704,12 @@ glibc 提供了两个函数，可以被用于注册信号处理函数，这两�
 在操作对象上，`statx` 与 `newfstatat` 是一致的，但是可以按需返回更多的信息。因此，在功能上，
 `statx` 是 `fstat` 和 `newfstatat` 的超集，并取代了这两个系统调用。
 
-在 2.38 的 glibc 中，所有 `*stat*` 函数会在编译期通过宏指令检查内核是否提供了 `fstat` 或 `newfstatat` 的定义，
-如果没有，那么这些函数会调用 `statx`[^7] 并负责转换数据结构。这意味着，与旧世界相比，这些 `*stat*` 函数对外呈现的行为是不变的，
+在 2.38 版本的 glibc 中，所有 `*stat*` 函数会在编译期通过预处理指令检查该版本 glibc 技术状态冻结时最新发布的内核版本[^7] (对于 glibc-2.38 是 6.3 版本) 是否提供了 `fstat` 或 `newfstatat` 的定义。
+如果没有，那么这些函数会调用 `statx`[^8] 并负责转换数据结构。这意味着，与旧世界相比，这些 `*stat*` 函数对外呈现的行为是不变的，
 新旧世界的函数是二进制兼容的。本节会着重讨论其向内核发出系统调用的行为区别。
 
-[^7]: 这些函数最终会调用 [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
+[^7]: 具体来说，预处理指令检查随同 glibc 源代码提供的一份该版本内核的系统调用列表，而不是检查在构建时使用的内核头文件；因此，即使在构建 glibc-2.38 时使用了 6.11 或更新版本内核的头文件，检查结果依旧是 `fstat` 和 `newfstatat` “不存在”
+[^8]: 这些函数最终会调用 [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
 
 对于旧世界上基于 Chromium 的浏览器和基于 Electron 的应用程序而言，Chromium 基于 seccomp 的沙箱机制会针对 `statx`
 [返回](https://chromium.googlesource.com/chromium/src/sandbox/+/7462a4fd179376882292be2381a22df6819041c7%5E%21)
