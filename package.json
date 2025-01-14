@@ -61,7 +61,7 @@
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.1",
-    "update-browserslist-db": "^1.1.1"
+    "update-browserslist-db": "^1.1.2"
   },
   "resolutions": {
     "@docusaurus/plugin-content-docs": "3.7.0",
