@@ -5537,9 +5537,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.23.1":
-  version: 5.23.1
-  resolution: "antd@npm:5.23.1"
+"antd@npm:^5.23.2":
+  version: 5.23.2
+  resolution: "antd@npm:5.23.2"
   dependencies:
     "@ant-design/colors": "npm:^7.2.0"
     "@ant-design/cssinjs": "npm:^1.22.0"
@@ -5576,7 +5576,7 @@ __metadata:
     rc-rate: "npm:~2.13.0"
     rc-resize-observer: "npm:^1.4.3"
     rc-segmented: "npm:~2.7.0"
-    rc-select: "npm:~14.16.5"
+    rc-select: "npm:~14.16.6"
     rc-slider: "npm:~11.1.8"
     rc-steps: "npm:~6.0.1"
     rc-switch: "npm:~4.1.0"
@@ -5593,7 +5593,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/3bea4ced54161ff6ffdd4f5f2bea2bbeced6197d5c836b5427a21a96d0c9b7717d16baf49e88ec966ed3e181e7ff0a71819c71d99e1ba2ee60939aeaeacc03d8
+  checksum: 10c0/c74ecb9b6624aa5c3fa15dc5980532342c1c7c875ba77d1a7f64497a706559ff7e9d56c403f90afc1baf1a51e15b3a6743eea7b638631f85e737b564aa7a0c86
   languageName: node
   linkType: hard
 
@@ -5637,7 +5637,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.5"
     "@types/react": "npm:^18.3.12"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.23.1"
+    antd: "npm:^5.23.2"
     browserslist: "npm:^4.24.4"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.18.0"
@@ -13623,9 +13623,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-select@npm:~14.16.5":
-  version: 14.16.5
-  resolution: "rc-select@npm:14.16.5"
+"rc-select@npm:~14.16.6":
+  version: 14.16.6
+  resolution: "rc-select@npm:14.16.6"
   dependencies:
     "@babel/runtime": "npm:^7.10.1"
     "@rc-component/trigger": "npm:^2.1.1"
@@ -13637,7 +13637,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: 10c0/de03c9397cb7d3f8e317389deb933ab91988266e72d13b4bcf27bf94512dc83b9747102e8db6f84e0be202c3332e105338a962ce180943e6fd7b02cd034d1cdf
+  checksum: 10c0/a0aa16e611bfe48bc26612a95189a33e7bed38f12a1c41f34b74778b5d83437d74f7b0b304ce27eda2f5797b330f35fc73f1ddc3e85efff56a3089da22a0a3bf
   languageName: node
   linkType: hard
 
