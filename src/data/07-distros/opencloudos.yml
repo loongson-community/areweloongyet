@@ -1,6 +1,0 @@
-name: 'OpenCloudOS'
-homepageURL: 'https://www.opencloudos.org'
-repoURL: 'https://gitee.com/OpenCloudOS'
-# Press-release materials mention LoongArch but that "port" seems to be entirely
-# vaporware: absent in repos, no mention in actual release plans, etc.
-portingEfforts: []
