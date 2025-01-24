@@ -7,20 +7,6 @@
 
 ---
 
-## Construction Progress
-
-* [x] Domain
-* [x] Visual design
-* [x] Basic structure
-    - [x] Key software
-    - [x] Distros
-    - [ ] Learning materials (external links)
-    - [x] Community (external links)
-    - [x] Homepage
-    - [ ] I18n
-* [x] GHA workflow
-* [x] Contributor guide
-
 ### License
 
 Content inside this repo is licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
