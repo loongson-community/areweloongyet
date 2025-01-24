@@ -1,0 +1,11 @@
+name: 'OpenCloudOS Stream'
+homepageURL: 'https://www.opencloudos.org'
+repoURL: 'https://gitee.com/opencloudos-stream'
+portingEfforts:
+  - authors: []
+    desc: ''
+    link: ''
+    supportStatus: Released
+    releasedSinceVersion: '23'
+    goodSinceVersion: '23'
+    quality: OnPar

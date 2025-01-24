@@ -1,0 +1,6 @@
+name: 'OpenCloudOS L3'
+homepageURL: 'https://www.opencloudos.org'
+repoURL: 'https://gitee.com/OpenCloudOS'
+# Press-release materials mention LoongArch but that "port" seems to be
+# "Stream" ("L1" in OpenCloudOS-speak) -only for now.
+portingEfforts: []
