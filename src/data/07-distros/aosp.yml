@@ -1,0 +1,11 @@
+name: 'Android (AOSP)'
+homepageURL: 'https://source.android.com'
+repoURL: 'https://cs.android.com/android/platform/superproject/main'
+portingEfforts:
+  - authors: ['loongson']
+    desc: 'AOSP 15 的移植采用新世界 ABI，目前可以成功到达开机动画界面为止'
+    link: 'https://github.com/android-la64'
+    supportStatus: WIP
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
