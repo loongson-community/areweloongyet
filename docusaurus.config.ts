@@ -188,7 +188,12 @@ const config: Config = {
             from: '/newsletter/this-week-in-loongarch-51',
           },
 
-	  // these months in loongarch 52 is TWiL 52~83
+          // these months in loongarch 52 is split into multiple volumes
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/these-months-in-loongarch-52-vol-1',
+          },
+          // these months in loongarch 52 is TWiL 52~83
           {
             to: '/newsletter/these-months-in-loongarch-52',
             from: '/newsletter/this-week-in-loongarch-52',
