@@ -187,6 +187,140 @@ const config: Config = {
             to: '/newsletter/these-weeks-in-loongarch-51',
             from: '/newsletter/this-week-in-loongarch-51',
           },
+
+	  // these months in loongarch 52 is TWiL 52~83
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-52',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-53',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-54',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-55',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-56',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-57',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-58',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-59',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-60',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-61',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-62',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-63',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-64',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-65',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-66',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-67',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-68',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-69',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-70',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-71',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-72',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-73',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-74',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-75',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-76',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-77',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-78',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-79',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-80',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-81',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-82',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-83',
+          },
+          {
+            to: '/newsletter/these-months-in-loongarch-52',
+            from: '/newsletter/this-week-in-loongarch-84',
+          },
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
