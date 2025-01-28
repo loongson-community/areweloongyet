@@ -104,10 +104,10 @@ The old-world UEFI firmware comes in two versions, distinguished by their BPI st
 
 The old-world and new-world firmware also differ in how they pass essential boot information to the operating system. The new-world firmware directly passes the UEFI system table to the OS. The old-world firmware, following its MIPS-based Loongson predecessors, additionally passes a Loongson-specific "BPI" structure (`struct bootparamsinterface`, known as `struct boot_params` in Loongnix Linux source code, essentially the same thing): During boot, OW GRUB first checks for the presence of a BPI data structure in the UEFI system table. If found, indicating OW firmware, it passes the BPI structure to the OW kernel; if not found, indicating NW firmware, it passes the UEFI system table to the OW kernel instead.
 
-再具体一些，控制权从固件交出之后，早期引导流程的差异见以下示意图。
+More specifically, after the firmware hands over control, the early boot process differences are illustrated in the following diagram.
 
-:::info 图例
-实线的边表示过程调用。有文字注解的虚线边表示数据流动，无文字注解的虚线边则表示有所简化的过程调用。
+:::info Legend
+Solid edges represent function calls. Dashed edges with annotations represent data flow, while dashed edges without annotations represent simplified function calls.
 :::
 
 ```mermaid
@@ -190,7 +190,7 @@ This combination of boot protocols has not been reflected in the above descripti
 The ABI framework for system calls is consistent between OW and NW kernels. This includes:
 - The method of making system calls (via the `syscall 0` instruction)
 - System call numbers
-- Register allocation for parameters and return values 
+- Register allocation for parameters and return values
 
 Most system call numbers are identical between the worlds, and the definitions of structures accepted by most system calls are also the same. This section covers the differences that cause NW incompatibility with OW system calls.
 
@@ -310,7 +310,7 @@ Offset | Member | Length | Notes
 268 | (padding) | 4
 272
 
-LSX 扩展指令集，`magic` = `0x53580001`
+LSX extension instruction set, `magic` = `0x53580001`
 
 Offset | Member | Length | Notes
 -------|------|-----|-----
@@ -330,7 +330,7 @@ Offset | Member | Length | Notes
 1036 | (padding) | 4
 1040
 
-LBT 扩展指令集，`magic` = `0x42540001`
+LBT extension instruction set, `magic` = `0x42540001`
 
 Offset | Member | Length | Notes
 -------|------|-----|-----
@@ -392,106 +392,53 @@ For compatibility, the isolation-based approach must include a complete set of d
 
 The hybrid approach, conversely, leverages the identical calling conventions between OW and NW by providing a modified glibc. This glibc provides multiple symbol versions, allowing both OW programs and NW dynamic libraries to link with it simultaneously. This approach mixes OW and NW environments and doesn't require a complete set of OW dynamic libraries, instead utilizing NW libraries directly. This saves storage space and avoids completeness concerns regarding included libraries. However, the hybrid approach requires complex glibc modifications. Additionally, it may face challenges in correctly identifying whether data structures are NW or OW versions, potentially leading to misinterpretation issues.
 
-### glibc 符号版本
+### glibc Symbol Versioning
 
-众所周知，glibc 具有相当良好的兼容性。这是通过符号版本（Symbol Versioning）来实现的。
-具体而言 glibc 中所有的符号都相应地被分配了一个符号引入时的版本号。如果一个符号的 ABI 发生了变化，
-那么则会引入同名符号的新版本，而旧版本的符号则会被保留（实现可能会被替换为兼容的实现）。这个版本号是一个字符串，
-在动态链接的过程中，只有版本号相同的符号才会被链接。这样，即使 glibc 的 ABI 发生了变化，
-由于和旧版本 glibc 编译链接产生的可执行程序中的符号版本号是旧版本的，所以这个可执行程序在新版本 glibc 上运行时，
-也会使用旧版本的符号，从而保证了兼容性。glibc 的符号名称和关联的版本定义，位于其各目录的 `Versions` 文件中。
-例如 [`io/Versions`](https://elixir.bootlin.com/glibc/glibc-2.38/source/io/Versions)。在下文中，
-我们称在 `Versions` 文件中定义的符号版本号为“源码版本号”。从这个定义可知，一个符号的源码版本号是与架构无关的。
-与源码版本号相区别，在编译生成的二进制 glibc 库文件中定义的符号版本号，我们称之为“二进制版本号”。
-这个版本号会在编译链接其它可执行程序时被写入到可执行程序的符号表中，同时也是动态链接器在加载可执行程序时用来检查符号版本的版本号。
-在类似 i386 这样的架构上，一个符号的源码版本号和二进制版本号是一致的。但是，这并非对所有架构都成立。
+As is well known, glibc has excellent compatibility, achieved through symbol versioning. Specifically, all symbols in glibc are assigned a version number when introduced. If a symbol's ABI changes, a new version of the symbol is introduced, while the old version is retained (though its implementation may be replaced with a compatible one). This version number is a string, and during dynamic linking, only symbols with matching version numbers are linked. Thus, even if the ABI of glibc changes, executables linked with older versions of glibc will use the old version of the symbols when running on newer glibc, ensuring compatibility. The symbol names and their associated versions are defined in the `Versions` files in each directory of glibc, such as [`io/Versions`](https://elixir.bootlin.com/glibc/glibc-2.38/source/io/Versions). In the following text, we refer to the version numbers defined in the `Versions` files as "source version numbers." From this definition, it is clear that a symbol's source version number is architecture-independent. In contrast, the version numbers defined in the compiled binary glibc library files are referred to as "binary version numbers." This version number is written into the symbol table of executables during compilation and linking, and is also used by the dynamic linker to check symbol versions when loading executables. On architectures like i386, a symbol's source version number and binary version number are the same. However, this is not true for all architecture.
 
-我们可以注意到，很多符号都是在最早的 2.0 版本中就定义了的，但是并非所有架构都是从 2.0 版本开始支持的。
-例如 riscv64 即是在 2.27 版本中才开始支持的。那么对于 riscv64 架构，
-是不可能存在与 2.26 或更早版本的 glibc 编译链接的程序的。这意味着，如果有符号在 2.0 至 2.26 版本之间改变了 ABI，
-那么这个符号的旧版本就没有存在的必要了。glibc 对该问题的处理方式是，定义了每一个架构的“纪元版本号”，
-即该架构引入时所在的 glibc 版本号。对于所有的符号，如果其源码版本号小于该架构的纪元版本号，
-那么在该架构上编译出来的 glibc 中，二进制版本号将会被设置为纪元版本号；如果有多个小于纪元版本号的源码版本号，
-则仅编译最新的那一个，并将其二进制版本号设置为纪元版本号。
+We can observe that many symbols were defined as early as version 2.0, but not all architectures have been supported since version 2.0. For example, riscv64 was only supported starting from version 2.27. Therefore, it is impossible for programs compiled and linked with glibc 2.26 or earlier to exist for the riscv64 architecture. This means that if a symbol's ABI changed between versions 2.0 and 2.26, the old version of that symbol is unnecessary. glibc addresses this issue by defining an "epoch version number" for each architecture, which is the glibc version number when the architecture was introduced. For all symbols, if their source version number is less than the architecture's epoch version number, the binary version number in the compiled glibc will be set to the epoch version number. If there are multiple source version numbers less than the epoch version number, only the latest one is compiled, and its binary version number is set to the epoch version number.
 
-例如：`setrlimit` 有两个源码版本，分别是 `GLIBC_2.0` 和 `GLIBC_2.2`，而 riscv64 的纪元版本号是 2.27，
-那么在 riscv64 上编译出来的 glibc 中，`setrlimit` 的二进制版本号将会被设置为 `GLIBC_2.27`，
-其实际内容是 `GLIBC_2.2` 版本的符号。假若未来 glibc 2.50 引入了一个新的 `setrlimit` 的源码版本 `GLIBC_2.50`，
-那么在 riscv64 上编译出来的 glibc 中，`setrlimit` 将会存在两个二进制版本号，分别是 `GLIBC_2.27` 和 `GLIBC_2.50`。
+For example, `setrlimit` has two source versions, `GLIBC_2.0` and `GLIBC_2.2`, while the epoch version for riscv64 is 2.27. Therefore, in glibc compiled for riscv64, the binary version of `setrlimit` will be set to `GLIBC_2.27`, with the actual content being the `GLIBC_2.2` version of the symbol. If a new source version `GLIBC_2.50` is introduced in glibc 2.50, then in glibc compiled for riscv64, `setrlimit` will have two binary versions: `GLIBC_2.27` and `GLIBC_2.50`.
 
-新旧世界在符号版本方面存在差异的来源是，旧世界的龙架构的纪元版本号是 2.27[^a1]，而新世界的是 2.36。
-由于 glibc 中的大多数符号的源码版本号都是从 2.0 开始的，因此在旧世界中，
-glibc 大多数符号的二进制版本号就是 `GLIBC_2.27`；而新世界中，相应地，大多数符号的二进制版本号是 `GLIBC_2.36`：
-这样，即使通过修改二进制可执行程序，将其程序解释器强行修改为另一个世界的，也无法正常运行，
-因为它期待要加载的 glibc 的符号版本在异世界中不存在。类似地，如果一个新世界的可执行程序试图加载（例如通过 `dlopen`）旧世界的（非 glibc 的）动态链接库，
-也是无法正确加载的，因为该旧世界动态链接库依赖的 glibc 的符号版本在新世界中不存在。
+The source of the differences in symbol versions between the old world (OW) and the new world (NW) is that the epoch version number for LoongArch in OW is 2.27[^a1], while in NW it is 2.36. Since most symbol source version numbers in glibc start from 2.0, in OW, the binary version number for most symbols in glibc is `GLIBC_2.27`; correspondingly, in NW, the binary version number for most symbols is `GLIBC_2.36`. Thus, even if you modify the program interpreter of a binary executable to force it to run in the other world, it will not work correctly because the expected glibc symbol versions do not exist in the other world. Similarly, if an NW executable tries to load (e.g., via `dlopen`) an OW dynamic library (non-glibc), it will fail because the glibc symbol versions required by the OW dynamic library do not exist in NW.
 
-[^a1]: 巧合的是，riscv64 的[纪元版本号](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/riscv/shlib-versions#L2)也是 2.27
+[^a1]: Coincidentally, the [epoch version number](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/riscv/shlib-versions#L2) for riscv64 is also 2.27.
 
-更为复杂的情况出现在 `libpthread` 中。旧世界的龙架构中，唯独 `libpthread` 的纪元版本号是 2.0，
-即旧世界中 `libpthread` 和 `libc` 的纪元版本号不一致。glibc 中已知的全部 Linux 支持的架构中，
-只有旧世界的龙架构存在这样的现象。这样做法的原因不得而知[^a2]，但是导致的后果是明确的。在 glibc 2.34
-之前，`libpthread` 和 `libc` 是分立的两个库。有部分符号，例如 `open`、`write` 等，
-在两个库中都有定义，但是其包括的代码可能不同（通过宏定义在编译期产生区别）。
-一个多线程程序在执行时，其调用的 `open`、`write` 等符号，由 `libpthread` 覆盖了 `libc` 中的定义。
-在 glibc 2.34 以及此后的版本，`libpthread` 合并进了 `libc`，
-于是 `libc` 中 `open`、`write` 等符号始终是多线程的版本。
-旧世界中 `libpthread` 和 `libc` 的纪元版本号不一致，造成了这样的 `open`、`write`
-等符号在旧世界存在两个二进制版本号，分别是 `libpthread` 中的 `GLIBC_2.0` 和 `libc` 中的 `GLIBC_2.27`。
+A more complex situation arises with `libpthread`. In the OW LoongArch, the epoch version number for `libpthread` is 2.0, which is different from the epoch version number for `libc`. Among all Linux-supported architectures known in glibc, only the OW LoongArch exhibits this phenomenon. The reason for this is unknown[^a2], but the consequences are clear. Before glibc 2.34, `libpthread` and `libc` were separate libraries. Some symbols, such as `open` and `write`, were defined in both libraries, but their implementations might differ (due to macro definitions at compile time). When a multithreaded program runs, the `open` and `write` symbols it calls are those defined in `libpthread`, overriding the definitions in `libc`. From glibc 2.34 onwards, `libpthread` was merged into `libc`, so the `open` and `write` symbols in `libc` are always the multithreaded versions. The inconsistency in epoch version numbers between `libpthread` and `libc` in the OW results in two binary version numbers for symbols like `open` and `write` in the OW: `GLIBC_2.0` in `libpthread` and `GLIBC_2.27` in `libc`.
 
-[^a2]: 但是可以注意到 MIPS 架构的[纪元版本号](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/mips/shlib-versions#L25)是 2.0，并跳过了 2.1。事实上，旧世界的 `libpthread` 的纪元版本号也是 2.0，并同样跳过了 2.1。
+[^a2]: Note that the [epoch version number](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/mips/shlib-versions#L25) for the MIPS architecture is 2.0, skipping 2.1. In fact, the epoch version number for `libpthread` in the OW is also 2.0, skipping 2.1 as well.
 
+### glibc Library List
 
-### glibc 库列表
+Dynamically linked ELF files (including libraries and executables) describe the library name for symbols with version numbers. However, glibc ignores the actual library name providing the corresponding versioned symbols during dynamic linking. This behavior was [introduced](https://github.com/bminor/glibc/commit/f0b2132b35248c1f4a80f62a2c38cddcc802aa8c) in glibc 2.30. This facilitates the subsequent consolidation of symbols from other libraries into `libc`. For example, in glibc 2.34 and later, the `pthread_join` symbol is provided by `libc`, and `libpthread` becomes a placeholder. For programs or other libraries linked with glibc versions before 2.34, `pthread_join` is required from `libpthread`. During dynamic linking, glibc will find both `libc` and `libpthread` library files to satisfy the program's and library's dependencies. When specifically looking for `pthread_join`, glibc's dynamic linker does not consider the required provider of `pthread_join`; it completes the dynamic link as long as the corresponding version is defined in any loaded library.
 
-动态链接的 ELF 文件（包括库和可执行程序）对于需要引入的带有版本号的符号，都会描述该符号所属的动态链接库的名称。
-但是 glibc 在执行动态链接时，会忽略实际提供对应版本符号的库的名称，这一行为在 glibc 2.30 被[引入](https://github.com/bminor/glibc/commit/f0b2132b35248c1f4a80f62a2c38cddcc802aa8c)。这为 glibc 后续将符号从其它库向 `libc`
-中集中提供了便利。以 `libpthread` 中的 `pthread_join` 为例。在 glibc 2.34 以及之后的版本中，
-该符号实际由 `libc` 提供，而 `libpthread` 变成了一个空白占位。对于和 glibc 2.34 以前版本链接的程序或其它库，
-显然需要的是 `libpthread` 中的 `pthread_join`。在动态链接时，glibc 会正常查找到 `libc`
-和 `libpthread` 库文件，从而满足了该程序和该库对所依赖的库的需求。当具体要查找 `pthread_join` 时，
-glibc 的动态链接器则不考虑所要求的 `pthread_join` 的提供者，只要载入的所有库中定义有 `pthread_join` 的对应版本，
-即可完成动态链接。
+After this, and before the NW epoch version 2.36, some library symbols were moved to `libc`, and these library files no longer exist in NW. However, for OW programs, these library files are still needed and should be provided as placeholder library files. The table below lists all libraries available for dynamic linking in both OW and NW.
 
-在此之后，且在新世界的纪元版本 2.36 前，又有一些库的符号被移动到了 `libc` 中，这些库文件在新世界就彻底不存在了。
-然而，对于旧世界的程序而言，这些库文件仍然是需要的，应该提供占位库文件。下表是新旧世界中，
-所有对外供动态链接的库的列表。
+Library Name | OW    | NW | Notes
+-----|-------|------|----
+`libBrokenLocale.so.1` | Exist | Exist
+`libanl.so.1` | Exist    | Not Exist | Placeholder needed
+`libc.so.6` | Exist    | Exist
+`libc_malloc_debug.so.0` | Not Exist   | Exist | Introduced in 2.34
+`libcrypt.so.1`| Exist    | Not Exist | Disabled by default in NW
+`libdl.so.2` | Exist    | Exist (Placeholder)
+`libm.so.6` | Exist    | Exist
+`libnsl.so.1` | Exist    | Not Exist | Disabled by default in NW
+`libpthread.so.0` | Exist    | Exist (Placeholder)
+`libresolv.so.2` | Exist    | Exist
+`librt.so.1` | Exist    | Exist (Placeholder)
+`libthread_db.so.1` | Exist    | Exist
+`libutil.so.1` | Exist    | Not Exist | Placeholder needed
 
-库名 | 旧世界 | 新世界 | 备注
------|------|------|----
-`libBrokenLocale.so.1` | 存在 | 存在
-`libanl.so.1` | 存在 | 不存在 | 需要补充占位库
-`libc.so.6` | 存在 | 存在
-`libc_malloc_debug.so.0` | 不存在 | 存在 | 该库在 2.34 引入
-`libcrypt.so.1`| 存在 | 不存在 | 该库在新世界默认禁用
-`libdl.so.2` | 存在 | 存在（占位）
-`libm.so.6` | 存在 | 存在
-`libnsl.so.1` | 存在 | 不存在 | 该库在新世界默认禁用
-`libpthread.so.0` | 存在 | 存在（占位）
-`libresolv.so.2` | 存在 | 存在
-`librt.so.1` | 存在 | 存在（占位）
-`libthread_db.so.1` | 存在 | 存在
-`libutil.so.1` | 存在 | 不存在 | 需要补充占位库
+### Specific Function Behavior Differences
 
-### 具体函数的行为区别
+There are some differences in the behavior of functions provided by glibc between the old world (OW) and the new world (NW). These differences are due to the different user mode interfaces provided by the kernel. This section will discuss these function behavior differences. Here, "behavior" mainly refers to the behavior presented by glibc to the function caller. However, in specific discussions, we will also involve the behavior of making system calls to the kernel.
 
-新旧世界 glibc 提供的函数的行为存在一些区别。这些区别是内核提供的用户态接口的不同导致的。
-本节将会讨论这些函数的行为区别。这里的“行为”主要指的是 glibc 对函数调用者呈现的行为。但是，
-在特定的讨论中，我们也会涉及到其向内核发出系统调用的行为。
+#### Signal
 
-#### 信号相关
+In the NW kernel, the maximum signal number is 64, while in the OW kernel, it is 128. This results in different sizes for the `sigset_t` data accepted by the kernel. However, the `sigset_t` structure defined in glibc is the same size in both worlds, always capable of [holding](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/types/__sigset_t.h) 1024 signals. This means the `sigset_t` data size in NW glibc is 128 bytes. Therefore, all glibc functions that accept `sigset_t` structures have compatible ABIs, preventing data overflow. All NW functions that read `sigset_t` structures can read those provided by OW programs and work correctly. NW functions that write to `sigset_t` structures can also write to those provided by OW programs. Since OW programs use the first 128 bits (i.e., 128 signals), NW functions writing to `sigset_t` structures only write the first 64 bits, so the subsequent 64 bits need to be zeroed to ensure OW programs do not receive uninitialized data. Additionally, glibc provides functions to modify or perform logical operations on `sigset_t` structures, which only operate on the bits corresponding to the signals available in their respective worlds, resulting in different external behaviors.
 
-我们知道，新世界内核中，最大的信号编号是 64；而旧世界内核中，最大的信号编号是 128。
-这导致了内核接受的 `sigset_t` 数据的大小不同。然而，glibc 中定义的 `sigset_t` 结构体的大小是相同的，
-总是能[容纳](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/types/__sigset_t.h) 1024 个信号。
-这意味着，新世界的 glibc 中的 `sigset_t` 数据的大小是 128 字节。因此，所有接受 `sigset_t` 结构体的 glibc 函数的
- ABI 是兼容的，不至于出现数据溢出的情况。所有读取 `sigset_t` 结构体的新世界函数，完全可以读取旧世界程序提供的 `sigset_t` 结构体，并正常工作。
-所有写入 `sigset_t` 结构体的新世界函数，也可以写入旧世界程序提供的 `sigset_t` 结构体。由于旧世界的程序会使用其中的前 128 个比特位（即 128 个信号），
-而写入 `sigset_t` 结构体的新世界函数仅会写入前 64 个比特位，所以需要补充清零随后的 64 个比特位，以保证旧世界的程序不会接收到未初始化的数据。
-此外，glibc 还提供了一些函数，用于修改 `sigset_t` 结构体或对其进行逻辑运算，这些函数仅会操作对应世界中可用的信号编号所对应的比特位，
-因此对外呈现的行为有所不同。
-
-下列函数属于 `sigset_t` 编辑修改类函数，其所能操作的信号编号的范围不同：
+The following functions belong to the `sigset_t` editing and modification category, and the range of signal numbers they can operate on differs:
 
 - `sigorset`
 - `sigandset`
@@ -502,7 +449,7 @@ glibc 的动态链接器则不考虑所要求的 `pthread_join` 的提供者，�
 - `sigemptyset`
 - `sigdelset`
 
-下列函数属于只读 `sigset_t` 的函数，新世界的该函数可以正常读取旧世界程序提供的 `sigset_t`：
+The following functions are read-only for `sigset_t`. NW functions can correctly read `sigset_t` provided by OW programs:
 
 - `epoll_pwait2`
 - `epoll_pwait`
@@ -516,152 +463,106 @@ glibc 的动态链接器则不考虑所要求的 `pthread_join` 的提供者，�
 - `__sigsuspend`
 - `sigsuspend`
 
-下列函数要写入 `sigset_t`，如果新世界的该函数要写入旧世界提供的 `sigset_t`，还需要补充清零随后的 64 个比特位：
+The following functions write to `sigset_t`. If an NW function writes to an OW-provided `sigset_t`, the subsequent 64 bits need to be zeroed out:
 
 - `sigpending`
 - `pthread_sigmask`
 - `sigprocmask`
 
-下列函数虽然读写了 `sigset_t`，但是完整拷贝了 `sigset_t` 结构体，故其行为与最大的信号编号无关：
+The following functions read and write `sigset_t` but copy the entire `sigset_t` structure, so their behavior is unaffected by the maximum signal number:
 
 - `posix_spawnattr_getsigmask`
 - `posix_spawnattr_getsigdefault`
 - `posix_spawnattr_setsigmask`
 - `posix_spawnattr_setsigdefault`
 
-#### `ucontext` 相关
+#### `ucontext`
 
-`ucontext_t` 结构体出现在两种地方：一是在信号处理函数的第三个参数中[^1]；二是在 `getcontext`、`setcontext`、`makecontext`、`swapcontext` 函数中[^2]。
-对 glibc 的用户而言，在这两种地方的 `ucontext_t` 结构体应当能互操作[^3]。例如，一个信号处理函数在接受到信号时，
-将此前用 `getcontext` 函数保存的 `ucontext_t` 结构体复制到其第三个参数所指位置，那么在该信号处理函数结束后，
-程序流将会转向 `getcontext` 函数保存的那个上下文；如果这个信号处理函数又将收到的原始 `ucontext_t` 保存到其它位置，
-然后在此后的某个时刻，对保存的 `ucontext_t` 调用 `setcontext` 函数，即可将程序流转回到发生信号中断的上下文。
-同时注意到，信号处理函数接受的 `ucontext_t` 结构体直接来自于内核，而 `*context` 函数是由 glibc 提供的，
-所以就 `ucontext_t` 而言，glibc 提供的版本和内核提供的版本必须完全二进制兼容。这一点与其它的结构体不同，
-其它的结构体，glibc 可以提供与内核不同的版本，只要 glibc 函数能正确将二者转换即可。例如，`sigaction` 结构体，
-glibc 提供的版本和内核提供的版本是不一致的[^4]，需要 glibc 函数将二者转换。
+The `ucontext_t` structure appears in two places: as the third parameter in signal handlers[^1] and in the `getcontext`, `setcontext`, `makecontext`, and `swapcontext` functions[^2]. For glibc users, the `ucontext_t` structure should be interoperable in both contexts[^3]. For example, if a signal handler receives a `ucontext_t` structure saved by the `getcontext` function, the program flow will return to the context saved by `getcontext` after the signal handler finishes. If the signal handler saves the received `ucontext_t` structure elsewhere and later calls `setcontext` with it, the program flow will return to the context where the signal was interrupted. Note that the `ucontext_t` structure received by the signal handler comes directly from the kernel, while the `*context` functions are provided by glibc. Therefore, the `ucontext_t` structure provided by glibc must be fully binary compatible with the one provided by the kernel. This is different from other structures, where glibc can provide a different version from the kernel as long as glibc functions correctly convert between them. For example, the `sigaction` structure provided by glibc differs from the one provided by the kernel[^4], and glibc functions handle the conversion.
 
-[^1]: [`sigaction(2)`](https://man7.org/linux/man-pages/man2/sigaction.2.html) “The siginfo_t argument to a SA_SIGINFO handler” 一节
+[^1]: [`sigaction(2)`](https://man7.org/linux/man-pages/man2/sigaction.2.html) "The siginfo_t argument to a SA_SIGINFO handler"
 [^2]: [`getcontext(3)`](https://man7.org/linux/man-pages/man3/getcontext.3.html)
-[^3]: [`getcontext(3)`](https://man7.org/linux/man-pages/man3/getcontext.3.html) “The function setcontext() restores the user context” which “should have
-       been … received as the third argument to a signal handler”
-[^4]: 对比 [`sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/sigaction.h#L27) 和
-       [`kernel_sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/kernel_sigaction.h#L9)
+[^3]: [`getcontext(3)`](https://man7.org/linux/man-pages/man3/getcontext.3.html) "The function setcontext() restores the user context" which "should have
+been...received as the third argument to a signal handler"
+[^4]: Compare [`sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/bits/sigaction.h#L27) and
+[`kernel_sigaction`](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/kernel_sigaction.h#L9)
 
-截至 glibc 2.38 版本，新世界的 `*context` 函数仅能处理 `ucontext_t` 结构体中的通用（整数）寄存器部分，而不能处理浮点、向量扩展和 LBT 扩展部分。
-旧世界的 `*context` 函数能处理 `ucontext_t` 结构体中通用（整数）寄存器和浮点寄存器，但不能处理向量扩展和 LBT 扩展部分。
-此外，旧世界 glibc 提供的 `ucontext_t` 定义[^5]与旧世界内核[^6]的定义对比，可以发现前者缺少用于存放 LBT 扩展寄存器的 `uc_mcontext.sc_scr[4]` 字段，
-致使后续用于存放浮点寄存器的 `uc_mcontext.sc_fpregs[32]` 字段的偏移量发生了变化。这意味着，
-旧世界的 `*context` 函数在处理旧世界内核提供给信号处理函数的 `ucontext_t` 结构体时，无法正确处理浮点寄存器。
-综上所述，旧世界 glibc 也仅能正确处理 `ucontext_t` 结构体的通用（整数）寄存器部分。这样，在功能上，
-恰好新旧世界达成了一致——都只能正确处理通用寄存器部分。
+As of glibc version 2.38, NW `*context` functions can only handle the general (integer) registers in the `ucontext_t` structure, and cannot handle floating-point, vector extension, or LBT extension parts. OW `*context` functions can handle both general (integer) and floating-point registers in the `ucontext_t` structure, but not vector extension or LBT extension parts. Additionally, comparing the `ucontext_t` definition provided by OW glibc[^5] with that of the OW kernel[^6], the former lacks the `uc_mcontext.sc_scr[4]` field for storing LBT extension registers, causing the offset for the subsequent `uc_mcontext.sc_fpregs[32]` field for floating-point registers to change. This means OW `*context` functions cannot correctly handle floating-point registers in the `ucontext_t` structure provided by the OW kernel to signal handlers. In summary, OW glibc can only correctly handle the general (integer) registers in the `ucontext_t` structure. Thus, functionally, both OW and NW can only correctly handle the general registers.
 
-[^5]: 可以在 Loongnix 发行版的 `/usr/include/loongarch64-linux-gnu/sys/ucontext.h` 找到
-[^6]: 可以在 Loongnix 发行版的 `/usr/include/loongarch64-linux-gnu/bits/sigcontext.h` 找到
+[^5]: Found in the Loongnix distribution at `/usr/include/loongarch64-linux-gnu/sys/ucontext.h`
+[^6]: Found in the Loongnix distribution at `/usr/include/loongarch64-linux-gnu/bits/sigcontext.h`
 
-glibc 提供了两个函数，可以被用于注册信号处理函数，这两个函数分别是 `sigaction` 和 `signal`。
-其中，`signal` 函数是对 `sigaction` 函数的封装。这样，无论是如何注册的信号处理函数，
-都会在第三个参数中接受到一个 `ucontext_t` 结构体指针。但是根据 glibc [文档](https://man7.org/linux/man-pages/man2/signal.2.html)，
-`signal` 函数注册的信号处理函数只应该接受第一个参数。这意味着，如果 `signal` 函数注册的信号处理函数
-遵循了文档的要求，只接受第一个参数，那么它会忽略第三个参数，即 `ucontext_t` 结构体指针会被忽略。
-这意味着，`signal` 函数注册的信号处理函数，是新旧世界无关的，不需要针对这样的信号处理函数做任何兼容性处理。
-而 `sigaction` 函数注册的信号处理函数，是新旧世界相关的，需要额外的兼容性处理。一种可能的兼容性处理是，
-当用户调用 `sigaction` 函数注册一个接受旧世界的 `ucontext_t` 结构体信号处理函数时，实际不注册这个函数，
-而是注册一个包裹函数，这个包裹函数接受新世界的 `ucontext_t` 结构体，并在栈上相应构造一个旧世界的 `ucontext_t` 结构体，
-然后调用用户提供的信号处理函数；在用户提供的信号处理函数返回后，将旧世界的 `ucontext_t` 结构体的内容拷贝回新世界的 `ucontext_t` 结构体中。
-需要注意的是，信号处理函数无法接受自定义的参数，这意味着原始用户提供的信号处理函数的地址必须以某种方式保存下来，
-以便包裹函数调用它。而在实现这一点时要十分小心地处理锁和信号屏蔽，因为整个这个注册信号处理函数的过程不再是原子的。
+glibc provides two functions for registering signal handlers: `sigaction` and `signal`. The `signal` function is a wrapper around `sigaction`. Regardless of how the signal handler is registered, it will receive a `ucontext_t` structure pointer as the third parameter. However, according to the glibc [documentation](https://man7.org/linux/man-pages/man2/signal.2.html), signal handlers registered with the `signal` function should only accept the first parameter. This means that if a signal handler registered with `signal` follows the documentation and only accepts the first parameter, it will ignore the third parameter, i.e., the `ucontext_t` structure pointer will be ignored. Therefore, signal handlers registered with `signal` are OW/NW irrelevant and do not require any compatibility handling.
 
-无论如何处理，都不会改变新旧世界 `ucontext_t` 结构体完全不兼容的事实，也无法扭转旧世界 glibc
-和旧世界内核 `ucontext_t` 结构体存在差异的现状，因此如果出现了新旧世界可执行程序和动态链接库的混合链接，
-并且存在将 `ucontext_t` 结构体在新旧世界间传递的情况，始终无法保证正确识别 `ucontext_t` 结构体是新世界的还是旧世界的。
-不过幸运的是，这样的情况十分罕见。
+On the other hand, signal handlers registered with `sigaction` are OW/NW specific and require additional compatibility handling. One possible approach is to register a wrapper function instead of the user-provided handler when `sigaction` is called with an OW `ucontext_t` structure handler. This wrapper function would accept an NW `ucontext_t` structure, construct an OW `ucontext_t` structure on the stack, and then call the user-provided handler. After the user-provided handler returns, the wrapper function would copy the contents of the OW `ucontext_t` structure back to the NW `ucontext_t` structure. Note that signal handlers cannot accept custom parameters, so the address of the original user-provided handler must be saved in some way for the wrapper function to call it. Careful handling of locks and signal masks is required, as the entire process of registering the signal handler is no longer atomic.
 
-下列函数涉及 `ucontext_t` 结构体，因此新旧世界的函数完全不二进制兼容：
+No matter how it is handled, the fact remains that the `ucontext_t` structures of the old world (OW) and the new world (NW) are completely incompatible. Additionally, the differences between the OW glibc and the OW kernel `ucontext_t` structures cannot be resolved. Therefore, if there is a mix of OW and NW executables and dynamic libraries, and `ucontext_t` structures are passed between them, it is impossible to guarantee correct identification of whether a `ucontext_t` structure is from the OW or NW. Fortunately, such cases are very rare.
+
+The following functions involve the `ucontext_t` structure and are therefore not binary compatible between OW and NW:
 
 - `getcontext`
 - `setcontext`
 - `makecontext`
 - `swapcontext`
 
-下列函数涉及注册能接收 `ucontext_t` 结构体的信号处理函数，因此需要额外的兼容性处理：
+The following functions involve registering signal handlers that can accept `ucontext_t` structures, thus requiring additional compatibility handling:
 
 - `sigaction`
 
-下列函数注册的信号处理函数会忽略 `ucontext_t` 结构体指针，因此无需特殊处理：
+The following functions register signal handlers that ignore the `ucontext_t` structure pointer, so no special handling is required:
 
 - `signal`
 
-#### longjmp 相关
+#### longjmp
 
-`setjmp`、`sigsetjmp`、`longjmp`、`siglongjmp` 函数是用于实现非局部跳转的函数。
-其中 `set*jmp` 函数会将当前的程序状态（可选地，包括当前的信号掩码，即 sigmask）保存到一个 `jmp_buf` 结构体中，
-而 `*longjmp` 函数则将上述状态恢复。这些函数的行为与 `*context` 函数类似。在新旧世界中，
-`jmp_buf` 结构体的定义完全一致，因此这些 `*jmp` 函数是完全二进制兼容的。
+The `setjmp`, `sigsetjmp`, `longjmp`, and `siglongjmp` functions are used for non-local jumps. The `set*jmp` functions save the current program state (optionally including the current signal mask, i.e., sigmask) into a `jmp_buf` structure, while the `*longjmp` functions restore this state. These functions behave similarly to the `*context` functions. In both the OW and the NW, the `jmp_buf` structure definition is identical, making these `*jmp` functions fully binary compatible.
 
-下列函数涉及 `jmp_buf` 结构体，在新旧世界间完全兼容：
+The following functions involving the `jmp_buf` structure are fully compatible between OW and NW:
 
 - `setjmp`
 - `sigsetjmp`
 - `longjmp`
 - `siglongjmp`
 
-#### `fstat` 相关
+#### `fstat`
 
-新世界的内核中，缺少 `fstat` 和 `newfstatat` 系统调用。这两个系统调用可以被用于获取文件的元数据。
-其中，`fstat` 可以获取一个打开的文件描述符（file descriptor, fd）所对应的文件的元数据；
-而 `newfstatat` 则既可以获取一个打开的文件描述符所对应的文件的元数据，也可以获取一个路径所对应的文件的元数据。
-在操作对象上，`statx` 与 `newfstatat` 是一致的，但是可以按需返回更多的信息。因此，在功能上，
-`statx` 是 `fstat` 和 `newfstatat` 的超集，并取代了这两个系统调用。
+In the NW kernel, the `fstat` and `newfstatat` system calls are missing. These system calls can be used to obtain file metadata. Specifically, `fstat` retrieves metadata for a file corresponding to an open file descriptor (fd), while `newfstatat` can retrieve metadata for a file corresponding to either an open file descriptor or a file path. Functionally, `statx` is consistent with `newfstatat` but can return more information as needed. Therefore, `statx` is a superset of `fstat` and `newfstatat`, replacing these two system calls.
 
-在 2.38 的 glibc 中，所有 `*stat*` 函数会在编译期通过宏指令检查内核是否提供了 `fstat` 或 `newfstatat` 的定义，
-如果没有，那么这些函数会调用 `statx`[^7] 并负责转换数据结构。这意味着，与旧世界相比，这些 `*stat*` 函数对外呈现的行为是不变的，
-新旧世界的函数是二进制兼容的。本节会着重讨论其向内核发出系统调用的行为区别。
+In glibc 2.38, all `*stat*` functions check at compile time whether the kernel provides definitions for `fstat` or `newfstatat`. If not, these functions call `statx`[^7] and handle the data structure conversion. This means that, compared to the OW, the behavior of these `*stat*` functions remains unchanged externally, and the functions are binary compatible between the OW and the NW. This section will focus on the differences in how these functions make system calls to the kernel.
 
-[^7]: 这些函数最终会调用 [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
+[^7]: These functions ultimately call [__fstatat64_time64](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/fstatat64.c#L157)
 
-对于旧世界上基于 Chromium 的浏览器和基于 Electron 的应用程序而言，Chromium 基于 seccomp 的沙箱机制会针对 `statx`
-[返回](https://chromium.googlesource.com/chromium/src/sandbox/+/7462a4fd179376882292be2381a22df6819041c7%5E%21)
-`ENOSYS` 错误，期待沙箱内的进程自行回落至 `fstat` 或 `newfstatat`。
-这是因为，seccomp [无法审查](https://lwn.net/Articles/799557/)系统调用的指针参数背后的内容。
-而 Chromium 的一种沙箱规则则要求程序只能操作已经打开的 fd，而不能访问任何系统路径，
-因此只能放行（在新世界龙架构内核中不存在的）`fstat` ，并通过 `SIGSYS` 的钩子[检查](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` 并将其重写为 `fstat`。
+For Chromium-based browsers and Electron-based applications in the OW, Chromium's seccomp sandbox mechanism [returns](https://chromium.googlesource.com/chromium/src/sandbox/+/7462a4fd179376882292be2381a22df6819041c7%5E%21) an `ENOSYS` error for `statx`, expecting the process to fall back to `fstat` or `newfstatat`. This is because [seccomp](https://lwn.net/Articles/799557/) cannot inspect the contents behind system call pointer parameters. Chromium's sandbox rule requires programs to operate only on already opened fds and not access any system paths. Therefore, it only allows `fstat` (which doesn't exist in the NW kernel) and uses a `SIGSYS` hook to [intercept](https://chromium.googlesource.com/chromium/src/sandbox/+/b3267c8b40b6133b2db5475caed8f6722837a95e%5E%21/#F2) `newfstatat` and rewrite it as `fstat`.
 
-为了能让这部分程序正常运行，需要调整上述函数的行为，当 `statx` 返回 `ENOSYS` 时，
-改为使用 `fstat` 或 `newfstatat`；同时，需要在新世界的内核中补充 `fstat` 和 `newfstatat` 的实现。
+To ensure these programs run correctly, the behavior of the aforementioned functions needs to be adjusted to use `fstat` or `newfstatat` when `statx` returns `ENOSYS`. Additionally, the NW kernel needs to implement `fstat` and `newfstatat`.
 
-glibc 中下列导出函数涉及 `fstat` 和 `newfstatat`，为兼容目前尚未适配 `statx` 的 Chromium 的沙箱机制，需要额外的兼容性处理：
+The following exported functions in glibc involve `fstat` and `newfstatat`, requiring additional compatibility handling for Chromium's sandbox mechanism, which has not yet adapted to `statx`:
 
 - `stat`
 - `fstat`
 - `lstat`
 - `fstatat`
 
-被上述函数引用，实际进行系统调用的 glibc 内部函数有：
+The following internal glibc functions, which are called by the above functions, actually make the system calls:
 
 - `__fstatat64_time64`
 
-此外，还有为 2.33 之前版本的 glibc 提供的兼容符号所指向的函数也涉及该问题：
+Additionally, the following compatibility symbols provided for glibc versions prior to 2.33 also involve this issue:
 
 - `___fxstat64`
 - `__fxstatat64`
 - `___lxstat64`
 - `___xstat64`
 
-#### 杂项
+#### Miscellaneous
 
-新世界系统中同时提供 `clone3` 和 `clone`，而旧世界系统中仅提供 `clone`。
-新世界的 glibc 会在编译期检查内核是否提供了 `clone3`，如果提供了，
-那么 `fork` 和 `pthread_create` 等函数会调用 `clone3`。
-在运行时，如果 `clone3` 返回 `ENOSYS`，
-则[回落](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/clone-internal.c#L109)到 `clone`。
-该行为不会影响新旧世界函数的二进制兼容性。但是，`clone3` 的参数都通过内存中的结构体传递；因此出于上一节提到的原因，Chromium 的 seccomp 沙箱机制也无法审查 `clone3` 的参数，
-因此对 `clone3` 一律[返回](https://chromium.googlesource.com/chromium/src/sandbox/+/482404adee4fc0487452c7ae5ac9c192b0f4fd30%5E%21) `ENOSYS` 错误，
-期待 glibc 回落使用 `clone` 系统调用。
-该机制使得在 `clone3` 方面，新世界的 glibc 库函数可以兼容旧世界的 Chromium 沙箱。
-然而，个别基于 Electron 的旧世界应用，由于打包的 Chromium 版本较旧，其沙箱机制不支持针对
-`clone3` 返回 `ENOSYS`，而是返回其它的错误，致使 glibc 无法回落使用 `clone`，造成程序无法运行。
+The new-world system provides both `clone3` and `clone`, while the old-world system only provides `clone`.
+New-world glibc checks at compile time if the kernel provides `clone3`. If it does, functions like `fork` and `pthread_create` will call `clone3`.
+At runtime, if `clone3` returns `ENOSYS`, it [falls back to](https://elixir.bootlin.com/glibc/glibc-2.38/source/sysdeps/unix/sysv/linux/clone-internal.c#L109) `clone`.
+This behavior does not affect the binary compatibility of functions between the old world and the new world. However, since `clone3` parameters are passed through a structure in memory, Chromium's seccomp sandbox mechanism cannot inspect `clone3` parameters and always [returns](https://chromium.googlesource.com/chromium/src/sandbox/+/482404adee4fc0487452c7ae5ac9c192b0f4fd30%5E%21) `ENOSYS`, expecting glibc to fall back to `clone`.
+This mechanism ensures that new-world glibc functions are compatible with the old-world Chromium sandbox.
+However, some old-world Electron applications, due to older bundled Chromium versions, do not support returning `ENOSYS` for `clone3` and return other errors, causing glibc to fail to fall back to `clone`, resulting in application failure.
 
-为了避免这一问题，如果要实现新旧世界混合链接，需要禁用 `clone3` 的支持，直接调用 `clone`。
+To avoid this issue, if mixed linking between the old world and the new world is required, `clone3` support needs to be disabled, and `clone` should be called directly.
 
-此外，旧世界的 glibc 对外导出了 `___brk_addr` 符号，而新世界没有导出。
+Additionally, the old-world glibc exports the `___brk_addr` symbol, which is not exported in the new world.
