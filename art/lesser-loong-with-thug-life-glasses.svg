@@ -7,8 +7,8 @@
    viewBox="0 0 64 64"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="lesser-loong-with-thug-life-glasses.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -22,32 +22,47 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
+     inkscape:document-units="px"
      showguides="true"
-     inkscape:zoom="6.2458171"
-     inkscape:cx="43.389039"
-     inkscape:cy="51.394396"
+     inkscape:zoom="10.115429"
+     inkscape:cx="22.93526"
+     inkscape:cy="34.40289"
      inkscape:window-width="1920"
      inkscape:window-height="998"
      inkscape:window-x="0"
      inkscape:window-y="44"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
-    <sodipodi:guide
-       position="26.177642,109.25115"
-       orientation="-0.71183639,-0.70234533"
-       id="guide2"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
+     inkscape:current-layer="layer2"
+     showgrid="false" />
   <defs
      id="defs1" />
   <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="checkerboard">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:8;paint-order:stroke fill markers"
+       id="rect1"
+       width="64"
+       height="64"
+       x="0"
+       y="0"
+       inkscape:label="bg-solid" />
+    <path
+       id="rect2"
+       style="fill:#000000;fill-opacity:0.104174;stroke:none;stroke-width:8;paint-order:stroke fill markers;font-variation-settings:normal;opacity:1;vector-effect:none;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       d="M 4 0 L 4 4 L 8 4 L 8 0 L 4 0 z M 8 4 L 8 8 L 12 8 L 12 4 L 8 4 z M 12 4 L 16 4 L 16 0 L 12 0 L 12 4 z M 16 4 L 16 8 L 20 8 L 20 4 L 16 4 z M 20 4 L 24 4 L 24 0 L 20 0 L 20 4 z M 24 4 L 24 8 L 28 8 L 28 4 L 24 4 z M 28 4 L 32 4 L 32 0 L 28 0 L 28 4 z M 32 4 L 32 8 L 36 8 L 36 4 L 32 4 z M 36 4 L 40 4 L 40 0 L 36 0 L 36 4 z M 40 4 L 40 8 L 44 8 L 44 4 L 40 4 z M 44 4 L 48 4 L 48 0 L 44 0 L 44 4 z M 48 4 L 48 8 L 52 8 L 52 4 L 48 4 z M 52 4 L 56 4 L 56 0 L 52 0 L 52 4 z M 56 4 L 56 8 L 60 8 L 60 4 L 56 4 z M 60 4 L 64 4 L 64 0 L 60 0 L 60 4 z M 60 8 L 60 12 L 64 12 L 64 8 L 60 8 z M 60 12 L 56 12 L 56 16 L 60 16 L 60 12 z M 60 16 L 60 20 L 64 20 L 64 16 L 60 16 z M 60 20 L 56 20 L 56 24 L 60 24 L 60 20 z M 60 24 L 60 28 L 64 28 L 64 24 L 60 24 z M 60 28 L 56 28 L 56 32 L 60 32 L 60 28 z M 60 32 L 60 36 L 64 36 L 64 32 L 60 32 z M 60 36 L 56 36 L 56 40 L 60 40 L 60 36 z M 60 40 L 60 44 L 64 44 L 64 40 L 60 40 z M 60 44 L 56 44 L 56 48 L 60 48 L 60 44 z M 60 48 L 60 52 L 64 52 L 64 48 L 60 48 z M 60 52 L 56 52 L 56 56 L 60 56 L 60 52 z M 60 56 L 60 60 L 64 60 L 64 56 L 60 56 z M 60 60 L 56 60 L 56 64 L 60 64 L 60 60 z M 56 60 L 56 56 L 52 56 L 52 60 L 56 60 z M 52 60 L 48 60 L 48 64 L 52 64 L 52 60 z M 48 60 L 48 56 L 44 56 L 44 60 L 48 60 z M 44 60 L 40 60 L 40 64 L 44 64 L 44 60 z M 40 60 L 40 56 L 36 56 L 36 60 L 40 60 z M 36 60 L 32 60 L 32 64 L 36 64 L 36 60 z M 32 60 L 32 56 L 28 56 L 28 60 L 32 60 z M 28 60 L 24 60 L 24 64 L 28 64 L 28 60 z M 24 60 L 24 56 L 20 56 L 20 60 L 24 60 z M 20 60 L 16 60 L 16 64 L 20 64 L 20 60 z M 16 60 L 16 56 L 12 56 L 12 60 L 16 60 z M 12 60 L 8 60 L 8 64 L 12 64 L 12 60 z M 8 60 L 8 56 L 4 56 L 4 60 L 8 60 z M 4 60 L 0 60 L 0 64 L 4 64 L 4 60 z M 4 56 L 4 52 L 0 52 L 0 56 L 4 56 z M 4 52 L 8 52 L 8 48 L 4 48 L 4 52 z M 4 48 L 4 44 L 0 44 L 0 48 L 4 48 z M 4 44 L 8 44 L 8 40 L 4 40 L 4 44 z M 4 40 L 4 36 L 0 36 L 0 40 L 4 40 z M 4 36 L 8 36 L 8 32 L 4 32 L 4 36 z M 4 32 L 4 28 L 0 28 L 0 32 L 4 32 z M 4 28 L 8 28 L 8 24 L 4 24 L 4 28 z M 4 24 L 4 20 L 0 20 L 0 24 L 4 24 z M 4 20 L 8 20 L 8 16 L 4 16 L 4 20 z M 4 16 L 4 12 L 0 12 L 0 16 L 4 16 z M 4 12 L 8 12 L 8 8 L 4 8 L 4 12 z M 4 8 L 4 4 L 0 4 L 0 8 L 4 8 z M 8 12 L 8 16 L 12 16 L 12 12 L 8 12 z M 12 12 L 16 12 L 16 8 L 12 8 L 12 12 z M 16 12 L 16 16 L 20 16 L 20 12 L 16 12 z M 20 12 L 24 12 L 24 8 L 20 8 L 20 12 z M 24 12 L 24 16 L 28 16 L 28 12 L 24 12 z M 28 12 L 32 12 L 32 8 L 28 8 L 28 12 z M 32 12 L 32 16 L 36 16 L 36 12 L 32 12 z M 36 12 L 40 12 L 40 8 L 36 8 L 36 12 z M 40 12 L 40 16 L 44 16 L 44 12 L 40 12 z M 44 12 L 48 12 L 48 8 L 44 8 L 44 12 z M 48 12 L 48 16 L 52 16 L 52 12 L 48 12 z M 52 12 L 56 12 L 56 8 L 52 8 L 52 12 z M 52 16 L 52 20 L 56 20 L 56 16 L 52 16 z M 52 20 L 48 20 L 48 24 L 52 24 L 52 20 z M 52 24 L 52 28 L 56 28 L 56 24 L 52 24 z M 52 28 L 48 28 L 48 32 L 52 32 L 52 28 z M 52 32 L 52 36 L 56 36 L 56 32 L 52 32 z M 52 36 L 48 36 L 48 40 L 52 40 L 52 36 z M 52 40 L 52 44 L 56 44 L 56 40 L 52 40 z M 52 44 L 48 44 L 48 48 L 52 48 L 52 44 z M 52 48 L 52 52 L 56 52 L 56 48 L 52 48 z M 52 52 L 48 52 L 48 56 L 52 56 L 52 52 z M 48 52 L 48 48 L 44 48 L 44 52 L 48 52 z M 44 52 L 40 52 L 40 56 L 44 56 L 44 52 z M 40 52 L 40 48 L 36 48 L 36 52 L 40 52 z M 36 52 L 32 52 L 32 56 L 36 56 L 36 52 z M 32 52 L 32 48 L 28 48 L 28 52 L 32 52 z M 28 52 L 24 52 L 24 56 L 28 56 L 28 52 z M 24 52 L 24 48 L 20 48 L 20 52 L 24 52 z M 20 52 L 16 52 L 16 56 L 20 56 L 20 52 z M 16 52 L 16 48 L 12 48 L 12 52 L 16 52 z M 12 52 L 8 52 L 8 56 L 12 56 L 12 52 z M 12 48 L 12 44 L 8 44 L 8 48 L 12 48 z M 12 44 L 16 44 L 16 40 L 12 40 L 12 44 z M 12 40 L 12 36 L 8 36 L 8 40 L 12 40 z M 12 36 L 16 36 L 16 32 L 12 32 L 12 36 z M 12 32 L 12 28 L 8 28 L 8 32 L 12 32 z M 12 28 L 16 28 L 16 24 L 12 24 L 12 28 z M 12 24 L 12 20 L 8 20 L 8 24 L 12 24 z M 12 20 L 16 20 L 16 16 L 12 16 L 12 20 z M 16 20 L 16 24 L 20 24 L 20 20 L 16 20 z M 20 20 L 24 20 L 24 16 L 20 16 L 20 20 z M 24 20 L 24 24 L 28 24 L 28 20 L 24 20 z M 28 20 L 32 20 L 32 16 L 28 16 L 28 20 z M 32 20 L 32 24 L 36 24 L 36 20 L 32 20 z M 36 20 L 40 20 L 40 16 L 36 16 L 36 20 z M 40 20 L 40 24 L 44 24 L 44 20 L 40 20 z M 44 20 L 48 20 L 48 16 L 44 16 L 44 20 z M 44 24 L 44 28 L 48 28 L 48 24 L 44 24 z M 44 28 L 40 28 L 40 32 L 44 32 L 44 28 z M 44 32 L 44 36 L 48 36 L 48 32 L 44 32 z M 44 36 L 40 36 L 40 40 L 44 40 L 44 36 z M 44 40 L 44 44 L 48 44 L 48 40 L 44 40 z M 44 44 L 40 44 L 40 48 L 44 48 L 44 44 z M 40 44 L 40 40 L 36 40 L 36 44 L 40 44 z M 36 44 L 32 44 L 32 48 L 36 48 L 36 44 z M 32 44 L 32 40 L 28 40 L 28 44 L 32 44 z M 28 44 L 24 44 L 24 48 L 28 48 L 28 44 z M 24 44 L 24 40 L 20 40 L 20 44 L 24 44 z M 20 44 L 16 44 L 16 48 L 20 48 L 20 44 z M 20 40 L 20 36 L 16 36 L 16 40 L 20 40 z M 20 36 L 24 36 L 24 32 L 20 32 L 20 36 z M 20 32 L 20 28 L 16 28 L 16 32 L 20 32 z M 20 28 L 24 28 L 24 24 L 20 24 L 20 28 z M 24 28 L 24 32 L 28 32 L 28 28 L 24 28 z M 28 28 L 32 28 L 32 24 L 28 24 L 28 28 z M 32 28 L 32 32 L 36 32 L 36 28 L 32 28 z M 36 28 L 40 28 L 40 24 L 36 24 L 36 28 z M 36 32 L 36 36 L 40 36 L 40 32 L 36 32 z M 36 36 L 32 36 L 32 40 L 36 40 L 36 36 z M 32 36 L 32 32 L 28 32 L 28 36 L 32 36 z M 28 36 L 24 36 L 24 40 L 28 40 L 28 36 z "
+       inkscape:label="checkerboard" />
+  </g>
+  <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     sodipodi:insensitive="true">
     <g
        id="g3"
-       transform="translate(-6.8005557,-8.966296)">
+       transform="translate(-6.8005557,-9.0621468)"
+       style="display:inline">
       <g
          id="g1"
          transform="translate(-91.773569,-112.25197)"
@@ -119,7 +134,9 @@
       </g>
       <g
          id="g2"
-         transform="matrix(0.29886304,0.30306473,-0.30306473,0.29886304,21.536084,11.324238)">
+         transform="matrix(0.3,0.3,-0.3,0.3,21.536084,11.521956)"
+         inkscape:label="rotated-glasses"
+         style="display:inline">
         <path
            id="path18813-6-5"
            style="fill:#000000;stroke-width:0.264583"
