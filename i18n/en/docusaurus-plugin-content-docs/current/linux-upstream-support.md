@@ -41,7 +41,7 @@ This page tracks the support status of Loongson platform-related hardware in the
 
 [smt]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f6f0c9a74a48448583c3cb0f3f067bc3fe0f13c6
 [avec]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ae16f05c928a1336d5d9d19fd805d7bf29c3f0c8
-[avec-docs]: https://www.kernel.org/doc/html/latest/translations/zh\_CN/arch/loongarch/irq-chip-model.html#id2
+[avec-docs]: https://www.kernel.org/doc/html/v6.12/arch/loongarch/irq-chip-model.html#advanced-extended-irq-model
 [kvm]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c1fc48aad14dbe7654f5986afb906332b528d54b
 [lsx]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=616500232e632dba8b03981eeccadacf2fbf1c30
 [lbt]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bd3c5798484aa9a08302a844d7a75a2ee3b53d05

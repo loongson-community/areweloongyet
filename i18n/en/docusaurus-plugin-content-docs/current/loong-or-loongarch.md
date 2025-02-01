@@ -91,7 +91,7 @@ The name of LoongArch in other software sometimes requires some memory.
 
 |Project|Name|
 |-------|----|
-|C#|[`LoongArch64`](https://learn.microsoft.com/zh-cn/dotnet/api/system.runtime.interopservices.architecture?view=net-8.0)|
+|C#|[`LoongArch64`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.architecture?view=net-8.0)|
 |Go|`GOARCH=loong64`|
 |Rust|`loongarch64-unknown-linux-gnu`|
 
