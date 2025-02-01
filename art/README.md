@@ -6,11 +6,15 @@
 
 *   龙头
 
-    直接使用 Google 以 SIL OFL 1.1 许可证开源的 Noto Color Emoji 字型的[龙头字形](https://github.com/googlefonts/noto-emoji/blob/v2.038/svg/emoji\_u1f432.svg)。
+    直接使用 Google 以 SIL OFL 1.1 许可证开源的 Noto Color Emoji 字型的[龙头字形](https://github.com/googlefonts/noto-emoji/blob/v2.038/svg/emoji\_u1f432.svg)。字形矢量图的许可为 Apache 2.0。
 
-*   墨镜（Thug Life meme）
+*   小龙头
 
-    按照最常见的像素风 Thug Life meme 自行绘制。
+    同上，来自 Noto Color Emoji 的[蛇的字形](https://github.com/googlefonts/noto-emoji/blob/v2020-09-16-unicode13_1/svg/emoji_u1f40d.svg)。
+
+*   墨镜（Thug Life glasses）
+
+    按照最常见的像素风 Thug Life glasses meme 自行绘制。
 
 *   标题中文字型（包括但不限于 Logo 中的“咱龙了吗？”字样）
 
