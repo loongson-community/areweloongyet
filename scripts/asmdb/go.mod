@@ -6,7 +6,7 @@ toolchain go1.23.1
 
 require (
 	github.com/loongson-community/loongarch-opcodes/scripts/go v0.0.0-20240527223218-7f353fb69bd9
-	github.com/samber/lo v1.49.0
+	github.com/samber/lo v1.49.1
 )
 
 require golang.org/x/text v0.21.0 // indirect
