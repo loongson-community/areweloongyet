@@ -230,7 +230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design/cssinjs@npm:^1.21.0, @ant-design/cssinjs@npm:^1.22.0":
+"@ant-design/cssinjs@npm:^1.21.0":
   version: 1.22.1
   resolution: "@ant-design/cssinjs@npm:1.22.1"
   dependencies:
@@ -245,6 +245,24 @@ __metadata:
     react: ">=16.0.0"
     react-dom: ">=16.0.0"
   checksum: 10c0/2c97d6ed9e701232b9c86c8139ef0c2760552c8a257bf85d03dadc057d945ec93b7a9946b06aecfe7ad5e28763ac4ca00765a4338ac4f4526b9b1c37da6d1a36
+  languageName: node
+  linkType: hard
+
+"@ant-design/cssinjs@npm:^1.23.0":
+  version: 1.23.0
+  resolution: "@ant-design/cssinjs@npm:1.23.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.11.1"
+    "@emotion/hash": "npm:^0.8.0"
+    "@emotion/unitless": "npm:^0.7.5"
+    classnames: "npm:^2.3.1"
+    csstype: "npm:^3.1.3"
+    rc-util: "npm:^5.35.0"
+    stylis: "npm:^4.3.4"
+  peerDependencies:
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 10c0/c06877e6d005af86c3ce3c4d61ac3331801ad2e8d4ca4a6b1b34c401c13bfbf36afbe3b5459c415d92bcba60602662d7ae100baf74a1786cd47b27ef579126df
   languageName: node
   linkType: hard
 
@@ -264,7 +282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design/icons@npm:^5.5.2, @ant-design/icons@npm:^5.6.0":
+"@ant-design/icons@npm:^5.6.0":
   version: 5.6.0
   resolution: "@ant-design/icons@npm:5.6.0"
   dependencies:
@@ -5512,15 +5530,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.23.2":
-  version: 5.23.2
-  resolution: "antd@npm:5.23.2"
+"antd@npm:^5.23.3":
+  version: 5.23.3
+  resolution: "antd@npm:5.23.3"
   dependencies:
     "@ant-design/colors": "npm:^7.2.0"
-    "@ant-design/cssinjs": "npm:^1.22.0"
+    "@ant-design/cssinjs": "npm:^1.23.0"
     "@ant-design/cssinjs-utils": "npm:^1.1.3"
     "@ant-design/fast-color": "npm:^2.0.6"
-    "@ant-design/icons": "npm:^5.5.2"
+    "@ant-design/icons": "npm:^5.6.0"
     "@ant-design/react-slick": "npm:~1.1.2"
     "@babel/runtime": "npm:^7.26.0"
     "@rc-component/color-picker": "npm:~2.0.1"
@@ -5568,7 +5586,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/c74ecb9b6624aa5c3fa15dc5980532342c1c7c875ba77d1a7f64497a706559ff7e9d56c403f90afc1baf1a51e15b3a6743eea7b638631f85e737b564aa7a0c86
+  checksum: 10c0/2db76441c8fdf9ba90dd5ed9ab00f5ac169fadc4fcb93994982e87bb112019c4db29ccb096add78f32f8f166320b0af3571e0453a64bca57fd29516c3d2ce40c
   languageName: node
   linkType: hard
 
@@ -5612,7 +5630,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.5"
     "@types/react": "npm:^18.3.12"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.23.2"
+    antd: "npm:^5.23.3"
     browserslist: "npm:^4.24.4"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.19.0"
