@@ -1,6 +1,6 @@
 import { Col, Grid, Row, Statistic, Tag, Tree, TreeDataNode } from 'antd'
 import _ from 'lodash'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import styles from './index.module.css'
 import { transformDecodeTreeForAntd } from './antdDecodeTreeAdapter'
@@ -11,6 +11,7 @@ import {
 } from './augmentedDecodeTree'
 import { bitfieldWidth, bitfieldsToMask } from './bitfield'
 import { BitsRepr } from './bits'
+import { toUImm } from './insn'
 import { parseInsnFormat } from './insnFormat'
 import type { AsmDBData, DecodeTreeNode } from './types'
 
@@ -64,7 +65,7 @@ const DecodeTreeNodeDetail: React.FC<
       </>
     )
 
-  const vertMargin = { marginTop: 16 }
+  const vertMargin: React.CSSProperties = { marginTop: 16 }
 
   const selectedNode = props.data[props.selectedKey]
   if (!selectedNode.node) {
@@ -79,6 +80,12 @@ const DecodeTreeNodeDetail: React.FC<
         ? '< 0.001'
         : universeUsageRatio.toFixed(3).toString()
 
+    const hexReprU32 = (x: number): string =>
+      `0x${toUImm(x, 32).toString(16).padStart(8, '0')}`
+    const codeStatStyle: React.CSSProperties = {
+      fontFamily: 'var(--ifm-font-family-monospace)',
+    }
+
     return (
       <>
         <h2>{m.matched}</h2>
@@ -88,6 +95,24 @@ const DecodeTreeNodeDetail: React.FC<
           maskToEmph={bitfieldsToMask(m.parentNode.look_at)}
           fmt={fmt}
         />
+        <Row gutter={16}>
+          <Col span={8}>
+            <Statistic
+              title="操作码"
+              value={hexReprU32(m.rawMatch)}
+              style={vertMargin}
+              valueStyle={codeStatStyle}
+            />
+          </Col>
+          <Col span={8}>
+            <Statistic
+              title="操作码掩码"
+              value={hexReprU32(m.mask)}
+              style={vertMargin}
+              valueStyle={codeStatStyle}
+            />
+          </Col>
+        </Row>
         <Row gutter={16}>
           <Col span={8}>
             <Statistic title="指令格式" value={m.fmt} style={vertMargin} />
