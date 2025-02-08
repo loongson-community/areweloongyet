@@ -6,6 +6,6 @@ portingEfforts:
     desc: ''
     link: 'https://github.com/openwrt/openwrt/pull/14357'
     supportStatus: Released
-    releasedSinceVersion: 24.10
-    goodSinceVersion: 24.10
+    releasedSinceVersion: '24.10'
+    goodSinceVersion: '24.10'
     quality: OnPar
