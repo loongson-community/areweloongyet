@@ -53,7 +53,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.15",
     "@types/mdast": "^4.0.4",
-    "@types/node": "^22.13.0",
+    "@types/node": "^22.13.4",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^18.3.12",
     "@types/react-router-dom": "^5.3.3",
