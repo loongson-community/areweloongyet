@@ -298,6 +298,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ant-design/icons@npm:^5.6.1":
+  version: 5.6.1
+  resolution: "@ant-design/icons@npm:5.6.1"
+  dependencies:
+    "@ant-design/colors": "npm:^7.0.0"
+    "@ant-design/icons-svg": "npm:^4.4.0"
+    "@babel/runtime": "npm:^7.24.8"
+    classnames: "npm:^2.2.6"
+    rc-util: "npm:^5.31.1"
+  peerDependencies:
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 10c0/7a9d9fd388c5c66d92818fd0eb794a54ef0b0dc3d75f15ac24c7cfde21c5c836c220cf35423768fd1faa28d55443a6917bf4260469c1485be83f799daa351976
+  languageName: node
+  linkType: hard
+
 "@ant-design/react-slick@npm:~1.1.2":
   version: 1.1.2
   resolution: "@ant-design/react-slick@npm:1.1.2"
@@ -5611,7 +5627,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "areweloongyet@workspace:."
   dependencies:
-    "@ant-design/icons": "npm:^5.6.0"
+    "@ant-design/icons": "npm:^5.6.1"
     "@docusaurus/core": "npm:3.7.0"
     "@docusaurus/faster": "npm:3.7.0"
     "@docusaurus/module-type-aliases": "npm:3.7.0"
