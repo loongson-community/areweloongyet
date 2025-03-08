@@ -12,7 +12,7 @@ export type PluginOptions = {
 
 type LoadedContent = string
 
-function runGenerationScript(
+async function runGenerationScript(
   asmdbHelperPath: string,
   inputPaths: string[],
 ): Promise<LoadedContent> {
