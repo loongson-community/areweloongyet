@@ -5,7 +5,7 @@ import { useColorMode } from '@docusaurus/theme-common'
 
 export default function ThemeAwareAntdContainer(
   props: React.PropsWithChildren,
-): JSX.Element {
+): React.JSX.Element {
   const isDarkMode = useColorMode().colorMode == 'dark'
   const alg = isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm
   return (

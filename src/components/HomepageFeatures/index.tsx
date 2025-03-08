@@ -64,7 +64,7 @@ function ProjectCategory({ val }: { val: IProjectCategory }) {
   )
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures(): React.JSX.Element {
   const categories = usePluginData('awly-data-plugin') as IProjectCategory[]
   return (
     <section className={styles.features}>

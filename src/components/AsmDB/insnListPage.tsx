@@ -6,7 +6,7 @@ import { InsnBitsRepr } from './bits'
 import { getInsnMnemonic } from './insn'
 import type { AsmDBData, Insn, SubsetFlags } from './types'
 
-function Subsets({ ss }: { ss: SubsetFlags }): JSX.Element {
+function Subsets({ ss }: { ss: SubsetFlags }): React.JSX.Element {
   if (ss.provisional) return <p>非正式指令</p>
 
   return (
@@ -36,7 +36,7 @@ function AsmDBInsn({
 }: {
   insn: Insn
   useManualSyntax: boolean
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <section>
       <h3>{getInsnMnemonic(insn, useManualSyntax)}</h3>
@@ -69,7 +69,7 @@ function InsnList({
   data,
   useManualSyntax,
   showSubset,
-}: AsmDBOptions): JSX.Element {
+}: AsmDBOptions): React.JSX.Element {
   const insnAndKeys = data.insns.map((x, i) => {
     return { insn: x, key: i }
   })
@@ -93,7 +93,7 @@ export default function InsnListPage({
   data,
 }: {
   data: AsmDBData
-}): JSX.Element {
+}): React.JSX.Element {
   const [useManualSyntax, setUseManualSyntax] = useState(false)
   const [ss, setSelectedSubset] = useState<SubsetFlags>({
     primary: false,

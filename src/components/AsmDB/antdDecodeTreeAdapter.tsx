@@ -27,7 +27,7 @@ type NodeTitleProps = {
   node?: AugmentedDecodeTreeNode
 }
 
-function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
+function NodeTitle({ match, node }: NodeTitleProps): React.JSX.Element {
   if (!match) match = node.parentMatch
 
   const matchNumber = match ? match.match : 0
@@ -37,8 +37,8 @@ function NodeTitle({ match, node }: NodeTitleProps): JSX.Element {
   const lookAt = node ? node.look_at : match.parentNode.look_at
   const parentLookAt = node ? node.parentLookAt : null
 
-  const preAttribs: JSX.Element[] = []
-  const postAttribs: JSX.Element[] = []
+  const preAttribs: React.JSX.Element[] = []
+  const postAttribs: React.JSX.Element[] = []
   if (match?.fmt)
     if (node)
       postAttribs.push(

@@ -8,7 +8,7 @@ export default function BoolFlag({
   val,
   trueContent,
   falseContent,
-}: Options): JSX.Element {
+}: Options): React.JSX.Element {
   const t = trueContent ? trueContent : '✅'
   const f = falseContent ? falseContent : '❌'
 

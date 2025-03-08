@@ -1,8 +1,7 @@
 import Layout from '@theme/Layout'
-
 import { EntityKind, IAuthor } from '@site/src/types'
 
-function renderKind(k: EntityKind): JSX.Element {
+function renderKind(k: EntityKind): React.JSX.Element {
   switch (k) {
     case EntityKind.Community:
       return (
@@ -25,7 +24,11 @@ function renderKind(k: EntityKind): JSX.Element {
   }
 }
 
-export default function AuthorPage({ data }: { data: IAuthor }): JSX.Element {
+export default function AuthorPage({
+  data,
+}: {
+  data: IAuthor
+}): React.JSX.Element {
   return (
     <Layout title={`${data.name} | 移植者详情`}>
       <main>

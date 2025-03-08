@@ -43,7 +43,7 @@ function HomepageHeader() {
   )
 }
 
-export default function Home(): JSX.Element {
+export default function Home(): React.JSX.Element {
   const homepageTitle = translate({
     id: 'awly.homepage.title',
     message: '首页',

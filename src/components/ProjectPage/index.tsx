@@ -5,7 +5,7 @@ import SupportStatusIcon from '../SupportStatusIcon'
 import CodeQualityIcon from '../CodeQualityIcon'
 import styles from './styles.module.css'
 
-function PortingEffort({ data }: { data: IPortingEffort }): JSX.Element {
+function PortingEffort({ data }: { data: IPortingEffort }): React.JSX.Element {
   return (
     <section>
       <dl className={styles.infoTable}>
@@ -44,7 +44,11 @@ function PortingEffort({ data }: { data: IPortingEffort }): JSX.Element {
   )
 }
 
-export default function ProjectPage({ data }: { data: IProject }): JSX.Element {
+export default function ProjectPage({
+  data,
+}: {
+  data: IProject
+}): React.JSX.Element {
   return (
     <Layout title={`${data.name} | 项目详情`}>
       <main className="container">
