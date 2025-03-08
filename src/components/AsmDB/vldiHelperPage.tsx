@@ -273,7 +273,7 @@ const VldiFunctionSelect: React.FC<
   }
 
   return (
-    <Card bordered={false}>
+    <Card variant="borderless">
       <Row>
         <Col span={24}>
           元素类型：
@@ -393,13 +393,15 @@ export default function VldiHelperPage(): React.JSX.Element {
 
       <Row gutter={16} {...marginTop}>
         <Col span={24}>
-          <Card bordered={false}>装载参数：{dataInputPanes[vldiFunction]}</Card>
+          <Card variant="borderless">
+            装载参数：{dataInputPanes[vldiFunction]}
+          </Card>
         </Col>
       </Row>
 
       <Row gutter={16} {...marginTop}>
         <Col span={24}>
-          <Card bordered={false}>
+          <Card variant="borderless">
             <Row>
               <Col span={24}>
                 向量宽度：
