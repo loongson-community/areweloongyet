@@ -12,7 +12,7 @@ type InsnFormatNameOptions = {
 
 export default function InsnFormatName(
   props: InsnFormatNameOptions,
-): JSX.Element {
+): React.JSX.Element {
   return (
     <span className={clsx(styles.insnFormatTag, props.className)}>
       {props.overrideStr !== undefined

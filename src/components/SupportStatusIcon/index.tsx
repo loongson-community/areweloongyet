@@ -54,7 +54,7 @@ type Options = {
 export default function SupportStatusIcon({
   val,
   showDesc,
-}: Options): JSX.Element {
+}: Options): React.JSX.Element {
   return (
     <>
       <span>{emojiForSupportStatus(val)}</span>

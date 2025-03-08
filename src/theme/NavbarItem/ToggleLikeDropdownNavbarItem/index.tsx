@@ -39,11 +39,11 @@ function containsActiveItems(
 
 interface DesktopOrMobileNavBarItemPropsWithIcon
   extends DesktopOrMobileNavBarItemProps {
-  icon?: JSX.Element
+  icon?: React.JSX.Element
 }
 
 interface Props extends DropdownNavbarItemProps {
-  icon?: JSX.Element
+  icon?: React.JSX.Element
 }
 
 function ToggleLikeDropdownNavbarItemDesktop({
@@ -198,7 +198,7 @@ function ToggleLikeDropdownNavbarItemMobile({
 export default function ToggleLikeDropdownNavbarItem({
   mobile = false,
   ...props
-}: Props): JSX.Element {
+}: Props): React.JSX.Element {
   const Comp = mobile
     ? ToggleLikeDropdownNavbarItemMobile
     : ToggleLikeDropdownNavbarItemDesktop

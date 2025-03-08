@@ -10,7 +10,11 @@ import InsnListPage from './insnListPage'
 import type { AsmDBData } from './types'
 import VldiHelperPage from './vldiHelperPage'
 
-export default function AsmDBPage({ data }: { data: AsmDBData }): JSX.Element {
+export default function AsmDBPage({
+  data,
+}: {
+  data: AsmDBData
+}): React.JSX.Element {
   const { path, url } = useRouteMatch()
   const sideNavItems: MenuProps['items'] = [
     {

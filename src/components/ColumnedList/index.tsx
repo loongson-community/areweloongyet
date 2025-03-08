@@ -7,7 +7,7 @@ type Props = {
   children?: ReactNode | undefined
 }
 
-export default function ColumnedList(props: Props): JSX.Element {
+export default function ColumnedList(props: Props): React.JSX.Element {
   return (
     <div className={styles.columnedList} style={{ columns: props.columns }}>
       {props.children}

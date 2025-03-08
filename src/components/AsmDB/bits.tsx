@@ -17,7 +17,7 @@ type BitsOptions = {
 type BitProps = {
   isFixed: boolean
   isUndecided: boolean
-  placeholder?: string | JSX.Element
+  placeholder?: string | React.JSX.Element
   value: 0 | 1
   palette: BitPalette
   alpha?: AlphaStep
@@ -51,7 +51,7 @@ function placeholderForBit(
   hasFmt: boolean,
   isFixed: boolean,
   isBeingChecked: boolean,
-): string | JSX.Element {
+): string | React.JSX.Element {
   if (isFixed) return null
   if (hasFmt) return ''
   return isBeingChecked ? <EyeOutlined /> : 'x'
@@ -168,8 +168,8 @@ export const BitsRepr: React.FC<
   )
 }
 
-export function InsnBitsRepr(props: BitsOptions): JSX.Element {
-  let insnFormatDesc: JSX.Element
+export function InsnBitsRepr(props: BitsOptions): React.JSX.Element {
+  let insnFormatDesc: React.JSX.Element
   if (props.useManualSyntax) {
     const mfn = getManualInsnFormatName(props.insn)
     if (mfn == '') {

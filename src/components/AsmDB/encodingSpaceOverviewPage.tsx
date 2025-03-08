@@ -264,7 +264,7 @@ export default function EncodingSpaceOverviewPage({
   data,
 }: {
   data: AsmDBData
-}): JSX.Element {
+}): React.JSX.Element {
   const numInsns = data.insns.length
   const augmentedDecodeTree = augmentDecodeTree(data.decodetree)
   const augmentedDataMap = mapifyAugmentedDecodeTree(augmentedDecodeTree)

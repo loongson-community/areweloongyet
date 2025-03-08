@@ -12,7 +12,7 @@ function ICPBeianLink({
   province: string
   recordNumber: number
   subRecordNumber: number
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <a href="https://beian.miit.gov.cn" target="_blank">
       {province}ICP备{recordNumber}号-{subRecordNumber}
@@ -26,7 +26,7 @@ function _MPSBeianLink({
 }: {
   province: string
   recordNumber: number
-}): JSX.Element {
+}): React.JSX.Element {
   const queryLinkURL = `http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${recordNumber}`
   return (
     <>
@@ -42,7 +42,9 @@ function _MPSBeianLink({
   )
 }
 
-export default function CopyrightWrapper(props: typeof Props): JSX.Element {
+export default function CopyrightWrapper(
+  props: typeof Props,
+): React.JSX.Element {
   return (
     <>
       <p>

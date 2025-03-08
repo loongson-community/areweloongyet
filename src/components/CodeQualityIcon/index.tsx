@@ -34,7 +34,7 @@ type Options = {
 export default function CodeQualityIcon({
   val,
   showDesc,
-}: Options): JSX.Element {
+}: Options): React.JSX.Element {
   return (
     <>
       <span>{emojiForCodeQuality(val)}</span>

@@ -300,7 +300,7 @@ const VldiFunctionSelect: React.FC<
   )
 }
 
-export default function VldiHelperPage(): JSX.Element {
+export default function VldiHelperPage(): React.JSX.Element {
   const [elemTy, setElemTy] = useState(VecElemType.I8)
   const [vlen, setVlen]: [Vlen, Dispatch<React.SetStateAction<Vlen>>] =
     useState(128)
@@ -356,7 +356,7 @@ export default function VldiHelperPage(): JSX.Element {
     )
   }
 
-  const dataInputPanes: { [key in VldiFunction]?: JSX.Element } = {}
+  const dataInputPanes: { [key in VldiFunction]?: React.JSX.Element } = {}
   _.forEach(dataInputUXByVldiFunction, (ux, key) => {
     dataInputPanes[key] = makeInputPane(ux, key)
   })
