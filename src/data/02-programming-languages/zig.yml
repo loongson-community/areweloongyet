@@ -4,11 +4,10 @@ repoURL: 'https://github.com/ziglang/zig'
 portingEfforts:
   - authors: ['yxd', 'alexrp']
     desc: |
-      主要的 loongarch64 支持已经基本就绪，等待 zig 合入 LLVM 19 解决 LLVM 已知问题
+      loongarch64-linux 基本可用，0.14.0 版本是 Tier 3 支持。详见 https://ziglang.org/download/0.14.0/release-notes.html#Support-Table
     link: |
-      https://github.com/ziglang/zig-bootstrap/issues/164
-      https://github.com/ziglang/zig-bootstrap/issues/166
-    supportStatus: WIP
-    releasedSinceVersion: '预计 0.14.0 可以支持'
+      https://github.com/ziglang/zig/issues/21646
+    supportStatus: Released
+    releasedSinceVersion: '0.14.0'
     goodSinceVersion: ''
     quality: NeedsCleanup
