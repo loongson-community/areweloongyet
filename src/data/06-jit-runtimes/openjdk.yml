@@ -4,8 +4,8 @@ repoURL: 'https://github.com/openjdk/jdk'
 portingEfforts:
   - authors: ['loongson']
     desc: ''
-    link: ''
+    link: 'https://github.com/loongson/jdk'
     supportStatus: WIP
     releasedSinceVersion: ''
     goodSinceVersion: ''
-    quality: NoCode
+    quality: NeedsCleanup
