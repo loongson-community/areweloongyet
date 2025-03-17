@@ -37,7 +37,7 @@
     "lodash": "^4.17.21",
     "mdast-util-find-and-replace": "^3.0.2",
     "prism-react-renderer": "^2.4.1",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^5.3.4",
