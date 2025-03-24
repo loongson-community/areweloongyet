@@ -216,6 +216,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ant-design/colors@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@ant-design/colors@npm:8.0.0"
+  dependencies:
+    "@ant-design/fast-color": "npm:^3.0.0"
+  checksum: 10c0/34c7a523640f7b89199aae453a720c8ef66fd4c45499019eee79304c43b2de61bc89ed1edf86adfd13b61cb0f5fd55e6a15f38d277c5e982ab05369171de132c
+  languageName: node
+  linkType: hard
+
 "@ant-design/cssinjs-utils@npm:^1.1.3":
   version: 1.1.3
   resolution: "@ant-design/cssinjs-utils@npm:1.1.3"
@@ -257,6 +266,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ant-design/fast-color@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@ant-design/fast-color@npm:3.0.0"
+  checksum: 10c0/49e6c8971c2979d72e20422a0d76b4134b2a08a0ec971f4e7aa5901e900b83ef8a69b642bccc2770d114993f4bf5f5a909a642503c6e64c6e67376ff2f58e87a
+  languageName: node
+  linkType: hard
+
 "@ant-design/icons-svg@npm:^4.4.0":
   version: 4.4.2
   resolution: "@ant-design/icons-svg@npm:4.4.2"
@@ -277,6 +293,21 @@ __metadata:
     react: ">=16.0.0"
     react-dom: ">=16.0.0"
   checksum: 10c0/7a9d9fd388c5c66d92818fd0eb794a54ef0b0dc3d75f15ac24c7cfde21c5c836c220cf35423768fd1faa28d55443a6917bf4260469c1485be83f799daa351976
+  languageName: node
+  linkType: hard
+
+"@ant-design/icons@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@ant-design/icons@npm:6.0.0"
+  dependencies:
+    "@ant-design/colors": "npm:^8.0.0"
+    "@ant-design/icons-svg": "npm:^4.4.0"
+    "@rc-component/util": "npm:^1.2.1"
+    classnames: "npm:^2.2.6"
+  peerDependencies:
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 10c0/573ffed2d16fda7c0b79e60339eebaf05490a83b961aaed46201d0bf62d3f7d8995d135dc40b4bd2faf8c562eca88ba3d4ae5533df6ec6d21ee2caa4d3892aa4
   languageName: node
   linkType: hard
 
@@ -3631,6 +3662,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rc-component/util@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@rc-component/util@npm:1.2.1"
+  dependencies:
+    react-is: "npm:^18.2.0"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/0a9e8f1b6caec8f3fda4981ae3b43ec4212d344837e6e20080bc72556b81a4b470b97cf3a24da19ed3ebce309113ecd6499d5444ba839e0c8196b88698a0fb36
+  languageName: node
+  linkType: hard
+
 "@rspack/binding-darwin-arm64@npm:1.2.0-alpha.0":
   version: 1.2.0-alpha.0
   resolution: "@rspack/binding-darwin-arm64@npm:1.2.0-alpha.0"
@@ -5583,7 +5626,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "areweloongyet@workspace:."
   dependencies:
-    "@ant-design/icons": "npm:^5.6.1"
+    "@ant-design/icons": "npm:^6.0.0"
     "@docusaurus/core": "npm:3.7.0"
     "@docusaurus/faster": "npm:3.7.0"
     "@docusaurus/module-type-aliases": "npm:3.7.0"
