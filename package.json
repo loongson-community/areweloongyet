@@ -16,7 +16,7 @@
     "build-helpers": "cd scripts/asmdb && go build -o ./gen-asmdb-data ./..."
   },
   "dependencies": {
-    "@ant-design/icons": "^5.6.1",
+    "@ant-design/icons": "^6.0.0",
     "@docusaurus/core": "3.7.0",
     "@docusaurus/faster": "3.7.0",
     "@docusaurus/plugin-client-redirects": "3.7.0",
@@ -30,7 +30,7 @@
     "@easyops-cn/docusaurus-search-local": "^0.49.1",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/react": "^3.1.0",
-    "antd": "^5.24.4",
+    "antd": "^5.24.5",
     "browserslist": "^4.24.4",
     "clsx": "^2.1.1",
     "glob": "^11.0.1",
