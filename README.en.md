@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="咱龙了吗？AREWELOONGYET? by the Loongson Community" src="./art/logo-readme.png" height="150" />
+  <img alt="咱蛇了吗？AREWESNAKEYET? by the Snakedaughter Crew" src="./art/logo-readme.png" height="150" />
   <p>Your one-stop portal for following LoongArch upstream work.</p>
 </div>
 
