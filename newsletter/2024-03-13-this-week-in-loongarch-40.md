@@ -92,7 +92,7 @@ LLVM 所新增的 LoongArch 目标特性 `frecipe` 与 `relax`。
 该宏定义对龙架构是无效的：龙架构的纪元版本高于 2.31，因此龙架构上的该宏是空操作。
 而在编译 libLoL 时，因为 libLoL 有意将 glibc 的纪元版本向过去推了，所以带有笔误的该语句生效，进而暴露了缺少符号的问题。
 感谢[王邈][shankerwangmiao]提供新闻线索！
-（编者注：您可查阅本站的[相关文档](/docs/world-compat-details#glibc-符号版本)了解此处涉及的技术细节。）
+（编者注：您可查阅本站的[相关文档](/docs/world-compat-details#glibc-symbol-versioning)了解此处涉及的技术细节。）
 
 [aosc]: https://aosc.io
 
