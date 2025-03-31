@@ -135,7 +135,7 @@ LoongArch 新世界的版本。您可于[龙蜥官方镜像源](https://mirrors.
 :::info 怎么记得之前就支持了？
 实际上，Anolis OS 8.8 与 8.9 也有 LoongArch 支持，不过是旧世界。
 
-Anolis OS 23.1 **未提供**旧世界兼容性：标志性的 `/lib64/ld.so.1` 入口点——详见[本站阅读材料](/docs/world-compat-details/#程序解释器)，任何旧世界兼容方案都必然会提供，而我们至少在
+Anolis OS 23.1 **未提供**旧世界兼容性：标志性的 `/lib64/ld.so.1` 入口点——详见[本站阅读材料](/docs/world-compat-details/#program-interpreter)，任何旧世界兼容方案都必然会提供，而我们至少在
 Anolis OS 23.1 的安装介质上没有观测到。考虑到出于种种原因而永远无法迁移到新世界的商业软件可能已经存在，我们预计
 Anolis OS 仍将在未来以某种方式提供旧世界兼容性——至少是可选安装的。
 :::

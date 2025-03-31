@@ -374,7 +374,7 @@ This flag provides the most direct and reliable[^b2] method to determine whether
     Since binutils 2.40 was released in early 2023, when the NW LoongArch ecosystem hadn't yet developed a viable toolchain environment,
     the number of such programs and libraries should be minimal.
 
-### Program Interpreter
+### Program Interpreter {#program-interpreter}
 
 The Program Interpreter is a field in dynamically linked ELF executables that specifies the path to the required dynamic linker. When loading a dynamically linked ELF executable, the kernel loads the dynamic linker according to this field. The OW and NW have different program interpreter paths:
 
@@ -399,7 +399,7 @@ For compatibility, the isolation-based approach must include a complete set of d
 
 The hybrid approach, conversely, leverages the identical calling conventions between OW and NW by providing a modified glibc. This glibc provides multiple symbol versions, allowing both OW programs and NW dynamic libraries to link with it simultaneously. This approach mixes OW and NW environments and doesn't require a complete set of OW dynamic libraries, instead utilizing NW libraries directly. This saves storage space and avoids completeness concerns regarding included libraries. However, the hybrid approach requires complex glibc modifications. Additionally, it may face challenges in correctly identifying whether data structures are NW or OW versions, potentially leading to misinterpretation issues.
 
-### glibc Symbol Versioning
+### glibc Symbol Versioning {#glibc-symbol-versioning}
 
 As is well known, glibc has excellent compatibility, achieved through symbol versioning. Specifically, all symbols in glibc are assigned a version number when introduced. If a symbol's ABI changes, a new version of the symbol is introduced, while the old version is retained (though its implementation may be replaced with a compatible one). This version number is a string, and during dynamic linking, only symbols with matching version numbers are linked. Thus, even if the ABI of glibc changes, executables linked with older versions of glibc will use the old version of the symbols when running on newer glibc, ensuring compatibility. The symbol names and their associated versions are defined in the `Versions` files in each directory of glibc, such as [`io/Versions`](https://elixir.bootlin.com/glibc/glibc-2.38/source/io/Versions). In the following text, we refer to the version numbers defined in the `Versions` files as "source version numbers." From this definition, it is clear that a symbol's source version number is architecture-independent. In contrast, the version numbers defined in the compiled binary glibc library files are referred to as "binary version numbers." This version number is written into the symbol table of executables during compilation and linking, and is also used by the dynamic linker to check symbol versions when loading executables. On architectures like i386, a symbol's source version number and binary version number are the same. However, this is not true for all architecture.
 
