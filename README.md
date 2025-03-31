@@ -7,6 +7,10 @@
 
 ---
 
+感谢龙友们——您的自发支持，我们在几乎 0 宣发的前提下，做到了如下图所示的星标（Star）增长！
+
+![本项目的星标数量变化图](https://starchart.cc/loongson-community/areweloongyet.svg)
+
 ### 许可证
 
 本储存库中的内容以 [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可证授权。

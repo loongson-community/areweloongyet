@@ -7,6 +7,10 @@
 
 ---
 
+Thanks to all our supporters -- including you, we're able to collect so many stars over the years, with nearly zero promotion!
+
+![Stargazers over time](https://starchart.cc/loongson-community/areweloongyet.svg)
+
 ### License
 
 Content inside this repo is licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
