@@ -47,7 +47,7 @@ if (process.env.DOCUSAURUS_CURRENT_LOCALE == 'undefined') {
 
 const configStringsTranslations = {
   en: {
-    title: 'AREWELOONGYET?',
+    title: 'AREWESNAKEYET?',
     tagline: 'Your one-stop portal for following LoongArch upstream work.',
     logoPath: 'img/logo-en.svg',
     twilTitle: 'This Week in LoongArch',
@@ -55,17 +55,17 @@ const configStringsTranslations = {
       'This Week in LoongArch (TWiL) is a weekly newsletter covering the latest developments in the LoongArch community, publishing every Monday.',
     siteNewsTitle: 'Site news',
     siteNewsDescription:
-      'News on the development and operations of the AREWELOONGYET? site.',
+      'News on the development and operations of the AREWESNAKEYET? site.',
   },
   'zh-Hans': {
-    title: '咱龙了吗？',
+    title: '咱蛇了吗？',
     tagline: '一站式了解 LoongArch 的上游生态建设。',
     logoPath: 'img/logo.svg',
     twilTitle: '每周一龙',
     twilDescription:
       '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
     siteNewsTitle: '本站动态',
-    siteNewsDescription: '《咱龙了吗？》网站本身的开发、运营动态。',
+    siteNewsDescription: '《咱蛇了吗？》网站本身的开发、运营动态。',
   },
 }
 

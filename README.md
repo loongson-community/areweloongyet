@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="咱龙了吗？AREWELOONGYET? by the Loongson Community" src="./art/logo-readme.png" height="150" />
+  <img alt="咱蛇了吗？AREWESNAKEYET? by the Snakedaughter Crew" src="./art/logo-readme.png" height="150" />
   <p>一站式了解 LoongArch 的上游生态建设。</p>
 </div>
 
@@ -7,7 +7,7 @@
 
 ---
 
-感谢龙友们——您的自发支持，我们在几乎 0 宣发的前提下，做到了如下图所示的星标（Star）增长！
+感谢蛇友们——您的自发支持，我们在几乎 0 宣发的前提下，做到了如下图所示的星标（Star）增长！
 
 ![本项目的星标数量变化图](https://starchart.cc/loongson-community/areweloongyet.svg)
 
