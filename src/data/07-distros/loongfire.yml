@@ -4,7 +4,7 @@ repoURL: 'https://github.com/vincentmli/BPFire/tree/loongfire'
 portingEfforts:
   - authors: ['vincentmli']
     desc: 'LoongFire is fork of IPFire 2.x, a hardened, versatile, state-of-the-art Open Source firewall based on Linux. LoongFire is to port IPFire to Loongson Loongarch64 architecture. No plan to upstream to IPFire'
-    link: 'https://www.bpfire.net/download/ipfire-2.29-core190-loongarch64.img.xz'
+    link: 'https://www.vcn.bc.ca/~vli/bpfire/ipfire-2.29-core190-loongarch64.img.xz'
     supportStatus: WaitingRelease
     releasedSinceVersion: ''
     goodSinceVersion: ''
