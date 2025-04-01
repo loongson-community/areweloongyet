@@ -6,6 +6,8 @@ date: 2025-04-01T14:30:00+08:00
 tags: [每日一小龙]
 ---
 
+**2025-04-01 晚间编辑:** 请注意本文的发表日期。但《每日一小龙》是我们于 2025 年 1 月即[开始设想](https://github.com/loongson-community/areweloongyet/issues/287)的企划，后续仍将正常推进。
+
 近日来，许多本站的忠实读者通过各种渠道询问：《每周一龙》合订本的卷二、卷三什么时候出？虽然小编在[本站品牌形象升级公告](/blog/a-late-branding-update/)已有解释，但想到读者朋友们如此热情，一句话不说也不好。考虑到先于龙芯官方发布一本叫作「卷二」甚至「卷三」的材料总有些被过度解读的风险 :thinking:，我们准备暂时搁置这件事项 :sunglasses:，而转向更轻量级、接地气的编排形式：在此我们宣布新的企划《每日一小龙》！
 
 <!-- truncate -->
@@ -36,4 +38,4 @@ tags: [每日一小龙]
 
 此致🫡，
 
-蛇女儿帮 :snake::princess: (the Snakedaughter Crew)
+~~蛇女儿帮 :snake::princess: (the Snakedaughter Crew)~~ 《咱龙了吗？》贡献者一同
