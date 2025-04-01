@@ -61,7 +61,7 @@ const configStringsTranslations = {
     title: '咱蛇了吗？',
     tagline: '一站式了解 LoongArch 的上游生态建设。',
     logoPath: 'img/logo.svg',
-    twilTitle: '每周一龙',
+    twilTitle: '每日一小龙',
     twilDescription:
       '龙架构新世界生态建设周报《每周一龙》（This Week in LoongArch）。每周一都为大家报道 LoongArch 社区最前线的第一手新鲜资讯！',
     siteNewsTitle: '本站动态',
@@ -394,6 +394,14 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
+    announcementBar: {
+      id: 'branding-update',
+      content:
+        '农历乙巳蛇年之际，本站品牌形象焕新升级，<strong>咱蛇了！</strong><a href="/newsletter/announcing-a-lesser-loong-a-day/">详情请戳👉🐍</a>',
+      backgroundColor: 'var(--ifm-color-primary)',
+      textColor: 'var(--ifm-font-color-base-inverse)',
+      isCloseable: true,
+    },
     navbar: {
       title: '',
       logo: {
@@ -407,7 +415,7 @@ const config: Config = {
           position: 'left',
           label: '阅读材料',
         },
-        { to: '/newsletter', label: '每周一龙', position: 'left' },
+        { to: '/newsletter', label: '每日一小龙', position: 'left' },
         { to: '/asmdb', label: '汇编速查', position: 'left' },
         { to: '/blog', label: '本站动态', position: 'left' },
         {
@@ -433,7 +441,7 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: '每周一龙',
+              label: '每日一小龙',
               to: '/newsletter',
             },
             {
