@@ -2976,17 +2976,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.26.0":
+"@eslint/js@npm:9.26.0, @eslint/js@npm:^9.26.0":
   version: 9.26.0
   resolution: "@eslint/js@npm:9.26.0"
   checksum: 10c0/89fa45b7ff7f3c2589ea1f04a31b4f6d41ad85ecac98e519195e8b3a908b103c892ac19c4aec0629cfeccefd9e5b63c2f1269183d63016e7de722b97a085dcf4
-  languageName: node
-  linkType: hard
-
-"@eslint/js@npm:^9.25.1":
-  version: 9.25.1
-  resolution: "@eslint/js@npm:9.25.1"
-  checksum: 10c0/87d86b512ab109bfd3b9317ced3220ea3d444ac3bfa7abd853ca7f724d72c36e213062f9def16a632365d97dc29e0094312e3682a9767590ee6f43b3d5d873fd
   languageName: node
   linkType: hard
 
@@ -5666,7 +5659,7 @@ __metadata:
     "@docusaurus/tsconfig": "npm:3.7.0"
     "@docusaurus/types": "npm:3.7.0"
     "@easyops-cn/docusaurus-search-local": "npm:^0.49.2"
-    "@eslint/js": "npm:^9.25.1"
+    "@eslint/js": "npm:^9.26.0"
     "@jsdevtools/rehype-url-inspector": "npm:^2.0.2"
     "@mdx-js/react": "npm:^3.1.0"
     "@types/glob": "npm:^8.1.0"
