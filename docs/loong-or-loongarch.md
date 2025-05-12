@@ -99,7 +99,7 @@ Linux 发行版一般都使用一个较短的架构标识符，因此基本都�
 |Alpine Linux|`loongarch64`|
 |AOSC OS|`loongarch64`|
 |Debian|<ul><li>旧世界：`loongarch64`</li><li>新世界：`loong64`</li></ul>|
-|Deepin|`loongarch64`|
+|deepin|`loong64`|
 |Gentoo|`loong`|
 |Loong Arch Linux|`loong64`|
 |OpenWrt|`loongarch64`|
