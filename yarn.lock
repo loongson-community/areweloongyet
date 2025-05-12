@@ -5571,9 +5571,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.24.9":
-  version: 5.24.9
-  resolution: "antd@npm:5.24.9"
+"antd@npm:^5.25.1":
+  version: 5.25.1
+  resolution: "antd@npm:5.25.1"
   dependencies:
     "@ant-design/colors": "npm:^7.2.0"
     "@ant-design/cssinjs": "npm:^1.23.0"
@@ -5590,7 +5590,7 @@ __metadata:
     classnames: "npm:^2.5.1"
     copy-to-clipboard: "npm:^3.3.3"
     dayjs: "npm:^1.11.11"
-    rc-cascader: "npm:~3.33.1"
+    rc-cascader: "npm:~3.34.0"
     rc-checkbox: "npm:~3.5.0"
     rc-collapse: "npm:~3.9.0"
     rc-dialog: "npm:~9.6.0"
@@ -5610,7 +5610,7 @@ __metadata:
     rc-rate: "npm:~2.13.1"
     rc-resize-observer: "npm:^1.4.3"
     rc-segmented: "npm:~2.7.0"
-    rc-select: "npm:~14.16.6"
+    rc-select: "npm:~14.16.7"
     rc-slider: "npm:~11.1.8"
     rc-steps: "npm:~6.0.1"
     rc-switch: "npm:~4.1.0"
@@ -5620,14 +5620,14 @@ __metadata:
     rc-tooltip: "npm:~6.4.0"
     rc-tree: "npm:~5.13.1"
     rc-tree-select: "npm:~5.27.0"
-    rc-upload: "npm:~4.8.1"
+    rc-upload: "npm:~4.9.0"
     rc-util: "npm:^5.44.4"
     scroll-into-view-if-needed: "npm:^3.1.0"
     throttle-debounce: "npm:^5.0.2"
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/78a94b4f40bc299384882d8d178a4b840f484334d9f2fb2ce093d47353515f3ed7244b852cfc9a51285206e975dffa96bf0b09af4c21acfc9c206eb7f2626ba4
+  checksum: 10c0/adc6d167f138516630c50fa3a6c181082b218f715ca05e0f578265a0ae0cef0babacc2140619a1f0a602653da90167f3931e2b6f1006f3d932b30c29370536d5
   languageName: node
   linkType: hard
 
@@ -5670,7 +5670,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.5"
     "@types/react": "npm:^19.0.10"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.24.9"
+    antd: "npm:^5.25.1"
     browserslist: "npm:^4.24.5"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.26.0"
@@ -13587,9 +13587,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-cascader@npm:~3.33.1":
-  version: 3.33.1
-  resolution: "rc-cascader@npm:3.33.1"
+"rc-cascader@npm:~3.34.0":
+  version: 3.34.0
+  resolution: "rc-cascader@npm:3.34.0"
   dependencies:
     "@babel/runtime": "npm:^7.25.7"
     classnames: "npm:^2.3.1"
@@ -13599,7 +13599,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/aa77ec3e5285179dfb924d08820532ac8c8ca413cbdf7a496dc11a666199f26a4c7d0f16357a1821cff776012ff93bcf0b07a9ce8dc8c45ab42567fc499fecab
+  checksum: 10c0/1fc8c55e0f78ff2be59e2bcd8faa53aafecebbb28f4bb9982ad39e8f9f9620e15d6119797c7890347e46b05c32b43177ece047e81ef04c22a9f041eb0dd53e0a
   languageName: node
   linkType: hard
 
@@ -13921,7 +13921,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-select@npm:~14.16.2, rc-select@npm:~14.16.6":
+"rc-select@npm:~14.16.2":
   version: 14.16.6
   resolution: "rc-select@npm:14.16.6"
   dependencies:
@@ -13936,6 +13936,24 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: 10c0/a0aa16e611bfe48bc26612a95189a33e7bed38f12a1c41f34b74778b5d83437d74f7b0b304ce27eda2f5797b330f35fc73f1ddc3e85efff56a3089da22a0a3bf
+  languageName: node
+  linkType: hard
+
+"rc-select@npm:~14.16.7":
+  version: 14.16.7
+  resolution: "rc-select@npm:14.16.7"
+  dependencies:
+    "@babel/runtime": "npm:^7.10.1"
+    "@rc-component/trigger": "npm:^2.1.1"
+    classnames: "npm:2.x"
+    rc-motion: "npm:^2.0.1"
+    rc-overflow: "npm:^1.3.1"
+    rc-util: "npm:^5.16.1"
+    rc-virtual-list: "npm:^3.5.2"
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: 10c0/9429dd7d2d2ff5df56efea946d95901650378e7b8ceed37ef586f5cde64cdb52be390c2176ce516bb3bbdbab15305524c5c0d8cc9d0998cc39bd4e917360329f
   languageName: node
   linkType: hard
 
@@ -14079,9 +14097,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-upload@npm:~4.8.1":
-  version: 4.8.1
-  resolution: "rc-upload@npm:4.8.1"
+"rc-upload@npm:~4.9.0":
+  version: 4.9.0
+  resolution: "rc-upload@npm:4.9.0"
   dependencies:
     "@babel/runtime": "npm:^7.18.3"
     classnames: "npm:^2.2.5"
@@ -14089,7 +14107,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/27555e114c1705b88558312beeda4b8d3e74d192c09f5a41d161045cbe621d372973acaffff8b9c79ebfe495962e2bf96aedffc9fadc96b5e7c7b5cd1af98b99
+  checksum: 10c0/183e30d6c483e50c83217c51b498756dd8fd8e2d71d5a6274932cedbe7c65aaf673894f7be2fd08a93a287cb6e561e66011f44aeaec3dab545e5c0ab7647291e
   languageName: node
   linkType: hard
 
