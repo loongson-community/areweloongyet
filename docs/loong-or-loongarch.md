@@ -96,10 +96,13 @@ Linux 发行版一般都使用一个较短的架构标识符，因此基本都�
 
 |发行版|架构标识符|
 |------|----------|
+|Alpine Linux|`loongarch64`|
 |AOSC OS|`loongarch64`|
 |Debian|<ul><li>旧世界：`loongarch64`</li><li>新世界：`loong64`</li></ul>|
+|deepin|`loong64`|
 |Gentoo|`loong`|
 |Loong Arch Linux|`loong64`|
+|OpenWrt|`loongarch64`|
 |RPM 系|`loongarch64`|
 |Slackware|`loong64`|
 
@@ -129,6 +132,7 @@ RPM 上游遂迅速合并了。
 |C#|[`LoongArch64`](https://learn.microsoft.com/zh-cn/dotnet/api/system.runtime.interopservices.architecture?view=net-8.0)|
 |Go|`GOARCH=loong64`|
 |Rust|`loongarch64-unknown-linux-gnu`|
+|Zig|`loongarch64-linux`|
 
 该表格没有也不能穷尽所有软件项目。
 如果您有补充，您可在页面底部找到「编辑此页」的链接（指向上游仓库中本页的源文件）。
