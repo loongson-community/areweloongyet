@@ -207,12 +207,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design/colors@npm:^7.0.0, @ant-design/colors@npm:^7.2.0":
+"@ant-design/colors@npm:^7.0.0":
   version: 7.2.0
   resolution: "@ant-design/colors@npm:7.2.0"
   dependencies:
     "@ant-design/fast-color": "npm:^2.0.6"
   checksum: 10c0/3c495e2380aa2acc2a1c5e12aa8427f71f146fddb93548129b0aaaa4e06b8b1a8c03e3d394519070092f782ed1b29655b055cb6efbba014f348de4a9176e10ca
+  languageName: node
+  linkType: hard
+
+"@ant-design/colors@npm:^7.2.1":
+  version: 7.2.1
+  resolution: "@ant-design/colors@npm:7.2.1"
+  dependencies:
+    "@ant-design/fast-color": "npm:^2.0.6"
+  checksum: 10c0/4748a0bfb1ea98e08e29dcd4f7afd2781ae2119f783e6e9f80e889fd15fc19f7137e2a3d91f26bae2ab1ee76c04d520cc35f2bb0a708cd71e463f4d9deb4192d
   languageName: node
   linkType: hard
 
@@ -5582,11 +5591,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^5.25.1":
-  version: 5.25.1
-  resolution: "antd@npm:5.25.1"
+"antd@npm:^5.25.3":
+  version: 5.25.3
+  resolution: "antd@npm:5.25.3"
   dependencies:
-    "@ant-design/colors": "npm:^7.2.0"
+    "@ant-design/colors": "npm:^7.2.1"
     "@ant-design/cssinjs": "npm:^1.23.0"
     "@ant-design/cssinjs-utils": "npm:^1.1.3"
     "@ant-design/fast-color": "npm:^2.0.6"
@@ -5621,11 +5630,11 @@ __metadata:
     rc-rate: "npm:~2.13.1"
     rc-resize-observer: "npm:^1.4.3"
     rc-segmented: "npm:~2.7.0"
-    rc-select: "npm:~14.16.7"
+    rc-select: "npm:~14.16.8"
     rc-slider: "npm:~11.1.8"
     rc-steps: "npm:~6.0.1"
     rc-switch: "npm:~4.1.0"
-    rc-table: "npm:~7.50.4"
+    rc-table: "npm:~7.50.5"
     rc-tabs: "npm:~15.6.1"
     rc-textarea: "npm:~1.10.0"
     rc-tooltip: "npm:~6.4.0"
@@ -5638,7 +5647,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/adc6d167f138516630c50fa3a6c181082b218f715ca05e0f578265a0ae0cef0babacc2140619a1f0a602653da90167f3931e2b6f1006f3d932b30c29370536d5
+  checksum: 10c0/ec6b1e1dbe4b8be51aaadf1b5f8cfd51af9c97bb0adaa42346f5c27808e58a761855de56a512265c5d00c6142912c0d52139625fb4eca50df57f256319535daa
   languageName: node
   linkType: hard
 
@@ -5681,7 +5690,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.5"
     "@types/react": "npm:^19.0.10"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^5.25.1"
+    antd: "npm:^5.25.3"
     browserslist: "npm:^4.24.5"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.26.0"
@@ -13950,9 +13959,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-select@npm:~14.16.7":
-  version: 14.16.7
-  resolution: "rc-select@npm:14.16.7"
+"rc-select@npm:~14.16.8":
+  version: 14.16.8
+  resolution: "rc-select@npm:14.16.8"
   dependencies:
     "@babel/runtime": "npm:^7.10.1"
     "@rc-component/trigger": "npm:^2.1.1"
@@ -13964,7 +13973,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: 10c0/9429dd7d2d2ff5df56efea946d95901650378e7b8ceed37ef586f5cde64cdb52be390c2176ce516bb3bbdbab15305524c5c0d8cc9d0998cc39bd4e917360329f
+  checksum: 10c0/45f93e270c4b5e5ffc4b0ba0ce5e5ea72fff591a9a7a19b460b1ead0517d17327af9a4c32ce3c7f92b765724f4dabd1aa7146f5a06db73be91c884fe13c92774
   languageName: node
   linkType: hard
 
@@ -14010,9 +14019,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-table@npm:~7.50.4":
-  version: 7.50.4
-  resolution: "rc-table@npm:7.50.4"
+"rc-table@npm:~7.50.5":
+  version: 7.50.5
+  resolution: "rc-table@npm:7.50.5"
   dependencies:
     "@babel/runtime": "npm:^7.10.1"
     "@rc-component/context": "npm:^1.4.0"
@@ -14023,7 +14032,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 10c0/ab5eb3db00bc31470d7dd5946c1a919247742703a3278ea2d9a33e719a08e170ca80977e615084c7cfcb54508a9c3da2449409cce16fc1d7ec1ea67596c30d79
+  checksum: 10c0/952d4a0b2cb1158ca13032f0aabdf2e65e3a02f19a53b84526c9010f3413c3e95cefbf20188511f8664eb1dc9b46532865ca5f51d2b7c227fd8e27015a091281
   languageName: node
   linkType: hard
 
