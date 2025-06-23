@@ -4825,10 +4825,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.17.16":
-  version: 4.17.16
-  resolution: "@types/lodash@npm:4.17.16"
-  checksum: 10c0/cf017901b8ab1d7aabc86d5189d9288f4f99f19a75caf020c0e2c77b8d4cead4db0d0b842d009b029339f92399f49f34377dd7c2721053388f251778b4c23534
+"@types/lodash@npm:^4.17.18":
+  version: 4.17.18
+  resolution: "@types/lodash@npm:4.17.18"
+  checksum: 10c0/d25f86941990403d59dcaae42b42fc9fef55a0a7f398790517e7189300183e425a94127594cbeaf9b5fcdc4f6c2b285e34f4301fb56c92f81ccd8505a41ab5f5
   languageName: node
   linkType: hard
 
@@ -5675,7 +5675,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.1.0"
     "@types/glob": "npm:^8.1.0"
     "@types/js-yaml": "npm:^4.0.9"
-    "@types/lodash": "npm:^4.17.16"
+    "@types/lodash": "npm:^4.17.18"
     "@types/mdast": "npm:^4.0.4"
     "@types/node": "npm:^22.15.19"
     "@types/prismjs": "npm:^1.26.5"
