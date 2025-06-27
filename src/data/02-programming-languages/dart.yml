@@ -1,0 +1,11 @@
+name: 'Dart'
+homepageURL: 'https://dart.dev'
+repoURL: 'https://github.com/dart-lang/sdk'
+portingEfforts:
+  - authors: ['loongson']
+    desc: '官方无支持龙架构的计划'
+    link: 'https://github.com/dart-lang/sdk/issues/53480'
+    supportStatus: Rejected
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NoCode
