@@ -1,0 +1,11 @@
+name: 'Buildroot'
+homepageURL: 'https://buildroot.org'
+repoURL: 'https://git.buildroot.net/buildroot/'
+portingEfforts:
+  - authors: ['flygoat']
+    desc: ''
+    link: 'https://lore.kernel.org/buildroot/20250618-loongarch-v3-0-d11baae32eea@flygoat.com/'
+    supportStatus: WaitingRelease
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
