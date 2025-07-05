@@ -5,6 +5,6 @@ portingEfforts:
   - authors: ['flygoat']
     desc: ''
     link: 'https://github.com/picolibc/picolibc/pull/898'
-    supportStatus: Release
+    supportStatus: Released
     releasedSinceVersion: '1.8.9'
     quality: OnPar
