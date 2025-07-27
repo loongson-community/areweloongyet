@@ -7,4 +7,5 @@ portingEfforts:
     link: 'https://github.com/picolibc/picolibc/pull/898'
     supportStatus: Released
     releasedSinceVersion: '1.8.9'
+    goodSinceVersion: '1.8.9'
     quality: OnPar
