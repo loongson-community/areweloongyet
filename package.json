@@ -24,7 +24,7 @@
     "@docusaurus/plugin-content-docs": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-classic": "3.7.0",
-    "@docusaurus/theme-common": "3.7.0",
+    "@docusaurus/theme-common": "3.9.2",
     "@docusaurus/theme-mermaid": "3.7.0",
     "@docusaurus/types": "3.7.0",
     "@easyops-cn/docusaurus-search-local": "^0.49.2",
