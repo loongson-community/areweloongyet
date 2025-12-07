@@ -1,0 +1,11 @@
+name: 'NixOS / Nixpkgs'
+homepageURL: 'https://nixos.org/'
+repoURL: 'https://github.com/NixOS/nixpkgs'
+portingEfforts:
+  - authors: ['Nix4Loong']
+    desc: 'Nix4Loong 团队在 https://nix4loong.cn 提供了二进制缓存链接和 NixOS 安装镜像下载'
+    link: 'https://nixos.org/manual/nixpkgs/stable/release-notes#sec-nixpkgs-release-25.11-highlights'
+    supportStatus: Released
+    releasedSinceVersion: '25.11'
+    goodSinceVersion: '25.11'
+    quality: OnPar
