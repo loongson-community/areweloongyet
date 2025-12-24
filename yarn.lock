@@ -3146,7 +3146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.39.2, @eslint/js@npm:^9.26.0":
+"@eslint/js@npm:9.39.2, @eslint/js@npm:^9.39.2":
   version: 9.39.2
   resolution: "@eslint/js@npm:9.39.2"
   checksum: 10c0/00f51c52b04ac79faebfaa65a9652b2093b9c924e945479f1f3945473f78aee83cbc76c8d70bbffbf06f7024626575b16d97b66eab16182e1d0d39daff2f26f5
@@ -5956,7 +5956,7 @@ __metadata:
     "@docusaurus/tsconfig": "npm:3.9.2"
     "@docusaurus/types": "npm:3.9.2"
     "@easyops-cn/docusaurus-search-local": "npm:^0.52.2"
-    "@eslint/js": "npm:^9.26.0"
+    "@eslint/js": "npm:^9.39.2"
     "@jsdevtools/rehype-url-inspector": "npm:^2.0.2"
     "@mdx-js/react": "npm:^3.1.0"
     "@types/glob": "npm:^8.1.0"
@@ -5970,18 +5970,18 @@ __metadata:
     antd: "npm:^5.26.3"
     browserslist: "npm:^4.24.5"
     clsx: "npm:^2.1.1"
-    eslint: "npm:^9.32.0"
+    eslint: "npm:^9.39.2"
     glob: "npm:^11.0.2"
     lodash: "npm:^4.17.21"
     mdast-util-find-and-replace: "npm:^3.0.2"
-    prettier: "npm:^3.6.2"
+    prettier: "npm:^3.7.4"
     prism-react-renderer: "npm:^2.4.1"
     prismjs: "npm:^1.30.0"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-router-dom: "npm:^5.3.4"
-    typescript: "npm:^5.8.3"
-    typescript-eslint: "npm:^8.35.1"
+    typescript: "npm:^5.9.3"
+    typescript-eslint: "npm:^8.50.1"
     update-browserslist-db: "npm:^1.1.2"
     utility-types: "npm:^3.11.0"
     yaml: "npm:^2.8.0"
@@ -8245,7 +8245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.32.0":
+"eslint@npm:^9.39.2":
   version: 9.39.2
   resolution: "eslint@npm:9.39.2"
   dependencies:
@@ -13273,7 +13273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.6.2":
+"prettier@npm:^3.7.4":
   version: 3.7.4
   resolution: "prettier@npm:3.7.4"
   bin:
@@ -15595,7 +15595,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:^8.35.1":
+"typescript-eslint@npm:^8.50.1":
   version: 8.50.1
   resolution: "typescript-eslint@npm:8.50.1"
   dependencies:
@@ -15610,7 +15610,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.3":
+"typescript@npm:^5.9.3":
   version: 5.9.3
   resolution: "typescript@npm:5.9.3"
   bin:
@@ -15620,7 +15620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>":
   version: 5.9.3
   resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
