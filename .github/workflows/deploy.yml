@@ -14,9 +14,9 @@ jobs:
           submodules: true
       - name: Enable Corepack for Yarn Modern
         run: corepack enable
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 20
+      - uses: actions/setup-node@v6
+        withg
+          node-version: 24
           cache: yarn
       - uses: actions/setup-go@v6
         with:
