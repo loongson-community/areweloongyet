@@ -14,9 +14,9 @@ jobs:
           submodules: true
       - name: Enable Corepack for Yarn Modern
         run: corepack enable
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 20
+      - uses: actions/setup-node@v6
+        withg
+          node-version: 24
           cache: yarn
       - uses: actions/setup-go@v6
         with:
@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload pages artifacts (PR)
         if: ${{ github.ref != 'refs/heads/main' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: './build/'
           name: 'pages-${{github.sha}}'

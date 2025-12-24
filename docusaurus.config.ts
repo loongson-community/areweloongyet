@@ -80,7 +80,6 @@ const config: Config = {
   url: 'https://areweloongyet.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   // currently breaks TWiL 28's original pic links
   // trailingSlash: true, // to reduce number of 301's with GitHub Pages
@@ -100,10 +99,14 @@ const config: Config = {
 
   future: {
     experimental_faster: true,
+    v4: true,
   },
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   plugins: [
