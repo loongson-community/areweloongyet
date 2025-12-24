@@ -37,8 +37,7 @@ function containsActiveItems(
   return items.some((item) => isItemActive(item, localPathname))
 }
 
-interface DesktopOrMobileNavBarItemPropsWithIcon
-  extends DesktopOrMobileNavBarItemProps {
+interface DesktopOrMobileNavBarItemPropsWithIcon extends DesktopOrMobileNavBarItemProps {
   icon?: React.JSX.Element
 }
 
