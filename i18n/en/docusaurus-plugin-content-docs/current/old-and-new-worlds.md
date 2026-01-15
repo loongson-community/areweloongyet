@@ -8,6 +8,25 @@ sidebar_position: 3
 This page is still under construction, and the content may be expanded or modified over time. Feel free to check back often!
 :::
 
+:::tip Important Note on Terminology
+While the terms "old world" and "new world" are convenient to use, they are often too vague and can lead to people conflating different aspects of the problem. Loongson's "ABI1.0" / "ABI2.0" terms are no better choice because the semantics are equivalent to the former, and arguably the mention of "ABI" is worse, because "object file ABI" is already a thing when it comes to ABI differences.
+
+Therefore, we should adopt a new approach where we clearly distinguish the different aspects of LoongArch ABI differences:
+
+| Aspect | New term in favor of "new world" | New term in favor of "old world" |
+|----|----|----|
+| Boot protocol | UEFI | BPI |
+| Linux UAPI | (the) 5.19 UAPI | (the) "4.19" UAPI[^4.19-uapi] |
+| Object file ABI | preferably unqualified, "object file ABI v1", or `EF_LARCH_OBJABI_V1` if necessary | "object file ABI v0"[^objabi-v0] |
+| Relocation style | preferably unqualified, "direct-style relocs" if necessary | stack-machine-based relocs |
+
+[^4.19-uapi]: Quote the "4.19" part whenever possible, because the upstream 4.19.x versions of Linux actually do NOT support LoongArch.
+
+[^objabi-v0]: There is no `EF_LARCH_OBJABI_V0`.
+
+Newly written material should prioritize the more precise new terminology. This page, as a historical document, retains the "old world" and "new world" terminology for understanding.
+:::
+
 :::info Do I need to care about this?
 In short, if you don't compile and install software yourself, you probably don't need to worry about it.
 Of course, casually browsing through this article might help you understand these terms in the future, or you can guide others who encounter issues.
