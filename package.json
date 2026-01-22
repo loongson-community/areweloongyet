@@ -34,7 +34,7 @@
     "browserslist": "^4.28.1",
     "clsx": "^2.1.1",
     "glob": "^13.0.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mdast-util-find-and-replace": "^3.0.2",
     "prism-react-renderer": "^2.4.1",
     "prismjs": "^1.30.0",
