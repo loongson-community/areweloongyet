@@ -40,13 +40,13 @@ The terms "旧世界" and "新世界" are translated into English as "the old wo
 
 If any of the following conditions apply, you are using the **old world**:
 
-* The system is one of Kylin, Loongnix, or UOS.
-* The kernel version starts with 4.19.
+* The system is one of Kylin V10, Loongnix 20, or UOS V20.
+* The kernel version starts with 4.19, 5.4 or 5.10.
 * You use WPS but have not installed `libLoL` or other old-world compatibility solutions.
 
 If none of these conditions apply, you are using the **new world**.
 
-This method of determination is based on known information as of February 2024. It may become inaccurate if not updated in time.
+This method of determination is based on known information as of April 2026. It may become inaccurate if not updated in time.
 
 ## Which World Does This Software Belong To?
 
@@ -65,6 +65,14 @@ interpreter /lib64/ld-linux-loongarch-lp64d.so.1, for GNU/Linux 5.19.0
 ```
 
 it indicates that this is a new-world program.
+
+Additionally, on systems such as OpenCloudOS you may observe output resembling the following:
+
+```
+interpreter /lib64/ld-linux-loongarch-lp64d.so.1, for GNU/Linux 4.19.0
+```
+
+It is important to note that the binary in question is still fundamentally a new-world program. The appearance of the "4.19.0" string is due to a [special patch](https://raw.gitcode.com/src-openeuler/glibc/raw/fd8447e5f44da8f89a1f9e7440fb0f4d2e43e77f/Decrease-value-of-arch_minimum_kernel-with-LoongArch.patch) applied to glibc in its build environment, which modifies the reported minimum kernel version for LoongArch.
 
 The above judgments apply to dynamically linked programs with glibc as the system libc. If the program is statically linked, there will be no interpreter information; if the program is written in Go or uses musl as the C library, there will be no `for GNU/Linux` marker in the file. In such cases, try running it—programs from the "other world" are unlikely to start normally.
 
@@ -92,9 +100,9 @@ On the other hand, users of Linux source-based distributions (such as Gentoo) of
 **Available distributions.** Old-world distributions are only produced by a few commercial companies because the full source code is not publicly available. All community distributions belong to the new world.
 
 Known old-world (ports) distributions (alphabetical):
-* 麒麟 (Kylin)
-* Loongnix
-* UOS
+* 麒麟 (Kylin) V10
+* Loongnix 20
+* UOS V20
 
 Known new-world (ports) distributions (alphabetical):
 * [ALT Linux](https://www.altlinux.org/Ports/loongarch64)
@@ -103,8 +111,11 @@ Known new-world (ports) distributions (alphabetical):
 * [Debian](https://wiki.debian.org/Ports/loong64)
 * [Fedora LoongArch Remix](https://github.com/fedora-remix-loongarch/releases-info)
 * [Gentoo](https://wiki.gentoo.org/wiki/Project:LoongArch)
+* [麒麟 (Kylin) V11](https://www.kylinos.cn/productPc/desktop/desktopMainV11/)
 * [Loong Arch Linux](https://github.com/loongarchlinux)
+* [Loongnix 25](https://www.loongnix.cn/zh/loongnix/)
 * [Slackware](https://github.com/shipujin/slackware-loongarch64)
+* [UOS V25](https://www.chinauos.com/resource/download-professional-V25)
 * [Yongbao](https://github.com/sunhaiyong1978/Yongbao)
 
 :::warning
