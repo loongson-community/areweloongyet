@@ -100,7 +100,7 @@ const config: Config = {
   },
 
   future: {
-    experimental_faster: arch !== 'loong64',
+    faster: arch !== 'loong64',
     v4: true,
   },
 
