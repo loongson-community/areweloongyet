@@ -22,7 +22,8 @@ tags: [每周一龙]
 
 ### Linux {/* #linux */}
 
-:::info 更正声明
+:::info[更正声明]
+
 关于上期周报[提到的](./2024-05-30-this-week-in-loongarch-50.md#linux) LoongArch
 引导流程问题，xen0n 做了更深入的调查，认为先前对原厂做派的吐槽有失偏颇：
 
@@ -37,6 +38,7 @@ tags: [每周一龙]
 因此，简单吐槽「原厂没测过就交代码」其实不妥：作为内在动机为商业性的、规模不如业内老牌大厂的参与主体，龙芯原厂只在自身传统测试环境或客户实际场景测过，就提交代码，某种程度上无可厚非。至少在提交「当下」，搭配「典型」配置，我们仍然有立场相信这些代码至少经受了基本审查。或者说，先前吐槽的重点或希望促成的改变，其实在于「原厂对变更所做的测试覆盖面应当更广」。
 
 xen0n 在此谨向名誉可能受到影响的开发人员表达歉意。放眼未来，希望类似这样的小插曲也能成为原厂或第三方参与者使其自动化测试工作更上一层楼的契机。
+
 :::
 
 近期在一些第三方自动化测试项目那里，LoongArch Linux [开始](https://lore.kernel.org/loongarch/Zl5m1ZlVmGKitAof@yujie-X299/)[爆炸](https://lore.kernel.org/loongarch/ZlY1gDDPi_mNrwJ1@slm.duckdns.org/)，最后查到是先前为了支持
@@ -72,8 +74,10 @@ Lulu Cai 为 LoongArch 汇编语言[增加了](https://sourceware.org/pipermail/
 `.option` 指示（directive）支持，用于对局部某段代码单独调整个别汇编器配置，以实现特殊效果。初期支持的是
 linker relaxation 的开关。
 
-:::info 对比记忆
+:::info[对比记忆]
+
 在 RISC-V 汇编中，也用 `.option` 做此类临时调整；而在 MIPS 汇编中，则用 `.set`。
+
 :::
 
 为方便学习，特在此附上补丁中的示例代码片段，已对其中的 `.option` 用法作出注释。

@@ -48,9 +48,13 @@ tags: [每周一龙]
 以下内容均已进入主线，静待 binutils 2.41 发布：
 
 * FreeFlyingSheep [添加了](https://sourceware.org/pipermail/binutils/2023-June/127873.html)以 `$fcsrX` 称呼 <ruby>FCSR<rt>浮点控制状态寄存器</rt></ruby> 的支持。
-  :::info 以前咋回事
+
+  :::info[以前咋回事]
+
   以前要用 `$rX` 称呼 FCSR，也就是说：当成整数寄存器！这显然不对，而且跟 LLVM 也不兼容。现在两种写法都支持了，旧写法先留一阵子不删，方便下游迁移。
+
   :::
+
 * mengqinggang 添加了 [LSX、LASX]、[LVZ、LBT] 的指令定义。
 * xen0n [改进了](https://sourceware.org/pipermail/binutils/2023-June/128082.html)龙架构汇编器、反汇编器的一系列行为：
     - 支持以彩色（语法高亮）显示反汇编输出了。参见 `--disassembler-color` 选项的帮助文本。
@@ -58,13 +62,16 @@ tags: [每周一龙]
     - 有符号立即数后边不会打印对应的十六进制位域表示了。
     - 未知指令字将会以 `.word` 为助记符的形式展示了。
     - 遵循规范文档，弃用了 `$v[01]`、`$fv[01]`、`$x` 几个远古时期遗留的寄存器别名，现在使用它们将被警告。
-      :::info shenmegui
+
+      :::info[shenmegui]
+
       |弃用名称|现行名称|
       |--------|--------|
       |`$v0`、`$v1`|`$a0`、`$a1`|
       |`$fv0`、`$fv1`|`$fa0`、`$fa1`|
       |`$x`|`$r21`|
       显然，除了不见于[正式版本的寄存器约定][lapcs-regs]之外，这些叫法更会与向量寄存器的正式名称 `$vrX`、`$xrX` 形成严重混淆。
+
       :::
 
 [LSX、LASX]: https://sourceware.org/pipermail/binutils/2023-June/127990.html
@@ -134,6 +141,8 @@ LASX 的指令模拟支持，内含所有 LASX 指令的语义建模。
 
 由于本次 AOSCC 线下活动在上海科技大学举行，校方安保要求来访者登记个人信息，有意参加线下活动的，请于 7 月 13 日前[填写登记问卷](https://forms.gle/vc8sd3yah7eMNmoP7)。
 
-:::info 说明
+:::info[说明]
+
 本表格仅由社区代表（白铭骢）和 GeekPie 对接代表（秦斐然）查阅，并交由校方录入。
+
 :::

@@ -28,10 +28,12 @@ At first glance, the kernel image files provided by OW distributions are in ELF 
 
 Looking at the specific details of parameter passing from firmware to kernel, the Linux kernels of both worlds expect different data structures from their previous boot stage. See the following diagram for illustration.
 
-:::info Legend
+:::info[Legend]
+
 * Rectangular nodes represent EFI applications (PE format images)
 * Rounded nodes represent ELF format images
 * Directed edges show control flow transitions, with labels indicating passed data structures
+
 :::
 
 ```mermaid
@@ -106,8 +108,10 @@ The old-world and new-world firmware also differ in how they pass essential boot
 
 More specifically, after the firmware hands over control, the early boot process differences are illustrated in the following diagram.
 
-:::info Legend
+:::info[Legend]
+
 Solid edges represent function calls. Dashed edges with annotations represent data flow, while dashed edges without annotations represent simplified function calls.
+
 :::
 
 ```mermaid
@@ -243,7 +247,7 @@ This approach means that when OW programs make system calls according to the OW 
 
 When a process receives a signal, the kernel saves the process context to the user mode stack and passes it as the third parameter to the signal handler (regardless of whether the user requested context information when registering the signal handler). The kernel also sets the return address of the signal handler to a function that will call the `rt_sigreturn` system call (see the [`setup_rt_frame` function](https://elixir.bootlin.com/linux/v6.6/source/arch/loongarch/kernel/signal.c#L959)).
 
-When the signal handler returns, the program calls the `rt_sigreturn` system call. At this point, the kernel restores the previously saved context from the user mode stack to the process context (see the [`sys_rt_sigreturn` function](https://elixir.bootlin.com/linux/v6.6/source/arch/loongarch/kernel/signal.c#L926)). 
+When the signal handler returns, the program calls the `rt_sigreturn` system call. At this point, the kernel restores the previously saved context from the user mode stack to the process context (see the [`sys_rt_sigreturn` function](https://elixir.bootlin.com/linux/v6.6/source/arch/loongarch/kernel/signal.c#L926)).
 
 This mechanism allows user mode programs to modify the context within their signal handlers. When the signal handler returns, execution will continue from the location and context specified by these modifications, rather than returning to where the signal occurred.
 
@@ -364,7 +368,7 @@ The ELF file format is identical between the old world and the new world, includ
 
 This flag provides the most direct and reliable[^b2] method to determine whether an ELF file was compiled for OW or NW. However, as of mid-February 2024, neither world's runtime components (including the kernel's ELF loader and glibc's dynamic linker) reject loading ELF files based on this flag, nor do they behave differently because of it.
 
-[^b1]: In fact, this flag's true purpose is to indicate to the linker which version of relocation instruction semantics the object file (`.o`) contains. 
+[^b1]: In fact, this flag's true purpose is to indicate to the linker which version of relocation instruction semantics the object file (`.o`) contains.
     These version-specific relocation instructions are not used in dynamic linking and thus don't appear in final linking products (`.so` and executables).
     Therefore, while the flag's original meaning is irrelevant for shared libraries and executables,
     it conveniently serves to distinguish between OW and NW programs and dynamic libraries.

@@ -109,10 +109,12 @@ liwei 用 LoongArch SIMD 指令[优化了](https://gcc.gnu.org/pipermail/gcc-pat
 `__builtin_popcount` 操作。
 （这个操作的含义是求整数的二进制表示中 `1` 的个数；population count 直译是「人口计数」，很形象。）
 
-:::info 编者按
+:::info[编者按]
+
 这个操作有向量版：`{v,xv}pcnt.[bhwd]`，却没有标量版，不对称。
 在一些零星使用，因而不值得向量化的场景可能吃亏。
 希望以后能补上这一块……
+
 :::
 
 liwei 还[优化了](https://gcc.gnu.org/pipermail/gcc-patches/2023-November/638385.html)取奇/偶元素的向量操作。

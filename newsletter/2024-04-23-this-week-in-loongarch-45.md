@@ -51,7 +51,8 @@ Yang Yujie [实现了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/6498
 *Assembly Language Programming Guide for the LoongArch™ Architecture*（《LoongArch&trade;
 架构汇编语言编程指南》）一书的首个正式版本 1.0。感谢 Revy（在群聊）与 jiegec（在投稿信箱）投递新闻线索！
 
-:::info 小编评论
+:::info[小编评论]
+
 本书不是 2023 年由人民邮电出版社在中国大陆出版的《汇编语言编程基础 基于 LoongArch》一书的英文版。
 在 xen0n 看来，《基础》一书与本书虽然在内容上有相似之处——毕竟硬件是定死的，谁来介绍指令用法都只能这么介绍——但整体叙述上更偏科普。
 《基础》一书对读者的要求是「具有计算机的使用经验，具有计算机基础知识，具有一门高级语言（C、Java、Python
@@ -62,6 +63,7 @@ experienced assembly language developer and that you are familiar with the
 根据 xen0n 的简单浏览，本书的英语表达仍有改进空间。虽不至影响非汉语母语者的阅读，一些简单失误（例如词性用错）也总有些扎眼。
 考虑到优先以英语编撰此资料的目的显然是向国际社区播撒 LoongArch 而非中式英语的知识，
 建议行有余力的同学考虑去 GitHub 帮官方做做校对。
+
 :::
 
 龙芯官方也[发布了](https://github.com/loongson/la-toolchain-conventions)
@@ -69,7 +71,8 @@ experienced assembly language developer and that you are familiar with the
 1.1 版本。相比很久之前的 1.0 版本，主要的变化是终于新增了不与具体硬件型号相关，而仅反映架构版本的通用
 `-march` 写法 `-march=la64v1.0`、`-march=la64v1.1`。
 
-:::info 小编评论
+:::info[小编评论]
+
 某种程度上，这是 xen0n 在 2021 年[提出的](https://github.com/loongson/LoongArch-Documentation/pull/23#discussion_r737074800)建议终于被实现了……
 
 此外，尽管《龙芯架构参考手册》的封面写着「V1.10」，从龙芯官网下载的此文档文件名也有个 `r1p10` 的后缀，
@@ -77,6 +80,7 @@ experienced assembly language developer and that you are familiar with the
 `1.1.0` 等效——`10` 居然是两个数。
 
 目前开发者群体对《语义化版本》实践的接受程度普遍不错，我们自然也欢迎龙芯拥抱此最佳实践；不过如果能找个机会统一一下《手册》等等材料的封面、文件名等处的写法，那就更好了。
+
 :::
 
 多次见报的老面孔，来自龙芯的工具链维护者 mengqinggang

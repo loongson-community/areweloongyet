@@ -28,11 +28,14 @@ U-Boot 到 LoongArch，还顺带修复了 Linux 与 QEMU 的 FDT 引导流程问
 * QEMU 构造 FDT 时，[没传递](https://patchwork.ozlabs.org/project/qemu-devel/patch/20240520-loongarch-fdt-memnode-v1-1-5ea9be93911e@flygoat.com/)内存映射记录的高 32 位；
 * Linux 一侧也有[一坨低级失误](https://lore.kernel.org/loongarch/20240522-loongarch-booting-fixes-v3-0-25e77a8fc86e@flygoat.com/)。
 
-:::warning 更正声明
+:::warning[更正声明]
+
 我们发现下文的「小编评论」基于的部分论据缺乏考证。新一期周报对此[进行了](./2024-06-10-these-weeks-in-loongarch-51.md#linux)更正，并对名誉可能受到影响的原厂开发者表达了歉意。
+
 :::
 
-:::info 小编评论
+:::info[小编评论]
+
 出问题的代码，显然没测过就提交了；当初审查代码的开发者显然信任了补丁作者会自测，因此也放松了神经。今后连原厂的内部质量保障都不能信任了吗……
 
 而如果放下情绪，我们也能意识到，这像是龙芯近年来「不曾开源其 U-Boot 或 PMON 移植成果」的后续必然发展。
@@ -44,6 +47,7 @@ FlyGoat 制作此 U-Boot 移植之前，所有能从公开渠道获取的 LoongA
 然而，这也自然会导致各路第三方人员、自动化设施无从测试 FDT 场景，进而让相关代码年久失修。维护者们面对这种代码，也只能绷紧业已衰弱的神经：无条件信任补丁作者的后果已经体现了，**即便补丁出自原厂业务部门**。
 
 好在，这一切很快就要结束了。
+
 :::
 
 ClangBuiltLinux 维护者 Nathan Chancellor
@@ -96,10 +100,12 @@ LLVM 17 的 LoongArch SIMD 代码生成支持并不完善，而导致的。
     * 换一个要求更低的 `march`，如 `loongarch64` 或 `generic`；或者
     * 设法在初始化 LLVM 代码生成器时，在目标属性（target attributes）中传递 `-lsx,-lasx` 的要素。
 
-:::info 请注意
+:::info[请注意]
+
 向 Clang 传递 `-mno-lsx -mno-lasx` 的「解法」并不成立，因为此选项从 Clang 18
 才[开始得到支持](https://github.com/llvm/llvm-project/commit/8d4e35600f3ba90997a59fdb9baeb196e723eec9)，而一旦升级到
 Clang 18，您就不需要禁用 SIMD 了。
+
 :::
 
 [Jinyang He][MQ-mengqing] 继续跟进 LoongArch ELF psABI v2.30 工作，[更新了](https://github.com/llvm/llvm-project/pull/93775)
@@ -132,12 +138,14 @@ LoongArch64 Linux musl target &mdash; `loongarch64-unknown-linux-musl` 升格为
 据网友 [LinuxResearcher] 报道：龙蜥操作系统（Anolis OS）23.1 [正式发布了](https://gitee.com/anolis/rnotes/blob/master/anolis/rnotes/anolis-23.1-ga.md)，这是其首个适配
 LoongArch 新世界的版本。您可于[龙蜥官方镜像源](https://mirrors.openanolis.cn/anolis/23/isos/GA/loongarch64/)获取适合您的安装介质或虚拟机磁盘镜像。
 
-:::info 怎么记得之前就支持了？
+:::info[怎么记得之前就支持了？]
+
 实际上，Anolis OS 8.8 与 8.9 也有 LoongArch 支持，不过是旧世界。
 
 Anolis OS 23.1 **未提供**旧世界兼容性：标志性的 `/lib64/ld.so.1` 入口点——详见[本站阅读材料](/docs/world-compat-details/#program-interpreter)，任何旧世界兼容方案都必然会提供，而我们至少在
 Anolis OS 23.1 的安装介质上没有观测到。考虑到出于种种原因而永远无法迁移到新世界的商业软件可能已经存在，我们预计
 Anolis OS 仍将在未来以某种方式提供旧世界兼容性——至少是可选安装的。
+
 :::
 
 继第 47 期周报[报道的](./2024-05-07-this-week-in-loongarch-47/index.md#openwrt-loongarch64-port-mainlined)

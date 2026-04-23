@@ -4,11 +4,13 @@ sidebar_position: 2
 
 # 《咱龙了吗？》自然语言风格指南
 
-:::warning 施工现场！
+:::warning[施工现场！]
+
 本文目前尚不完整。维护者想起来更新或被催更，则会更新；否则请不要认为所有相关的规范都完整记录了。
 
 由于本站的 i18n 工作仍未完成，本文目前只覆盖汉语文本。
 后续适用于英语文本的内容仍待记录。
+
 :::
 
 随着龙架构的生态成熟、市场份额扩张，先前一般被认为不会接触此技术的用户也纷至沓来。
@@ -18,7 +20,8 @@ sidebar_position: 2
 根据笔者亲身经历，这种异质性在不受尊重、管控的情况下，将会并且已经造成了一些社区裂痕：
 《咱龙了吗？》作为意在团结社区而成立的项目，自然不可能置身事外，或者添油加醋。
 
-:::info 笔者思考：为何明知龙架构非中立，还有必要使本站保持中立？
+:::info[笔者思考：为何明知龙架构非中立，还有必要使本站保持中立？]
+
 龙架构至今未完整开放授权，且其立场先天不中立；
 这些特点是如此明显，至少近（2022~2023）年在中文互联网上对龙芯有所粗浅了解的网友应该都会清楚。
 
@@ -36,6 +39,7 @@ sidebar_position: 2
 因此为了利用这仅有的同质性，广泛团结这部分社会力量，
 笔者不认同将这些「对龙架构持整体正面看法」的网友视作某种「政党」或「社会团体」这种相对同质的群体，
 而只能视作「统一战线」——多么恰当的称呼啊。
+
 :::
 
 [^politics]: 假如没有发生先前的 MIPS 授权风波，或者假如在 2018~2020 的时间节点龙芯公司得以反客为主接管 MIPS 公司在桌面、服务器端的上游主导权，那么龙芯公司决策者们对「自主可控」的理解大概率不会是今天的形态，龙架构也将不会发生。
@@ -179,17 +183,21 @@ sidebar_position: 2
 <details>
 <summary>经典案例分析（摘自《龙芯架构参考手册》卷一 2.2.7.1 节）</summary>
 
-:::info 原文
+:::info[原文]
+
 `AM*` 原子访存指令如果 `rd` 和 `rj` 的寄存器号相同，则触发指令不存在例外。
+
 :::
 
 笔者印象中 2022 年以来，至少有 3 位开发者没看懂这句话：如果「触发（的）指令」「不存在」例外，那哪些指令存在呢？
 
 对比《手册》英文版对这句话的翻译（有删改；[原文](https://github.com/loongson/LoongArch-Documentation/blob/f05f84435aca5e4d166ed0f147d8e9e9cb30911c/docs/LoongArch-Vol1-EN/basic-integer-instructions/overview-of-basic-integer-instructions/atomic-memory-access-instructions.adoc#L74)有语法错误）：
 
-:::info 译文
+:::info[译文]
+
 If the `AM*` atomic memory access instruction has an `rd` equal to `rj`,
 an Instruction Non-defined Exception will be triggered.
+
 :::
 
 哦哦，这是断句问题：「指令不存在例外」是个专有名词。
@@ -203,7 +211,8 @@ an Instruction Non-defined Exception will be triggered.
 这使读者不自觉地进入口语话题句的「句法解析模式」，
 以至于不熟悉专有名词的同学更容易把后半部分理解成「则……不存在例外」了。
 
-:::tip 排版也能帮上忙！
+:::tip[排版也能帮上忙！]
+
 在上例中，英文表述没有理解障碍的原因有两方面：
 
 * 能标记中心动词：
@@ -224,6 +233,7 @@ an Instruction Non-defined Exception will be triggered.
 恰好 Docusaurus 3 允许我们借助 [`remark-directive`](https://github.com/remarkjs/remark-directive)
 给 Markdown 添加自定义标签了；
 只要有人肯贡献代码，这应该是相对更优的解决办法。
+
 :::
 
 </details>

@@ -42,9 +42,11 @@ TODO: amdgpu & LS7A drama [Icenowy]
 
 Huacai Chen [发出了](https://lore.kernel.org/loongarch/20240612064205.2041548-1-chenhuacai@loongson.cn/)适用于采用 LoongArch 架构的龙芯 3 号处理器的自动调频（cpufreq）驱动。
 
-:::info 先别急
+:::info[先别急]
+
 因为龙芯 CPU 的调频调压操作是由片上管理小核运行的特定固件配合完成的，所以如同引导协议、内核 ABI
 会存在兼容性问题一般，主板的调频调压支持也有 ABI 兼容性问题。Linux 主线的 cpufreq 驱动，无法配合绝大部分市售板卡使用。
+
 :::
 
 #### 第 53 期 (2024-06-18 ~ 2024-06-24) {/* #linux-53 */}

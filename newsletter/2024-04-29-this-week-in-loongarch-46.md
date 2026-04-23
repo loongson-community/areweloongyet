@@ -79,11 +79,13 @@ ROCm 5.7 与 6.0 的移植脚本[已经完成](https://github.com/loongarch-moe/
 3A6000 + RX6800 硬件环境、16K 页大小下，可以运行 Stable Diffusion 了（[演示视频](https://www.bilibili.com/video/BV1az421y75z)）。
 移植脚本的开源许可证为 CC0。
 
-:::info 注意
+:::info[注意]
+
 在中国大陆法域，根据《中华人民共和国著作权法》第十条，署名权不可被转让或放弃。因此，CC0
 此时等价于 CC-BY；理论上，受中国《著作权法》管辖的使用者仍需尊重原作者的署名权。
 
 （但：周报编者不是律师，此讨论不构成法律建议。）
+
 :::
 
 移植过程中，发现 ROCm 子工程 ROCT-Thunk-Interface 需要适配 &gt;4K 的页，[补丁](https://github.com/ROCm/ROCT-Thunk-Interface/pull/100)
@@ -91,8 +93,10 @@ ROCm 5.7 与 6.0 的移植脚本[已经完成](https://github.com/loongarch-moe/
 
 移植脚本中各项必要补丁，需要英雄们维护、迁移到最新版本，并争取主线化；若补丁修改自移植脚本，无需署名[我][Xinmudotmoe]。
 
-:::info 原作者注
+:::info[原作者注]
+
 仅新世界，脚本基于 Loong Arch Linux，测试环境为 Gentoo，但原则上不限制发行版。
+
 :::
 
 [Xinmudotmoe]: https://github.com/Xinmudotmoe

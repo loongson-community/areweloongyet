@@ -203,9 +203,11 @@ Lulu Cheng 为几个命令行选项[补充了](https://gcc.gnu.org/pipermail/gcc
 Yang Yujie 在先前重构的基础上，[完成了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648918.html)上游问题报告
 [PR113233](https://gcc.gnu.org/PR113233) 的修复。感谢 [xry111] 投递新闻线索！
 
-:::info 勘误
+:::info[勘误]
+
 [xry111] 发现上一期周报[所采纳的](./2024-04-01-this-week-in-loongarch-43.md#gcc)新闻线索措辞不准确：当时
 Lulu Cheng 做的变更其实是为真正的修复铺路，而非实际解决了。特此更正。
+
 :::
 
 Jiahao Xu [移除了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/648641.html)非 64 位
