@@ -2,9 +2,9 @@
 sidebar_position: 12
 ---
 
-{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
-
 # AI-Generated Content (AIGC) Policy
+
+{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
 
 :::info[Intended audience]
 

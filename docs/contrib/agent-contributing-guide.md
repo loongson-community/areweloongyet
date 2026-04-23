@@ -2,9 +2,9 @@
 sidebar_position: 11
 ---
 
-{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
-
 # AI 智能体贡献指南
+
+{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
 
 :::info[目标读者]
 

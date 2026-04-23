@@ -2,9 +2,9 @@
 sidebar_position: 13
 ---
 
-{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
-
 # 人工智能生成内容（AIGC）政策
+
+{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
 
 :::info[目标读者]
 

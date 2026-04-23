@@ -2,9 +2,9 @@
 sidebar_position: 10
 ---
 
-{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
-
 # Contributing Guide for AI Agents
+
+{/* SPDX-License-Identifier: CC-BY-NC-SA-4.0 */}
 
 :::info[Intended audience]
 
