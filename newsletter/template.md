@@ -11,7 +11,7 @@ draft: true  # TODO: remove in the finishing commit
 上周的进展主要有 TODO。
 详情点进来看！
 
-<!-- truncate -->
+{/* truncate */}
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 

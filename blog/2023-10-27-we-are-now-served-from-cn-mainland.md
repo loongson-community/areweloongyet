@@ -18,4 +18,4 @@ GitHub Pages 的公共 CDN 服务了。
 也可能不会；
 总之我们将持续关注并优化您的浏览体验，无论您在何方。
 
-<!-- truncate -->
+{/* truncate */}
