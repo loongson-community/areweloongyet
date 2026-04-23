@@ -23,11 +23,11 @@ LoongArch 在 Linux、ABI 方面的完整技术进展，以及其他工具链话
 
 #### 第 52 期 (2024-06-11 ~ 2024-06-17) {#linux-52}
 
-<!--
+{/*
 TODO: amdgpu & LS7A drama [Icenowy]
 
 [Icenowy]: https://github.com/Icenowy
--->
+*/}
 
 针对第 38 期周报提到的 LoongArch 不存在 `fstat` 和 `newfstatat` 系统调用，而是使用 `statx` 实现它们，从而导致性能损失和某些软件的 seccomp 沙箱无法正常工作的问题，在 [xry111] [抛砖引玉](https://lore.kernel.org/loongarch/20240622105621.7922-1-xry111@xry111.site/) (并被 Linus [批判一番](https://lore.kernel.org/loongarch/CAHk-=wgj6h97Ro6oQcOq5YTG0JcKRLN0CtXgYCW_Ci6OSzL5NA@mail.gmail.com/)) 后，Mateusz Guzik 和 Christian Brauner [允许了](https://git.kernel.org/torvalds/c/0ef625bba6fb)在使用 `AT_EMPTY_PATH` 时以空指针代替指向空串的指针，并在系统调用入口点特判了传入指向空串指针的情况。这样：
 
