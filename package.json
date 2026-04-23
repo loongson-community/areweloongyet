@@ -66,7 +66,8 @@
     "@docusaurus/plugin-content-docs": "3.9.2",
     "@docusaurus/theme-translations": "3.9.2",
     "@docusaurus/utils-common": "3.9.2",
-    "@docusaurus/utils-validation": "3.9.2"
+    "@docusaurus/utils-validation": "3.9.2",
+    "webpackbar": "^7.0.0"
   },
   "browserslist": {
     "production": [
