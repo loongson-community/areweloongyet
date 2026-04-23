@@ -14,11 +14,11 @@ tags: [每周一龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看 {#marked-projects}
+## 先「马」再看 {/* #marked-projects */}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
+### Linux {/* #linux */}
 
 Bibo Mao 为 LoongArch KVM
 [新增了](https://lore.kernel.org/loongarch/20240218063302.218019-1-maobibo@loongson.cn/)软件断点支持。
@@ -35,9 +35,9 @@ LoongArch 上不能简单这么改；Oreoluwa [解释道](https://lore.kernel.or
 Huacai [了解了](https://lore.kernel.org/loongarch/CAAhV-H7LjadN99OAdpX4OxU-bcjVC45iUwrzTfQz28UMc0K0JQ@mail.gmail.com/)，
 并[给出了](https://lore.kernel.org/loongarch/20240218151403.2206980-1-chenhuacai@loongson.cn/)一种推荐的改法。
 
-### 工具链 {#toolchain}
+### 工具链 {/* #toolchain */}
 
-#### binutils {#binutils}
+#### binutils {/* #binutils */}
 
 补充上周未注意到的变更：Hui Li 为 GDB
 [新增了](https://sourceware.org/git?p=binutils-gdb.git;a=commitdiff;h=1e9569f383a3d5a88ee07d0c2401bd95613c222e)向量扩展支持；Feiyang Chen、Binbin Zhou
@@ -47,7 +47,7 @@ LBT 扩展支持。
 此外，Tiezhu Yang 也为 LoongArch 的 GDB [补充了](https://sourceware.org/git/?p=binutils-gdb.git;a=commitdiff;h=be908bd6e7fdcf0b91b949b152a063b5791856b5)
 `catch syscall` 操作的支持。
 
-## 杂闻播报 {#assorted-news}
+## 杂闻播报 {/* #assorted-news */}
 
 xen0n 1 月 22 号折腾在 LoongArch 上编译 Podman 失败，怒，遂[发英雄帖](https://github.com/loongson-community/discussions/issues/39)纪之；
 其中，网络组件 Netavark 不能构建的主要原因是不少依赖库所依赖的 `nix` 包版本过低。
@@ -57,7 +57,7 @@ xen0n 1 月 22 号折腾在 LoongArch 上编译 Podman 失败，怒，遂[发英
 
 [cathay4t]: https://github.com/cathay4t
 
-## 张贴栏 {#bulletin}
+## 张贴栏 {/* #bulletin */}
 
 本栏目可供张贴公益性质的各种信息。
 

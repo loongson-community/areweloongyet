@@ -692,7 +692,7 @@ Processor Information
 
 </details>
 
-## 华硕 XC-LS3A6M {#asus-xc-ls3a6m}
+## 华硕 XC-LS3A6M {/* #asus-xc-ls3a6m */}
 
 此主板与 XA61200 从软件方面看也非常相似，但重要区别在于其搭载了一片 Motorcomm YT6801 以太网控制器。
 
@@ -996,7 +996,7 @@ Processor Information
 
 </details>
 
-## 3A6000 评估板（XA612A0） {#3a6000-evb-xa612a0}
+## 3A6000 评估板（XA612A0） {/* #3a6000-evb-xa612a0 */}
 
 此型号与 XA61200 固件兼容，仅网口等少数细节不同。如刷写另一型号的固件，仍可亮机，但个别板载设备如网口将因为异种固件不会以本型号的方式配置 LS7A 桥片，而无法被操作系统看到、使用。
 
@@ -1958,7 +1958,7 @@ Processor Information
 
 </details>
 
-## 贡献者用：新增软硬件平台时可用的模板 {#template}
+## 贡献者用：新增软硬件平台时可用的模板 {/* #template */}
 
 `uname -srvmpio`: `TODO`
 

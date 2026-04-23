@@ -19,11 +19,11 @@ tags: [每周一龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看 {#marked-projects}
+## 先「马」再看 {/* #marked-projects */}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
+### Linux {/* #linux */}
 
 上期周报[提到的](./2024-04-01-this-week-in-loongarch-43.md#linux) KFENCE
 导致系统崩溃的问题，根因已被找到；Huacai Chen
@@ -181,9 +181,9 @@ Song Gao 给 LoongArch Linux KVM [增加了](https://lore.kernel.org/loongarch/2
 
 Bibo Mao 也给 KVM [增加了](https://lore.kernel.org/loongarch/20240409094900.1118699-1-maobibo@loongson.cn/)内存映射 I/O 跟踪事件（MMIO trace events）的支持。
 
-### 工具链 {#toolchain}
+### 工具链 {/* #toolchain */}
 
-#### binutils {#binutils}
+#### binutils {/* #binutils */}
 
 mengqinggang 为 gas [增加了](https://sourceware.org/pipermail/binutils/2024-April/133561.html)
 `-mignore-start-align` 选项。这是因为上期周报[报道的](./2024-04-01-this-week-in-loongarch-43.md#binutils)无视节头
@@ -195,7 +195,7 @@ mengqinggang 将 GOT：`.got` 与 `.got.plt` 两节（section）[挪到了](http
 Lulu Cai [让](https://sourceware.org/pipermail/binutils/2024-April/133271.html)
 GNU ld 碰到不认识的重定位操作时要报错。
 
-#### GCC {#gcc}
+#### GCC {/* #gcc */}
 
 Lulu Cheng 为几个命令行选项[补充了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/649038.html)文档链接信息。
 在支持的终端下，如果 gcc 的报错或警告信息提及了这些命令行选项，便可以点击选项名，自动跳转到官方文档了。
@@ -220,7 +220,7 @@ Lulu Cheng 还[合并了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/6
 3 月中 mengqinggang 提交的 TLS 描述符（TLSDESC）的 gcc 一侧实现工作。这意味着不久之后的 gcc 14.1
 正式版将支持 LoongArch TLSDESC 特性了，有助于此特性带来的性能优化在接下来的一两年内快速铺开。
 
-#### LLVM {#llvm}
+#### LLVM {/* #llvm */}
 
 [heiher] [发现了](https://github.com/llvm/llvm-project/issues/88109)当函数的栈帧很大时，函数的序（prologue）会塞满了栈指针的调节指令，
 并将其[修复了](https://github.com/llvm/llvm-project/pull/88110)：先前不得不这么做的原因是
@@ -238,7 +238,7 @@ Lulu Cheng 还[合并了](https://gcc.gnu.org/pipermail/gcc-patches/2024-April/6
 
 [wangleiat]: https://github.com/wangleiat
 
-#### Rust {#rust}
+#### Rust {/* #rust */}
 
 [heiher] 为 Rust 界常用的交叉编译、测试工具 cross [增加了](https://github.com/cross-rs/cross/pull/1465)
 LoongArch 标准镜像，又[增加了](https://github.com/cross-rs/cross/pull/1466) QEMU 模拟支持。
@@ -246,7 +246,7 @@ LoongArch 标准镜像，又[增加了](https://github.com/cross-rs/cross/pull/1
 
 [heiher]: https://github.com/heiher
 
-## 杂闻播报 {#assorted-news}
+## 杂闻播报 {/* #assorted-news */}
 
 [xry111] 提醒说：三个月前在测试 pixman 的 LSX、LASX 优化补丁时，踩到的 GCC LTO 坑已被修复（就是前文提到的 PR113233），
 因此打包的同学们可以继续测试了。（编者注：测试前记得确认您用的 GCC 包含了修复补丁！）
@@ -257,7 +257,7 @@ LoongArch 标准镜像，又[增加了](https://github.com/cross-rs/cross/pull/1
 [xiangzhai]: https://github.com/xiangzhai
 [xry111]: https://github.com/xry111
 
-## 张贴栏 {#bulletin}
+## 张贴栏 {/* #bulletin */}
 
 本栏目可供张贴公益性质的各种信息。
 

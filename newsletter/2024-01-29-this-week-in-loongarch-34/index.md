@@ -14,19 +14,19 @@ tags: [每周一龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看 {#marked-projects}
+## 先「马」再看 {/* #marked-projects */}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
+### Linux {/* #linux */}
 
 上期[提到的](../2024-01-24-these-weeks-in-loongarch-33.md#linux) LoongArch KVM
 构建错误修复，已[进入主线](https://github.com/torvalds/linux/commit/614f362918c782d1cfa4ee50f96072a95eac264e)，在 Linux v6.8-rc2 可用。
 请打包人们按需集成。
 
-### 工具链 {#toolchain}
+### 工具链 {/* #toolchain */}
 
-#### binutils {#binutils}
+#### binutils {/* #binutils */}
 
 GNU Binutils 2.42 将于今明两天（北京时间 1 月 29 或 30 日）正式发布。
 不巧的是，在最后关头仍然发现了 LoongArch 的 TLS type transition / relaxation
@@ -47,27 +47,27 @@ GNU Binutils 2.42 将于今明两天（北京时间 1 月 29 或 30 日）正式
 
 [xry111]: https://github.com/xry111
 
-#### GCC {#gcc}
+#### GCC {/* #gcc */}
 
 [Xi Ruoyao][xry111] [发现并报告了](https://gcc.gnu.org/PR113622)与 LoongArch
 向量优化相关的编译器内部错误，目前正在与上游合作跟进中。
 
-#### Go {#go}
+#### Go {/* #go */}
 
 预计 Go 1.22.0 将于 2 月正式发布。在此之前，Mauri de Souza Meneguzzo 为 `loong64`
 [贡献了](https://github.com/golang/go/pull/63923)崩溃用栈的支持。
 所谓「崩溃用栈」（crash stack）是一片备用的栈空间，具体技术细节在 Cherry 最初的实现中[有描述](https://go.dev/cl/419435)。
 
-## 杂闻播报 {#assorted-news}
+## 杂闻播报 {/* #assorted-news */}
 
-### 新一期 AOSC 社区期刊发布 {#aosc-coffee-break}
+### 新一期 AOSC 社区期刊发布 {/* #aosc-coffee-break */}
 
 [安同开源社区（AOSC）][aosc]近日[发布了][coffee-break-20240127]社区期刊《安记冰室・一月下》，
 欢迎同学们跟随链接或从 AOSC 提供的其它官方渠道前往阅读。
 
 [coffee-break-20240127]: https://github.com/AOSC-Dev/newsroom/blob/d87000f671ff27f960beaf4e3093bac8179d4c09/coffee-break/20240127/zh_CN.md
 
-### 「风华」系列显卡新世界适配箭在弦上 {#innogpu-to-support-new-world}
+### 「风华」系列显卡新世界适配箭在弦上 {/* #innogpu-to-support-new-world */}
 
 [![「风华二号」显卡](./fenghua-2@500px.webp)](./fenghua-2.jpg)
 
@@ -90,7 +90,7 @@ GNU Binutils 2.42 将于今明两天（北京时间 1 月 29 或 30 日）正式
 相应地，这类新闻也适合在社区周报有一席之地。
 :::
 
-## 张贴栏 {#bulletin}
+## 张贴栏 {/* #bulletin */}
 
 本栏目可供张贴公益性质的各种信息。
 

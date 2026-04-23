@@ -19,11 +19,11 @@ tags: [每周一龙, 每周两龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看 {#marked-projects}
+## 先「马」再看 {/* #marked-projects */}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
+### Linux {/* #linux */}
 
 Linux 6.8 的合并窗口已关闭，v6.8-rc1 已经发布。根据 Huacai Chen 的
 [KVM PR](https://lore.kernel.org/loongarch/20231223120642.1067728-1-chenhuacai@loongson.cn/)
@@ -44,9 +44,9 @@ Linux 6.8 的合并窗口已关闭，v6.8-rc1 已经发布。根据 Huacai Chen 
 目前如果要编译主线内核，需要打上该补丁，或者禁用 KVM 功能。
 不过在目前的仓库状态下，该补丁已经可以直接打上了；因此此问题预计将很快在主线修复。
 
-### 工具链 {#toolchain}
+### 工具链 {/* #toolchain */}
 
-#### ABI {#abi}
+#### ABI {/* #abi */}
 
 1 月 10 日，龙芯编译器团队[贴出了](https://github.com/loongson/gcc/issues/114)一份调用约定扩展的草稿，该扩展允许通过向量寄存器传递向量参数。
 这样做可以减少内存访问，进而提升性能；但也有兼容性、以及与遵循现有调用约定的存量代码的互操作性等方面的担忧。
@@ -55,7 +55,7 @@ Linux 6.8 的合并窗口已关闭，v6.8-rc1 已经发布。根据 Huacai Chen 
 请在意技术细节的同学们关注，以求将大概率会存在的问题尽早暴露、修复。
 众人拾柴火焰高！
 
-#### binutils {#binutils}
+#### binutils {/* #binutils */}
 
 GNU Binutils 2.42 分支已于 1 月 15 日[切出](https://sourceware.org/pipermail/binutils/2024-January/131859.html)，
 理想状况下，将于分支管理员时区的 1 月 29 日发布。
@@ -68,7 +68,7 @@ GNU Binutils 2.42 分支已于 1 月 15 日[切出](https://sourceware.org/piper
 
 [xry111]: https://github.com/xry111
 
-#### GCC {#gcc}
+#### GCC {/* #gcc */}
 
 Lulu Cheng 让 GCC 在使用 `extreme` 代码模型时，[使用](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641865.html)宏指令生成符号地址，
 但 [Xi Ruoyao][xry111] [认为](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/641919.html)应该换一种做法。
@@ -80,7 +80,7 @@ Xi Ruoyao [发现了](https://gcc.gnu.org/PR113418) GCC 向量测试套件本身
 
 Xi Ruoyao 还[适配了](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/643644.html) TLS LD/GD relaxation。
 
-#### LLVM {#llvm}
+#### LLVM {/* #llvm */}
 
 LLVM 18 的代码将于中国时间 1 月 24 日冻结。
 
@@ -115,9 +115,9 @@ linker relaxation 情况下的 DWARF 调试信息处理。
 [wangleiat]: https://github.com/wangleiat
 [yjijd]: https://github.com/yjijd
 
-## 杂闻播报 {#assorted-news}
+## 杂闻播报 {/* #assorted-news */}
 
-### `libLoL` 架构升级，兼容性持续提升 {#liblol}
+### `libLoL` 架构升级，兼容性持续提升 {/* #liblol */}
 
 1 月 19 日，以 0.1.0 版本的发布为标志，`libLoL` 已转向共享 sysroot 的，仅在 libc
 层面处理符号版本问题的方案，而不再需要从旧世界发行版（如 Loongnix）取用系统库。
@@ -130,7 +130,7 @@ linker relaxation 情况下的 DWARF 调试信息处理。
 如果您依赖的旧世界应用仍然不能完美运行，请将问题报告到 `libLoL` 上游[工单系统](https://github.com/AOSC-Dev/liblol/issues)，
 以便开发者们帮忙。
 
-### 需要修订《手册》以明确 `ftint` 的边界情况行为 {#ftint-edge-cases}
+### 需要修订《手册》以明确 `ftint` 的边界情况行为 {/* #ftint-edge-cases */}
 
 在测试正则表达式库 PCRE2 新版的 LoongArch JIT 支持时，[xen0n](https://github.com/xen0n)
 [发现](https://github.com/loongson-community/discussions/issues/36)代码中缺失了关于浮点数转整数操作在
@@ -142,7 +142,7 @@ LoongArch 上的边界情况行为的记载。
 [lrzlin]: https://github.com/lrzlin
 [ftint-issue]: https://github.com/loongson-community/discussions/issues/38
 
-### 社区维护的 LoongArch Chromium 补丁集现已可用 {#chromium-patchset}
+### 社区维护的 LoongArch Chromium 补丁集现已可用 {/* #chromium-patchset */}
 
 Chromium 浏览器，及基于其内核的一众衍生项目如 QtWebEngine、Electron 等等，已成为当代桌面、移动端不可或缺的基础设施。
 但由于其代码规模庞大，且演进极为迅速、激进，一直以来，如何持续维护可用的 Chromium 分支这件事，对那些非 x86 或 ARM 架构的系统集成工作者而言，都是一块心病。
@@ -161,12 +161,12 @@ Chromium 浏览器，及基于其内核的一众衍生项目如 QtWebEngine、El
 Qt6 WebEngine 补丁集，[杰哥](https://github.com/jiegec)完成了完整
 Chromium 的构建与测试工作，成果已在安同开源社区（AOSC）组织下[公开了](https://github.com/AOSC-Dev/chromium-loongarch64)。
 
-### OpenSSL {#openssl}
+### OpenSSL {/* #openssl */}
 
 [lrzlin] [修复了](https://github.com/openssl/openssl/pull/23301) xry111（:clown_face:——xry 本人自嘲）之前重构代码时的一处不小心，
 此 bug 有可能导致 ChaCha20 算法的 SIMD 优化版本永远跑不到。
 
-## 社区整活:儿: {#grins}
+## 社区整活:儿: {/* #grins */}
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
@@ -196,7 +196,7 @@ CoreMark。
 [Kiri2002]: https://github.com/Kiri2002
 [Xinmudotmoe]: https://github.com/Xinmudotmoe
 
-## 张贴栏 {#bulletin}
+## 张贴栏 {/* #bulletin */}
 
 本栏目可供张贴公益性质的各种信息。
 

@@ -14,11 +14,11 @@ tags: [每周一龙]
 
 如无特别说明，文中提及的日期、时间都为北京时间（UTC+8）。
 
-## 先「马」再看 {#marked-projects}
+## 先「马」再看 {/* #marked-projects */}
 
 本栏目的内容具有一定延续性，将持续追踪报道 LoongArch 领域的重要或长期项目（坑）。
 
-### Linux {#linux}
+### Linux {/* #linux */}
 
 [heiher] [完成了](https://github.com/ClangBuiltLinux/linux/issues/1884#issuecomment-1879564435)
 ClangBuiltLinux 的模块（`CONFIG_MODULES`）支持。
@@ -55,9 +55,9 @@ LoongArch KVM 性能：
 
 [heiher]: https://github.com/heiher
 
-### 工具链 {#toolchain}
+### 工具链 {/* #toolchain */}
 
-#### GCC {#gcc}
+#### GCC {/* #gcc */}
 
 杨屿杰[在重构](https://gcc.gnu.org/pipermail/gcc-patches/2024-January/642084.html)
 LoongArch 后端的命令行选项处理逻辑。
@@ -77,7 +77,7 @@ liwei 把 LSX 与 LASX 原先不共享的两份常量向量排列（constant vec
 [统一成了](https://gcc.gnu.org/pipermail/gcc-patches/2023-December/641477.html)一份。
 在净删除了 888 行代码之外，跑分还提高了。
 
-#### LLVM {#llvm}
+#### LLVM {/* #llvm */}
 
 [heiher] 最终完成了周报第 24 期[报道的](./2023-11-13-this-week-in-loongarch-24.md#llvm) `code_model` 支持工作：
 合并了 [Clang](https://github.com/llvm/llvm-project/pull/72078) 与
@@ -97,7 +97,7 @@ LLVM MC 对代码段对齐的处理方式，LoongArch 和 RISC-V 都从中获益
 [wangleiat]: https://github.com/wangleiat
 [MQ-mengqing]: https://github.com/MQ-mengqing
 
-## 杂闻播报 {#assorted-news}
+## 杂闻播报 {/* #assorted-news */}
 
 [heiher] 给 Rust 最常用的 JSON 格式支持库 `serde_json`
 [标记了](https://github.com/serde-rs/json/pull/1100)
@@ -156,7 +156,7 @@ app-emulation/liblol Loongnix-Base-EULA
 
 [xen0n]: https://github.com/xen0n
 
-## 社区整活:儿: {#grins}
+## 社区整活:儿: {/* #grins */}
 
 本栏目接受任何网友的投稿，只要内容与 LoongArch 有关，并可以为读者带来价值，
 无论严肃贡献（整的大活:儿:）或是博君一笑都一概欢迎！
@@ -180,7 +180,7 @@ Proxmox VE（PVE）移植与上游最新版本同步了，支持 64 位的 Loong
 
 [jiangcuo]: https://github.com/jiangcuo
 
-## 张贴栏 {#bulletin}
+## 张贴栏 {/* #bulletin */}
 
 本栏目可供张贴公益性质的各种信息。
 
