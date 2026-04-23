@@ -10,8 +10,7 @@ sidebar_position: 11
 本文档的主要读者是 **AI 智能体**（基于大语言模型的编码助手）。人类贡献者也会从中受益——项目概况、提交规范和验证清单等内容对所有人都有参考价值。
 :::
 
-本文档是面向 AI 智能体的维护者首选贡献指南的中文版本。英文版请参阅
-[agent-contributing-guide.en.md](agent-contributing-guide.en.md)。
+本文档是面向 AI 智能体的、经维护者批准的贡献指南。
 
 ## 核心要求
 
@@ -24,9 +23,6 @@ sidebar_position: 11
 ## AIGC 政策
 
 本项目执行严格的人工智能生成内容（AIGC）政策。**所有 AI 智能体在贡献之前必须阅读并遵守完整政策。**
-
-- English: [aigc-policy.en.md](aigc-policy.en.md)
-- 中文: [aigc-policy.zh.md](aigc-policy.zh.md)
 
 要点（以完整政策为准）：
 
@@ -44,7 +40,7 @@ sidebar_position: 11
 - **站点地址**：<https://areweloongyet.com>
 - **站点框架**：[Docusaurus 3](https://docusaurus.io/)（React）。
 - **编程语言**：TypeScript（ESM），内容以 MDX/Markdown 编写。
-- **许可证**：全部内容以 [CC-BY-NC-SA-4.0](../../LICENSE) 授权。
+- **许可证**：全部内容以 [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 授权。
 
 ### 仓库结构
 
@@ -60,13 +56,14 @@ blog/                     ← 本站动态 / 博客文章（Markdown）
 newsletter/               ← 《每周一龙》周报（Markdown/MDX）
 docs/                     ← 文档页面（由 Docusaurus 渲染）
   contrib/                ← 贡献指南（作为站点文档呈现）
-    agent-contributing-guide.en.md  ← 英文版
-    agent-contributing-guide.zh.md  ← 本文件
-    aigc-policy.en.md     ← AIGC 政策（英文）
-    aigc-policy.zh.md     ← AIGC 政策（中文）
-    natlang-style-guide.md ← 自然语言风格指南（中英文）
+    agent-contributing-guide.md  ← 本文件
+    aigc-policy.md        ← AIGC 政策（中文）
+    natlang-style-guide.md ← 自然语言风格指南，适用于中文内容写作
     basics.md             ← 基本参与方法
 i18n/en/                  ← 英文翻译（UI 字符串与内容）
+  docusaurus-plugin-content-docs/current/contrib/
+    agent-contributing-guide.md  ← 本文件（英文）
+    aigc-policy.md        ← AIGC 政策（英文）
 
 src/
   components/             ← React 组件（AsmDB、ProjectPage 等）
@@ -217,7 +214,7 @@ art/                      ← 品牌与美术素材源文件
 
 ### AIGC 提交要求
 
-根据 [AIGC 政策](aigc-policy.zh.md)，AI 智能体必须：
+根据 [AIGC 政策](aigc-policy.md)，AI 智能体必须：
 
 1. 使用 `AI-assisted-by` trailer 披露身份。
 2. 在提交说明正文中记录原始提示词。

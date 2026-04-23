@@ -12,9 +12,8 @@ assistants). Human contributors will also find the project overview, commit
 conventions, and validation checklist useful — feel free to read along.
 :::
 
-This document is the English version of the maintainer-preferred guide
-for AI agents working on this repository. For the Chinese version, see
-[agent-contributing-guide.zh.md](agent-contributing-guide.zh.md).
+This document is the maintainer-approved guide for AI agents working on this
+repository.
 
 ## Key expectations
 
@@ -28,9 +27,6 @@ for AI agents working on this repository. For the Chinese version, see
 
 This project enforces a strict AI-Generated Content (AIGC) policy. **All AI
 agents must read and comply with the full policy before contributing.**
-
-- English: [aigc-policy.en.md](aigc-policy.en.md)
-- 中文: [aigc-policy.zh.md](aigc-policy.zh.md)
 
 Key points (the full policy is authoritative):
 
@@ -54,7 +50,7 @@ Key points (the full policy is authoritative):
 - **Site URL**: <https://areweloongyet.com>
 - **Site framework**: [Docusaurus 3](https://docusaurus.io/) (React).
 - **Language**: TypeScript (ESM), MDX/Markdown for content.
-- **License**: [CC-BY-NC-SA-4.0](../../LICENSE) for all content.
+- **License**: [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) for all content.
 
 ### High-level layout
 
@@ -70,13 +66,14 @@ blog/                     ← Site news / blog posts (Markdown)
 newsletter/               ← "This Week in LoongArch" (TWiL) weekly newsletter (Markdown/MDX)
 docs/                     ← Documentation pages (rendered by Docusaurus)
   contrib/                ← Contributing guides (rendered as site docs)
-    agent-contributing-guide.en.md  ← This file
-    agent-contributing-guide.zh.md  ← Chinese version
-    aigc-policy.en.md     ← AIGC policy (English)
-    aigc-policy.zh.md     ← AIGC policy (Chinese)
-    natlang-style-guide.md ← Natural language style guide (Chinese/English)
+    agent-contributing-guide.md  ← Chinese version of this file
+    aigc-policy.md        ← AIGC policy (Chinese)
+    natlang-style-guide.md ← Natural language style guide for Chinese writing
     basics.md             ← Basic contribution instructions
 i18n/en/                  ← English translations of UI strings and content
+  docusaurus-plugin-content-docs/current/contrib/
+    agent-contributing-guide.md  ← This file
+    aigc-policy.md        ← AIGC policy (English)
 
 src/
   components/             ← React components (AsmDB, ProjectPage, etc.)
@@ -249,7 +246,7 @@ Scopes (use the primary area touched):
 
 ### AIGC commit requirements
 
-Per the [AIGC policy](aigc-policy.en.md), AI agents must:
+Per the [AIGC policy](aigc-policy.md), AI agents must:
 
 1. Disclose identity with an `AI-assisted-by` trailer.
 2. Record the original prompt in the commit body.

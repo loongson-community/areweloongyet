@@ -7,8 +7,8 @@ work. It is maintained by the Loongson open-source community.
 **Before making any changes, read the contributing guide that matches the
 predominant language of the current user session:**
 
-- **中文会话** → [docs/contrib/agent-contributing-guide.zh.md](docs/contrib/agent-contributing-guide.zh.md)
-- **English session** → [docs/contrib/agent-contributing-guide.en.md](docs/contrib/agent-contributing-guide.en.md)
+- **中文会话** → [这里](docs/contrib/agent-contributing-guide.md)
+- **English session** → [Here](i18n/en/docusaurus-plugin-content-docs/current/contrib/agent-contributing-guide.md)
 
 If the session language is unclear, default to the Chinese version.
 
