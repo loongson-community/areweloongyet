@@ -20,7 +20,7 @@ jobs:
           cache: yarn
       - uses: actions/setup-go@v6
         with:
-          go-version: '>=1.21.0'
+          go-version: '>=1.26.0'
           check-latest: true
           cache-dependency-path: |
             scripts/asmdb/go.sum
@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload pages artifacts (PR)
         if: ${{ github.ref != 'refs/heads/main' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           path: './build/'
           name: 'pages-${{github.sha}}'
@@ -65,6 +65,6 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Deploy to GitHub Pages
         id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         with:
           artifact_name: 'gh-pages-${{github.sha}}'
