@@ -14,7 +14,7 @@ We currently name each baseline in a “year + quarter” format because it help
 
 This document was last updated on May 12, 2024. The recommended stable baseline is 2023Q1, and the testing baseline is 2024Q2. The current leading-edge baseline is expected to stabilize by late 2024 and be designated as 2024Q4 or 2025Q1. If you plan to adopt the 2024Q2 baseline, we strongly suggest also including the leading-edge baseline in your evaluation.
 
-## Bleeding Edge {#bleeding-edge}
+## Bleeding Edge {/* #bleeding-edge */}
 
 |Binutils|GCC|Linux|glibc|LLVM|Rust|Go |
 |:------:|:-:|:---:|:---:|:--:|:--:|:-:|
@@ -42,7 +42,7 @@ The main features of this period/baseline include:
 * BFD linker support for `DT_RELR`?
 * TBD
 
-## 2024Q2 {#2024q2}
+## 2024Q2 {/* #2024q2 */}
 
 |Binutils|GCC|Linux|glibc|LLVM|Rust|Go |
 |:------:|:-:|:---:|:---:|:--:|:--:|:-:|
@@ -65,7 +65,7 @@ Key features of this period/baseline include:
 * First-time Rust language support for Linux glibc and bare metal environments.
 * For Linux: KVM virtualization support missed the Linux 6.6 LTS release in late 2023.
 
-## 2023Q1 {#2023q1}
+## 2023Q1 {/* #2023q1 */}
 
 |Binutils|GCC|Linux|glibc|LLVM|Rust|Go |
 |:------:|:-:|:---:|:---:|:--:|:--:|:-:|
@@ -85,7 +85,7 @@ Key features of this period/baseline include:
 * First-time LLVM/Clang support.
 * Still no support for SIMD, hardware virtualization, or binary translation extensions.
 
-## 2022Q3 {#2022q3}
+## 2022Q3 {/* #2022q3 */}
 
 |Binutils|GCC|Linux|glibc|LLVM|Rust|Go |
 |:------:|:-:|:---:|:---:|:--:|:--:|:-:|

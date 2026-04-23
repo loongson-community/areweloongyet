@@ -692,7 +692,7 @@ Processor Information
 
 </details>
 
-## ASUS XC-LS3A6M {#asus-xc-ls3a6m}
+## ASUS XC-LS3A6M {/* #asus-xc-ls3a6m */}
 
 From a software standpoint, this motherboard closely resembles the XA61200, with the primary difference being the inclusion of a Motorcomm YT6801 Ethernet controller.
 
@@ -996,7 +996,7 @@ Processor Information
 
 </details>
 
-## 3A6000 Evaluation Board (XA612A0) {#3a6000-evb-xa612a0}
+## 3A6000 Evaluation Board (XA612A0) {/* #3a6000-evb-xa612a0 */}
 
 This model is compatible with XA61200 firmware, differing only in minor details like the network port. Flashing another model’s firmware can still power up the board, but certain onboard devices, such as the network port, may remain unrecognized or unusable because the LS7A bridging chip is not configured for this model.
 
@@ -1958,7 +1958,7 @@ Processor Information
 
 </details>
 
-## For Contributors: Template for Adding New Hardware and Software Platforms {#template}
+## For Contributors: Template for Adding New Hardware and Software Platforms {/* #template */}
 
 `uname -srvmpio`: `TODO`
 
