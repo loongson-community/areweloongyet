@@ -37,7 +37,7 @@ sidebar_position: 11
 ## 项目概况
 
 - **定位**：《咱龙了吗？》（*AREWELOONGYET?*）—— 一站式了解 LoongArch 上游生态建设的门户站点。涵盖工具链、编程语言、内核、固件、模拟器、JIT 运行时、发行版等。
-- **站点地址**：<https://areweloongyet.com>
+- **站点地址**：[https://areweloongyet.com](https://areweloongyet.com)
 - **站点框架**：[Docusaurus 3](https://docusaurus.io/)（React）。
 - **编程语言**：TypeScript（ESM），内容以 MDX/Markdown 编写。
 - **许可证**：全部内容以 [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 授权。

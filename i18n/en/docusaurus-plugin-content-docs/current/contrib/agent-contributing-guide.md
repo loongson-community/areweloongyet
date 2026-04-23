@@ -47,7 +47,7 @@ Key points (the full policy is authoritative):
 - **Purpose**: *AREWELOONGYET?* (《咱龙了吗？》) — a one-stop portal for
   following LoongArch upstream ecosystem work. Covers toolchains, programming
   languages, kernels, firmware, emulators, JIT runtimes, distributions, and more.
-- **Site URL**: <https://areweloongyet.com>
+- **Site URL**: [https://areweloongyet.com](https://areweloongyet.com)
 - **Site framework**: [Docusaurus 3](https://docusaurus.io/) (React).
 - **Language**: TypeScript (ESM), MDX/Markdown for content.
 - **License**: [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) for all content.
