@@ -1,3 +1,5 @@
+import { arch } from 'process'
+
 import type { Config } from '@docusaurus/types'
 import type { Options as PluginClientRedirectsOptions } from '@docusaurus/plugin-client-redirects'
 import type { Options as BlogOptions } from '@docusaurus/plugin-content-blog'
@@ -98,7 +100,7 @@ const config: Config = {
   },
 
   future: {
-    experimental_faster: true,
+    experimental_faster: arch !== 'loong64',
     v4: true,
   },
 
