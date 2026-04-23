@@ -4,8 +4,10 @@ sidebar_position: 1
 
 # 基本参与方法
 
-:::warning 施工现场！
+:::warning[施工现场！]
+
 本文目前尚不完整。维护者想起来更新或被催更，则会更新；否则请不要认为所有相关的规范都完整记录了。
+
 :::
 
 本站本质上是个 [Docusaurus 3](https://docusaurus.io/) 文档站，

@@ -4,11 +4,14 @@ sidebar_position: 3
 
 # Old World and New World
 
-:::warning Under Construction!
+:::warning[Under Construction!]
+
 This page is still under construction, and the content may be expanded or modified over time. Feel free to check back often!
+
 :::
 
-:::info Do I need to care about this?
+:::info[Do I need to care about this?]
+
 In short, if you don't compile and install software yourself, you probably don't need to worry about it.
 Of course, casually browsing through this article might help you understand these terms in the future, or you can guide others who encounter issues.
 
@@ -23,6 +26,7 @@ The only situations where you might encounter issues are:
   After the future full system upgrade, your self-compiled software may no longer work and will need to be recompiled or installed from the system package manager.
 * You are a developer adapting or developing software for LoongArch.
   If you have come to this page, you are likely already encountering issues, so read on!
+
 :::
 
 As of early 2024, there are two incompatible software ecosystems for LoongArch, commonly referred to as the "old world" and the "new world." Loongson's materials also mention "ABI1.0" and "ABI2.0" (currently, all references do not include a space between "ABI" and the number).
@@ -165,7 +169,7 @@ If this file truly exists, you are most likely trying to run a program from the 
 
 It might be caused by using the wrong Go toolchain, which inadvertently built a binary for a different ABI than intended.
 
-* For an old-world distribution, Loongson’s Go toolchain and the goproxy source (the "Loongson sources"; see below) must be used.  
+* For an old-world distribution, Loongson’s Go toolchain and the goproxy source (the "Loongson sources"; see below) must be used.
 * For a new-world distribution, an upstream Go toolchain must be used; never use the "Loongson sources".
 
 In detail, when a Go program runs in the other world, a crucial initialization step makes an `rt_sigprocmask` system call. This call fails because the `NSIG` constant in the Go toolchain differs from what the kernel expects, causing Go to deliberately access an illegal address and crash right away. From the program’s perspective, a supposedly guaranteed system call has failed, indicating that kernel services are no longer reliable.

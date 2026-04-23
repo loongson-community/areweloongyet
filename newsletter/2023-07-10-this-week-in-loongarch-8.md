@@ -21,7 +21,8 @@ tags: [每周一龙]
 一如既往，美西时间周日下午（北京时间 7 月 10 日凌晨）Linus [发布了](https://lwn.net/Articles/937731/)
 Linux v6.5-rc1。
 
-:::info 您的测试很重要！
+:::info[您的测试很重要！]
+
 龙架构内核开发者们欢迎您来体验最新内核。
 如在使用过程中发现任何问题，请及时反馈：
 龙架构的开发者人数不多，无法测到所有软硬件组合。
@@ -30,6 +31,7 @@ Linux v6.5-rc1。
 可用中文或英语在您加入的龙芯用户群反馈（开发者总会直接或间接看到），
 也可用英语在[上游邮件列表](mailto:loongarch@lists.linux.dev)反馈，
 或在[内核 Bugzilla](https://bugzilla.kernel.org) 创建 bug。
+
 :::
 
 7 月 5 日，Sui Jingfeng [合并了](https://cgit.freedesktop.org/drm/drm-misc/commit/?id=f39db26c54281da6a785259498ca74b5e470476f)龙芯显示控制器 DRM[^注一] 驱动。

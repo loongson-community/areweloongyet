@@ -105,9 +105,11 @@ LoongArch 最适合大数运算的整数类型宽度是 64 位。
 上游维护者半小时后就给合并了，且发了 `1.0.111` 新版本。
 请同学们按需 `cargo update` 以查收这部分免费性能提升。
 
-:::info 花絮
+:::info[花絮]
+
 这坑是 xen0n 在编译 ripgrep 时候百无聊赖，躺在椅子上看屏幕上滚动的编译进度，偶然注意到的。
 有时躺平放空也能创造价值！
+
 :::
 
 [xen0n] 向 gentoo-zh overlay [推入了](https://github.com/microcai/gentoo-zh/pull/4109)
@@ -116,7 +118,8 @@ AOSC OS 的 liblol 新旧世界兼容解决方案打包。
 后续 Gentoo 用户们也能用相同姿势安装 WPS Office 等旧世界闭源软件了。
 例如：只要 `emerge wps-office` 即可自动拉入 liblol 及其内核模块。
 
-:::info 注意事项
+:::info[注意事项]
+
 目前 liblol 提供的依赖库主要都来自 Loongnix，
 因此在我们完成审计这些来自 Loongnix 的文件的开源许可、并确认其中不含闭源或专有内容之前，
 您都需要明确接受《基础版 Loongnix 操作系统最终用户许可协议》，才能安装 liblol：
@@ -131,6 +134,7 @@ app-emulation/liblol Loongnix-Base-EULA
 在安装完 liblol 后、使用旧世界软件前，
 您可以简单重启系统，或者以 `root` 身份 `modprobe la_ow_syscall`：
 只需执行这一次即可，后续每次系统启动时都会自动加载了。
+
 :::
 
 <details>

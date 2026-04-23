@@ -46,9 +46,11 @@ flowchart BT
 linkStyle 6,9,10 stroke:red;
 ```
 
-:::info 如果您看到箭头颜色不对
+:::info[如果您看到箭头颜色不对]
+
 这是因为您的浏览器[不支持](https://caniuse.com/?search=context-stroke)必要的 SVG 属性
 `stroke: context-stroke`。我们只能希望这不影响阅读……
+
 :::
 
 可见一直以来 MSI 中断都是由 PCH 即桥片负责，经由 EIOINTC「扩展 I/O 中断控制器」到达 CPU，即
@@ -102,8 +104,10 @@ Go 社区从 2023 年开始就着手将构建机器迁移到
 * [整体迁移计划](https://go.dev/issue/63471)；
 * [`loong64` 的迁移工作](https://go.dev/issue/65398)。
 
-:::info 请贡献者注意
+:::info[请贡献者注意]
+
 因为 LUCI 的接入方式所需的网络带宽和流量远远大于先前的 buildlet 方式，目前跑测试时，仍然偶尔会出现网络超时的情况。
+
 :::
 
 感谢 [abner] 自己制造并投递新闻线索！

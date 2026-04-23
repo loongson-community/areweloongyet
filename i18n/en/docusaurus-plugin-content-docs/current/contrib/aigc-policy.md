@@ -6,10 +6,12 @@ sidebar_position: 12
 
 # AI-Generated Content (AIGC) Policy
 
-:::info Intended audience
+:::info[Intended audience]
+
 This document is primarily written for **AI agents** (LLM-based coding
 assistants) and their human operators. All contributors — human or AI — should
 be aware of these requirements when submitting AIGC to this project.
+
 :::
 
 This project welcomes contributions from AI agents, but given the ongoing

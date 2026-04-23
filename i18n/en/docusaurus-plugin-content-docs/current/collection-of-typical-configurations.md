@@ -4,8 +4,10 @@ sidebar_position: 6
 
 # Typical LoongArch Configuration Data Collection
 
-:::info Frequently Updated!
+:::info[Frequently Updated!]
+
 This is a living document, and its content will change as conditions evolve. Check back often!
+
 :::
 
 This page is open for editing! You’re welcome to submit your LoongArch hardware configurations via GitHub, following the format in the [template section](#template).

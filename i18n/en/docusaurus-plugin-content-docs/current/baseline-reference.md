@@ -4,8 +4,10 @@ sidebar_position: 5
 
 # Baseline Reference of Infra Component Versions
 
-:::info Frequently Updated!
+:::info[Frequently Updated!]
+
 This is a living document, and its content will change as conditions evolve. Check back often!
+
 :::
 
 As LoongArch gains wider upstream support in various open-source projects and sees regular releases, the sheer variety of fundamental software versions inevitably multiplies. To reduce the integration burden and avoid repeated pitfalls, here are our recommended baseline combinations. Some are time-tested for stability; others represent the cutting edge of feature development and will soon become the next wave of stable baselines.
@@ -24,10 +26,12 @@ This document was last updated on May 12, 2024. The recommended stable baseline 
 
 This baseline reflects real-time progress; some software versions are still unreleased, so their numbers may change. Many new features are under refinement, which may lead to unexpected compilation or linking errors and runtime behaviors. Developers and capable users are encouraged to test, practice, and report any issues in the [community discussion channel](https://github.com/loongson-community/discussions/issues).
 
-:::warning Proactive issue reporting is crucial!
+:::warning[Proactive issue reporting is crucial!]
+
 Only when you raise problems will others see them and work on fixes.
 Though the circle is still small, LoongArch’s application scope is already broader than any single individual can imagine.
 Don’t expect a few developers to coincidentally face your issue and solve it without direct communication.
+
 :::
 
 The main features of this period/baseline include:

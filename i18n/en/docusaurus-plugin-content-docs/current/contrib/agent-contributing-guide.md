@@ -6,10 +6,12 @@ sidebar_position: 10
 
 # Contributing Guide for AI Agents
 
-:::info Intended audience
+:::info[Intended audience]
+
 This document is primarily written for **AI agents** (LLM-based coding
 assistants). Human contributors will also find the project overview, commit
 conventions, and validation checklist useful — feel free to read along.
+
 :::
 
 This document is the maintainer-approved guide for AI agents working on this

@@ -26,7 +26,8 @@ Li Jun [意图改变](https://lore.kernel.org/loongarch/20240506092419.4109941-1
 S3 睡眠醒来时找不到映像信息」。从补丁的 `Signed-off-by`（「签发人」）信息看，该改动是与三名龙芯员工
 Baoqi Zhang、Jianmin Lv 与 Biao Dong 一同完成的。
 
-:::info 需要注意的是
+:::info[需要注意的是]
+
 该补丁在解释性文字、代码质量方面都有需要改进之处，例如：
 
 * 提交说明中，未对问题机理与解决方案作出解释；
@@ -35,6 +36,7 @@ Baoqi Zhang、Jianmin Lv 与 Biao Dong 一同完成的。
 
 目前原作者[改到了](https://lore.kernel.org/loongarch/20240507074357.2156083-1-lijun01@kylinos.cn/)第二版，仍然没改完。由于
 xen0n 的主力工作站仍未完全恢复正常，因此这些本将出现在一封回复邮件中的内容就只能先以这种形式亮相了。
+
 :::
 
 ### 工具链 {/* #toolchain */}

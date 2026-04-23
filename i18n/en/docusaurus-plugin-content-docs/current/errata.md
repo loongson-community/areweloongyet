@@ -6,8 +6,10 @@ sidebar_position: 8
 
 This page is unofficially maintained and continuously updated to collect known hardware flaws (errata) on Loongson platforms, complementing the relevant official materials.
 
-:::info Frequently Updated!
+:::info[Frequently Updated!]
+
 This is a living document, and its content will change as conditions evolve. Check back often!
+
 :::
 
 ## Possible LS7A Bridge Hardware Flaw Causing AMDGPU Driver Crashes
