@@ -4145,7 +4145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rc-component/form@npm:~1.8.0":
+"@rc-component/form@npm:~1.8.1":
   version: 1.8.1
   resolution: "@rc-component/form@npm:1.8.1"
   dependencies:
@@ -6522,9 +6522,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:^6.2.0":
-  version: 6.3.6
-  resolution: "antd@npm:6.3.6"
+"antd@npm:^6.3.7":
+  version: 6.3.7
+  resolution: "antd@npm:6.3.7"
   dependencies:
     "@ant-design/colors": "npm:^8.0.1"
     "@ant-design/cssinjs": "npm:^2.1.2"
@@ -6540,7 +6540,7 @@ __metadata:
     "@rc-component/dialog": "npm:~1.8.4"
     "@rc-component/drawer": "npm:~1.4.2"
     "@rc-component/dropdown": "npm:~1.0.2"
-    "@rc-component/form": "npm:~1.8.0"
+    "@rc-component/form": "npm:~1.8.1"
     "@rc-component/image": "npm:~1.9.0"
     "@rc-component/input": "npm:~1.1.2"
     "@rc-component/input-number": "npm:~1.6.2"
@@ -6577,7 +6577,7 @@ __metadata:
   peerDependencies:
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: 10c0/ca8bce6059fc4a6a023cc8fe930d0d1f0da3417e28cef29d589aa26aa158c1d0da16d64f3fd03a0bd522e871b768a9746f9ed8d38342239a633ca621599e2cfa
+  checksum: 10c0/f07fff4da4e5e0c8e01560369ddbfee4aba0593b56dff8847a1cd69937c1c94e39496ac4a3aebf5771894d3cf046ffa3d09436a33b8f23a9385ef22e3d5bbbba
   languageName: node
   linkType: hard
 
@@ -6620,7 +6620,7 @@ __metadata:
     "@types/prismjs": "npm:^1.26.5"
     "@types/react": "npm:^19.2.8"
     "@types/react-router-dom": "npm:^5.3.3"
-    antd: "npm:^6.2.0"
+    antd: "npm:^6.3.7"
     browserslist: "npm:^4.28.1"
     clsx: "npm:^2.1.1"
     eslint: "npm:^10"
