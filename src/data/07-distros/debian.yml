@@ -9,3 +9,11 @@ portingEfforts:
     releasedSinceVersion: ''
     goodSinceVersion: ''
     quality: OnPar
+
+  - authors: []
+    desc: 'Debian Trixie 13 非官方移植版'
+    link: 'https://loong13.debian.net'
+    supportStatus: Released
+    releasedSinceVersion: '13.2'
+    goodSinceVersion: ''
+    quality: OnPar
