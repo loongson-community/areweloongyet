@@ -1,5 +1,5 @@
 ---
-slug: this-week-in-loongarch-xx
+slug: this-week-in-loongarch-150
 title: 每周一龙：第 150 期
 authors: [jokerm13]
 date: 2026-5-1T02:00:00+08:00  # TODO: change to actual time in the finishing commit
