@@ -1,0 +1,11 @@
+name: 'Erlang'
+homepageURL: 'https://www.erlang.org'
+repoURL: 'https://github.com/erlang/otp'
+portingEfforts:
+  - authors: ['junchao-loongson']
+    desc: '上游 asmjit 缺少经费，开发暂停，建议自行 fork'
+    link: 'https://github.com/asmjit/asmjit/pull/441'
+    supportStatus: Rejected
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: NeedsCleanup
