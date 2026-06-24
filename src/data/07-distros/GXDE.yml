@@ -1,0 +1,11 @@
+name: 'GXDE OS'
+homepageURL: 'https://www.gxde.org'
+repoURL: 'https://gitee.com/GXDE-OS'
+portingEfforts:
+  - authors: ['gfdgd-xi & Project Spark']
+    desc: '一款以 GXDE 为特色的桌面发行版，由 gfdgd-xi 与星火社区合作推出；龙架构分支基于 Debian SID 构建'
+    link: 'https://www.gxde.org/install/'
+    supportStatus: WIP
+    releasedSinceVersion: '15.14.2'
+    goodSinceVersion: ''
+    quality: OnPar
