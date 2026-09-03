@@ -48,19 +48,19 @@ See the script's module docstring for reproduction commands.
 
 | Statistic | Value |
 |---|---|
-| Mean words / item | 51 |
-| Median words / item | ~35 |
+| Mean characters / item | 51 |
+| Median characters / item | ~35 |
 | Mean sentences / item | 1.5 |
 | Exactly 1 sentence | 66.1% |
 | 1-2 sentences | 87.6% |
 
-The vast majority of items are **one or two sentences**. If an item exceeds
+The vast majority of items consist of one or two sentences. If an item exceeds
 3 sentences, consider splitting (if readability permits) or verify that it
 truly forms an indivisible reporting unit.
 
-### Rules of thumb {/* #rules-of-thumb */}
+### Rules of thumb for brevity {/* #rules-of-thumb-for-brevity */}
 
-- Routine news items: target **1-2 sentences**, **20-80 words**.
+- Routine news items: target **1-2 sentences**, **20-80 characters**.
 - We trust our readers to have basic development skills and to be able to look
   up unfamiliar concepts on their own, so do not append science-communication
   style explanations to every concept. When an explanation is optional, we
@@ -72,8 +72,8 @@ truly forms an indivisible reporting unit.
     background, reasons, and effects.
 - If an explanation is truly necessary, append 1-2 more sentences, but keep
   the total under 5 sentences.
-- Items in Markdown lists tend to be shorter (30-40 words), better suited to
-  list-style browsing.
+- Items in Markdown lists tend to be shorter (30-40 characters), better suited
+  to list-style browsing.
 - Regular weekly issues average 25-50 items; omnibus issues can contain
   60-190 items.
 
@@ -84,47 +84,51 @@ truly forms an indivisible reporting unit.
 News-reporting items almost universally follow this pattern:
 
 ```markdown
-**Actor** `[`**action-verb** + perfective`](`link`)` **object / context**
+X 月 X 日，谁[动词了](链接)什么……。
+
+谁以/用/通过/……什么，[动词了](链接)什么……。
+
+谁[动词了](链接)什么。这解决了/代表着/意味着/……什么……。
 ```
 
-Examples (translated from Chinese originals):
+Examples:
 
 ```markdown
-Huacai Chen [submitted](https://lore.kernel.org/...) a cpufreq driver for
-Loongson 3 processors.
-Xi Ruoyao [fixed](https://gcc.gnu.org/...) several issues in the LoongArch
-hardware breakpoint implementation.
-Bibo Mao [implemented](https://lore.kernel.org/...) paravirtualized qspinlock
-for LoongArch KVM.
+Huacai Chen [发出了](https://lore.kernel.org/...) 适用于龙芯 3 号处理器的自动调频驱动。
+Xi Ruoyao [修复了](https://gcc.gnu.org/...) LoongArch 硬件断点的几个实现问题。
+Bibo Mao [实现了](https://lore.kernel.org/...) KVM 半虚拟化快速自旋锁。
 ```
 
 ### Link placement {/* #link-placement */}
 
 - **55.3% of links are attached directly to the central verb of the
   sentence** — this is the defining stylistic signature.
-- Remaining links sit on noun phrases (e.g., `[the upstream tracking
-  issue](url)`, `[the relevant kernel patches](url)`).
-- When writing content, always prefer attaching the hyperlink to the central
-  verb of the sentence.
+- Only attach links to noun phrases when the link is inappropriate for the
+  central verb, or when there are multiple secondary links. For example:
+  - `X [提出了](url1)……，见[上游的跟踪 issue](url2)`；
+  - `X [解决了](url1)先前 Y [提交的](url2) Z 的 XXX 问题`；
+  - `X 做了一系列重构：[甲]、[乙]、[丙]`。
+- When composing each sentence, always prefer attaching the hyperlink to the
+  sentence's central verb. Layout the sentence to specifically facilitate this
+  if readability hurts otherwise.
 
 ### Frequently linked central verbs {/* #frequently-linked-central-verbs */}
 
 The 10 central verbs that most frequently carry attached links in published
-content are:
+content are as follows, for your reference:
 
-`fixed` (96), `added` (47), `posted` (29), `submitted` (24), `optimized` (19),
-`released` (18), `implemented` (18), `sent out` (14), `merged` (12),
-`enabled` (12)
+`修复了`(96)、`增加了`(47)、`贴出了`(29)、`提交了`(24)、`优化了`(19)、
+`发布了`(18)、`实现了`(18)、`发出了`(14)、`合并了`(12)、`允许了`(12)
 
-(In the Chinese source text these all carry the perfective suffix `了`, the
-equivalent of past/completed tense.)
+### Prefer concrete verbs {/* #prefer-concrete-verbs */}
 
-### Verb specificity {/* #verb-specificity */}
+`增加`、`添加`、`新增`、`优化` are all highly abstract descriptions of actions
+that convey little about what the contributor actually did. When you encounter
+these verbs, **first consider whether a more fitting specific verb exists**.
+Keep using them only when there is no better choice.
 
-`增加` and `添加` are both highly abstract descriptions of action that convey
-nothing about what the contributor actually did. When you come across these
-two verbs, **first consider whether a more fitting specific verb exists**.
-Keep using `增加` only when no better choice is available.
+Specifically, when you see `添加`, it should almost always be replaced with
+`增加`, in order to fit the writing style of existing text.
 
 Recommended replacement directions:
 
@@ -136,9 +140,7 @@ Recommended replacement directions:
 | Wrote new tests or documentation | `编写了` |
 | Ported / adapted support for some architecture | `移植了`, `引入了` |
 | Extended / generalized an existing feature | `扩展了`, `泛化了` |
-| Cannot be classified into any of the above | `增加了` (fallback) |
-
-This rule also applies to variants such as `新增了`.
+| Cannot be classified into any of the above | Keep as-is |
 
 :::info[About the verb 提交 (submit)]
 
@@ -158,7 +160,7 @@ mainline", prefer wording such as `合并了`.
   natural choice is the **perfective aspect** (verb + `了`).
 - For events with a definite timestamp, write out the time adverbial
   explicitly, preferably at the start of the sentence:
-  `**X 月 X 日，XXX 修复了 XXX 的 XXX……`
+  `X 月 X 日，XXX 修复了 XXX 的 XXX……`
 - For events still ongoing at the time of writing, provide a current-time
   reference: `截至目前（X 月 X 日 XX:XX），……` or
   `截至发稿时（X 月 X 日 XX:XX），……`.
@@ -193,7 +195,7 @@ Roughly 10% of items carry explicit editorial commentary (excluding standalone
 - **Citation notices**: e.g., fair-use declarations
 - `:::tip` blocks are used for lighthearted trivia or tips
 
-### Rules of thumb {/* #rules-of-thumb */}
+### Rules of thumb for editorial commentaries {/* #rules-of-thumb-for-editorial-commentaries */}
 
 - Editorial voice should feel **natural and restrained**. Do not comment on
   every item.
@@ -386,7 +388,7 @@ maintainers:
   adjustments, etc.) still follow the regular reporting-significance rules
   and do not constitute a news item.
 
-:::info[Terminology note]
+:::info[Note on terminology]
 
 Within AWLY/TWiL, "backport" should be uniformly translated as
 「向后移植（backport）」 rather than 「回合」. The more common meaning of
@@ -423,7 +425,7 @@ style of the raw copy may systematically diverge from TWiL's:
 | **Review cycles** | Track full v1→review→v2→review→v3 arcs | Apply [patchset reporting granularity](#patchset-reporting-granularity): keep only the latest revision with significant changes; drop entirely if no significant change |
 | **Term explanations** | `PR_SET_SYSCALL_USER_DISPATCH (a Linux prctl operation that…)` | Delete the parenthetical or standalone-sentence explanation. If a concept genuinely needs to be explained for TWiL's target readers, write a dedicated `:::info` block instead |
 | **Coverage** | Exhaustive lists (e.g., every one of Box64's 11 PRs within a single cycle) | Pick 2-3 of the most important highlights; omit the rest or summarise them in one sentence |
-| **Verb choice** | `添加了` (added) | Replace with a more specific verb first (`实现了`, `启用了`, `引入了`, etc.); use `增加了` only when no suitable replacement exists. See [verb specificity](#verb-specificity) |
+| **Verb choice** | `添加了` (added) | Replace with a more specific verb first (`实现了`, `启用了`, `引入了`, etc.); use `增加了` only when no suitable replacement exists. See [prefer concrete verbs](#prefer-concrete-verbs) |
 | **Editorial voice** | Neutral, cold, no commentary | If something merits commentary, add a `:::info` block or a brief *this means…* sentence; otherwise do not force it |
 
 ### Style adaptation checklist {/* #style-adaptation-checklist */}
@@ -454,7 +456,7 @@ newsletter, apply the following steps:
 5. **Normalize terminology**: Check and replace wording that deviates from the
    style guide. In particular, replace the abstract `添加`/`增加` with more
    specific verbs (e.g., `实现了`, `启用了`, `引入了`); keep `增加` only when no
-   suitable replacement exists. See [verb specificity](#verb-specificity).
+   suitable replacement exists. See [prefer concrete verbs](#prefer-concrete-verbs).
 6. **Verify section coverage**: Confirm that all mandatory sections
    (`先「马」再看`, `杂闻播报`, `张贴栏`) are present. The
    `社区整活:儿:` (community fun) section is not mandatory: if there is no
