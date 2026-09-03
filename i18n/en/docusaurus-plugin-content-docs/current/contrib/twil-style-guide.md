@@ -77,6 +77,30 @@ truly forms an indivisible reporting unit.
 - Regular weekly issues average 25-50 items; omnibus issues can contain
   60-190 items.
 
+Regarding the "complex details" mentioned above, the test is: if we expect
+the target reader to need to consult 3 or more sources of information
+(including but not limited to the number of documents, functions etc. in a
+program, and contacts) to independently verify a detail, then that detail
+counts as a "complex detail".
+
+Regarding the "complicated chains of reasoning" mentioned above, the test
+is: a chain of reasoning counts as "complicated" if it meets any of the
+following conditions:
+
+- The conclusion is counter-intuitive to the target reader;
+- The conclusion has 3 or more logical branches;
+- Reaching the conclusion takes 3 or more reasoning steps;
+- Reaching the conclusion requires drawing on cross-disciplinary knowledge,
+  or on knowledge from different subfields within a single discipline.
+  - Example of cross-disciplinary knowledge: needing to know some algorithm
+    from bioinformatics or computational chemistry to prove that a compiler
+    or library optimization actually benefits the scenario claimed by its
+    author.
+  - Example of knowledge across subfields within a single discipline:
+    needing to know some detail of programming for high-reliability scenarios
+    or of game programming to conclude that a compiler or kernel change is
+    justified.
+
 ## Sentence construction {/* #sentence-construction */}
 
 ### Dominant template {/* #dominant-template */}
