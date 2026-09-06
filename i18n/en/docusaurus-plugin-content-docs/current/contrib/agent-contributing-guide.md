@@ -171,7 +171,7 @@ build for deeper refactors or data pipeline changes).
   formatting.
 - Markdown files should use ATX-style headings (`#`, `##`, etc.).
 - Use blank lines after headings and before code blocks.
-- Keep lines at a reasonable length (wrap around 80–100 characters where
+- Keep lines at a reasonable length (wrap around 80-100 characters where
   practical).
 
 ### Chinese writing style
@@ -215,7 +215,7 @@ Follow Conventional Commits:
 Guidelines:
 
 - Imperative, present-tense summary (no trailing period).
-- ~50–72 characters for summary.
+- ~50-72 characters for summary.
 - One logical change per commit — do not combine unrelated changes.
 - Include a body when needed to explain motivation or key changes.
 - Separate body from summary with a blank line; wrap body lines around 72
