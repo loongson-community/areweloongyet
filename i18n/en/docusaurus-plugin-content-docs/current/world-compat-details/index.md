@@ -296,7 +296,6 @@ Offset | Member | Length | Notes
 The `uc_mcontext.sc_extcontext` field has a length of 0, being a [flexible array member](https://en.wikipedia.org/wiki/Flexible_array_member). Following the `ucontext` structure is a series of TLV (Type-Length-Value) extension data blocks that store context for extension instructions. The common header for extension data has the following memory layout:
 
 Offset | Member | Length | Notes
-Offset | Member | Length | Notes
 -------|------|-----|-----
 0 | `magic` | 4 | Identifies the extension data type
 4 | `size` | 4
