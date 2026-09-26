@@ -1,0 +1,11 @@
+name: 'postmarketOS'
+homepageURL: 'https://postmarketos.org'
+repoURL: 'https://gitlab.postmarketos.org/postmarketOS'
+portingEfforts:
+  - authors: ['postmarketOS']
+    desc: ''
+    link: 'https://gitlab.postmarketos.org/postmarketOS/pmaports/-/merge_requests/7116'
+    supportStatus: Released
+    releasedSinceVersion: ''
+    goodSinceVersion: ''
+    quality: OnPar
