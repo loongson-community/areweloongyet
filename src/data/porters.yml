@@ -49,6 +49,12 @@ liushuyu:
   url: ''
   githubUsername: liushuyu
   giteeUsername: ''
+loongfans:
+  name: Loongson Hobbyists' Community
+  kind: Community
+  url: https://loongfans.cn
+  githubUsername: loongson-community
+  giteeUsername: ''
 loongson:
   name: Loongson
   kind: Loongson
