@@ -3,9 +3,16 @@ homepageURL: 'https://proxmox.com'
 repoURL: 'https://git.proxmox.com'
 portingEfforts:
   - authors: ['jiangcuo']
-    desc: 'Proxmox VE 上游似乎仅支持 x86 架构，因此在该上游接受新架构之前，此 fork 即为 LoongArch 等其他架构的上游。'
-    link: 'https://github.com/jiangcuo/Proxmox-Port'
+    desc: '由梨儿方维护，基于 Proxmox VE 二次开发的虚拟化管理软件 PXVIRT。'
+    link: 'https://github.com/jiangcuo/pxvirt'
     supportStatus: Released
     releasedSinceVersion: ''
     goodSinceVersion: ''
+    quality: OnPar
+  - authors: ['loongfans']
+    desc: '由龙芯爱好者社区维护，面向上游化的 Proxmox VE 龙架构移植。'
+    link: 'https://pve.loongfans.cn'
+    supportStatus: Released
+    releasedSinceVersion: '9.1.10'
+    goodSinceVersion: '9.2.3'
     quality: OnPar
